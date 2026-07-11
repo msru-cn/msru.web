@@ -98,8 +98,21 @@ const list = z.object({
   ),
 });
 
+const caseList = z.object({
+  type: z.literal("caseList"),
+  cases: z.array(
+    z.object({
+      company: z.string(),
+      industry: z.string(),
+      result: z.string(),
+      quote: z.string(),
+      image: z.string(),
+    }),
+  ),
+});
+
 export const blockSchema = z.discriminatedUnion("type", [
-  hero, statBand, featureGrid, bento, ctaBlock, pricingTable, custom, splitMedia, list,
+  hero, statBand, featureGrid, bento, ctaBlock, pricingTable, custom, splitMedia, list, caseList,
 ]);
 export const pageSchema = z.array(blockSchema);
 export type Block = z.infer<typeof blockSchema>;
