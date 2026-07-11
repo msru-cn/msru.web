@@ -1,19 +1,11 @@
 "use client";
 
-import {
-  Button,
-  Card,
-  CardContent,
-  Label,
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-  Slider,
-  Switch,
-} from "@msru/ui/components";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Slider } from "@/components/ui/slider";
+import { Switch } from "@/components/ui/switch";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 // --- MATH & UTILS ---

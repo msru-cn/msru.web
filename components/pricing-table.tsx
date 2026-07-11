@@ -1,6 +1,7 @@
 "use client";
 
-import { Button, Switch } from "@msru/ui/components";
+import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/cn";
 import { Check, Info, Minus } from "lucide-react";
 import { useState } from "react";

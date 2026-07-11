@@ -1,4 +1,4 @@
-import { buttonVariants } from "@msru/ui/components";
+import { buttonVariants } from "@/components/ui/button";
 import { DocsLayout } from "fumadocs-ui/layouts/docs";
 import { MessageCircleIcon } from "lucide-react";
 import type { ReactNode } from "react";
