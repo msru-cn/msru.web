@@ -11,86 +11,18 @@ import {
   Zap,
 } from "lucide-react";
 import Link from "next/link";
+import { CTASection, Hero, StatBlock } from "@/components/marketing";
+import { apsCta, apsHero, apsStats } from "@/content/marketing/products/aps";
 import { HeroMockup } from "../../../../components/hero-mockup";
 
 export default function APSPage() {
   return (
     <main className="flex flex-col w-full min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-orange-500/30">
       {/* 1. 极致震撼的 HERO SECTION */}
-      <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-32 pb-20 px-6 text-center overflow-hidden border-b border-border/50">
-        {/* 背景动态光晕 */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] md:w-[1200px] md:h-[700px] bg-orange-500/15 dark:bg-orange-600/10 rounded-[100%] blur-[120px] pointer-events-none" />
-        <div className="absolute -top-40 right-10 w-[400px] h-[400px] bg-amber-500/10 rounded-full blur-[100px] pointer-events-none" />
-
-        {/* Hero 内容 */}
-        <div className="z-10 relative flex flex-col items-center max-w-5xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 text-orange-500 font-semibold text-sm mb-8 ring-1 ring-orange-500/20 backdrop-blur-sm">
-            <Sparkles className="size-4" /> MSRU APS 智能排程引擎
-          </div>
-          <h1 className="text-6xl md:text-8xl lg:text-[7rem] font-bold tracking-tighter mb-8 leading-[1.1] text-balance">
-            让生产计划， <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-orange-500 to-amber-400 dark:from-orange-400 dark:to-amber-300">
-              精确到毫秒。
-            </span>
-          </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-12 text-balance">
-            打破传统黑盒式的经验排产。基于运筹学与 AI 启发式算法，全局统筹人员、机台、物料与模具边界约束。
-            一键生成全局最优的最短交期与最低成本生产计划。
-          </p>
-          <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-            <Link
-              href="/contact"
-              className="w-full sm:w-auto h-14 px-10 inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground text-lg font-medium hover:scale-105 transition-transform shadow-2xl shadow-primary/20 hover:shadow-primary/40"
-            >
-              获取企业版报价
-            </Link>
-            <Link
-              href="/docs"
-              className="w-full sm:w-auto h-14 px-10 inline-flex items-center justify-center rounded-full bg-transparent border border-border text-foreground text-lg font-medium hover:bg-muted transition-colors"
-            >
-              阅读架构白皮书 <ArrowRight className="ml-2 size-5" />
-            </Link>
-          </div>
-        </div>
-
-        {/* 悬浮的Dashboard Mockup 视觉元素 */}
-        <HeroMockup theme="amber" />
-      </section>
+      <Hero {...apsHero} mockup={<HeroMockup theme="amber" />} />
 
       {/* 2. 核心指标统计 - Apple 风格大字 */}
-      <section className="py-24 bg-zinc-950 text-white w-full border-b border-zinc-900">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-20 tracking-tight text-zinc-100">
-            不是预估。是真实的运筹优化。
-          </h2>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 divide-x-0 lg:divide-x divide-zinc-800">
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-orange-400 mb-4 tracking-tighter">
-                98<span className="text-4xl md:text-5xl">%</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">按期交货履行率 (OTD)</span>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-orange-400 mb-4 tracking-tighter">
-                40<span className="text-4xl md:text-5xl">%</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">生产换型时间缩短</span>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-orange-400 mb-4 tracking-tighter">
-                85<span className="text-4xl md:text-5xl">%</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">排产人工成本降低</span>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-orange-400 mb-4 tracking-tighter">
-                &lt;5<span className="text-4xl md:text-5xl">min</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">十万级工序重排响应</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      <StatBlock {...apsStats} />
 
       {/* 3. 设计哲学宣言 */}
       <section className="py-32 px-6 md:px-12 max-w-6xl mx-auto text-center space-y-8">
@@ -195,30 +127,7 @@ export default function APSPage() {
       </section>
 
       {/* 9. 巨型底部 CTA */}
-      <section className="relative py-32 px-6 overflow-hidden bg-orange-600 dark:bg-orange-900 text-white">
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none" />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-amber-400/30 rounded-full blur-[120px] pointer-events-none translate-x-1/3 -translate-y-1/3" />
-
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <CalendarDays className="size-20 mx-auto mb-8 opacity-80" />
-          <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8 leading-tight">
-            从混沌计划到
-            <br />
-            精确节拍。
-          </h2>
-          <p className="text-xl md:text-2xl opacity-90 mb-12 max-w-2xl mx-auto">
-            停止救火式的车间调度。我们将安排资深运筹学实施专家为您进行工厂逻辑建模咨询。
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
-            <Link
-              href="/contact"
-              className="h-16 px-10 inline-flex items-center justify-center rounded-full bg-white text-orange-600 text-xl font-bold hover:scale-105 transition-transform shadow-2xl"
-            >
-              预约 APS 功能演示
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CTASection {...apsCta} />
     </main>
   );
 }
