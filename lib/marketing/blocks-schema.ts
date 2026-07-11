@@ -73,8 +73,19 @@ const custom = z.object({
   props: z.record(z.string(), z.unknown()).optional(),
 });
 
+const splitMedia = z.object({
+  type: z.literal("splitMedia"),
+  image: z.string(),
+  side: z.enum(["left", "right"]).default("left"),
+  eyebrow: z.string().optional(),
+  title: z.string(),
+  body: z.string(),
+  bullets: z.array(z.string()).optional(),
+  cta: cta.optional(),
+});
+
 export const blockSchema = z.discriminatedUnion("type", [
-  hero, statBand, featureGrid, bento, ctaBlock, pricingTable, custom,
+  hero, statBand, featureGrid, bento, ctaBlock, pricingTable, custom, splitMedia,
 ]);
 export const pageSchema = z.array(blockSchema);
 export type Block = z.infer<typeof blockSchema>;

@@ -3,6 +3,7 @@ import { type Block, parsePage } from "@/lib/marketing/blocks-schema";
 import { resolveCustom } from "@/lib/marketing/custom-registry";
 import { resolveIcon } from "@/lib/marketing/icon-registry";
 import { BentoCard, BentoGrid } from "./bento-card";
+import { SplitMedia } from "./blocks/split-media";
 import { PricingTable } from "./pricing-table";
 import { StatBlock } from "./stat-block";
 import { SubPageCardGrid, SubPageCta, SubPageHero } from "./sub-page-template";
@@ -74,6 +75,19 @@ export function renderBlock(block: Block, index: number): ReactNode {
       const Comp = resolveCustom(block.component);
       return Comp ? <Comp key={key} {...(block.props ?? {})} /> : null;
     }
+    case "splitMedia":
+      return (
+        <SplitMedia
+          key={key}
+          image={block.image}
+          side={block.side}
+          eyebrow={block.eyebrow}
+          title={block.title}
+          body={block.body}
+          bullets={block.bullets}
+          cta={block.cta}
+        />
+      );
     default:
       return null;
   }
