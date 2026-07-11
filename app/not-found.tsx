@@ -1,4 +1,4 @@
-import { StatusPage } from "@msru/ui/components/primitives";
+import { StatusPage } from "@/components/primitives";
 
 /** Docs 404 — 统一状态页 */
 export default function NotFound() {
