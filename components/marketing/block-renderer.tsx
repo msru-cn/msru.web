@@ -6,6 +6,7 @@ import { BentoCard, BentoGrid } from "./bento-card";
 import { CaseList } from "./blocks/case-list";
 import { ListBlock } from "./blocks/list-block";
 import { SplitMedia } from "./blocks/split-media";
+import { Statement } from "./blocks/statement";
 import { PricingTable } from "./pricing-table";
 import { StatBlock } from "./stat-block";
 import { SubPageCardGrid, SubPageCta, SubPageHero } from "./sub-page-template";
@@ -94,6 +95,8 @@ export function renderBlock(block: Block, index: number): ReactNode {
       return <ListBlock key={key} variant={block.variant} items={block.items} />;
     case "caseList":
       return <CaseList key={key} cases={block.cases} />;
+    case "statement":
+      return <Statement key={key} title={block.title} body={block.body} accentColor={block.accentColor} />;
     default:
       return null;
   }

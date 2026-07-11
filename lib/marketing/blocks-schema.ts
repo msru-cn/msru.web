@@ -111,8 +111,15 @@ const caseList = z.object({
   ),
 });
 
+const statement = z.object({
+  type: z.literal("statement"),
+  title: z.string(),
+  body: z.string().optional(),
+  accentColor: accent,
+});
+
 export const blockSchema = z.discriminatedUnion("type", [
-  hero, statBand, featureGrid, bento, ctaBlock, pricingTable, custom, splitMedia, list, caseList,
+  hero, statBand, featureGrid, bento, ctaBlock, pricingTable, custom, splitMedia, list, caseList, statement,
 ]);
 export const pageSchema = z.array(blockSchema);
 export type Block = z.infer<typeof blockSchema>;
