@@ -14,6 +14,9 @@ importers:
       '@ai-sdk/react':
         specifier: ^3.0.103
         version: 3.0.226(react@19.2.7)(zod@4.4.3)
+      '@fumadocs/mdx-remote':
+        specifier: ^1.5.0
+        version: 1.5.0(@types/mdx@2.0.14)(@types/react@19.2.17)(fumadocs-core@16.4.9(@types/react@19.2.17)(lucide-react@0.563.0(react@19.2.7))(next@16.1.6(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(zod@4.4.3))(react@19.2.7)
       '@orama/tokenizers':
         specifier: ^3.1.18
         version: 3.1.18
@@ -37,7 +40,7 @@ importers:
         version: 16.4.9(@types/react@19.2.17)(lucide-react@0.563.0(react@19.2.7))(next@16.1.6(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(zod@4.4.3)
       fumadocs-mdx:
         specifier: 14.2.6
-        version: 14.2.6(@types/react@19.2.17)(fumadocs-core@16.4.9(@types/react@19.2.17)(lucide-react@0.563.0(react@19.2.7))(next@16.1.6(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(zod@4.4.3))(next@16.1.6(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react@19.2.7)(vite@5.4.21(@types/node@25.9.5)(lightningcss@1.32.0))
+        version: 14.2.6(@fumadocs/mdx-remote@1.5.0(@types/mdx@2.0.14)(@types/react@19.2.17)(fumadocs-core@16.4.9(@types/react@19.2.17)(lucide-react@0.563.0(react@19.2.7))(next@16.1.6(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(zod@4.4.3))(react@19.2.7))(@types/react@19.2.17)(fumadocs-core@16.4.9(@types/react@19.2.17)(lucide-react@0.563.0(react@19.2.7))(next@16.1.6(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(zod@4.4.3))(next@16.1.6(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react@19.2.7)(vite@5.4.21(@types/node@25.9.5)(lightningcss@1.32.0))
       fumadocs-ui:
         specifier: 16.4.9
         version: 16.4.9(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(fumadocs-core@16.4.9(@types/react@19.2.17)(lucide-react@0.563.0(react@19.2.7))(next@16.1.6(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(zod@4.4.3))(next@16.1.6(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(tailwindcss@4.3.2)
@@ -788,6 +791,19 @@ packages:
 
   '@formatjs/intl-localematcher@0.8.12':
     resolution: {integrity: sha512-5H3r5ZJ2jZqHEv9K343lvHmeMDKMxssawAVD2H4J9xtu0ZXb6MlNxwLqdwBxJSHFU0C24KSZnffgmAi+59mK4A==}
+
+  '@fumadocs/mdx-remote@1.5.0':
+    resolution: {integrity: sha512-ZWdu1u+sFrmGOWt8gd4+qrKKzvxzQUa3oXcWkLpKvWw4MzO53Kabyu6NcfsNsCChsxJsKJI8BJO+JrBiifc3PQ==}
+    peerDependencies:
+      '@types/mdx': '*'
+      '@types/react': '*'
+      fumadocs-core: ^15.0.0 || ^16.0.0
+      react: 18.x.x || 19.x.x
+    peerDependenciesMeta:
+      '@types/mdx':
+        optional: true
+      '@types/react':
+        optional: true
 
   '@fumadocs/ui@16.4.9':
     resolution: {integrity: sha512-MRIwJHm3SObwwPYqsMX4DfY71PYCtuXyBRI+g7NjbhdOD4HNnB2cOZf81I44+DCDvlRlnx6nf/SgsESSY/7cxQ==}
@@ -3556,6 +3572,10 @@ packages:
     resolution: {integrity: sha512-1td788aAnnZ5qs7V2QIRl1owjtYpbKt749Y3xauqQgwIIGF/xXWz1wMTEBx5O3LK3lXLVuqXPdPxj2BoFHaW9Q==}
     hasBin: true
 
+  js-yaml@5.2.1:
+    resolution: {integrity: sha512-zfLtNfQqxVqq3uaTqSkh4x4hZw3KHobGUA0fJUj4wawW8bsQLTVqpHdXSIzidh7o+4lEW36tANuAGdaFx6Zgnw==}
+    hasBin: true
+
   jsdom@29.1.1:
     resolution: {integrity: sha512-ECi4Fi2f7BdJtUKTflYRTiaMxIB0O6zfR1fX0GXpUrf6flp8QIYn1UT20YQqdSOfk2dfkCwS8LAFoJDEppNK5Q==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24.0.0}
@@ -5512,6 +5532,20 @@ snapshots:
   '@formatjs/intl-localematcher@0.8.12':
     dependencies:
       '@formatjs/fast-memoize': 3.1.7
+
+  '@fumadocs/mdx-remote@1.5.0(@types/mdx@2.0.14)(@types/react@19.2.17)(fumadocs-core@16.4.9(@types/react@19.2.17)(lucide-react@0.563.0(react@19.2.7))(next@16.1.6(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(zod@4.4.3))(react@19.2.7)':
+    dependencies:
+      '@mdx-js/mdx': 3.1.1
+      fumadocs-core: 16.4.9(@types/react@19.2.17)(lucide-react@0.563.0(react@19.2.7))(next@16.1.6(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(zod@4.4.3)
+      js-yaml: 5.2.1
+      react: 19.2.7
+      unified: 11.0.5
+      vfile: 6.0.3
+    optionalDependencies:
+      '@types/mdx': 2.0.14
+      '@types/react': 19.2.17
+    transitivePeerDependencies:
+      - supports-color
 
   '@fumadocs/ui@16.4.9(@types/react@19.2.17)(fumadocs-core@16.4.9(@types/react@19.2.17)(lucide-react@0.563.0(react@19.2.7))(next@16.1.6(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(zod@4.4.3))(next@16.1.6(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(tailwindcss@4.3.2)':
     dependencies:
@@ -7934,7 +7968,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  fumadocs-mdx@14.2.6(@types/react@19.2.17)(fumadocs-core@16.4.9(@types/react@19.2.17)(lucide-react@0.563.0(react@19.2.7))(next@16.1.6(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(zod@4.4.3))(next@16.1.6(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react@19.2.7)(vite@5.4.21(@types/node@25.9.5)(lightningcss@1.32.0)):
+  fumadocs-mdx@14.2.6(@fumadocs/mdx-remote@1.5.0(@types/mdx@2.0.14)(@types/react@19.2.17)(fumadocs-core@16.4.9(@types/react@19.2.17)(lucide-react@0.563.0(react@19.2.7))(next@16.1.6(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(zod@4.4.3))(react@19.2.7))(@types/react@19.2.17)(fumadocs-core@16.4.9(@types/react@19.2.17)(lucide-react@0.563.0(react@19.2.7))(next@16.1.6(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(zod@4.4.3))(next@16.1.6(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react@19.2.7)(vite@5.4.21(@types/node@25.9.5)(lightningcss@1.32.0)):
     dependencies:
       '@mdx-js/mdx': 3.1.1
       '@standard-schema/spec': 1.1.0
@@ -7955,6 +7989,7 @@ snapshots:
       vfile: 6.0.3
       zod: 4.4.3
     optionalDependencies:
+      '@fumadocs/mdx-remote': 1.5.0(@types/mdx@2.0.14)(@types/react@19.2.17)(fumadocs-core@16.4.9(@types/react@19.2.17)(lucide-react@0.563.0(react@19.2.7))(next@16.1.6(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(zod@4.4.3))(react@19.2.7)
       '@types/react': 19.2.17
       next: 16.1.6(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react: 19.2.7
@@ -8315,6 +8350,10 @@ snapshots:
   js-tokens@9.0.1: {}
 
   js-yaml@4.3.0:
+    dependencies:
+      argparse: 2.0.1
+
+  js-yaml@5.2.1:
     dependencies:
       argparse: 2.0.1
 
