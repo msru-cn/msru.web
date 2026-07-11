@@ -10,7 +10,9 @@
     "postinstall": "fumadocs-mdx",
     "lint": "biome check",
     "format": "biome format --write",
-    "lint:fix": "biome check --write ."
+    "lint:fix": "biome check --write .",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@ai-sdk/openai-compatible": "^2.0.30",
@@ -44,6 +46,8 @@
   "devDependencies": {
     "@biomejs/biome": "^2.3.12",
     "@tailwindcss/postcss": "^4.1.18",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
     "@types/hast": "^3.0.4",
     "@types/katex": "^0.16.8",
     "@types/mdx": "^2.0.13",
@@ -51,10 +55,13 @@
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
     "@types/unist": "^3.0.3",
+    "@vitejs/plugin-react": "^4.7.0",
+    "jsdom": "^29.1.1",
     "postcss": "^8.5.6",
     "shadcn": "^3.8.5",
     "tailwindcss": "^4.1.18",
     "tailwindcss-animate": "^1.0.7",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.7"
   }
 }
