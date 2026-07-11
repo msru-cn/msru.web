@@ -84,8 +84,22 @@ const splitMedia = z.object({
   cta: cta.optional(),
 });
 
+const list = z.object({
+  type: z.literal("list"),
+  variant: z.enum(["timeline", "cards", "rows", "steps"]).default("rows"),
+  items: z.array(
+    z.object({
+      title: z.string(),
+      meta: z.string().optional(),
+      desc: z.string().optional(),
+      tag: z.string().optional(),
+      href: z.string().optional(),
+    }),
+  ),
+});
+
 export const blockSchema = z.discriminatedUnion("type", [
-  hero, statBand, featureGrid, bento, ctaBlock, pricingTable, custom, splitMedia,
+  hero, statBand, featureGrid, bento, ctaBlock, pricingTable, custom, splitMedia, list,
 ]);
 export const pageSchema = z.array(blockSchema);
 export type Block = z.infer<typeof blockSchema>;

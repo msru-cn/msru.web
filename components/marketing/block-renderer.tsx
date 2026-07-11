@@ -3,6 +3,7 @@ import { type Block, parsePage } from "@/lib/marketing/blocks-schema";
 import { resolveCustom } from "@/lib/marketing/custom-registry";
 import { resolveIcon } from "@/lib/marketing/icon-registry";
 import { BentoCard, BentoGrid } from "./bento-card";
+import { ListBlock } from "./blocks/list-block";
 import { SplitMedia } from "./blocks/split-media";
 import { PricingTable } from "./pricing-table";
 import { StatBlock } from "./stat-block";
@@ -88,6 +89,8 @@ export function renderBlock(block: Block, index: number): ReactNode {
           cta={block.cta}
         />
       );
+    case "list":
+      return <ListBlock key={key} variant={block.variant} items={block.items} />;
     default:
       return null;
   }
