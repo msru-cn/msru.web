@@ -118,8 +118,13 @@ const statement = z.object({
   accentColor: accent,
 });
 
+const logoWall = z.object({
+  type: z.literal("logoWall"),
+  items: z.array(z.object({ name: z.string(), src: z.string().optional() })),
+});
+
 export const blockSchema = z.discriminatedUnion("type", [
-  hero, statBand, featureGrid, bento, ctaBlock, pricingTable, custom, splitMedia, list, caseList, statement,
+  hero, statBand, featureGrid, bento, ctaBlock, pricingTable, custom, splitMedia, list, caseList, statement, logoWall,
 ]);
 export const pageSchema = z.array(blockSchema);
 export type Block = z.infer<typeof blockSchema>;

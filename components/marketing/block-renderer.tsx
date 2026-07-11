@@ -5,6 +5,7 @@ import { resolveIcon } from "@/lib/marketing/icon-registry";
 import { BentoCard, BentoGrid } from "./bento-card";
 import { CaseList } from "./blocks/case-list";
 import { ListBlock } from "./blocks/list-block";
+import { LogoWall } from "./blocks/logo-wall";
 import { SplitMedia } from "./blocks/split-media";
 import { Statement } from "./blocks/statement";
 import { PricingTable } from "./pricing-table";
@@ -97,6 +98,8 @@ export function renderBlock(block: Block, index: number): ReactNode {
       return <CaseList key={key} cases={block.cases} />;
     case "statement":
       return <Statement key={key} title={block.title} body={block.body} accentColor={block.accentColor} />;
+    case "logoWall":
+      return <LogoWall key={key} items={block.items} />;
     default:
       return null;
   }
