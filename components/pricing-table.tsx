@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, Switch } from "@msru/ui/components";
-import { cn } from "@msru/ui/lib/utils";
+import { cn } from "@/lib/cn";
 import { Check, Info, Minus } from "lucide-react";
 import { useState } from "react";
 
