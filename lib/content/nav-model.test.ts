@@ -25,8 +25,11 @@ describe("buildNavFromTree (文件树档 + 数字前缀排序)", () => {
     { path: "docs/01-app/02-project-structure.mdx", type: "blob" },
     { path: "docs/01-app/01-installation.mdx", type: "blob" },
     { path: "docs/02-pages/index.mdx", type: "blob" },
-    { path: "docs/README.md", type: "blob" },
     { path: "docs/LICENSE", type: "blob" },
+    { path: "docs/high-concurrency/README.md", type: "blob" },
+    { path: "docs/high-concurrency/es-introduction.md", type: "blob" },
+    { path: "docs/.vitepress/config.mts", type: "blob" },
+    { path: "docs/public/logo.png", type: "blob" },
   ];
 
   test("orders by numeric prefix, not alphabetic", () => {
@@ -36,17 +39,30 @@ describe("buildNavFromTree (文件树档 + 数字前缀排序)", () => {
       "Installation",
       "Project Structure",
     ]);
-    // 01-app before 02-pages
-    expect(nav.map((n) => n.title)).toEqual(["Index", "App", "Pages"]);
+    // 01-app before 02-pages (numeric-prefixed folders sort before plain names)
+    expect(nav.slice(0, 3).map((n) => n.title)).toEqual(["Index", "App", "Pages"]);
   });
 
-  test("filters junk files (README/LICENSE) from nav", () => {
+  test("filters root-level junk files (LICENSE) from nav", () => {
     const nav = buildNavFromTree(tree, "docs");
-    const titles = JSON.stringify(nav);
-    expect(titles).not.toMatch(/README|LICENSE/i);
+    expect(nav.map((n) => n.title)).not.toContain("License");
   });
 
-  test("maps leaf slug relative to contentDir without .mdx", () => {
+  test("subfolder README.md becomes that folder's landing page", () => {
+    const nav = buildNavFromTree(tree, "docs");
+    const hc = nav.find((n) => n.title === "High Concurrency");
+    expect(hc?.slug).toBe("high-concurrency/README");
+    // and its non-README doc is a child
+    expect(hc?.children?.some((c) => c.slug === "high-concurrency/es-introduction")).toBe(true);
+  });
+
+  test("excludes non-content directories (.vitepress, public)", () => {
+    const nav = buildNavFromTree(tree, "docs");
+    const json = JSON.stringify(nav);
+    expect(json).not.toMatch(/vitepress|public|logo/i);
+  });
+
+  test("maps leaf slug relative to contentDir without extension", () => {
     const nav = buildNavFromTree(tree, "docs");
     const appGroup = nav.find((n) => n.title === "App");
     const install = appGroup?.children?.find((c) => c.title === "Installation");

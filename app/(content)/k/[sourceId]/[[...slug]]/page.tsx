@@ -17,13 +17,14 @@ export function generateStaticParams() {
   return [];
 }
 
-/** 顶部下拉：白名单里的每个库 = 一个可切换的 tab。 */
+/** 顶部下拉：白名单里的每个库 = 一个可切换的 tab（Root Toggle）。 */
 function buildSourceTabs(): SidebarTabWithProps[] {
   return listSources().map((s) => ({
     title: s.id,
     description: s.attribution.text,
+    // 不设 urls：让 isTabActive 走前缀匹配（/k/<id> 是所有子路由的前缀），
+    // 否则 urls 集合只含落地页，一进子路由 tab 判为非激活、下拉塌陷。
     url: `/k/${s.id}`,
-    urls: new Set([`/k/${s.id}`]),
     icon: <BookMarked className="size-full" />,
   }));
 }
@@ -63,7 +64,7 @@ export default async function AggregatedContentPage({
               <footer className="mt-12 border-t border-fd-border pt-4 text-xs text-fd-muted-foreground">
                 {source.attribution.text}{" "}
                 <a
-                  href={`${source.attribution.originBaseUrl}/${path}.mdx`}
+                  href={`${source.attribution.originBaseUrl}/${path}.${source.ext ?? "mdx"}`}
                   target="_blank"
                   rel="noreferrer noopener"
                   className="underline hover:text-fd-foreground"

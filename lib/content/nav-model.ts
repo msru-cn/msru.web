@@ -21,8 +21,14 @@ export interface TreeEntry {
   type: "blob" | "tree";
 }
 
-const JUNK = /^(README|CHANGELOG|CONTRIBUTING|LICENSE|CODE_OF_CONDUCT|SECURITY)(\.|$)/i;
+const JUNK = /^(CHANGELOG|CONTRIBUTING|LICENSE|CODE_OF_CONDUCT|SECURITY)(\.|$)/i;
 const DOC_EXT = /\.(mdx|md)$/i;
+const EXCLUDED_DIR = /(^|\/)(\.vitepress|\.github|\.git|node_modules|public|assets|images|img|static)(\/|$)/i;
+
+/** 目录落地页文件名（index 或 README，大小写不敏感）。 */
+function isLandingBase(base: string): boolean {
+  return base.toLowerCase() === "index" || base.toLowerCase() === "readme";
+}
 
 export function stripOrderPrefix(name: string): string {
   return name.replace(/^\d+-/, "");
@@ -40,7 +46,7 @@ export function humanizeTitle(name: string): string {
 /** 排序值：数字前缀优先；index 落地页置顶；无前缀退到字母序（返回 NaN 交由 tiebreak）。 */
 function orderOf(name: string): number {
   const base = name.replace(DOC_EXT, "");
-  if (base === "index") return -1;
+  if (isLandingBase(base)) return -1;
   const m = base.match(/^(\d+)-/);
   return m ? Number(m[1]) : Number.POSITIVE_INFINITY;
 }
@@ -87,16 +93,18 @@ export function buildNavFromTree(tree: TreeEntry[], contentDir: string): NavNode
     if (entry.type !== "blob") continue;
     if (!entry.path.startsWith(prefix)) continue;
     const rel = entry.path.slice(prefix.length);
+    if (EXCLUDED_DIR.test(rel)) continue;
     const fileName = rel.split("/").pop() ?? "";
     if (JUNK.test(fileName)) continue;
     if (!DOC_EXT.test(fileName)) continue;
 
     const segments = rel.split("/");
     const slug = rel.replace(DOC_EXT, "");
-    const isIndex = fileName.replace(DOC_EXT, "") === "index";
+    const base = fileName.replace(DOC_EXT, "");
+    const isLanding = isLandingBase(base);
 
-    if (isIndex && segments.length > 1) {
-      // 目录的 index.mdx → 作为该分组的落地页，不作为独立子项
+    if (isLanding && segments.length > 1) {
+      // 子目录的 index.mdx / README.md → 作为该分组的落地页，不作为独立子项
       let cursor = root;
       for (let i = 0; i < segments.length - 1; i++) {
         cursor = ensureChild(cursor, segments[i]);
@@ -105,7 +113,7 @@ export function buildNavFromTree(tree: TreeEntry[], contentDir: string): NavNode
       continue;
     }
 
-    // 普通叶子（含根级 index.mdx）
+    // 普通叶子（含 contentDir 根级 index/README 作为库落地页）
     let cursor = root;
     for (let i = 0; i < segments.length - 1; i++) {
       cursor = ensureChild(cursor, segments[i]);

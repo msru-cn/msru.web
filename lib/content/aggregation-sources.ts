@@ -19,6 +19,8 @@ export interface AggregationSource {
   branch: string;
   /** mdx 所在子目录（相对仓根，拼进 raw url）；空串表示仓根。 */
   contentDir: string;
+  /** 文档文件扩展名，"md" 或 "mdx"；默认 mdx。纯 markdown 书库用 md。 */
+  ext?: "md" | "mdx";
   /** 默认 snapshot（指向 fork）；live 仅对自己/完全信任源开放。 */
   mode: "snapshot" | "live";
   /** 原始上游 owner/repo；snapshot 记录来源，live 与 repo 相同。 */
@@ -53,6 +55,34 @@ export const AGGREGATION_SOURCES: AggregationSource[] = [
       originBaseUrl: "https://github.com/vercel/next.js/blob/canary/docs",
     },
   },
+  {
+    id: "pi-zhcn",
+    repo: "algotao/pidoc-site-zhcn",
+    branch: "main",
+    contentDir: "docs",
+    ext: "mdx",
+    mode: "live",
+    upstream: "algotao/pidoc-site-zhcn",
+    license: "CC-BY-SA-4.0",
+    attribution: {
+      text: "内容来源：树莓派官方文档中文版（algotao/pidoc-site-zhcn），CC-BY-SA-4.0，转载需署名并以相同方式共享。",
+      originBaseUrl: "https://github.com/algotao/pidoc-site-zhcn/blob/main/docs",
+    },
+  },
+  {
+    id: "advanced-java",
+    repo: "doocs/advanced-java",
+    branch: "main",
+    contentDir: "docs",
+    ext: "md",
+    mode: "live",
+    upstream: "doocs/advanced-java",
+    license: "CC-BY-SA-4.0",
+    attribution: {
+      text: "内容来源：《互联网 Java 工程师进阶知识完全扫盲》（doocs/advanced-java），CC-BY-SA-4.0，转载需署名并以相同方式共享。",
+      originBaseUrl: "https://github.com/doocs/advanced-java/blob/main/docs",
+    },
+  },
 ];
 
 export function getSource(id: string): AggregationSource | undefined {
@@ -69,6 +99,7 @@ export function navPathToSlug(segments: string[] | undefined): string {
 
 export function buildAggregatedRawUrl(source: AggregationSource, slug: string): string {
   const parts = [source.repo, source.branch];
+  const ext = source.ext ?? "mdx";
   const path = [source.contentDir, slug].filter((p) => p.length > 0).join("/");
-  return `https://raw.githubusercontent.com/${parts.join("/")}/${path}.mdx`;
+  return `https://raw.githubusercontent.com/${parts.join("/")}/${path}.${ext}`;
 }
