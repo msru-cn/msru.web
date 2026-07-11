@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import type { ReactNode } from "react";
 import { type Block, parsePage } from "@/lib/marketing/blocks-schema";
 import { resolveCustom } from "@/lib/marketing/custom-registry";
@@ -11,6 +12,8 @@ import { Statement } from "./blocks/statement";
 import { PricingTable } from "./pricing-table";
 import { StatBlock } from "./stat-block";
 import { SubPageCardGrid, SubPageCta, SubPageHero } from "./sub-page-template";
+
+const Faq = dynamic(() => import("./blocks/faq").then((m) => m.Faq));
 
 export function renderBlock(block: Block, index: number): ReactNode {
   const key = index;
@@ -100,6 +103,8 @@ export function renderBlock(block: Block, index: number): ReactNode {
       return <Statement key={key} title={block.title} body={block.body} accentColor={block.accentColor} />;
     case "logoWall":
       return <LogoWall key={key} items={block.items} />;
+    case "faq":
+      return <Faq key={key} items={block.items} />;
     default:
       return null;
   }

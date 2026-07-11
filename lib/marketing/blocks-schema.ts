@@ -123,8 +123,13 @@ const logoWall = z.object({
   items: z.array(z.object({ name: z.string(), src: z.string().optional() })),
 });
 
+const faq = z.object({
+  type: z.literal("faq"),
+  items: z.array(z.object({ q: z.string(), a: z.string() })),
+});
+
 export const blockSchema = z.discriminatedUnion("type", [
-  hero, statBand, featureGrid, bento, ctaBlock, pricingTable, custom, splitMedia, list, caseList, statement, logoWall,
+  hero, statBand, featureGrid, bento, ctaBlock, pricingTable, custom, splitMedia, list, caseList, statement, logoWall, faq,
 ]);
 export const pageSchema = z.array(blockSchema);
 export type Block = z.infer<typeof blockSchema>;
