@@ -8,6 +8,7 @@ export {
   SubPageHero,
   SubPageSection,
   SubPageCardGrid,
+  SubPageCta,
   type SubPageHeroProps,
   type SubPageCard,
 } from "./sub-page-template";

@@ -1,5 +1,5 @@
-import { ArrowRight, Bug } from "lucide-react";
-import Link from "next/link";
+import { Bug } from "lucide-react";
+import { SubPageCta, SubPageHero } from "@/components/marketing";
 
 const SCOPE = [
   { label: "关键级 (Critical)", reward: "¥50,000 - ¥200,000", example: "远程代码执行、认证绕过、数据库注入" },
@@ -11,19 +11,12 @@ const SCOPE = [
 export default function BountyPage() {
   return (
     <div className="flex flex-col w-full min-h-screen">
-      <section className="relative pt-32 pb-24 bg-zinc-950 overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <div className="max-w-4xl mx-auto space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-[10px] font-bold text-purple-400 uppercase tracking-widest">
-              <Bug className="size-3" /> Bug Bounty Program
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tighter">漏洞披露政策</h1>
-            <p className="text-xl text-zinc-400 leading-relaxed max-w-2xl mx-auto">
-              我们欢迎负责任的安全研究者帮助我们发现并修复潜在漏洞。提交有效报告将获得丰厚的现金奖励。
-            </p>
-          </div>
-        </div>
-      </section>
+      <SubPageHero
+        badge={{ icon: Bug, text: "Bug Bounty Program" }}
+        title="漏洞披露政策"
+        subtitle="我们欢迎负责任的安全研究者帮助我们发现并修复潜在漏洞。提交有效报告将获得丰厚的现金奖励。"
+        accentColor="purple"
+      />
 
       <section className="py-24 bg-white dark:bg-zinc-950">
         <div className="container mx-auto px-6 max-w-4xl">
@@ -45,18 +38,11 @@ export default function BountyPage() {
         </div>
       </section>
 
-      <section className="py-24 bg-zinc-50 dark:bg-zinc-900 text-center">
-        <div className="container mx-auto px-6 space-y-6">
-          <h2 className="text-3xl font-bold text-zinc-900 dark:text-white">准备提交报告？</h2>
-          <p className="text-zinc-500 max-w-xl mx-auto">请将漏洞详情发送至专用安全邮箱，我们承诺 24 小时内响应。</p>
-          <Link
-            href="mailto:security@msru.ai"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-bold rounded-xl hover:opacity-90 transition-opacity"
-          >
-            security@msru.ai <ArrowRight className="size-4" />
-          </Link>
-        </div>
-      </section>
+      <SubPageCta
+        title="准备提交报告？"
+        description="请将漏洞详情发送至专用安全邮箱，我们承诺 24 小时内响应。"
+        cta={{ label: "security@msru.ai", href: "mailto:security@msru.ai" }}
+      />
     </div>
   );
 }

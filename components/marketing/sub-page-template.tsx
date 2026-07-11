@@ -1,7 +1,9 @@
-import type { LucideIcon } from "lucide-react";
+import { ArrowRight, type LucideIcon } from "lucide-react";
+import Link from "next/link";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 import { type AccentColor, getAccent } from "./accent";
+import type { CtaLink } from "./hero";
 
 export interface SubPageHeroProps {
   badge?: { icon: LucideIcon; text: string };
@@ -78,5 +80,34 @@ export function SubPageCardGrid({ cards, columns = 2 }: { cards: SubPageCard[]; 
         </div>
       ))}
     </div>
+  );
+}
+
+/**
+ * 子页小尾 CTA —— 收编 trust/工具页 `py-24 bg-zinc-50` 居中小 CTA
+ * （区别于产品页 py-40 的大 CTASection，保持原观感）。
+ */
+export function SubPageCta({
+  title,
+  description,
+  cta,
+}: {
+  title: string;
+  description?: string;
+  cta: CtaLink;
+}) {
+  return (
+    <section className="py-24 bg-zinc-50 dark:bg-zinc-900 text-center">
+      <div className="container mx-auto px-6 space-y-6">
+        <h2 className="text-3xl font-bold text-zinc-900 dark:text-white tracking-tighter">{title}</h2>
+        {description && <p className="text-zinc-500">{description}</p>}
+        <Link
+          href={cta.href}
+          className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-bold rounded-xl hover:opacity-90 transition-opacity"
+        >
+          {cta.label} <ArrowRight className="size-4" aria-hidden="true" />
+        </Link>
+      </div>
+    </section>
   );
 }
