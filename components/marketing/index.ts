@@ -1,16 +1,17 @@
-export { getAccent, type AccentColor } from "./accent";
-export { BentoCard, BentoGrid, type BentoItem, type BentoCardProps } from "./bento-card";
-export { Hero, type HeroProps, type CtaLink } from "./hero";
-export { StatBlock, type Stat, type StatBlockProps } from "./stat-block";
-export { FeatureList, type FeatureItem, type FeatureListProps } from "./feature-list";
+export { type AccentColor, getAccent } from "./accent";
+export { BentoCard, type BentoCardProps, BentoGrid, type BentoItem } from "./bento-card";
 export { CTASection, type CTASectionProps } from "./cta-section";
+export { DataTable, type DataTableColumn, type DataTableProps } from "./data-table";
+export { type FeatureItem, FeatureList, type FeatureListProps } from "./feature-list";
+export { type CtaLink, Hero, type HeroProps } from "./hero";
+export { LegalDoc, type LegalDocProps } from "./legal-doc";
+export { type PricingPlan, PricingTable } from "./pricing-table";
+export { type Stat, StatBlock, type StatBlockProps } from "./stat-block";
 export {
-  SubPageHero,
-  SubPageSection,
+  type SubPageCard,
   SubPageCardGrid,
   SubPageCta,
+  SubPageHero,
   type SubPageHeroProps,
-  type SubPageCard,
+  SubPageSection,
 } from "./sub-page-template";
-export { DataTable, type DataTableColumn, type DataTableProps } from "./data-table";
-export { PricingTable, type PricingPlan } from "./pricing-table";

@@ -1,4 +1,5 @@
 import { Heart, Scale, ShieldCheck, Users } from "lucide-react";
+import { SubPageCardGrid } from "@/components/marketing";
 
 const PRINCIPLES = [
   {
@@ -38,17 +39,8 @@ export default function CodeOfConductPage() {
 
       <section className="py-24 bg-white dark:bg-zinc-950">
         <div className="container mx-auto px-6 max-w-4xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            {PRINCIPLES.map((p) => (
-              <div
-                key={p.title}
-                className="p-8 rounded-[2rem] border border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 space-y-4"
-              >
-                {p.icon}
-                <h3 className="text-xl font-bold text-zinc-900 dark:text-white">{p.title}</h3>
-                <p className="text-zinc-500 leading-relaxed">{p.desc}</p>
-              </div>
-            ))}
+          <div className="mb-16">
+            <SubPageCardGrid cards={PRINCIPLES} />
           </div>
           <div className="prose dark:prose-invert prose-zinc max-w-none prose-headings:tracking-tight">
             <h2>举报渠道</h2>
