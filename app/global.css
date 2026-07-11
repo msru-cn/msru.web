@@ -4,7 +4,6 @@
 @import "katex/dist/katex.css";
 @import "shadcn/tailwind.css";
 
-@source "../../../packages/ui/src";
 @plugin "tailwindcss-animate";
 @custom-variant dark (&:is(.dark *));
 
