@@ -11,6 +11,6 @@ export async function POST(req: Request) {
   if (!tag) {
     return NextResponse.json({ ok: false, error: "missing tag or slug" }, { status: 400 });
   }
-  revalidateTag(tag);
+  revalidateTag(tag, "max");
   return NextResponse.json({ ok: true, revalidated: tag });
 }
