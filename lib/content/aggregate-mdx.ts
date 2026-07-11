@@ -4,6 +4,7 @@ import { Callout } from "fumadocs-ui/components/callout";
 import { Card, Cards } from "fumadocs-ui/components/card";
 import { Step, Steps } from "fumadocs-ui/components/steps";
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+import type { TOCItemType } from "fumadocs-core/toc";
 import { unstable_cache } from "next/cache";
 import type { MDXComponents } from "mdx/types";
 import type { AggregationSource } from "./aggregation-sources";
@@ -74,6 +75,7 @@ async function cachedRaw(source: AggregationSource, slug: string): Promise<strin
 
 export interface AggregatedDoc extends RemoteDoc {
   tags: string[];
+  toc: TOCItemType[];
 }
 
 export async function compileAggregatedMdx(source: AggregationSource, slug: string): Promise<AggregatedDoc | null> {
@@ -89,5 +91,6 @@ export async function compileAggregatedMdx(source: AggregationSource, slug: stri
     Body: compiled.body,
     raw: rawText,
     tags,
+    toc: compiled.toc ?? [],
   };
 }

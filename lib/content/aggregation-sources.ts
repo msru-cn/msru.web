@@ -59,6 +59,10 @@ export function getSource(id: string): AggregationSource | undefined {
   return AGGREGATION_SOURCES.find((s) => s.id === id);
 }
 
+export function listSources(): AggregationSource[] {
+  return AGGREGATION_SOURCES;
+}
+
 export function navPathToSlug(segments: string[] | undefined): string {
   return (segments ?? []).join("/");
 }

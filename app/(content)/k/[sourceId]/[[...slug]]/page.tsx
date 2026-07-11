@@ -1,8 +1,13 @@
+import { DocsBody, DocsDescription, DocsPage, DocsTitle } from "fumadocs-ui/layouts/docs/page";
+import { DocsLayout } from "fumadocs-ui/layouts/docs";
+import type { SidebarTabWithProps } from "fumadocs-ui/components/sidebar/tabs/dropdown";
+import { BookMarked } from "lucide-react";
 import { notFound } from "next/navigation";
-import { AggregatedNavSidebar } from "@/components/content/aggregated-nav-sidebar";
 import { buildComponentMap, compileAggregatedMdx } from "@/lib/content/aggregate-mdx";
 import { getAggregatedNav } from "@/lib/content/aggregate-nav";
-import { getSource, navPathToSlug } from "@/lib/content/aggregation-sources";
+import { getSource, listSources, navPathToSlug } from "@/lib/content/aggregation-sources";
+import { navToPageTree } from "@/lib/content/nav-to-pagetree";
+import { baseOptions } from "@/lib/layout.shared";
 
 // ISR：后台重验证；未知路径运行时按需生成（不 build）。
 export const revalidate = 3600;
@@ -10,6 +15,17 @@ export const dynamicParams = true;
 
 export function generateStaticParams() {
   return [];
+}
+
+/** 顶部下拉：白名单里的每个库 = 一个可切换的 tab。 */
+function buildSourceTabs(): SidebarTabWithProps[] {
+  return listSources().map((s) => ({
+    title: s.id,
+    description: s.attribution.text,
+    url: `/k/${s.id}`,
+    urls: new Set([`/k/${s.id}`]),
+    icon: <BookMarked className="size-full" />,
+  }));
 }
 
 export default async function AggregatedContentPage({
@@ -24,40 +40,48 @@ export default async function AggregatedContentPage({
   if (!source) notFound();
 
   const nav = await getAggregatedNav(source);
+  const tree = navToPageTree(nav, { sourceId, name: source.id });
 
-  // 无 slug → 若源有根 index 则渲染，否则渲染导航落地
   const path = navPathToSlug(slug) || "index";
   const doc = await compileAggregatedMdx(source, path);
 
+  const base = baseOptions();
+
   return (
-    <div className="mx-auto flex max-w-7xl flex-col gap-8 px-6 py-10 md:flex-row">
-      <AggregatedNavSidebar nodes={nav} sourceId={sourceId} />
-      <div className="min-w-0 flex-1">
+    <DocsLayout
+      {...base}
+      tree={tree}
+      sidebar={{ tabs: buildSourceTabs() }}
+    >
+      <DocsPage toc={doc?.toc ?? []}>
         {doc ? (
-          <article className="prose max-w-none">
-            <h1>{doc.title}</h1>
-            <doc.Body components={buildComponentMap(source.id, path, doc.tags)} />
-          </article>
+          <>
+            <DocsTitle>{doc.title}</DocsTitle>
+            {doc.description && <DocsDescription>{doc.description}</DocsDescription>}
+            <DocsBody>
+              <doc.Body components={buildComponentMap(source.id, path, doc.tags)} />
+              <footer className="mt-12 border-t border-fd-border pt-4 text-xs text-fd-muted-foreground">
+                {source.attribution.text}{" "}
+                <a
+                  href={`${source.attribution.originBaseUrl}/${path}.mdx`}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="underline hover:text-fd-foreground"
+                >
+                  查看原文 →
+                </a>
+              </footer>
+            </DocsBody>
+          </>
         ) : (
-          <div className="prose max-w-none">
-            <h1>{source.id}</h1>
-            <p className="text-fd-muted-foreground">请从左侧选择一篇文档。</p>
-          </div>
+          <>
+            <DocsTitle>{source.id}</DocsTitle>
+            <DocsBody>
+              <p className="text-fd-muted-foreground">请从左侧选择一篇文档。</p>
+            </DocsBody>
+          </>
         )}
-        <footer className="mt-12 border-t border-fd-border pt-4 text-xs text-fd-muted-foreground">
-          {source.attribution.text}{" "}
-          {slug && slug.length > 0 && (
-            <a
-              href={`${source.attribution.originBaseUrl}/${path}.mdx`}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="underline hover:text-fd-foreground"
-            >
-              查看原文 →
-            </a>
-          )}
-        </footer>
-      </div>
-    </div>
+      </DocsPage>
+    </DocsLayout>
   );
 }
