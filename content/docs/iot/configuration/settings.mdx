@@ -1,0 +1,138 @@
+---
+icon: SlidersHorizontal
+title: 系统设置：精细化物模型与策略配置
+description: 深度解析 MSRU | IoT 的后台配置矩阵，涵盖物模型（Digital Twin）定义、采集点参数优化及边缘流计算规则的设定。
+---
+
+# 系统设置指南
+
+在 **MSRU | IoT** 平台中，任何物理信号的“数字化”过程都受后台配置体系的严格约束。
+
+本指南将协助 OT 工程与 IT 开发人员，如何通过配置中心将原始的工业寄存器地址转化为具备业务逻辑的“智能资产”。
+
+<Callout type="info" title="配置核心：抽象先行">
+  我们的配置理念是：不要直接操作物理点位。您应当先定义【物模型（Thing Model）】，再将具体的【硬件实例】映射到该模型上。这种解耦方式确保了在更换硬件品牌时，上层业务系统无需改动任何代码。
+</Callout>
+
+---
+
+## 1. 物模型定义 (Digital Twin Modeling)
+
+物模型是设备在数字世界的“基因说明书”。
+
+<Tabs items={['属性定义', '服务/指令', '事件告警']}>
+<Tab value="属性定义">
+**描述**：设备状态的静态或动态指标。
+**设置项**：
+- **标识符**：如 `vibration_x`。
+- **数据类型**：Float32, Int64, Boolean。
+- **采集步长**：定义推荐的轮询频率（如：`50ms`, `1s`）。
+</Tab>
+<Tab value="服务/指令">
+**描述**：云端发往边缘的控制指令。
+**设置项**：
+- **方法名**：如 `power_off`。
+- **参数列表**：传递给底层控制器的具体负载（Payload）。
+</Tab>
+<Tab value="事件告警">
+**描述**：设备主动上报的突发情况。
+**设置项**：
+- **致命告警**：触发紧急停机联锁。
+- **运营事件**：如：满料报警、料盒用尽。
+</Tab>
+</Tabs>
+
+---
+
+## 2. 采集点参数优化 (Tag Engineering)
+
+采集频率与性能负载之间需要进行精确的权衡。
+
+<Steps>
+  <Step>
+    ### 驱动配置与通讯参数
+    针对每个硬件实例，配置物理连接参数（如：Modbus Slave ID, OPCUA Endpoint URL）。设定 **“响应超时时间”**，防止由于单台设备故障阻塞整个网关的通讯队列。
+  </Step>
+  <Step>
+    ### 动态死区 (Deadband) 设定
+    为了处理“无意义的波动”，配置死区门限。
+    - **绝对死区**：只有数值变化超过 $\pm 0.5$ 才上报。
+    - **百分比死区**：变化超过 $2\%$ 且持续时间大于 $100ms$ 才上报。
+  </Step>
+  <Step>
+    ### 数据归一化 (Normalization)
+    在配置中心定义数学转换公式。
+    <MathEquation 
+      inline={false} 
+      formula={String.raw`Value_{digital} = \text{Raw} \cdot \text{Slope} + \text{Offset}`} 
+    />
+    例如：将 PLC 中的 0-16384 量程自动转换为 0-100 摄氏度。
+  </Step>
+</Steps>
+
+---
+
+## 3. 边缘流计算规则配置 (Rule Engine)
+
+MSRU 内置了高性能的 SQL 插件，支持在采集前端进行逻辑编排。
+
+<Files>
+  <Folder name="iot-rule-configs" defaultOpen>
+    <File name="vibration_alert.sql">
+      ```sql
+      # 实时分析规则：5秒内振动平均值超标报警
+      SELECT AVG(vibration) as avg_v, device_id 
+      FROM iot_stream 
+      WINDOW SLIDING(duration 5s, hop 1s)
+      HAVING avg_v > 12.5;
+      
+      # 动作执行
+      ACTION cloud_push, local_gpio_trigger;
+      ```
+    </File>
+  </Folder>
+</Files>
+
+---
+
+## 4. 统计与分析参数 (Aggregation)
+
+配置系统对海量数据的“压缩与持久化”策略。
+
+<MathEquation 
+  inline={false} 
+  formula={String.raw`Policy_{retention} = \begin{cases} \text{Real-time} & t < 7\text{ days} \\ \text{Hourly Agg} & 7\text{ days} < t < 1\text{ year} \\ \text{Archive} & t > 1\text{ year} \end{cases}`} 
+/>
+
+这种分层存储策略极大地降低了数据湖的运营成本。
+
+---
+
+## 5. 安全与访问控制 (ACL)
+
+配置谁可以读取设备实时流，谁可以下发控制指令。
+
+<Accordions>
+  <Accordion title="监控视图员 (Viewer)">
+    仅具备 Dashboard 读取权限，无法看到底层的寄存器地址或 API Token。
+  </Accordion>
+  <Accordion title="调试工程师 (Maintainer)">
+    具备修改采样频率、更新驱动配置及手动点动测试（Inching）的权限。
+  </Accordion>
+  <Accordion title="系统合规官 (Security)">
+    管理 mTLS 证书的分发与回收，审核所有的控制下发记录日志（Audit Logs）。
+  </Accordion>
+</Accordions>
+
+---
+
+## 6. 总结
+
+系统设置是 IoT 模块的“数字化灵魂”。
+
+一个设计精良的物模型与死区策略，能够让您的系统在保持极致灵敏度的同时，维持最低限度的资源消耗。通过在后台对“连接”进行结构化管理，您正为您工厂的资产建立一套长效的、可演进的数字目录。
+
+---
+
+> [!TIP]
+> 完成配置后，您可以尝试通过 [AI 智能感知方案](../integrations/ai) 来发掘沉睡数据中的潜在价值。

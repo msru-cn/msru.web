@@ -1,0 +1,136 @@
+---
+icon: Webhook
+title: API 参考：全面对接质量价值链
+description: 深度解析 MSRU | QMS 的 RESTful API 体系，涵盖基于 OpenID Connect 的身份验证、核心资源交互规范及实时异步 Webhook。
+---
+
+# API 接口参考
+
+**MSRU | QMS** 采用“API 优先（API-First）”的研发架构。系统的每一项核心功能，从质量标准定义到 SPC 数据分析，均通过标准化的 RESTful 接口对外暴露。
+
+本参考文档旨在协助第三方系统（如自建 MES、PLM 或供应商 Portal）实现与 MSRU 质量引擎的深度集成。
+
+<Callout type="info" title="设计原则：资源导向">
+  我们的 API 设计遵循 HATEOAS 原则。所有的质量实体（Inspection Plan, Task, Violation）均被视为唯一的资源路径，支持标准的状态机转换。
+</Callout>
+
+---
+
+## 1. 认证与安全机制 (Authentication)
+
+为了保障工业生产数据的机密性与完整性，所有 API 请求必须通过 **mTLS + JWT** 的双重验证。
+
+<Tabs items={['认证流程', 'Header 规范', '错误编码']}>
+<Tab value="认证流程">
+1. **客户端证书申请**：从 MSRU 控制台下载边缘节点专有的 `.crt` 文件。
+2. **凭证交换**：使用 client_id 与证书交换临时 Access Token。
+3. **请求携带**：在 HTTP Header 中注入 `Authorization: Bearer <TOKEN>`。
+</Tab>
+<Tab value="Header 规范">
+| 键名 | 模式 | 说明 |
+| :--- | :--- | :--- |
+| `X-MSRU-Site-ID` | 必选 | 当前操作所属的物理工厂标识。 |
+| `X-MSRU-Trace-ID` | 建议 | 用于全链路分布式追踪，便于排障。 |
+| `Content-Type` | `application/json` | 数据交换统一采用 JSON 格式。 |
+</Tab>
+<Tab value="错误编码">
+- **401**: Token 过期或证书无效。
+- **403**: 权限不足（如质检员尝试调用删除标准接口）。
+- **422**: 业务逻辑校验失败（如录入值超出物理合理范围限制）。
+</Tab>
+</Tabs>
+
+---
+
+## 2. 核心资源端点 (Core Endpoints)
+
+### A. 检验任务管理 (Inspection Tasks)
+
+用于查询待检任务或反馈检测结果。
+
+<TypeTable
+  type={{
+    "GET /v1/tasks": { 
+      type: 'Function', 
+      description: '获取当前工序待执行的所有质检任务列表（支持分页与状态过滤）。' 
+    },
+    "POST /v1/tasks/{id}/submit": { 
+      type: 'Function', 
+      description: '提交测量原始数据。系统将实时返回 Judgement 判定结果（OK/NG）。' 
+    }
+  }}
+/>
+
+### B. SPC 统计分析接口 (Statistical Analysis)
+
+开发者可以提取原始的 SPC 控制限数据，用于在第三方看板中进行二次渲染。
+
+<MathEquation 
+  inline={false} 
+  formula={String.raw`E_{api\_response} = \{ \mu, \sigma, UCL, LCL, \text{Points} \}`} 
+/>
+
+---
+
+## 3. Webhook 异步推送 (Events)
+
+对于关键的质量异常（如 SPC 触发警报、重大缺陷产生），我们建议通过 Webhook 进行实时集成。
+
+<Files>
+  <Folder name="webhook-payloads" defaultOpen>
+    <File name="spc_violation.json">
+      ```json
+      {
+        "event_type": "QMS.SPC_VIOLATION",
+        "severity": "CRITICAL",
+        "payload": {
+          "node_id": "EDGE-SH-01",
+          "characteristic": "OUT_DIAMETER",
+          "rule_violated": "WECO_RULE_1",
+          "value": 50.12
+        },
+        "timestamp": 1742013600
+      }
+      ```
+    </File>
+  </Folder>
+</Files>
+
+---
+
+## 4. 性能与限流 (Throttling)
+
+由于 QMS 涉及高频的 IoT 采集，我们在边缘节点设置了动态限流门限。
+
+<MathEquation 
+  inline={false} 
+  formula={String.raw`Limit_{rate} = \begin{cases} 1000 \text{ req/s} & \text{(Intranet/Edge Agent)} \\ 60 \text{ req/s} & \text{(Public Cloud API)} \end{cases}`} 
+/>
+
+这种分层限流确保了核心生产控制逻辑始终拥有最高优先级，而报表同步等非实时请求不会挤占带宽。
+
+---
+
+## 5. SDK 封装：提升集成效率
+
+虽然您可以直接调用 REST 接口，但我们强烈建议使用 MSRU 官方提供的 SDK。
+
+<Accordions>
+  <Accordion title="Python (工业数据分析) SDK">
+    内置了数据清洗（Cleansing）与自动批处理（Batching）逻辑，适用于在 Jupyter Notebook 中进行大规模质量建模。
+  </Accordion>
+  <Accordion title="TypeScript (Web 前端) SDK">
+    提供了高度封装的 `useInspectionTask` React Hook，自带状态管理与 HMR 缓存能力。
+  </Accordion>
+</Accordions>
+
+---
+
+## 6. 开发者工具与调试
+
+我们为所有开发者提供了一个在线的 **API Sandbox** 环境。如果您在集成过程中遇到挑战，请查阅我们的 [常见问题排查指南](../introduction/quick-start#排障)。
+
+---
+
+> [!TIP]
+> 觉得接口对接太繁琐？尝试使用 [QMS SDK](../integrations/sdk) 实现一键式集成。

@@ -1,0 +1,154 @@
+---
+title: 存储类规划
+description: Kubernetes StorageClass 策略规划——本地路径、NFS 共享存储与 Longhorn 分布式存储的选型与配置。
+icon: HardDrive
+---
+
+# 存储类 (StorageClass) 规划
+
+微服务的有状态组件（数据库、对象存储、消息队列）依赖可靠的持久化存储。K3s 默认提供 `local-path` 存储类，但生产环境需要更成熟的方案。
+
+---
+
+## 三种存储方案对比
+
+| 维度 | 📁 Local Path | 📂 NFS | 💎 Longhorn |
+|------|--------------|--------|------------|
+| **原理** | Pod 绑定到节点本地磁盘 | 挂载远端 NFS 共享目录 | 分布式块存储（自动复制） |
+| **数据冗余** | ❌ 无冗余 | ❌ 依赖 NFS 服务可靠性 | ✅ 多副本自动复制 |
+| **Pod 迁移** | ❌ Pod 绑死到节点 | ✅ 任意节点挂载 | ✅ 数据跟随 Pod 迁移 |
+| **性能** | ⭐⭐⭐ 本地 IO | ⭐⭐ 受网络影响 | ⭐⭐⭐ 接近本地（副本写入有开销） |
+| **适用场景** | 开发/测试 | 共享文件/日志 | 生产数据库/关键业务 |
+| **运维复杂度** | ⭐ | ⭐⭐ | ⭐⭐⭐ |
+
+---
+
+## Local Path（K3s 默认）
+
+K3s 内置 `local-path-provisioner`，无需额外安装。适用于开发测试环境：
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: dev-postgres-pvc
+spec:
+  accessModes: [ReadWriteOnce]
+  storageClassName: local-path
+  resources:
+    requests:
+      storage: 10Gi
+```
+
+<Callout type="warn" title="Local Path 不适合生产">
+  Local Path 存储不支持跨节点迁移。如果 Worker 节点宕机，绑定到该节点的 PVC 数据将不可访问，Pod 也无法被调度到其他节点。
+</Callout>
+
+---
+
+## NFS 共享存储
+
+适用于多 Pod 共享读写的场景（如日志聚合、静态资源）：
+
+<Steps>
+  <Step>
+    ### 部署 NFS Server（或使用现有 NAS）
+    ```bash
+    # Ubuntu NFS Server 示例
+    apt install nfs-kernel-server -y
+    mkdir -p /data/k3s-nfs
+    echo "/data/k3s-nfs *(rw,sync,no_subtree_check,no_root_squash)" >> /etc/exports
+    exportfs -rav
+    ```
+  </Step>
+  <Step>
+    ### 安装 NFS CSI Driver
+    ```bash
+    helm repo add csi-driver-nfs https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
+    helm install csi-driver-nfs csi-driver-nfs/csi-driver-nfs \
+      --namespace kube-system
+    ```
+  </Step>
+  <Step>
+    ### 创建 StorageClass
+    ```yaml
+    apiVersion: storage.k8s.io/v1
+    kind: StorageClass
+    metadata:
+      name: nfs-shared
+    provisioner: nfs.csi.k8s.io
+    parameters:
+      server: 100.x.x.x         # NFS Server 的 Tailscale IP
+      share: /data/k3s-nfs
+    reclaimPolicy: Retain
+    volumeBindingMode: Immediate
+    mountOptions:
+      - nfsvers=4.1
+    ```
+  </Step>
+</Steps>
+
+---
+
+## Longhorn 分布式存储（生产推荐）
+
+<Cards>
+  <Card
+    title="自动多副本"
+    description="默认 3 副本，数据自动分布到不同节点。任何单节点故障不丢数据。"
+    icon="Copy"
+  />
+  <Card
+    title="增量快照"
+    description="支持卷级别的增量快照和备份，可定时导出到 S3/MinIO 实现异地容灾。"
+    icon="Camera"
+  />
+  <Card
+    title="Web 管理面板"
+    description="自带 Dashboard，可视化查看卷状态、副本分布、磁盘使用率和备份任务。"
+    icon="Monitor"
+  />
+</Cards>
+
+**安装 Longhorn：**
+
+```bash
+# 前置依赖
+apt install -y open-iscsi util-linux
+
+# 通过 Helm 安装
+helm repo add longhorn https://charts.longhorn.io
+helm install longhorn longhorn/longhorn \
+  --namespace longhorn-system --create-namespace \
+  --set defaultSettings.defaultReplicaCount=3 \
+  --set defaultSettings.defaultDataPath="/data/longhorn"
+```
+
+**创建生产级 StorageClass：**
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: longhorn-production
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+provisioner: driver.longhorn.io
+allowVolumeExpansion: true
+reclaimPolicy: Retain
+parameters:
+  numberOfReplicas: "3"
+  staleReplicaTimeout: "2880"    # 48 小时后清理失联副本
+  dataLocality: "best-effort"    # 优先将副本放在 Pod 所在节点
+```
+
+---
+
+## MSRU 推荐存储策略
+
+| 工作负载 | 推荐 StorageClass | 副本 | 说明 |
+|---------|-------------------|------|------|
+| PostgreSQL | `longhorn-production` | 3 | 核心数据库，零丢失 |
+| MinIO | `longhorn-production` | 2~3 | 对象存储（MinIO 自带 EC） |
+| Prometheus/Loki | `nfs-shared` | N/A | 日志可容忍少量丢失 |
+| 开发测试 | `local-path` | 1 | 临时数据 |

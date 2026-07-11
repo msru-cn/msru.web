@@ -1,0 +1,162 @@
+---
+title: 平台概览
+description: 了解 MS.RU Platform 的整体架构与愿景
+icon: LayoutTemplate
+---
+
+## 欢迎使用 MS.RU Platform
+
+MS.RU Platform 是一个现代化的企业级前端架构方案，基于 **Turborepo** 实现高扩展性的 Monorepo 工作区管理，并深度整合了 **Next.js** 与 **Shadcn UI**，为您带来极致的开发者体验 (DX) 和优秀的用户业务体验 (UX)。
+
+在这里，除了专注于业务开发外，良好的文档沉淀将帮助团队保持对代码拓扑的正确认知。我们为您准备了以下五篇开发向导，请点击卡片或者使用左侧导航进一步阅读：
+
+<Cards>
+  <Card title='架构设计' href='/docs/architecture'>
+    深入了解项目多包架构（Monorepo）的设计哲学，以及整个工作区各核心目录和依赖拓扑图解析。
+  </Card>
+  <Card title='应用层指南' href='/docs/apps'>
+    学习如何管理现有的多个上层站点业务（如 Docs 和 Web），以及利用系统级脚手架秒级拓展你的新业务包空间。
+  </Card>
+  <Card title='共享 UI 组件' href='/docs/packages-ui'>
+    掌握 Shadcn UI 在多包架构下的封装、配置规范及组件的分发与消费模式。
+  </Card>
+  <Card title='核心模块' href='/docs/packages-core'>
+    关于底层数据通道，含 Auth (认证逻辑层)、Database (数据库层)、i18n (多语言实现层) 及全框架状态支持的技术拆解。
+  </Card>
+  <Card title='开发工作流' href='/docs/workflow'>
+    熟悉全链路的本地工程环境搭建防线，含 Turbopack 并发指令、Lefthook 与 Biome 工具链的代码校验最佳实践。
+  </Card>
+</Cards>
+
+明白，您指的是一家跨国软件公司作为**完整的商业实体**，向公众、客户、投资者、监管机构和合作伙伴等所有外部受众披露的**全量公开文档体系**。
+
+这远远超出了单纯的“产品使用说明”，而是构成了企业的“数字门面”（Digital Presence）。大型跨国企业通常会将这些海量文档按**功能属性**和**业务目标**划分为几个独立但互联的“中心”（Centers）或“门户”（Portals）。
+
+以下是全类型外部公开文档的结构归类：
+
+### 一、 信任、合规与法律中心 (Trust, Compliance & Legal Center)
+
+这是企业级 SaaS 和跨国软件公司促成大客户交易的核心基石，主要面向法务、采购、CISO（首席信息安全官）和监管机构。
+
+* **法律协议与条款：**
+* 服务条款 (Terms of Service / ToS)
+* 最终用户许可协议 (EULA)
+* 服务等级协议 (Service Level Agreement / SLA)
+* 数据处理协议 (Data Processing Agreement / DPA)
+
+
+* **隐私与数据保护：**
+* 隐私政策 (Privacy Policy)
+* Cookie 政策
+* 数据驻留与跨境传输声明 (Data Residency & Cross-border Transfer)
+
+
+* **安全与合规披露：**
+* 安全白皮书 (Security Whitepapers)：阐述系统架构的安全性、多租户隔离机制等。
+* 合规认证证书与报告：ISO 27001、SOC 2、GDPR 合规声明、HIPAA 认证等公开摘要。
+* 漏洞披露政策 (Vulnerability Disclosure Policy / Bug Bounty)。
+
+
+
+### 二、 企业治理与投资者关系 (Corporate & Investor Relations)
+
+主要面向投资者、股东、媒体和公众，展示企业的财务健康度、社会责任和公司治理结构。
+
+* **财务与业绩报告：**
+* 年度/季度财报 (Annual Reports, 10-K, 10-Q)
+* 致股东的信
+
+
+* **企业治理与文化：**
+* 商业行为准则 (Code of Conduct)
+* 反贿赂与反腐败声明
+* 环境、社会与治理报告 (ESG Reports)：涉及碳排放、员工多样性等。
+
+
+* **公关与媒体资源：**
+* 新闻稿 (Press Releases)
+* 媒体工具包 (Media Kits)：包含官方 Logo 规范、高管简介、品牌使用指南 (Brand Guidelines)。
+
+
+
+### 三、 资源库与市场营销中心 (Resource Center & Marketing)
+
+主要面向潜在客户（Leads）、行业分析师和业务决策者，用于产生线索、市场教育和建立行业领导力。
+
+* **思想领导力 (Thought Leadership)：**
+* 行业白皮书 (Industry Whitepapers)：例如“制造业数字化转型趋势”、“物联网与边缘计算白皮书”。
+* 分析师报告 (Analyst Reports)：如 Gartner 魔力象限或 Forrester Wave 的重印版。
+
+
+* **销售赋能与客户验证：**
+* 客户案例/成功故事 (Case Studies / Customer Stories)
+* 解决方案概述 (Solution Briefs)：按行业（如制造、零售）或场景划分的业务指南。
+* 投资回报率 (ROI) 报告。
+
+
+* **多媒体与交互资源：**
+* 网络研讨会记录 (Webinar Recordings)
+* 电子书 (E-books) 与信息图表 (Infographics)。
+
+
+
+### 四、 产品与技术文档中心 (Product & Technical Documentation)
+
+面向开发者、IT 运维、架构师和最终用户。这是指导用户如何使用、集成和维护软件的硬核技术库（即我们上一轮重点讨论的部分）。
+
+* **用户与操作指南：**
+* 快速入门、用户手册、常见问题解答 (FAQ)。
+
+
+* **开发与集成：**
+* API / SDK 参考手册、开发者指南、Webhook 文档。
+
+
+* **系统与架构设计：**
+* 系统架构概览、微服务部署指南、高可用与灾备指南。
+
+
+* **产品生命周期：**
+* 发行说明 (Release Notes)
+* 产品公开路线图 (Public Roadmap)
+* 功能废弃通知 (Deprecation Notices)。
+
+
+
+### 五、 生态系统与合作伙伴门户 (Ecosystem & Partner Network)
+
+面向代理商、独立软件开发商（ISV）和实施服务商。
+
+* **合作伙伴政策：**
+* 合作伙伴计划指南 (Partner Program Guide)：分级说明、返点政策。
+* 集成技术认证指南：说明如何将第三方应用上架到该公司的应用市场 (Marketplace)。
+
+
+* **共同销售与营销：**
+* 联合营销指南 (Co-marketing Guidelines)
+* 合作伙伴专属对客演示文档 (Pitch Decks)。
+
+
+
+### 六、 客户成功与支持中心 (Customer Success & Support)
+
+面向遇到问题或希望进阶学习的现有客户。
+
+* **支持政策：**
+* 支持支持生命周期政策 (Support Lifecycle Policy)：说明每个版本维护多少年。
+* 工单提交与升级流程说明。
+
+
+* **学习与赋能：**
+* 公开知识库 (Knowledge Base / KB)。
+* 培训与认证中心 (Training & Certification)：官方认证考试大纲、在线学习路径。
+* 社区论坛准则 (Community Guidelines)。
+
+
+
+---
+
+**总结结构视图：**
+一家成熟跨国软件公司的官网底部导航（Footer）通常就是这套架构的缩影，它会将这六大类文档分发到 **Trust Center**（信任中心）、**Investor Relations**（投资者关系）、**Resources**（资源库）、**Docs/Developers**（文档/开发者）、**Partners**（合作伙伴）等顶层入口中。
+
+针对您正在构建的或关注的企业级平台，您是否希望深入了解其中某一个板块（例如：如何构建一份标准的企业级 **SLA** 或 **多租户安全白皮书** 的目录大纲）？

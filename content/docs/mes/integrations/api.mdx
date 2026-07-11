@@ -1,0 +1,128 @@
+---
+title: API 参考：工业级服务编排与系统集成
+description: 详细解析 MSRU | MES 的 RESTful API 架构、长连接订阅模式及多租户安全准入规范。
+icon: Code2
+---
+
+# API 参考：工业级服务编排与系统集成
+
+对于现代数字化工厂而言，MES 绝不应当是一座隔离的“信息孤岛”。MSRU | MES 的设计初衷是 **“API 第一 (API-First)”**，我们提供了覆盖全业务生命周期的开放接口，旨在支持企业轻松将生产数据接入 ERP、WMS 或自定义的 BI 大屏中。
+
+本页面将详细说明如何通过安全、高性能的方式与 MSRU | MES 进行深度系统级集成。
+
+<Callout type="warn" title="频率控制与背压保护">
+  为了保证生产数据的实时性，我们的 API 设有智能背压控制。对于来自 ERP 的非实时大批量同步请求，请务必使用 `bulk_upload` 异步接口，以避免占用边缘节点的强实时计算资源。
+</Callout>
+
+---
+
+## 1. 认证与安全：基于零信任的 mTLS
+
+在工业环境中，传统的 Token 认证往往不足以应对复杂的内网安全需求。MSRU 建议采用 **设备侧 mTLS + 应用侧 OAuth2** 的双重验证体系。
+
+<Tabs items={['认证流程', '请求示例']}>
+  <Tab value="认证流程">
+    1.  **Identity Registry**: 集成系统需在 MSRU Portal 注册并获取 `client_id` 与加密证书。
+    2.  **Handshake**: 客户端发起 mTLS 握手，交换公钥。
+    3.  **Token Issuance**: 通过证书签名换取具有强时效性的 Bearer Token。
+  </Tab>
+  <Tab value="请求示例">
+    ```bash showLineNumbers
+    curl -X GET "https://api.msru.sh/v1/workorder/list" \
+      -H "Authorization: Bearer <ID_TOKEN>" \
+      -H "X-MSRU-Tenant-ID: T-Factory-01" \
+      --cert ./client.crt \
+      --key ./client.key
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## 2. 核心资源模型与端点 (Endpoints)
+
+MSRU | MES 的资源模型严格遵循领域驱动设计（DDD）原则，将制造对象抽象为标准的 REST 实体。
+
+<TypeTable
+  type={{
+    "/workorder": { 
+      type: 'Resource', 
+      description: '【核心】管理生产订单、派工状态及 BOM 绑定。支持根据产线 ID 执行复杂过滤。' 
+    },
+    "/tracing": { 
+      type: 'Resource', 
+      description: '【追溯】根据序列号 (SN) 或批次号 (Batch) 查询全链路生命周期轨迹。' 
+    },
+    "/telemetry": { 
+      type: 'Stream', 
+      description: '【时序】实时获取设备测点数据。建议通过 WebSocket 或 gRPC 订阅以获得毫秒级感官。' 
+    }
+  }}
+/>
+
+---
+
+## 3. 异步报工与状态回传：Webhook 机制
+
+当产线发生关键事件（如：首件合格、设备急停、工单超期）时，MSRU 能够主动向订阅系统推送通知，减少轮询造成的资源浪费。
+
+<Steps>
+  <Step>
+    ### 配置侦听端点
+    在 [设置 > 集成] 中配置您的 Webhook URL（如 `https://erp.company.com/webhook/mes`）。
+  </Step>
+  <Step>
+    ### 订阅事件类型
+    选择 `ORDER_FINISHED`（工单完工）与 `QUALITY_ABNORMAL`（质量异常）事件。
+  </Step>
+  <Step>
+    ### 处理签名校验
+    MSRU 会在 Header 中附带 `X-MSRU-Signature`，请使用 Shared Secret 的 HMAC-SHA256 算法验证数据的完整性。
+  </Step>
+</Steps>
+
+---
+
+## 4. 深度分析：针对开发者的数据模型 (Files)
+
+为了协助后端架构师进行数据库映射，以下是 MSRU 开放接口返回的典型 JSON Schema 逻辑结构。
+
+<Files>
+  <Folder name="api-specs" defaultOpen>
+    <Folder name="v1" defaultOpen>
+       <File name="workorder.json (核心工单字段)" />
+       <File name="material-movement.json (物料流转)" />
+       <File name="oee-statistics.json (性能看板)" />
+    </Folder>
+  </Folder>
+</Files>
+
+<Accordions>
+  <Accordion title="为什么工单字段中包含大量的 `metadata`？">
+    这是为了支持 **“一厂一议”**。每个工厂在报工时可能需要记录不同的环境变量（如：当前环境湿度、加热炉残余氧含量）。这些字段会被动态映射到 `metadata` 中。
+  </Accordion>
+</Accordions>
+
+---
+
+## 5. 性能估算：计算集成延迟
+
+在大规模并发环境下，我们需要预估 API 的处理能力。
+
+<MathEquation 
+  inline={false} 
+  formula={String.raw`T_{API\_Response} = T_{proxy} + T_{Auth\_Verify} + \underbrace{T_{Edge\_Pull}}_{\text{Optional Cache Hit}} + T_{Query}`} 
+/>
+
+由于 MSRU 的边缘缓存机制，针对“当前在线工单”的查询响应通常在 **50ms** 以内；针对“三年前历史档案”的冷数据检索可能由于需要从对象存储解冻而增加至 **200-500ms**。
+
+---
+
+## 6. 总结
+
+MSRU | MES 的 API 体系是系统灵活性与可扩展性的基石。我们不仅提供基础的 CRUD 能力，更致力于构建一个 **“开发者友好型 (Developer-Centric)”** 的工业集成标准。无论您是需要同步简单的入库单，还是构建一个全自动化的黑灯工厂调度层，MSRU 的 API 都能为您提供坚实的支撑。
+
+---
+
+> [!TIP]
+> 想要获取完整的 Swagger (OAS 3.0) 交互文档？请访问我们的 [实时 Sandbox 调试环境](https://api-sandbox.msru.sh)。

@@ -1,0 +1,107 @@
+---
+title: Worker 节点扩容 SOP
+description: 标准算力节点的接入与扩容标准作业程序（SOP），覆盖安装、标签打标、健康检查全流程。
+icon: Plus
+---
+
+# Worker 节点扩容 SOP
+
+当业务负载增加或新工厂上线时，需要向集群中添加 Worker 节点。本文档提供可重复执行的标准作业程序。
+
+---
+
+## 前置检查
+
+<Steps>
+  <Step>
+    ### 硬件验收
+    确认新节点已完成操作系统安装（推荐 Ubuntu 22.04 LTS / Debian 12）、网络配通、SSH 可达。
+  </Step>
+  <Step>
+    ### Tailscale 接入
+    ```bash
+    curl -fsSL https://tailscale.com/install.sh | sh
+    sudo tailscale up --authkey=tskey-auth-xxxxx --advertise-tags=tag:k3s-worker
+    ```
+  </Step>
+  <Step>
+    ### 获取 Join Token
+    从任一 Master 节点获取 Token：
+    ```bash
+    cat /var/lib/rancher/k3s/server/node-token
+    ```
+  </Step>
+</Steps>
+
+---
+
+## 执行接入
+
+```bash
+# Worker 节点上执行
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="agent \
+  --server https://<master-vip-or-tailscale-ip>:6443 \
+  --token <node-token> \
+  --node-ip=$(tailscale ip -4) \
+  --flannel-iface=tailscale0 \
+  --node-label node-type=worker \
+  --node-label msru.io/zone=factory-a \
+  --node-label msru.io/tier=compute" sh -
+```
+
+| 参数 | 说明 |
+|------|------|
+| `--server` | Master API Server 地址（HA 模式下使用 VIP） |
+| `--token` | 集群 Join Token |
+| `--node-ip` | 绑定 Tailscale IP |
+| `--node-label` | 节点标签，用于调度亲和性 |
+
+---
+
+## 接入后验证
+
+```bash
+# 在 Master 上执行
+kubectl get nodes -o wide
+
+# 预期输出中应包含新节点，STATUS=Ready
+# NAME          STATUS   ROLES    AGE   VERSION        INTERNAL-IP
+# worker-new    Ready    <none>   30s   v1.31.x+k3s1   100.x.x.x
+```
+
+**健康检查清单：**
+
+| 检查项 | 命令 | 预期结果 |
+|--------|------|----------|
+| 节点就绪 | `kubectl get node <name>` | STATUS = Ready |
+| kubelet 运行 | `systemctl status k3s-agent` | active (running) |
+| Pod 网络联通 | `kubectl run test --image=busybox --rm -it -- ping <other-pod-ip>` | 响应正常 |
+| DNS 解析 | `kubectl run test --image=busybox --rm -it -- nslookup kubernetes` | 返回 ClusterIP |
+| Tailscale 连通 | `tailscale ping <master-hostname>` | pong 回复 |
+
+---
+
+## 批量扩容脚本
+
+对于一次性接入多台 Worker 的场景，可使用 Ansible Playbook 或 Shell 脚本：
+
+```bash
+#!/bin/bash
+# batch-join-workers.sh
+MASTER_URL="https://100.x.x.x:6443"
+TOKEN="K10xxxxxxxxxxxx"
+NODES=("192.168.1.101" "192.168.1.102" "192.168.1.103")
+
+for node in "${NODES[@]}"; do
+  echo ">>> Joining $node ..."
+  ssh root@$node "curl -sfL https://get.k3s.io | \
+    INSTALL_K3S_EXEC='agent \
+      --server $MASTER_URL \
+      --token $TOKEN \
+      --node-ip=\$(tailscale ip -4) \
+      --flannel-iface=tailscale0 \
+      --node-label node-type=worker' sh -"
+done
+
+echo "✅ All nodes joined. Run: kubectl get nodes"
+```

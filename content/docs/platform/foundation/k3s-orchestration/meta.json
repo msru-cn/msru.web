@@ -1,0 +1,5 @@
+{
+  "title": "K3s 集群编排",
+  "icon": "Container",
+  "pages": ["ha-master", "worker-join", "edge-taints", "backup-restore", "mac-orbstack-k3s"]
+}

@@ -1,0 +1,217 @@
+@import "tailwindcss";
+@import "fumadocs-ui/css/neutral.css";
+@import "fumadocs-ui/css/preset.css";
+@import "katex/dist/katex.css";
+@import "shadcn/tailwind.css";
+
+@source "../../../packages/ui/src";
+@plugin "tailwindcss-animate";
+@custom-variant dark (&:is(.dark *));
+
+/* 👇 1. 定义颜色池 (请确保变量名和注释对得上，别搞混了) */
+:root {
+  /* 建议变量名直接对应文件夹名，不容易乱 */
+  --msru-color: hsla(205, 100%, 40%, 0.606);
+  --framework-color: hsl(41, 100%, 40%);
+  --cms-color: hsl(26, 90%, 55%);
+  --mes-color: hsl(250, 80%, 54%);
+  --wms-color: hsl(24, 95%, 53%);
+  --aps-color: hsl(271, 91%, 65%);
+  --qms-color: hsl(330, 81%, 60%);
+  --eam-color: hsl(45, 93%, 47%);
+  --iot-color: hsl(190, 90%, 50%);
+  --platform-color: hsl(150, 80%, 40%);
+  --legal-color: hsl(210, 100%, 50%);
+
+  /* 默认颜色 */
+  --color-fd-foreground: hsl(240 10% 3.9%);
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --msru-color: #83e6ffb6;
+  --framework-color: #fff383;
+  --cms-color: #ff9f75;
+  --mes-color: #a9ceff;
+  --wms-color: #fdba74;
+  --aps-color: #d8b4fe;
+  --qms-color: #f9a8d4;
+  --eam-color: #fef08a;
+  --iot-color: #67e8f9;
+  --platform-color: #86efac;
+  --legal-color: #60a5fa;
+  --color-fd-foreground: hsl(0 0% 98%);
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+/* 当 <body> 或 <div> 有 .framework 类时 */
+.msru {
+  --color-fd-primary: var(--msru-color);
+}
+/* 当 <body> 或 <div> 有 .framework 类时 */
+.framework {
+  --color-fd-primary: var(--framework-color);
+}
+
+/* 当有 .cms 类时 */
+.cms {
+  --color-fd-primary: var(--cms-color);
+}
+
+/* 当有 .mes 类时 */
+.mes {
+  --color-fd-primary: var(--mes-color);
+}
+
+.wms {
+  --color-fd-primary: var(--wms-color);
+}
+
+.aps {
+  --color-fd-primary: var(--aps-color);
+}
+
+.qms {
+  --color-fd-primary: var(--qms-color);
+}
+
+.eam {
+  --color-fd-primary: var(--eam-color);
+}
+
+.iot {
+  --color-fd-primary: var(--iot-color);
+}
+
+/* 当有 .platform 类时 */
+.platform {
+  --color-fd-primary: var(--platform-color);
+}
+
+/* 当有 .legal 类时，侧边栏图标主题色 */
+.legal {
+  --color-fd-primary: var(--legal-color);
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* --- Apple Style MegaMenu Background Blur Effect --- */
+/* Leverages modern CSS :has() to detect when Radix UI dropdown trigger is open.
+   Only the #home-content-wrapper will be blurred, keeping the header sharp. */
+body:has(header [data-state="open"]) #home-content-wrapper {
+  filter: blur(12px) brightness(0.85);
+  transform: scale(0.995) translateY(2px);
+}
+
+body:has(header [data-state="open"]) {
+  overflow: hidden; /* Prevent scrolling when mega menu is active */
+}

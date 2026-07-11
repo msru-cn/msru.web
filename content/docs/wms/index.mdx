@@ -1,0 +1,147 @@
+---
+title: WMS 仓储管理概览
+description: 深度解析 MSRU | WMS 在智慧物流中的枢纽地位、动态空间架构与“边缘自治”仓储实践。
+icon: Warehouse
+---
+
+# WMS 仓储管理概览
+
+在现代工业价值链中，仓库不再仅仅是物料的“蓄水池”，而是驱动生产节奏、平衡供应链波动的“缓冲调度器”。传统 WMS 系统往往受限于静态的库位管理与迟钝的同步机制，难以应对“多品种、小批量、高频次”的实时生产挑战。
+
+**MSRU | WMS** 是为智能制造量身定制的下一代仓储管理系统。它基于 **云原生分布式架构**，融合了 **多尺度空间建模算法** 与 **边缘自治技术**，实现了从库位到逻辑区域、从单库到全球云仓的闭环透明管控。
+
+<Callout type="info" title="MSRU 核心哲学：空间即计算">
+  在 MSRU 体系中，库位不仅仅是一个地理坐标，它是一个带有计算属性的实体。系统会实时评估库位的周转速率、温湿度约束以及与产线的逻辑距离，从而实现最优的路径规划。
+</Callout>
+
+---
+
+## 1. 核心能力矩阵：驱动高效流通
+
+MSRU | WMS 通过四大核心模块，重塑仓库的作业逻辑，将“找货”的时间降至最低。
+
+<Cards>
+  <Card 
+    title="动态资产管控" 
+    description="支持批次（Batch）、序列号（SN）及托盘（LPN）的混合管控。实现库存准确率 99.9% 以上的数字孪生。" 
+    icon="Boxes" 
+  />
+  <Card 
+    title="多尺度空间建模" 
+    description="支持逻辑库区、物理货架、精细格位与临时堆场的嵌套建模。适配多种仓储设备（AGV/VNA/ASRS）。" 
+    icon="Map" 
+  />
+  <Card 
+    title="全场景单据引擎" 
+    description="覆盖收货（GR）、质检、入库、移库、盘点、捡货（Picking）及发货（GI）的全业务生命周期。" 
+    icon="FileCheck" 
+  />
+  <Card 
+    title="智能波次调度" 
+    description="基于排程计划自动生成波次，支持摘果式（Discrete）与播种式（Batch）捡货逻辑的动态切换。" 
+    icon="Zap" 
+  />
+</Cards>
+
+---
+
+## 2. 边缘自治：确保仓储作业“零中断”
+
+对于依赖 PDA 与 RFID 的现代仓库，网络中断意味着生产停滞。MSRU | WMS 采用 **边缘自治（Edge Autonomy）** 技术，确保即便骨干网瘫痪，捡货与入库操作依然流畅。
+
+<Tabs items={['自治逻辑', '库存状态机', '配置示例']}>
+  <Tab value="自治逻辑">
+    ### 毫秒级离线切换
+    当仓库边缘计算节点检测到云端失联，PDA 会自动重定向至本地边缘 Agent。此时，所有的条码校验、库位有效性检查均由本地引擎执行。
+    
+    网络恢复后，系统通过 **分布式共识算法** 自动合并离线期间的库存变动，确保全系统数据强一致性。
+  </Tab>
+  <Tab value="库存状态机">
+    ```mermaid
+    stateDiagram-v2
+        [*] --> InTransit: 在途/收货中
+        InTransit --> QualityChecking: 待检
+        QualityChecking --> Available: 合格入库
+        Available --> Locked: 销售/生产锁定
+        Locked --> Picked: 已捡货
+        Picked --> Issued: 已发货
+        QualityChecking --> Quarantined: 不合格隔离
+    ```
+  </Tab>
+  <Tab value="配置示例">
+    ```yaml showLineNumbers {5-7}
+    # warehouse-edge-config.yaml
+    warehouse_id: "SH-HUB-EAST"
+    autonomous_capabilities:
+      - OFFLINE_PICKING
+      - BARCODE_VALIDATION
+      - LOCAL_TRACE_RECORD
+    sync_priority: "INVENTORY_FIRST"
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## 3. 数学模型：库存周转与波动预测
+
+MSRU | WMS 不仅仅记录余额，它还会利用数学算法预测您的库存健康度。
+
+<MathEquation 
+  inline={false} 
+  formula={String.raw`ITO = \frac{\text{销货成本 (COGS)}}{\text{平均库存价值}} \quad \text{其中} \quad \sigma_{safety} = Z \times \sqrt{L \times \sigma_d^2 + d^2 \times \sigma_L^2}`} 
+/>
+
+通过集成的 **AI 引擎**，系统会自动计算每一类物料的安全库存水位，并根据历史波动率动态调整订货点（ROP），有效防止停工待料风险。
+
+---
+
+## 4. 目录结构：仓储资源组织
+
+对于需要自定义 PDA UI 或集成第三方 AGV 系统的开发者，了解文件树至关重要。
+
+<Files>
+  <Folder name="apps/wms" defaultOpen>
+    <Folder name="inventory-core" defaultOpen>
+       <File name="transaction-manager.go" />
+       <File name="location-resolver.rs" />
+    </Folder>
+    <Folder name="pda-client">
+       <File name="picking-ui.tsx" />
+       <File name="barcode-scanner-hook.ts" />
+    </Folder>
+  </Folder>
+  <Folder name="packages/agv-bridge">
+     <File name="vda-5050-adapter.go" />
+  </Folder>
+</Files>
+
+---
+
+## 5. 为什么选择 MSRU 架构？
+
+我们拒绝低效的手工盘点。MSRU | WMS 实现了 **“全透明化”** 的资产流转：
+
+*   **RFID 增强集成**：支持通道门与手持设备的无缝接入，实现“整托盘”秒级识别。
+*   **多尺度视图**：从全球地图上的仓库分布，一键穿透至具体格位上的物料批次。
+*   **低代码业务流**：仓库审计人员可自行配置收货流程，无需修改后端代码。
+
+<Steps>
+  <Step>
+    ### 库位拓扑建模
+    导入 CAD 图纸或通过可视化界面定义您的仓库排布（库区 > 货架 > 格位）。
+  </Step>
+  <Step>
+    ### 边缘节点部署
+    在仓库关键出口与作业区部署 MSRU 边缘代理，并绑定 RFID 读写器。
+  </Step>
+  <Step>
+    ### 启动数字化流转
+    同步首个采购单（PO），引导工人使用 PDA 完成扫码收货与上架建议。
+  </Step>
+</Steps>
+
+---
+
+> [!TIP]
+> 想要了解 MSRU | WMS 如何与 MES 协同实现“无缝报工”？请阅读 [MES 模块集成](../integrations/communications)。

@@ -1,0 +1,83 @@
+---
+icon: AppWindow
+title: 应用层指南
+description: 梳理业务线应用的运行机制、内部结构拆解及交互式脚手架拓荒方案
+---
+
+## 现有应用分布与业务容器
+
+所有的对外商业交付产物或内部基建站点都在 `apps/` 目录下集中。它们本质上是组装所有底层 `packages` 物料的车间：
+
+- **`web`**：核心基准业务应用容器，基于 [Next.js](https://nextjs.org/) App Router 架构开发。面向真实的 C 端或 B 端主流量入口。
+- **`docs`**：当前的文档中台体系 (依托于 Fumadocs 构建)。专注于系统知识沉淀，完全脱离了主业务代码的噪音。
+
+每个体系独立拥有一套 `package.json`，挂载自己独立的端口号、页面路由与环境变量池 (`.env.local`)。但在底座层面，它们会默认**继承消费** `@msru/ui`、`@msru/auth` 等全量公共底层包。
+
+---
+
+## 核心应用目录解析 (以 Next.js 为例)
+
+我们推荐在 `apps/web` 等 Next.js 项目中采取高度收敛的目录组织范式：
+
+```text
+apps/web/
+├── app/                  # Next.js App Router 的严苛页面映射层
+│   ├── (auth)/           # 使用括号 (Route Groups) 组织免鉴权页面（如 login, register）
+│   ├── (dashboard)/      # 核心具有侧边栏和鉴权拦截的业务层
+│   ├── api/              # 后端路由 API 接驳端点 (Next.js Route Handlers)
+│   ├── globals.css       # 承接 Tailwind 基础配置层的微调文件
+│   └── layout.tsx        # 含 <html> 与 <body>，以及注入各种 Provide 容器的根基垫底
+├── components/           # 仅限本应用使用的「一次性业务组件」
+├── lib/                  # 特定于本应用的本地工具类助手函数
+└── next.config.mjs       # 应用独占的服务端构建流规则（如 webpack 调整、外部图片域名白名单）
+```
+
+> 💡 **最佳体验法则：**
+> 任何在 `components/` 目录下被复用超过 2 次，且完全解耦了页面级数据请求（纯 UI、纯入参呈现）的组件，都应该被立即警觉，并重构下沉到 `packages/ui` 中！
+
+---
+
+## 如何拓展新的前端业务应用？
+
+伴随产品线演进（如衍生了后台系统 MES、采购端系统 ERP，或者特殊的营销 H5 单页集），开发者无需费时手工进行繁冗的依赖拼接、复制冗余的样板代码、或是去校对 TS 配置。
+
+我们预设了一套交互式生成器（基于 Turbo Gen 或类似工程级脚本框架），在短时间内为您在硬盘上生成一套完美融入 Monorepo 技术栈的空底座。
+
+### 1. 启动交互式生成器
+
+请于整个 Monorepo **项目根目录**，触发如下命令：
+
+```bash
+# 调用预置好的 Workspace 生成钩子
+pnpm gen
+```
+
+1. 当出现选项菜单时，请选择创建目标为 **`workspace`** 或者 **`app`**。
+2. 当光标询问新应用命名时，键入您的短标题名称（如 `mes`）。
+
+该脚本将在 `apps/mes` 内瞬间铺设完毕以下内容，并直接打通血管：
+- 原汁原味的 Next.js 骨架。
+- 注入了 `@msru/tailwind-config`、`@msru/typescript-config` 及核心 UI/Auth 的预配置 `package.json`。
+- 直接配置完毕正确的 Biome / ESLint 指向路径，享受保存即刻强迫症格式化。
+
+### 2. 重构软链桥 (重要依赖映射)
+
+新建任意包或应用以后，**首要操作必须** 是重新挂载整个工作区的依赖树，用于触发 pnpm 对 `workspace:*` 语句的底层符号链接（Symlink）发现机制。这避免了幽灵依赖寻址失败：
+
+```bash
+pnpm install
+```
+
+### 3. 本地激活开发态模式与端口过滤
+
+当我们只对某一个模块实施调整时（通常如此），没必要全量把整个公司的微型产品线全部拉起跑在本地，那样会挤爆计算机的内存。依靠 Turborepo 的管道过滤能极大优化体验：
+
+```bash
+# `--filter` 后的参数为你指定应用 package.json 中的 `name` 属性（或直接的包名）
+pnpm dev --filter mes
+
+# 如果你想同时启动 mes 后台 和 web 控制台用于全链路联调：
+pnpm dev --filter mes --filter web
+```
+
+执行完毕后，控制台会打出隔离的端口（如 `localhost:3000` / `localhost:3001`），访问指定的端口即可进入新业务线的专属极速开发工作流中。

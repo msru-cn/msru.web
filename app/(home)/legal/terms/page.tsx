@@ -1,0 +1,45 @@
+import { FileText } from "lucide-react";
+
+export default function TermsPage() {
+  return (
+    <div className="flex flex-col w-full min-h-screen">
+      <section className="relative pt-32 pb-16 bg-zinc-950">
+        <div className="container mx-auto px-6 text-center">
+          <div className="max-w-3xl mx-auto space-y-4">
+            <FileText className="size-8 text-primary mx-auto" />
+            <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tighter">服务条款 (ToS)</h1>
+            <p className="text-zinc-400">最后更新：2026 年 1 月 1 日</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white dark:bg-zinc-950">
+        <div className="container mx-auto px-6 max-w-3xl prose dark:prose-invert prose-zinc prose-headings:tracking-tight">
+          <h2>1. 服务范围</h2>
+          <p>MSRU 智能制造平台（以下简称"服务"）为客户提供基于云端或本地部署的工业数字化软件产品及相关技术支持服务。</p>
+
+          <h2>2. 账户与安全</h2>
+          <p>您有责任维护账户凭证的安全性，并对账户下的所有活动负责。发现未授权使用时，应立即通知 MSRU。</p>
+
+          <h2>3. 许可授权</h2>
+          <p>
+            在您遵守本条款的前提下，MSRU
+            授予您非独占、不可转让、有限的许可，以访问和使用服务。您不得对服务进行反向工程、反编译或反汇编。
+          </p>
+
+          <h2>4. 数据所有权</h2>
+          <p>您保留对上传至服务的所有数据的完整所有权。MSRU 仅在提供服务所必需的范围内处理您的数据。</p>
+
+          <h2>5. 费用与支付</h2>
+          <p>服务费用以双方签署的订单确认书为准。逾期支付的款项将按每月 1.5% 计收滞纳金。</p>
+
+          <h2>6. 责任限制</h2>
+          <p>在适用法律允许的最大范围内，MSRU 对间接、附带、特殊、惩罚性或后果性损害不承担责任。</p>
+
+          <h2>7. 管辖法律</h2>
+          <p>本条款受中华人民共和国法律管辖。双方同意将争议提交至珠海仲裁委员会。</p>
+        </div>
+      </section>
+    </div>
+  );
+}

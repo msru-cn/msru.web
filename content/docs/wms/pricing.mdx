@@ -1,0 +1,143 @@
+---
+title: 价格与订阅 (Pricing)
+description: 探索 MSRU | WMS 的库位阶梯授权、多租户订阅模式及智能物流自动化弹性计费。
+icon: CircleDollarSign
+---
+
+# 价格与订阅
+
+在数字化仓储转型中，软件的购买成本（CAPEX）不应成为障碍。MSRU | WMS 引入了现代化的 **“以能力为中心”** 的订阅体系，将传统复杂的软件许可简化为透明、可预测的月度或年度服务费。
+
+我们根据您管理的 **库位规模**、**自动化集成度** 以及 **数据留存深度** 提供了三套阶梯化方案。
+
+<Callout type="info" title="弹性库位计费：随业务起伏">
+  在电商大促（如 618, 双 11）期间，您的临时周转库位可能会激增。MSRU 支持“弹性扩容包”，允许您短期按小时计费增加受控库位，而无需签署长期的升级合同。
+</Callout>
+
+---
+
+## 1. 订阅版本矩陈
+
+<Cards>
+  <Card 
+    title="基础版 (Starter)" 
+    description="适用于单体仓库。包含标准收发存、批次追溯及 PDA 基础功能。支持 500 个以内的库位管控。" 
+    icon="Play" 
+  />
+  <Card 
+    title="专业版 (Advanced)" 
+    description="支持多仓联动及库位热度分析。包含 AGV 调度接口、波次捡货逻辑与 RFID 通道门集成。不限库位数。" 
+    icon="Zap" 
+  />
+  <Card 
+    title="卓越版 (Supreme)" 
+    description="专为全自动化工厂仓设计。包含数字孪生 3D 看板、AI 库存预测、完全私有化 K8s 部署支持及 24/7 实施专家服务。" 
+    icon="ShieldCheck" 
+  />
+</Cards>
+
+---
+
+## 2. 核心计费维度：资源与频率
+
+MSRU | WMS 通过以下三个维度度量您的资源消耗，确保“所付即所得”。
+
+### A. 受控库位点数 (Location Slots)
+衡量系统管理的仓库“空间容量”。一个点数对应一个具有唯一条码/标签的货架位、托盘位或线边料仓。
+
+### B. 日均事务数 (Daily Transactions)
+对于高频周转的零部件仓，系统的处理压力来自于业务吞吐量。我们按日均处理的【入库/移库/出库】流水数进行分级授权。
+
+### C. 边缘计算节点 (Edge Units)
+每一个独立部署的分布式仓库边缘 Agent 将作为计费单元。对于跨城市分布的集团云仓，该指标尤为重要。
+
+<MathEquation 
+  inline={false} 
+  formula={String.raw`Monthly\_Fee = \text{Base} + (\Delta_{slots} \times \alpha) + (\Delta_{tx} \times \beta) + \sum_{edge} \gamma`} 
+/>
+
+---
+
+## 3. 商业价值与 TCO 比较
+
+通过下方的对比预览，您可以直观感受到 MSRU 订阅模式在长期持有成本上的优势。
+
+<Tabs items={['成本对比', '模块详情']}>
+  <Tab value="成本对比">
+    <div className="p-6 border border-zinc-800 rounded-xl bg-zinc-950/50 mt-4 space-y-4 shadow-xl">
+      <h3 className="text-zinc-100 font-bold">5 年拥有成本 (TCO) 演进</h3>
+      <div className="space-y-2">
+        <div className="flex justify-between text-sm">
+          <span className="text-zinc-400">传统行业 WMS (高额定制)</span>
+          <span className="text-red-400">¥ 1,500,000+</span>
+        </div>
+        <div className="h-2 w-full bg-zinc-800 rounded-full overflow-hidden">
+          <div className="h-full bg-red-600" style={{ width: '100%' }}></div>
+        </div>
+      </div>
+      <div className="space-y-2">
+        <div className="flex justify-between text-sm">
+          <span className="text-zinc-400">MSRU WMS 订阅模式</span>
+          <span className="text-teal-400">¥ 600,000 (按需起步)</span>
+        </div>
+        <div className="h-2 w-full bg-zinc-800 rounded-full overflow-hidden">
+          <div className="h-full bg-teal-500" style={{ width: '40%' }}></div>
+        </div>
+      </div>
+    </div>
+  </Tab>
+  <Tab value="模块详情">
+    <TypeTable
+      type={{
+        "3D 库位热度图": { 
+          type: 'boolean', 
+          description: '专业版（需增购）、卓越版原生包含。' 
+        },
+        "AGV 调度 (VDA-5050)": { 
+          type: 'string', 
+          description: '专业版支持 10 台以下设备，卓越版无限。' 
+        },
+        "API 并发调用": { 
+          type: 'number', 
+          description: '基础版限制 300 qpm，专业版无限制。' 
+        }
+      }}
+    />
+  </Tab>
+</Tabs>
+
+---
+
+## 4. 实时计费明细 (SaaS 实时同步)
+
+以下是来自 MSRU Cloud 的实时订阅定价表，数据每 15 分钟同步一次。
+
+<div className="mt-8 border border-zinc-800 rounded-xl overflow-hidden shadow-2xl">
+  <PricingTable />
+</div>
+
+---
+
+## 5. 商务 FAQ
+
+<Accordions>
+  <Accordion title="我可以随时从基础版升级到卓越版吗？">
+    可以。升级过程是 **平滑且零停机** 的。您只需在后台点击“版本升级”，系统会自动激活更多的 API 端点与业务组件（如：波次引擎），原有的库存数据将保持 100% 完整。
+  </Accordion>
+  <Accordion title="是否包含 PDA 硬件？">
+    MSRU 仅提供软件授权。我们已深度适配了 Zebra, Honeywell, 新大陆等主流品牌。如需硬件集采方案，可联系我们的授权硬件伙伴。
+  </Accordion>
+</Accordions>
+
+---
+
+## 6. 获取定制化报价
+
+如果您所在的行业对 **GAMP5 (制药行业)** 或 **新能源电池追溯** 有极端严格的合规需求，通用的订阅包可能无法完全覆盖您的业务合规审计成本。
+
+我们建议您 [联系 MSRU 实施顾问](https://msru.cn/contact)，我们将为您提供一份针对行业特殊 GxP 需求的定制化落地白皮书。
+
+---
+
+> [!TIP]
+> 已经购买？请移步 [快速上手指南](./introduction/quick-start) 激活您的第一个仓库节点。

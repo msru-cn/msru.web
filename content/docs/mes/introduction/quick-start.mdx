@@ -1,0 +1,141 @@
+---
+title: 快速上手：运行您的第一个 MSRU | MES 工单
+description: 30 分钟内完成从节点注册、建模到首个生产工单报工的全流程指南。
+icon: Zap
+---
+
+# 快速上手指南
+
+欢迎体验 MSRU | MES。本教程将带领您在受控的沙盒环境中，完成一个典型产品的生产全流程演示。我们将模拟一家“智能手机组装厂”，演示如何通过 MSRU 的边缘自治能力实现极致效率。
+
+<Callout type="info" title="预备要求">
+  在开始之前，请确保您已拥有 MSRU 平台账号，并安装了标准的边缘 Agent 运行环境。如果您尚未安装，请参考 [边缘代理安装指南](../../platform/edge-agent/install)。
+</Callout>
+
+---
+
+## 1. 建模第一步：生产资源配置
+
+在 MSRU 中，物理工厂的一切都通过 **数字孪生** 进行映射。
+
+<Steps>
+  <Step>
+    ### 注册生产节点 (Production Node)
+    在控制台中，进入 `设备管理 > 节点注册`。添加一个名为 `SMT-LANE-01` 的节点，并为其分配一个唯一的 **TPM 芯片指纹** 证书。
+  </Step>
+  <Step>
+    ### 定义工位与能力
+    在节点下创建两个工位：`WS-01 (主板贴装)` 与 `WS-02 (屏幕组装)`。为这两个工位分配 `MES_EXECUTION` 权限。
+  </Step>
+  <Step>
+    ### 激活边缘同步
+    在您的本地边缘服务器上运行如下指令，建立与云端的加密隧道：
+    ```bash
+    msru-agent connect --node-id SMT-LANE-01 --secret <TOKEN>
+    ```
+  </Step>
+</Steps>
+
+---
+
+## 2. 核心逻辑：定义工艺路线与 BOM
+
+我们需要告诉系统产品是如何制造出来的。
+
+<Tabs items={['BOM 配置', '工艺路线 (Routing)']}>
+  <Tab value="BOM 配置">
+    创建一个名为 `MSRU-Phone-G1` 的物料。
+    - **父项**: 手机总成
+    - **子项 01**: 主板 (1 Pcs) - 批次管控
+    - **子项 02**: 屏幕 (1 Pcs) - 唯一码管控
+    - **子项 03**: 外壳 (1 Pcs) - 数量管控
+  </Tab>
+  <Tab value="工艺路线 (Routing)">
+    ```mermaid
+    graph LR
+        A["[OP-10] 主板组装"] --> B["[OP-20] 屏幕扣合"]
+        B --> C{"[IQC] 视觉检测"}
+        C -- 合格 --> D["[OP-30] 完工入库"]
+        C -- 缺陷 --> E["[RW-01] 返修站"]
+        E --> B
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## 3. 生产实操：触发并完成工单
+
+现在，让我们模拟一线工人的操作流程。
+
+### 创建生产订单
+您可以直接在 UI 中创建一个 10 台手机的试产订单。
+
+### 工位报工演示
+对于 [OP-10] 工位，我们需要进行开工确认。
+
+<Tabs items={['API 调用', '工人 UI 操作']}>
+  <Tab value="API 调用">
+    模拟通过自动化的 PLC 触发开工：
+    ```bash
+    curl -X POST https://api.msru.local/v1/workorder/invoke \
+      -H "X-Node-ID: SMT-LANE-01" \
+      -d '{
+        "wo_id": "WO-20240314-001",
+        "op_id": "OP-10",
+        "action": "START",
+        "operator": "ARCH-01"
+      }'
+    ```
+  </Tab>
+  <Tab value="工人 UI 操作">
+    1. 在工位平板上扫描您的员工卡。
+    2. 系统由于识别到技能矩阵符合（Skill Matrix Passed），自动解锁开工按钮。
+    3. 点击 **“扫码上料”**，扫描主板批次二维码。
+  </Tab>
+</Tabs>
+
+---
+
+## 4. 自治模式演练 (可选)
+
+为了验证 MSRU 的 **边缘自治** 能力，您可以尝试拔掉边缘代理的网线。
+
+<Accordions>
+  <Accordion title="断网后发生了什么？">
+    你会发现工位平板的右上角图标变为 **“离线模式 (Offline)”**，但报工操作依然流畅。
+    
+    这是因为边缘 Agent 此时接管了 **报工校验逻辑 (Validation Hook)**。它会利用本地缓存的 BOM 数据校验你扫描的物料是否正确。
+  </Accordion>
+  <Accordion title="如何恢复数据？">
+    重新插回网线。系统检测到心跳后，会自动触发增量同步。您可以在云端后台看到标记为 `SYNCED_FROM_EDGE` 的报工记录。
+  </Accordion>
+</Accordions>
+
+---
+
+## 5. 报表初探：查看实时 OEE
+
+完工后，回到管理大屏，您将看到系统自动计算出的首个试产订单数据。
+
+<MathEquation 
+  inline={false} 
+  formula={String.raw`Performance = \frac{\text{10 Pcs} \times \text{60s/Pcs}}{\text{600s Actual}} = 100\%`} 
+/>
+
+由于是自动化采集，数据不经过任何人工修饰，为您提供最真实的产线透明度。
+
+---
+
+## 6. 下一步建议
+
+恭喜您！您已经完成了 MSRU | MES 的初次航行。接下来，我们建议：
+
+*   [深度了解配置](../configuration/settings)：探索多工厂参数隔离。
+*   [集成 AI 工具](../integrations/ai)：开启预测性维护。
+*   [阅读 API 文档](../integrations/api)：将您的 MES 接入现有的 ERP 系统。
+
+---
+
+> [!TIP]
+> 遇到了报错？请查看我们的 [故障排查手册](../../faq)。

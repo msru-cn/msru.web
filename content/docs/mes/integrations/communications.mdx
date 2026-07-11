@@ -1,0 +1,140 @@
+---
+title: 通讯集成：打通工业现场的最后 100 米
+description: 详细解析 MSRU 边缘代理如何通过 Modbus, OPC UA, MQTT 及专用驱动与 500+ 种工业协议进行高性能握手。
+icon: Network
+---
+
+# 通讯集成：打通工业现场的最后 100 米
+
+在 MES 的实施中，最令工程师头疼的往往不是业务逻辑，而是由于底层硬件协议碎片化导致的“通讯泥潭”。MSRU 边缘代理（Edge Agent）内置了高性能的 **多协议解析引擎 (X-Protocol Engine)**，旨在为上层 MES 逻辑提供一个统一、透明的物联数据视图。
+
+本指南将指导您如何配置 MSRU 通讯组件，实现从物理驱动到数字信号的无损转化。
+
+<Callout type="info" title="边缘自治的底层支撑">
+  之所以 MSRU 能实现“边缘自治”，是因为我们的通讯层在本地保存了完整的标签（Tag）映射副本。即使与云端断开，本地的实时库依然能以毫秒级频率驱动 MES 的防错校验逻辑。
+</Callout>
+
+---
+
+## 1. 协议支持矩阵
+
+MSRU | MES 天然支持工业 4.0 主流通讯标准，并可通过插件扩展专有驱动。
+
+<Cards>
+  <Card 
+    title="OPC UA (Client/PubSub)" 
+    description="支持全模型浏览与证书级安全认证。适用于西门子 S7-1500、Beckhoff 等现代控制系统。" 
+    icon="ShieldCheck" 
+  />
+  <Card 
+    title="Modbus (TCP/RTU)" 
+    description="工业领域的最广通用协议。支持高频轮询模式，针对数显表、传感器等基础设备进行了内存优化。" 
+    icon="Cpu" 
+  />
+  <Card 
+    title="MQTT (Broker/Sparkplug B)" 
+    description="适用于低带宽、高并发的 IIoT 场景。支持 Sparkplug B 规范，实现节点的即插即用。" 
+    icon="Unplug" 
+  />
+</Cards>
+
+---
+
+## 2. 核心集成逻辑：Tag 映射与清洗
+
+在 MSRU 中，物理寄存器被抽象为具有业务含义的 **Tag (测点)**。
+
+<Tabs items={['映射配置', '数据清洗 (Script)', '性能推导']}>
+  <Tab value="映射配置">
+    ### 寄存器到业务字段的绑定
+    您可以将西门子 PLC 的 `DB1.DBW10` 寄存器映射为业务 Tag `spindle_speed`。
+    - **扫描周期**: 200ms
+    - **工程单位**: RPM
+    - **预处理**: 乘系数 0.1
+  </Tab>
+  <Tab value="数据清洗 (Script)">
+    ```typescript showLineNumbers
+    // communication-hook.ts
+    export function onTagArrival(tag: string, value: any) {
+      if (tag === "temp_c" && value > 120) {
+        // 边缘侧直接拦截并触发 MES 告警
+        Edge.triggerAlarm("CRITICAL_TEMP_OVERHEATING");
+      }
+      return value.toFixed(2);
+    }
+    ```
+  </Tab>
+  <Tab value="性能推导">
+    为了确保扫描任务不阻塞主线程，MSRU 采用了异步非阻塞 IO 调度模型。
+    <MathEquation 
+      inline={false} 
+      formula={String.raw`T_{polling\_cycle} \ge \sum_{i=1}^{n} (T_{RTT} + T_{Decode}) / \text{ThreadPool}_{size} \le \Tau_{Requirement}`} 
+    />
+  </Tab>
+</Tabs>
+
+---
+
+## 3. 部署方案：物理链路的最佳实践
+
+通讯的稳定性 80% 取决于物理链路的设计。
+
+<Steps>
+  <Step>
+    ### 网络拓扑隔离 (VLAN)
+    建议将工业 OT 网络与办公 IT 网络进行物理或虚拟化隔离。MSRU 边缘代理支持双网卡模式，充当安全的流量闸门。
+  </Step>
+  <Step>
+    ### 节点自动发现
+    开启 OPC UA 的发现服务或 MQTT 的存活声明。MSRU 控制台会自动扫描到新设备，并提示您进行 “一键建模同步”。
+  </Step>
+  <Step>
+    ### 冗余路径配置
+    对于高价值产线，配置双路网关冗余。当其中一台 Agent 发生硬件故障时，Keepalived 会自动切换 VIP 至从机，确保数据不丢失。
+  </Step>
+</Steps>
+
+---
+
+## 4. 目录结构：驱动与插件管理 (Files)
+
+开发者可以通过向特定目录放置 `.so` 或 `.js` 文件实现对极其冷门私有协议（如：定制化 PLC 串口协议）的扩展。
+
+<Files>
+  <Folder name="msru-edge-agent" defaultOpen>
+    <Folder name="drivers" defaultOpen>
+       <File name="modbus-standard.driver" />
+       <File name="mitsubishi-fx.driver" />
+    </Folder>
+    <Folder name="plugins">
+       <File name="custom-parser.js (用户自定义解析器)" />
+       <File name="data-filter.wasm (高性能过滤器)" />
+    </Folder>
+  </Folder>
+</Files>
+
+---
+
+## 5. 故障排查：通讯诊断工具
+
+<Accordions>
+  <Accordion title="为什么 Tag 状态显示为 '质量差 (Bad Quality)'？">
+    **原因 1**: 物理链路断开。
+    **原因 2**: PLC 内部变量地址被修改。
+    **解决**: 使用 MSRU 内置的 `comm-inspector` 工具进行在线模拟抓包，检查返回原始字节流是否符合协议规范。
+  </Accordion>
+  <Accordion title="高频采集是否会造成 PLC 负载过高？">
+    **优化方案**: 开启 **变化上传 (COV, Change of Value)**。仅在变量值变化超过预设阈值（Deadband）时才上报数据，而非传统的定时“暴力轮询”，这能降低 PLC 50% 以上的通讯负荷。
+  </Accordion>
+</Accordions>
+
+---
+
+## 6. 总结
+
+在 MSRU | MES 的视角下，每一个设备都是一个“服务化”的对象。通过强大的通讯集成层，我们将杂乱无章的原始电流信号转化为了具有业务语义的制造知识。打通这一环节，是实现“以数据驱动决策”数字化工厂的真正起点。
+
+---
+
+> [!TIP]
+> 正在面对一套 20 年前的老旧机床？查看 [传统设备数字化改造 (Retrofit) 专题](../../guides/retrofit)。

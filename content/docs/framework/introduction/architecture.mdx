@@ -1,0 +1,104 @@
+---
+icon: Share2
+title: 架构设计
+description: MS.RU Platform 的 Monorepo 架构哲学、数据流拓扑与构建原理深度剖析
+---
+
+## 为什么选择 Monorepo？
+
+对于大型企业级平台开发，当项目由单一系统逐渐演化为包含 B端后台、C端前台、文档中心以及各种微服务门户的庞大矩阵时，传统的多个独立代码库（Polyrepo）模式会暴露出致命问题：
+
+1. **代码复用困难**：一段核心的业务逻辑或一个打磨完美的 React 组件，只能通过发布 NPM 包（甚至私服）来跨项目共享，调试极度痛苦。
+2. **依赖地狱**：随着时间推移，A 项目使用了 `React 17`，B 项目升级了 `React 18`，甚至连基础的 UI 规范都开始产生分歧，导致最终用户的视觉体验割裂。
+3. **基础设施维护成本高**：每个项目都要配置一遍 TypeScript、ESLint/Biome、Tailwind CSS、打包脚本等，更新一次配置需要提 N 个项目的 PR。
+
+因此，**MS.RU Platform** 基底全面拥抱了以 [pnpm workspace](https://pnpm.io/workspaces) 为运行时基础，辅以 [Turborepo](https://turbo.build) 构建的现代化 Monorepo（单体应用包栈）统一代码库方案：
+
+- **依赖严格一致**：所有应用 (Apps) 及核心模块包 (Packages) 全面共享顶层 `pnpm-lock.yaml`，避免幽灵依赖和重复安装，极大缩减了 `node_modules` 的体积。
+- **卓越的构建性能**：Turborepo 的智能哈希缓存（Local/Remote Caching）机制可以跳过未变更代码的重复构建。
+- **极致的横向切面解耦**：从底层数据库 DAL、高阶 UI 组件，一直到枯燥的工程化配置，全部被抽离为独立的 `packages`，无缝供给上层 `apps` 调用。
+
+---
+
+## 全景控制中枢：工作区配置
+
+在项目根目录，通过 `pnpm-workspace.yaml` 定义了整个架构的物理边界：
+
+```yaml title="pnpm-workspace.yaml"
+packages:
+  - "apps/*"
+  - "packages/*"
+```
+这告诉包管理器，这两个文件夹下的所有包含 `package.json` 的子目录，互为本地生态系统的一部分。
+
+同时，通过 `turbo.json` 控制了错综复杂的任务执行流（Pipeline）：
+
+```json title="turbo.json"
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"], // 必须先构建依赖的上游包
+      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
+    },
+    "lint": {
+      "dependsOn": ["^build"]
+    },
+    "dev": {
+      "cache": false, // 开发环境不缓存
+      "persistent": true // 守护进程
+    }
+  }
+}
+```
+
+---
+
+## 目录结构体系深度解析
+
+整个工程在宏观上按“提供方”与“消费方”切分：
+
+### 1. 业务应用层 (`apps/`)
+
+直接面向最终用户的应用环境，它们是整个系统链路的最顶端（Consumer），负责将底层的物料组装成产品：
+
+- **`apps/web`**：Next.js App Router 架构的核心旗舰业务系统。
+- **`apps/docs`**：提供开发文档中台支撑（即当前你正在阅读的系统层）。
+
+### 2. 核心模块与基建层 (`packages/`)
+
+面向内部开发者与工具链的复用产物，它们互为依赖，也可独立测试：
+
+- **`packages/ui`**：纯粹的展示层组件库（Shadcn UI + Tailwind CSS），不包含业务逻辑。
+- **`packages/auth`**：企业级身份认证中台、会话及权限流转层。
+- **`packages/database`**：基于 SurrealDB 等数据库的实体抽象层（ORM 方案 / DAL），封装强类型的查询 API。
+- **`packages/i18n`**：多语言字典集及解析引擎。
+- **`packages/stores`**：利用 Zustand 提供共享的、轻量级的全局端侧状态管理。
+- **一系列 Config 包**：例如 `biome-config`、`tailwind-config`、`typescript-config`，它们通过 `exports` 或直接暴露出配置对象供全仓库继承。
+
+---
+
+## Monorepo 数据流向拓扑与边界管控
+
+> ⚠️ **核心架构原则**：单向依赖，禁止反向污染。
+
+在我们的架构中，强制约束依赖必须自上而下发生：
+`apps/*` 可以依赖任何 `packages/*`，但**绝对禁止** `packages/*` 反向导入 `apps/*` 中的特定业务逻辑，也尽量避免兄弟 `packages/*` 之间的过度网状交叉依赖。
+
+### 优雅的内部包引用 (Workspace Protocol)
+
+借助 pnpm 的 `workspace:*` 协议，跨包引用变得极其舒适：
+
+```json title="apps/web/package.json"
+{
+  "dependencies": {
+    "@msru/ui": "workspace:*",
+    "@msru/auth": "workspace:*",
+    "@msru/database": "workspace:*"
+  }
+}
+```
+
+**它的魔法在于**：
+1. 本地开发时，`apps/web` 会直接建立指向 `packages/ui` 等目录的软链接 (Symlink)。
+2. 你在 `@msru/ui` 中修改了某个按钮的颜色，切换到 `apps/web` 浏览器窗口中，会立刻触发 HMR (热更新) 看到变动，**无需任何中间编译与发布的步骤**！这正是 Monorepo 的灵魂所在。

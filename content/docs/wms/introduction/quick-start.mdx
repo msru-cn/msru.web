@@ -1,0 +1,129 @@
+---
+title: 快速上手指南 (Quick Start)
+description: 10 分钟带您完成 MSRU | WMS 的首个虚拟仓库建模、PDA 绑定及首份采购订单收货。
+icon: Rocket
+---
+
+# 快速上手指南：开启您的智慧仓储之旅
+
+欢迎来到 MSRU | WMS。本指南将引导您跨越复杂的理论配置，通过一个直观的“最简可行路径（MVP）”，在 10 分钟内跑通从库位定义到入库单收货的全业务闭环。
+
+我们将模拟一个生产线边仓，演示如何通过 MSRU 的数字化工具实现资产的即时可见。
+
+<Callout type="info" title="准备工作">
+  您需要拥有 MSRU Portal 的管理员权限，并准备好一个可访问互联网的浏览器。对于真实场景的扫码校验，您可以下载我们的 **MSRU Simulator (手机移动端)** 来临时充当 PDA 设备。
+</Callout>
+
+---
+
+## 第一步：定义物理空间拓扑
+
+在 MSRU 中，任何物料的律动都必须发生在预定义的“空间坐标”内。
+
+<Steps>
+  <Step>
+    ### 创建仓库节点 (Node)
+    在控制台导航至 [仓库管理 > 空间建模]，点击“新增节点”。
+    - **节点名称**: `LINEOFF_BUFFER_01` (线边缓冲仓)
+    - **节点类型**: `Edge_Managed` (边缘管理节点)
+  </Step>
+  <Step>
+    ### 绘制库位网格
+    使用可视化编辑器，快速生成一个 3x5 的货架矩阵。
+    - **库位编码规则**: `ROW-SHELF-BIN` (例如: `01-A-03`)
+    - **存储属性**: 标记为 `Ambient` (常温)
+  </Step>
+</Steps>
+
+---
+
+## 第二步：模拟首个采购订单 (PO) 流量
+
+为了进行入库实验，我们需要从上游“ERP 系统”推入一笔待收货数据。
+
+<Tabs items={['Portal 操作', 'API 快速触发', '预期效果']}>
+  <Tab value="Portal 操作">
+    1.  进入 [入库引擎 > 采购单列表]。
+    2.  点击“模拟收货测试”，录入物料号 `MSRU-CHIP-99`，数量 `500`。
+    3.  系统将生成一个状态为 `PENDING_GR` (待收货) 的记录。
+  </Tab>
+  <Tab value="API 快速触发">
+    如果您是开发者，可以直接通过 cURL 发射一条测试信令：
+    ```bash
+    curl -X POST "https://api.msru.sh/v1/wms/mock-po" \
+      -H "Authorization: Bearer <TOKEN>" \
+      -d '{ "item": "MSRU-CHIP-99", "qty": 500, "warehouse": "LINEOFF_BUFFER_01" }'
+    ```
+  </Tab>
+  <Tab value="预期效果">
+    此时，WMS 看板上的 **“收货进度”** 环形图将从 0% 变为 100%，表示已有数据待处理。
+  </Tab>
+</Tabs>
+
+---
+
+## 第三步：PDA 作业与上架策略验证
+
+现在，模拟仓库员手持 PDA 到达收货区。
+
+<Steps>
+  <Step>
+    ### 扫码收货 (Receipt)
+    在 PDA 上选择 `收货单-001`，扫描物料外箱条码。系统会自动关联批次号，并查询该物料的 QMS 质检状态。
+  </Step>
+  <Step>
+    ### 接受上架建议 (Put-away)
+    点击“分配库位”。MSRU 调度算法将根据**空间盈余半径**，自动推荐库位 `01-A-03`。
+    <MathEquation 
+      inline={false} 
+      formula={String.raw`Rec\_Loc = \text{argmin}_{loc} \left( \text{Dist}(loc, \text{Dock}) + \text{Similarity}(loc, \text{Group}) \right)`} 
+    />
+  </Step>
+  <Step>
+    ### 确认存放并同步
+    扫描库位标签条码，点击“确认上架”。
+  </Step>
+</Steps>
+
+---
+
+## 第四步：实时库位透视分析
+
+回到 MSRU 仪表盘，您将见证数字化的威力。
+
+<Accordions>
+  <Accordion title="库存余额实时变化">
+    之前为空的 `01-A-03` 库位现在变为 **蓝色（已占用）**，鼠标悬停可查看物料 `MSRU-CHIP-99` 的入库时间（分钟级精确度）。
+  </Accordion>
+  <Accordion title="生成追塑快照 (Provenance Snapshot)">
+    点击物料编号，系统已自动建立了一份追溯档案，记录了：【采购单来源 -> 操作工 ID -> 存放路径 -> 边缘节点时间戳】。
+  </Accordion>
+</Accordions>
+
+---
+
+## 常用工具与配置文件 (Files)
+
+在实施过程中，您可能需要引用这些标准模板。
+
+<Files>
+  <Folder name="quick-start-kits" defaultOpen>
+    <File name="location-import-template.csv (库位批量导入)" />
+    <File name="barcode-rule-config.json (条码解析规则)" />
+  </Folder>
+</Files>
+
+---
+
+## 接下来做什么？
+
+恭喜！您已经成功跑通了 WMS 的“入库闭环”。这只是庞大仓储智能体系的入口。为了进一步深挖 MSRU 的潜力，我们建议您：
+
+1.  **开启 AI 预测**：了解如何预测库位周转率。
+2.  **配置 AGV 路径**：让机器人代替人工走动。
+3.  **连接 ERP 实操**：通过 [API 文档](../integrations/api) 实现真实的数据同步。
+
+---
+
+> [!TIP]
+> 遇到了条码扫描不出的问题？查看 [常见排查指南](../introduction/comparisons) 或检查您的摄像头权限。

@@ -1,0 +1,130 @@
+---
+title: MES 制造执行概览
+description: 深度解析 MSRU | MES 在数字化工厂中的定义、核心架构与“边缘自治”落地实践。
+icon: Library
+---
+
+# MES 制造执行概览
+
+在工业 4.0 的宏大叙事中，MES（Manufacturing Execution System，制造执行系统）被誉为连接“企业资源计划层（ERP）”与“底层设备控制层（PLC/SCADA）”的核心神经系统。然而，传统的 MES 系统往往面临架构臃肿、实时性差、以及对云端网络过度依赖的痼疾。
+
+**MSRU | MES** 是为离散制造与流程制造量身定制的下一代制造执行系统。它基于 **云原生架构** 与 **微服务设计**，深度集成了 **边缘计算（Edge Computing）** 与 **多尺度资源调度算法**，能够支撑从单体车间到全球分布式工厂的数字化转型需求。
+
+<Callout type="info" title="MSRU 核心哲学：多尺度生产协同">
+  不同于传统 MES 仅关注“任务下发”，MSRU 强调从微观（设备秒级指令）到宏观（集团跨厂区调度）的全空间多尺度协同，确保生产计划在波动的环境下依然具备强韧性。
+</Callout>
+
+---
+
+## 1. 核心能力矩阵：重塑车间价值流
+
+为了降低生产管理者的认知负载，MSRU | MES 将复杂的制造流程抽象为四大核心组件。通过这些模块的有机结合，企业可以构建起响应敏捷、数据闭环的数字孪生工厂。
+
+<Cards>
+  <Card 
+    title="智能工单管理" 
+    description="支持全生命周期的订单调度、BOM 动态解析与进度实时跟踪。支持跨区域生产计划的毫秒级同步。" 
+    icon="ClipboardList" 
+  />
+  <Card 
+    title="柔性工艺路线" 
+    description="灵活定义生产 SOP，支持复杂的并行工序、多分支返修路径（Rework）以及动态工位绑定。" 
+    icon="GitBranch" 
+  />
+  <Card 
+    title="全链路追溯系统" 
+    description="从原材料批次到产成品序列号的“正向追溯”与“反向穿透”。满足一类/二类医疗器械及新能源行业严苛标准。" 
+    icon="ShieldCheck" 
+  />
+  <Card 
+    title="数字化闭环品控" 
+    description="集成的质量检测标准（IQC/FQC/OQC）与异常处理闭环 (CAPA)。基于 AI 的质量趋势预测，防患于未然。" 
+    icon="SearchCheck" 
+  />
+</Cards>
+
+---
+
+## 2. 边缘自治架构：应对不确定的网络环境
+
+在现代智能工厂中，网络延迟或瞬间闪断是导致停工停产的致命威胁。MSRU | MES 采用了独特的“边缘自治（Edge Autonomy）”架构，确保在断网状态下生产依然不掉线。
+
+<Tabs items={['自治逻辑', '节点状态机', '配置示例']}>
+  <Tab value="自治逻辑">
+    ### 10ms 级别的确定性响应
+    当边缘网关检测到与中心云的心跳中断时，会自动切换至 **本地自治模式**。此时，MES 所有的关键逻辑（如报工校验、条码打印、工艺参数下发）均在本地 SQLite 账本上运行，确保产线节奏不受影响。
+    
+    待网络恢复后，系统会自动触发 **增量重聚合（Delta Re-aggregation）** 算法，将本地产生的生产数据异步推回中心仓库。
+  </Tab>
+  <Tab value="节点状态机">
+    ```mermaid
+    stateDiagram-v2
+        [*] --> CloudConnected: 网络正常
+        CloudConnected --> CloudJitter: 检测到延迟 > 50ms
+        CloudJitter --> AutonomousMode: 触发心跳超时
+        AutonomousMode --> DataSyncing: 网络恢复
+        DataSyncing --> CloudConnected: 增量重聚合完成
+        
+        state AutonomousMode {
+            [*] --> LocalExecution
+            LocalExecution --> DiskPersistence
+        }
+    ```
+  </Tab>
+  <Tab value="配置示例">
+    ```yaml showLineNumbers {5-7}
+    # edge-node-config.yaml
+    node_id: "SH-FACTORY-01-LANE-05"
+    capabilities: ["MES_EXECUTION", "IOT_INGESTION"]
+    fallback_policy:
+      mode: "STRICT_AUTONOMOUS"
+      heartbeat_timeout: 5000ms
+      max_offline_duration: 72h
+    sync_priority: "CRITICAL_FIRST"
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## 3. 数学模型：OEE 设备综合效率基准
+
+MSRU | MES 的底层并非简单的 CRUD，而是建立在严谨的工业工程模型之上。我们内置了符合 ISO 22400 标准的 OEE 计算引擎，帮助管理者直观把握工厂的生产瓶颈。
+
+<MathEquation 
+  inline={false} 
+  formula={String.raw`\text{OEE} = \underbrace{\left( \frac{\text{运行时间}}{\text{计划生产时间}} \right)}_{\text{可用率}} \times \underbrace{\left( \frac{\text{理论周期} \times \text{总产量}}{\text{运行时间}} \right)}_{\text{表现指数}} \times \underbrace{\left( \frac{\text{合格品数}}{\text{总产量}} \right)}_{\text{质量指数}}`} 
+/>
+
+通过与 **IoT 模块** 的深度集成，系统能够实时获取设备 PLC 中的转速、故障代码以及计数器，从而实现“零误差”的自动化 OEE 采集，彻底告别传统的人工填表模式。
+
+---
+
+## 4. 为什么选择 MSRU 架构？
+
+我们拒绝低效的手工录入。在传统 MES 实施中，报工通常占据了工人 15% 的工作时间。MSRU 通过智能化手段，实现了 **“免报工式”** 生产统计：
+
+*   **IoT 生态集成**：通过 Modbus, MQTT, OPC UA 等协议，MES 直接与产线对话。
+*   **多尺度计算**：在毫秒级处理边缘数据的同时，在分钟级输出管理报表。
+*   **低代码配置**：业务顾问无需编写代码，即可通过拖拽式编辑器修改工艺路线。
+
+<Steps>
+  <Step>
+    ### 环境准备与节点注册
+    部署 MSRU 边缘网关，并在控制台完成生产节点、工位与逻辑容器的映射。
+  </Step>
+  <Step>
+    ### 工艺数字化建模
+    在可视化编辑器中导入生产 BOM，定义工序依赖关系，并设置关键质量质控点（QCP）。
+  </Step>
+  <Step>
+    ### 触发首个生产工单
+    通过 ERP 接口同步或手动创建排产单，启动全链路透明化生产。
+  </Step>
+</Steps>
+
+---
+
+> [!TIP]
+> 想要了解 MSRU | MES 与西门子 Opcenter 或 SAP ME 的深度架构对比？请查看 [行业对比](./introduction/comparisons)。
+

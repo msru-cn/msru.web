@@ -1,0 +1,20 @@
+{
+  "title": "Platform 美仁平台",
+  "icon": "Layers",
+  "root": true,
+  "pages": [
+    "index",
+    "---介绍---",
+    "introduction",
+    "---基础设施---",
+    "foundation",
+    "---使用---",
+    "usage",
+    "---配置---",
+    "configuration",
+    "---集成---",
+    "integrations",
+    "---价格---",
+    "pricing"
+  ]
+}

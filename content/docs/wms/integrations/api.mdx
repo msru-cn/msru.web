@@ -1,0 +1,124 @@
+---
+title: API 参考：实现仓储物流的实时联动
+description: 详细解析 MSRU | WMS 的 RESTful 控制平面接口、库存流水订阅及高性能 Webhook 准入规范。
+icon: Code2
+---
+
+# API 参考：实现仓储物流的实时联动
+
+在 MSRU 的数字化愿景中，WMS 绝不仅仅是一个存储系统，它是企业物流数据的“高速公路”。通过 **API 第一 (API-First)** 的设计，我们允许外部系统（如电商中台、MES、TMS）以毫秒级的精度感知库存的每一丝波澜。
+
+本页面为开发者提供了与 MSRU | WMS 进行无缝集成的技术细节与范式指导。
+
+<Callout type="warn" title="原子性操作建议">
+  由于仓储涉及到实物资产，MSRU 强力建议在执行“库存扣减”或“状态锁定”操作时，使用我们提供的 `idempotency_key` 机制，以防止在不稳定的网络环境下产生重复过账。
+</Callout>
+
+---
+
+## 1. 认证机制：基于 mTLS 的强安全模型
+
+在涉及资产变动时，简单的 API Key 往往无法满足合规审计要求。
+
+<Tabs items={['认证流程', '请求示例', '安全规范']}>
+  <Tab value="认证流程">
+    1.  **Identity Exchange**: 客户端使用 X.509 证书发起握手。
+    2.  **Context Injection**: 每一个请求必须携带 `X-MSRU-Site-ID`。
+    3.  **Scope Validation**: 自动基于角色范围校验该证书是否允许跨仓操作。
+  </Tab>
+  <Tab value="请求示例">
+    ```bash showLineNumbers
+    curl -X POST "https://api.msru.sh/v1/wms/inventory/adjust" \
+      -H "Authorization: Bearer <JWT_TOKEN>" \
+      -H "X-MSRU-Idempotency-Key: uuid-abcd-1234" \
+      -d '{ "sku": "CHIP-A1", "adj_qty": -10, "reason": "PRODUCTION_CONSUME" }'
+    ```
+  </Tab>
+  <Tab value="安全规范">
+    所有写操作均会产生一个 **“数字指纹”**，该指统被加密存储在审计链中，符合 FDA 21 CFR Part 11 对电子记录的完整性要求。
+  </Tab>
+</Tabs>
+
+---
+
+## 2. 核心资源端点 (Resource Endpoints)
+
+WMS API 采用标准的 RESTful 模型，围绕“单据”与“实物状态”展开。
+
+<TypeTable
+  type={{
+    "/inventory/snapshot": { 
+      type: 'Query', 
+      description: '【查询】获取当前库位实时余额，支持按批次、等级、状态进行组合过滤。' 
+    },
+    "/orders/wave": { 
+      type: 'Command', 
+      description: '【控制】触发波次分配引擎，生成捡货指令。支持预览与干预模式。' 
+    },
+    "/locations/status": { 
+      type: 'Monitor', 
+      description: '【监控】实时获取格位热度与占用率百分比。建议配合看板系统使用。' 
+    }
+  }}
+/>
+
+---
+
+## 3. 异步集成：Webhook 事件总线
+
+当仓库内发生特定动作时，MSRU 会实时向您的回调端点发送 JSON 文档。
+
+<Steps>
+  <Step>
+    ### 事件订阅 (Event Subscription)
+    常见的事件包括：`GR_COMPLETED` (收货完工)、`GI_ISSUED` (发货扣减)、`STOCK_EXPIRED` (库存即将过期预警)。
+  </Step>
+  <Step>
+    ### 回调与签名验证
+    MSRU 会通过 `X-MSRU-Signature` Header 传递 HMAC-SHA256 签名，请务必进行后端验签以防重放攻击。
+  </Step>
+  <Step>
+    ### 纠错反馈
+    如果您的系统返回 `5xx`，MSRU 边缘节点将按照 **指数退避策略 (Exponential Backoff)** 尝试重推，最长持久化重试 24 小时。
+  </Step>
+</Steps>
+
+---
+
+## 4. 深度建模：API 数据对象 (Files)
+
+为了协助架构师进行数据库设计对照，以下是核心对象的数据契约。
+
+<Files>
+  <Folder name="wms-api-specs" defaultOpen>
+    <Folder name="v1" defaultOpen>
+       <File name="inventory-item.json (库存实体)" />
+       <File name="wave-picking.json (波次详情)" />
+       <File name="audit-trail.json (审计记录)" />
+    </Folder>
+  </Folder>
+</Files>
+
+---
+
+## 5. 性能估算：多尺度延迟推导
+
+在高度自动化的黑灯工厂，API 的延迟直接影响 AGV 的效率。
+
+<MathEquation 
+  inline={false} 
+  formula={String.raw`T_{Total} = T_{Network} + T_{Auth} + \underbrace{T_{Consensus}}_{\text{Only for Multi-Site}} + T_{Storage}`} 
+/>
+
+由于 MSRU 的边缘缓存机制，针对“当前站点”的库存查询响应通常维持在 **30ms** 左右；而跨城市的“库存划转”接口由于需要通过分布式共识提交事务，延迟可能上浮至 **150-300ms**。
+
+---
+
+## 6. 总结
+
+MSRU | WMS 的 API 体系是企业数字化底座的延伸。通过这套标准、开放且安全的接口，您可以轻松将仓储逻辑嵌入到任何自定义的业务流中，实现“货随单动、账随货走”的实时物流愿景。
+
+---
+
+> [!TIP]
+> 想要在不写代码的情况下模拟 API 交互？请访问我们的 [实时 Sandbox 实验室](https://api-designer.msru.sh)。

@@ -1,0 +1,123 @@
+---
+icon: Server
+title: 部署指南：构建高可用的质量计算网格
+description: 深入解析 MSRU | QMS 的云边端协同部署架构，涵盖 K3s 边缘组网、离线账本持久化及多租户同步策略。
+---
+
+# 部署指南
+
+质量数据的完整性与实时性对生产安全至关重要。因此，**MSRU | QMS** 的部署架构不仅仅是简单的软件安装，而是一个**多尺度、具备容错能力的计算网格**。
+
+本指南将指导架构师如何构建一个能够抵御网络波动、具备 99.99% 数据可用性的质量管理环境。
+
+<Callout type="warn" title="部署前提：边缘优先">
+  在工业现场部署 QMS 时，我们强烈建议采用 `Edge-First` 模式。这意味着所有的检测逻辑和 SPC 计算应当部署在靠近生产线的硬件上，而非仅仅依赖中心云端的 API。
+</Callout>
+
+---
+
+## 1. 系统拓扑：云边分工架构
+
+在 MSRU 体系中，QMS 的职能被切分为三个逻辑层：
+
+<Tabs items={['中心控制面 (Cloud)', '边缘计算节点 (Edge)', '终端执行层 (Client)']}>
+<Tab value="中心控制面 (Cloud)">
+**驻留位置**：公有云或集团数据中心 K8s。
+**职责**：
+- 统一质量标准库管理（Master Data）。
+- 大规模历史数据归档与跨厂区报表分析。
+- AI 模型训练与分发中心。
+</Tab>
+<Tab value="边缘计算节点 (Edge)">
+**驻留位置**：车间级工业上位机或 K3s 集群。
+**职责**：
+- **实时 SPC 推理**：在本机进行毫秒级判定。
+- **离线账本**：在断网时暂存质检单据，确保业务不中断。
+- **设备驱动**：管理蓝牙、OPC UA 及串口仪器的连接池。
+</Tab>
+<Tab value="终端执行层 (Client)">
+**驻留位置**：Pad、AR 眼镜、自动质检机器人。
+**职责**：交互呈现与原始数据捕获。
+</Tab>
+</Tabs>
+
+---
+
+## 2. 部署步骤详解 (Deployment SOP)
+
+<Steps>
+  <Step>
+    ### 环境准备与内核调优
+    边缘节点建议使用 Ubuntu 22.04 LTS。为了保证海量 IoT 数据的高频写入，需调整内核的文件描述符限制及磁盘 IO 调度策略。
+  </Step>
+  <Step>
+    ### 容器镜像拉取与配置
+    通过 MSRU 控制台获取专有的 `Pull-Secret`。使用 Helm 或 Docker Compose 挂载配置文件。
+    ```bash
+    helm install msru-qms ./charts/msru-qms \
+      --set edge.nodeId="FACTORY-01-QC" \
+      --set storage.persistence.size=100Gi
+    ```
+  </Step>
+  <Step>
+    ### 离线同步策略定义
+    配置 `Sync-Rule`。定义在网络带宽受限时，哪些数据（如：致命缺陷警告）必须即时重传，哪些数据（如：普通报表图片）可以深夜异步同步。
+  </Step>
+  <Step>
+    ### 硬件通讯探测
+    启动内置的通讯探测脚本，确保边缘 Agent 能够通过 `mTLS` 证书成功握手云端控制台，并正确识别本地连接的测厚仪或天平。
+  </Step>
+</Steps>
+
+---
+
+## 3. 高供能 (HA) 与灾备配置
+
+针对航天、医疗等“零容忍”行业，QMS 必须支持计算热备。
+
+<Files>
+  <Folder name="deployment-manifests" defaultOpen>
+    <Folder name="ha-cluster" defaultOpen>
+       <File name="keepalived.conf (虚拟 IP 配置)" />
+       <File name="rethinkdb-cluster.yaml (分布式数据存储)" />
+    </Folder>
+    <File name="backup-policy.sh (定时全量快照脚本)" />
+  </Folder>
+</Files>
+
+---
+
+## 4. 网络延迟感知模型 (Latency Model)
+
+系统会根据当前链路的 RTT（往返时延）动态调整本地计算的权重。
+
+<MathEquation 
+  inline={false} 
+  formula={String.raw`Weight_{edge} = \frac{1}{1 + e^{-\lambda(\text{RTT} - T_{thresh})}} \quad \text{as RTT} \uparrow, \text{Edge Logic} = 100\%`} 
+/>
+
+这种 **“延迟自适应”** 技术确保了即使在 3G/4G 等极不稳定的网络环境下，质检工位也不会出现“扫描二维码后转圈”的尴尬局面。
+
+---
+
+## 5. 运维与常见问题 (FAQ)
+
+<Accordions>
+  <Accordion title="边缘节点存储空间满了怎么办？">
+    **方案**：QMS 默认开启了 `Auto-Tiering`（自动分层存储）。旧的质检图片和非关键日志会自动压缩并移动到低成本的外部存储（如 NAS 或云端 S3），本地 SSD 仅保留最近 7 天的活跃数据。
+  </Accordion>
+  <Accordion title="如何进行跨网段的设备发现？">
+    **方案**：部署 **MSRU Mesh 代理**。在每个子网内放置一个轻量级的代理容器（Sidecar），负责将隔离网段内的 PLC 信号安全地隧道穿透至 QMS 边缘节点。
+  </Accordion>
+</Accordions>
+
+---
+
+## 6. 总结
+
+部署 MSRU | QMS 标志着质量管理从“孤立的电子表”演进为“分布式的工业内联网”。这种架构不仅提升了系统的稳定性，更为后续接入 AI 视觉检测等大算力需求打下了坚实基础。
+
+---
+
+> [!TIP]
+> 完成部署后，下一步是配置您的工厂参数。请参考 [系统设置指南](./settings)。

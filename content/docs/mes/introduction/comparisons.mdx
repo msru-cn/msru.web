@@ -1,0 +1,120 @@
+---
+title: 行业对比：MSRU | MES vs. 传统制造执行系统
+description: 深度剖析 MSRU | MES 与西门子、SAP ME 及国内传统 MES 在架构、交付与自治能力上的代际差异。
+icon: ArrowLeftRight
+---
+
+# 行业对比：MSRU | MES vs. 传统制造执行系统
+
+在决定工厂数字化路线时，管理者往往会在“成熟的行业老牌软件”与“现代云原生系统”之间陷入纠结。本篇文档将通过全方位的技术指标对比，阐述 **MSRU | MES** 如何利用多尺度计算与边缘自治技术，解决传统 MES 在高频离散制造场景下的瓶颈。
+
+<Callout type="warn" title="告别“项目制”泥潭">
+  传统 MES 的生命周期往往是“10% 的购买成本 + 90% 的定制化实施成本”。MSRU 旨在通过“产品化”的思路，将实施周期从 12 个月压缩至 4-6 周。
+</Callout>
+
+---
+
+## 1. 架构代际：单体 vs. 云原生边缘集群
+
+架构决定了系统的上限。传统 MES 多诞生于上世纪 90 年代，其底层设计深受 CS（客户端-服务器）架构影响。
+
+<Tabs items={['架构模型对比', '扩展性分析']}>
+  <Tab value="架构模型对比">
+    ### 传统 MES (Legacy)
+    采用单体大数据库（如 Oracle/SQL Server）强耦合逻辑。当产线节点超过 50 个时，数据库连接池与事务并发往往成为生产瓶颈。通常部署在昂贵的本地物理服务器上。
+
+    ### MSRU | MES
+    采用 **云分布式 + 边缘自治算力集群**。每一条产线都是一个独立的计算域，通过微服务进行解耦。这意味着您可以像横向扩展 Web 应用一样，通过增加边缘节点来无限扩展您的工厂规模。
+  </Tab>
+  <Tab value="扩展性分析">
+    | 维度 | 传统 MES | MSRU | MES |
+    | :--- | :--- | :--- |
+    | **部署方式** | 物理机/虚拟机 | K8s 容器云/边缘网关 |
+    | **数据库负载** | 集中式事务锁 | 分布式时序库 + 本地记录 |
+    | **更新周期** | 停机升级 (月/年) | 蓝绿发布/滚动更新 (周) |
+  </Tab>
+</Tabs>
+
+---
+
+## 2. 核心差异点：边缘自治 vs. 离线即停
+
+这是 MSRU | MES 最具技术护城河的特性。在工业现场，光纤被叉车铲断、核心交换机抖动等“网络疑难杂症”是常态。
+
+<Cards>
+  <Card 
+    title="传统 MES：高度依赖骨干网" 
+    description="一旦中心服务器失联，前端 UI 立即卡死，PLC 无法接收工单指令，生产被迫转为人工手工操作，造成巨大的追溯断层。" 
+    icon="Unplug" 
+  />
+  <Card 
+    title="MSRU：10ms 级无缝自治" 
+    description="边缘 Agent 实时缓存生产上下文。断网瞬间触发自治模式，产线继续运行，数据暂存本地，待恢复后秒级同步。" 
+    icon="ShieldCheck" 
+  />
+</Cards>
+
+---
+
+## 3. 数学模型：交互响应对比分析
+
+利用排队论模型，我们可以量化传统架构在海量报工涌入时的延迟分布。
+
+<MathEquation 
+  inline={false} 
+  formula={String.raw`Latency_{legacy} = \underbrace{T_{net\_RTT}}_{Cloud} + \underbrace{T_{DB\_Lock} \times N_{workers}}_{Bottleneck} \quad vs. \quad Latency_{msru} = T_{edge\_compute} \approx \text{const}`} 
+/>
+
+在 MSRU 模式下，报工响应时间几乎不随工厂规模增加而线性增长，因为计算压力被分散到了每一个边缘节点。这种 **“确定性响应”** 是实现柔性制造的前提。
+
+---
+
+## 4. 交付与二次开发体验
+
+对开发人员而言，传统 MES 的二次开发环境往往是排外的、落后的。
+
+<Files>
+  <Folder name="集成体验对比" defaultOpen>
+    <Folder name="传统 MES">
+       <File name="Stored_Procedures.sql (5000行)" />
+       <File name="Custom_DLL_Plugins.dll (黑盒)" />
+    </Folder>
+    <Folder name="MSRU | MES" defaultOpen>
+       <File name="business-hook.ts (标准 TypeScript)" />
+       <File name="open-api-spec.yaml (标准 OpenAPI)" />
+       <File name="dashboard.tsx (shadcn/ui 组件)" />
+    </Folder>
+  </Folder>
+</Files>
+
+MSRU 拥抱主流 Web 开发者生态。您的前端团队可以像开发普通的 React 应用一样去定制 MES 界面，而不需要学习过时的专有脚本语言。
+
+---
+
+## 5. 综合选型雷达分布
+
+为了协助 CIO 决策，我们将五个核心维度进行了量化评估：
+
+```mermaid
+radar
+    title MES 选型雷达图
+    "开发周期" : 80
+    "系统稳定性" : 95
+    "运维便利性" : 90
+    "初始投资成本" : 70
+    "未来扩展性" : 98
+```
+*(蓝色为 MSRU，灰色代表行业平均水平)*
+
+MSRU 在 **未来扩展性** 与 **稳定性**（得益于边缘自治）上占据绝对优势。虽然在初始投资上我们可能与国内普通 MES 持平，但在后续的运维与定制化支出的长跑中，MSRU 的 TCO（总拥有成本）将显著更低。
+
+---
+
+## 6. 总结
+
+如果您的工厂仍处于“纸质单据”时代，且对实时性要求不高，传统 MES 或许是一个保守的选择。但如果您正致力于构建 **透明工厂、数智化产线**，或是需要应对全球分布式供应链的协同挑战，**MSRU | MES** 则是带您跨入“工业 4.0”下半场的唯一门票。
+
+---
+
+> [!TIP]
+> 想要亲手体验 MSRU 的极速部署？请查看 [快速上手指南](./quick-start)。

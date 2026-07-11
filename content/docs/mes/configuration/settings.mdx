@@ -1,0 +1,145 @@
+---
+title: 系统设置：多尺度生产参数调优
+description: 深入解析 MSRU | MES 的全局配置字典、物料属性建模及边缘计算阈值设置。
+icon: Settings2
+---
+
+# 系统设置：多尺度生产参数调优
+
+MSRU | MES 的强大不仅源于其架构，更源于其极其精细的配置能力。在一个拥有数千种物料与数百条产线的复杂工厂中，如何通过参数化管理替代硬编码，是衡量一个系统“数字化成熟度”的核心指标。
+
+本页面将指导您如何配置 MSRU | MES 的核心参数，以实现生产的高效率与数据的高一致性。
+
+<Callout type="info" title="配置作用域">
+  MSRU 采用 **级联配置模式**：全局设置 (Global) > 厂区设置 (Site) > 产线设置 (Line) > 边缘节点设置 (Edge)。低层级的配置将自动覆盖高层级的默认值。
+</Callout>
+
+---
+
+## 1. 核心业务参数字典 (Business Lexicon)
+
+业务参数定义了 MES 运行的边界逻辑。在 `系统设置 > 业务参数` 中，架构师需要定义以下核心锚点。
+
+<TypeTable
+  type={{
+    "报工防错级别": { 
+      type: 'enum', 
+      description: '【STRICT】必须按顺序报工且校验批次；【FLEXIBLE】允许调序报工；【LOG_ONLY】仅记录，不拦截操作。' 
+    },
+    "心跳阈值 (ms)": { 
+      type: 'number', 
+      default: 5000,
+      description: '定义边缘节点切换至自治模式的超时时间。在高频交互产线下建议设为 1000-2000ms。' 
+    },
+    "自动完工逻辑": { 
+      type: 'boolean', 
+      description: '设为 true 时，末道工序报工完成后自动激活成品入库单生成流程。' 
+    }
+  }}
+/>
+
+---
+
+## 2. 物料多尺度建模 (Material Meta-Modeling)
+
+物料不仅仅是一个 ID，它包含了生产过程中所有的约束条件。MSRU 允许您利用 **自定义属性 (Custom Attributes)** 来扩展物料模型。
+
+<Tabs items={['属性定义', '属性级联代码', '计算模型']}>
+  <Tab value="属性定义">
+    ### 关键质量参数 (KPC)
+    您可以为 CPU 芯片等关键物料增加 `v_core_voltage`（核心电压）属性。在 [OP-20] 工序报工时，系统会强制要求读取并校验该参数是否在预设的 1.1V - 1.3V 区间内。
+  </Tab>
+  <Tab value="属性级联代码">
+    ```json showLineNumbers
+    {
+      "material_id": "MSRU-CHIP-V1",
+      "ext_props": {
+        "is_esd_sensitive": true,
+        "bake_duration_hrs": 48,
+        "max_floor_life_mins": 240
+      }
+    }
+    ```
+  </Tab>
+  <Tab value="计算模型">
+    当物料暴露在空气中超过 `max_floor_life_mins` 时，MSRU 调度器会自动触发 **“失效锁定 (Life-cycle Lockout)”**，计算逻辑如下：
+    <MathEquation 
+      inline={false} 
+      formula={String.raw`T_{remain} = L_{max} - (T_{now} - T_{unseal}) > 0 \implies \text{VALID}`} 
+    />
+  </Tab>
+</Tabs>
+
+---
+
+## 3. 边缘计算与自治参数配置
+
+为了确保边缘节点的稳定性，我们需要为边缘 Agent 设置合理的资源限制与缓存策略。
+
+<Cards>
+  <Card 
+    title="数据持久化策略" 
+    description="选择本地 SQLite 账本的保留时长。对于追溯敏感型产线，建议保留 72 小时的全量 Trace 数据，其余同步至云端。" 
+    icon="Save" 
+  />
+  <Card 
+    title="消息重试惩罚权重" 
+    description="当边缘恢复网络后，高优先级的工单数据将获得更高的聚合权重（Priority Class）。" 
+    icon="ShieldAlert" 
+  />
+</Cards>
+
+---
+
+## 4. 文件与模板管理规范
+
+向工人展示的 SOP（标准作业指导书）及标签模板，在 MSRU | MES 中通过集中的文件树进行控制。
+
+<Files>
+  <Folder name="mes-shared-assets" defaultOpen>
+    <Folder name="sop-templates" defaultOpen>
+       <File name="assembly-line-v2.pdf" />
+       <File name="quality-check-instructions.mdx" />
+    </Folder>
+    <Folder name="label-designs">
+       <File name="shipping-label.zpl" />
+       <File name="sn-barcode-small.svg" />
+    </Folder>
+  </Folder>
+</Files>
+
+<Callout type="warn" title="资源热更新警告">
+  更选 SOP 模板后，处于 `InProduction` 状态的工单将维持旧版，只有新触发的工序流转才会加载新版文件，以确保生产过程的原子性（Atomicity）。
+</Callout>
+
+---
+
+## 5. 权限与集成配置 (RBAC)
+
+MES 的安全性取决于谁能在什么时候操作。在 `配置 > 权限控制` 中：
+
+<Steps>
+  <Step>
+    ### 定义角色矩阵
+    创建 `OPERATOR`（操作工）、`SUPERVISOR`（班组长）与 `MAINTAINER`（维护员）角色。
+  </Step>
+  <Step>
+    ### 绑定硬件标识
+    不仅通过账号验证，还支持将权限与物理工位的 **MAC 地址** 或 **PDA 设备 ID** 绑定，防止权限在非受控区域溢用。
+  </Step>
+  <Step>
+    ### 开启审计日志 (Audit Trail)
+    开启 FDA 21 CFR Part 11 兼容模式，强制记录所有参数修改前后的值及修改原因。
+  </Step>
+</Steps>
+
+---
+
+## 6. 总结
+
+系统设置是 MSRU | MES 的“生命字典”。通过对级联配置、级数物料属性与边缘计算参数的精准把握，实施人员可以构建出一个既标准统一化、又具备局部灵活性的数字化工厂神经系统。
+
+---
+
+> [!TIP]
+> 想要了解如何通过 API 批量更新这些配置？请参考 [MES API 参考](../integrations/api)。

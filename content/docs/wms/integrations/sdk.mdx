@@ -1,0 +1,143 @@
+---
+title: SDK 使用指南：构建可编程工业物流
+description: 详细指导如何使用 MSRU | WMS 跨语言 SDK，在边缘侧实现毫秒级库存拦截、自定义分配算法与低功耗硬件驱动。
+icon: Box
+---
+
+# SDK 使用指南：构建可编程工业物流
+
+对于普通的业务系统，[REST API](./api) 已经足够；但在处理 **“高频、强一致、设备级联动”** 的智慧物流场景时，SDK 是唯一的专业选择。MSRU | WMS SDK 允许开发者将自定义逻辑注入到 WMS 的核心运行进程中，实现内存级的数据交换。
+
+无论是开发一个全新的 AGV 控制驱动，还是实现一个复杂的“防错匹配逻辑”，SDK 都是您强大的支点。
+
+<Callout type="info" title="边缘优先的 SDK 架构">
+  MSRU SDK 原生支持 **“进程内 (In-Process)”** 调用。这意味着当您的 PDA 扫描物料时，自定义的校验插件可以在 0.5 毫秒内完成判定，而无需等待跨网络的 API 往返。
+</Callout>
+
+---
+
+## 1. 跨语言支持矩阵
+
+MSRU SDK 为不同层次的物流开发提供了差异化支持。
+
+<Cards>
+  <Card 
+    title="Rust SDK (System Core)" 
+    description="用于编写高性能、显存安全的边缘 Agent 插件。直接操作 RFID 数据流，支持 eBPF 级别的网络拦截。" 
+    icon="FerrisWheel" 
+  />
+  <Card 
+    title="TypeScript SDK (Logic Extension)" 
+    description="最高开发效率。适用于编写波次拣选逻辑、自定义 PDA 界面交互及 Webhook 前置处理器。" 
+    icon="Codepen" 
+  />
+  <Card 
+    title="C++ SDK (Hardware Bridge)" 
+    description="专用于对接旧有的自动化立体库驱动、输送线 PLC 或其他私有硬件库。" 
+    icon="Hash" 
+  />
+</Cards>
+
+---
+
+## 2. 核心架构：基于钩子 (Hooks) 的双向联动
+
+开发者通过注册 `Hooks` 来侦听并拦截 WMS 的核心流程。
+
+<Tabs items={['代码示例 (TS)', '生命周期钩子', '性能指标']}>
+  <Tab value="代码示例 (TS)">
+    ```typescript showLineNumbers
+    import { WmsClient, StockEvent } from "@msru/wms-sdk";
+
+    const wms = new WmsClient({ siteId: "HUB-SH-01" });
+
+    // 拦截出库扣减流程，增加自定义的企业合规校验
+    wms.on(StockEvent.BEFORE_DISPATCH, async (context) => {
+      const isCompliant = await checkInternalPolicy(context.sku);
+      if (!isCompliant) {
+        throw new Error("COMPLIANCE_RESTRICTION: Item flagged for export control");
+      }
+    });
+    ```
+  </Tab>
+  <Tab value="生命周期钩子">
+    | 钩子名称 | 触发点 | 典型用途 |
+    | :--- | :--- | :--- |
+    | `onBarcodeScan` | 条码数据刚解析时 | 实现私有条码规则转换 |
+    | `onLocationAssign` | 算法分库位前 | 注入自定义空间约束 |
+    | `onBalanceSync` | 云端数据聚合时 | 实现自定义的冲突解决算法 |
+  </Tab>
+  <Tab value="性能指标">
+    通过进程内通讯，SDK 的调用开销被限制在极小范围内：
+    <MathEquation 
+      inline={false} 
+      formula={String.raw`Latency_{logic} = T_{user\_fn} + \underbrace{\epsilon}_{\text{Platform Overhead} < 0.1ms}`} 
+    />
+  </Tab>
+</Tabs>
+
+---
+
+## 3. 高级功能：边缘侧本地持久化 (Storage Context)
+
+在“断网自治”期间，SDK 允许插件使用具有事务保障的本地存储。
+
+<Steps>
+  <Step>
+    ### 环境申明
+    在插件清单 `manifest.yaml` 中申明所需的磁盘配额与数据库类型（如 SQLite 或 RocksDB）。
+  </Step>
+  <Step>
+    ### 状态暂存 (State Persistence)
+    在网络离线时，通过 SDK API 将 PDA 扫描的中间状态保存在边缘节点，防止掉电丢失。
+  </Step>
+  <Step>
+    ### 数据合并策略
+    网络恢复后，SDK 将触发 `onRejoinCluster` 事件，引导您的代码完成本地数据与云端全局状态的合并。
+  </Step>
+</Steps>
+
+---
+
+## 4. 文件分发与插件结构 (Files)
+
+标准的 MSRU SDK 插件工程结构。
+
+<Files>
+  <Folder name="wms-plugin-project" defaultOpen>
+    <Folder name="src" defaultOpen>
+       <File name="validator.ts" />
+       <File name="recommender.rs" />
+    </Folder>
+    <Folder name="config">
+       <File name="manifest.yaml (核心描述文件)" />
+       <File name="acls.json (权限控制)" />
+    </Folder>
+    <File name="package.json" />
+  </Folder>
+</Files>
+
+---
+
+## 5. 开发建议与避坑指南
+
+<Accordions>
+  <Accordion title="为什么我的插件导致边缘 Agent 重启？">
+    **原因**: 本地插件与 WMS 共享部分内存空间。如果您的代码发生了严重的内存溢出或未捕获的恐慌（Panic），防护机制会强制重启进程。
+    **解决**: 建议在 Rust 开发中严格遵守生命周期，或在 TS 代码中使用 `try-catch` 闭包包裹所有的 Hook 逻辑。
+  </Accordion>
+  <Accordion title="SDK 插件是否支持动态加载？">
+    支持。MSRU WMS 边缘代理实现了 **“热插拔 (Hot-Swapping)”** 机制。通过 `msru-cli plugin load` 指令，无需停机即可完成逻辑热更新。
+  </Accordion>
+</Accordions>
+
+---
+
+## 6. 总结
+
+MSRU SDK 不仅是一个编程接口，它为仓储系统的复杂逻辑提供了“手术刀”般的精准操控。通过将业务逻辑直接下沉到边缘侧，开发者能构建出响应极快、极度稳健的下一代工业物流应用。
+
+---
+
+> [!TIP]
+> 准备好编写您的第一个物流 Hook 了吗？请访问 [SDK 开发范式仓库](https://github.com/msru-platform/wms-sdk-samples)。

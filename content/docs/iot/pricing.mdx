@@ -1,0 +1,146 @@
+---
+icon: CircleDollarSign
+title: 价格与订阅 (Pricing)
+description: 探索 MSRU | IoT 的弹性计费模型——从边缘测点授权到流式算力订阅，为各种规模的工厂提供可预测的连接对价。
+---
+
+# 商业报价与授权模式
+
+在工业物联网的转型过程中，企业往往面临连接成本不透明以及“为了连接而连接”导致的昂贵支出。**MSRU | IoT** 引入了全新的、基于资源的弹性计费体系。
+
+我们设计的定价模型旨在让您仅为“活跃的价值连接”支付费用，而非为冗余的数据吞吐买单。
+
+<Callout type="info" title="定价哲学：连接即资产">
+  每一个接入系统的传感器点位都是一项数字化资产。MSRU | IoT 的定价始终围绕着资产的“活跃程度”与“智能深度”展开。
+</Callout>
+
+---
+
+## 1. 订阅版本矩阵 (Subscription Layers)
+
+无论您是需要极简的协议采集，还是需要构建全厂级的流计算引擎，我们都有对应的阶梯方案。
+
+<Cards>
+  <Card 
+    title="基础互联版 (Base Connect)" 
+    description="适用于简单的协议数据透传。包含 100+ 免费驱动支持、基本的采集任务管理与 API 导出权限。" 
+    icon="Unplug" 
+  />
+  <Card 
+    title="边缘计算版 (Edge Compute)" 
+    description="支持在边缘侧运行 SQL 流式分析、本地告警联动及离线数据持久化账本。适合追求极致实时性的生产环境。" 
+    icon="Cpu" 
+  />
+  <Card 
+    title="数字孪生版 (Digital Twin)" 
+    description="包含高保真物模型建模工具、三级 3D 组态可视化能力、以及跨地域集群的统一管理套件。" 
+    icon="Boxes" 
+  />
+</Cards>
+
+---
+
+## 2. 核心计费维度：资源对价模型
+
+MSRU | IoT 的年度订阅费用由以下三个公式项相加组成：
+
+### A. 活跃测点数 (Active Data Points)
+测点（Tags）是 IoT 系统中的最小逻辑单位。我们按 **“活跃订阅点数”** 计费。
+- **静态点**（如配置参数）：0.1 权重。
+- **高频动态点**（如震动、压力传感器）：1.0 权重。
+
+### B. 边缘算力指数 (Edge Compute Units)
+针对需要在边缘侧进行 AI 推理或高性能压缩过滤的任务，我们根据边缘服务器消耗的算力单位进行计费。
+<MathEquation 
+  inline={false} 
+  formula={String.raw`Cost_{compute} = \sum_{node=1}^{n} (\text{CPU}_{usage} + \text{Memory}_{reserved}) \times \text{Rate}_{tier}`} 
+/>
+
+### C. 协议驱动包 (Premium Drivers)
+大多数通用协议（Modbus, OPCUA）免费包含在基础包中。针对极少数特殊行业驱动（如芯片制造的 SECS/GEM、医疗行业的百特协议）提供增选购买。
+
+---
+
+## 3. TCO (总拥有成本) 对比分析
+
+通过 MSRU 的边缘计算架构，您可以节省高达 70% 的云端存储与流量费用。
+
+<Tabs items={['成本演进图', '计费功能矩阵']}>
+<Tab value="成本演进图">
+<div className="p-6 border border-zinc-800 rounded-xl bg-zinc-950/50 mt-4 space-y-4 shadow-2xl">
+  <h3 className="text-zinc-100 font-bold">5 年总拥有成本 (TCO) 预测</h3>
+  <div className="space-y-2">
+    <div className="flex justify-between text-sm">
+      <span className="text-zinc-400">传统 SCADA 系统 (硬件授权 + 维护)</span>
+      <span className="text-red-400">¥ 1,200,000+</span>
+    </div>
+    <div className="h-2 w-full bg-zinc-800 rounded-full overflow-hidden">
+      <div className="h-full bg-red-600" style={{ width: '100%' }}></div>
+    </div>
+  </div>
+  <div className="space-y-2">
+    <div className="flex justify-between text-sm">
+      <span className="text-zinc-400">MSRU IoT (弹性订阅 + 硬件利旧)</span>
+      <span className="text-teal-400">¥ 350,000</span>
+    </div>
+    <div className="h-2 w-full bg-zinc-800 rounded-full overflow-hidden">
+      <div className="h-full bg-teal-500" style={{ width: '30%' }}></div>
+    </div>
+  </div>
+  <p className="text-xs text-zinc-500 italic text-center">
+    * 计入了由于边缘清洗减少的 PB 级云存储成本。
+  </p>
+</div>
+</Tab>
+<Tab value="计费功能矩阵">
+<TypeTable
+  type={{
+    "并发点数上限": { 
+      type: 'number', 
+      description: '基础版 500 点，计算版可扩展至百万级。' 
+    },
+    "边缘自治离线时长": { 
+      type: 'duration', 
+      description: '基础版无 local DB，计算版支持 72h+ 级本地离线。' 
+    },
+    "流式计算规则引擎": { 
+      type: 'boolean', 
+      description: '计算版及以上版本。' 
+    }
+  }}
+/>
+</Tab>
+</Tabs>
+
+---
+
+## 4. 特殊行业合规包
+
+如果您所在的行业属于航天（AS9100）或医药卫健（GxP）等强审计行业，我们将为您提供专用的 **“合规存证增益包”**。该包通过区块链存证技术，将所有传感器原始值的变更操作进行上链固化，确保在审计现场提交不可篡改的证据链。
+
+---
+
+## 5. 商务 FAQ
+
+<Accordions>
+  <Accordion title="我可以随时增减测点或网关数量吗？">
+    **可以**。MSRU 采用按月结算、按天对价的形式。即便您在月中新增了一整条产线的 2000 个测点，我们仅会从生效当天开始计算对应的资源费率。
+  </Accordion>
+  <Accordion title="是否支持永久授权（One-time Purchase）？">
+    **方案**：针对大型集团客户的私有化项目，我们提供基于“网关节点”的永久买断授权模式，并提供 3-5 年的持续维保服务选择。
+  </Accordion>
+  <Accordion title="对于高校或科研机构有优惠吗？">
+    **有的**。我们设有 **“Lighthouse 灯塔学术项目”**。符合条件的非营利科研项目可申请完全免费的“IoT 数字边缘开发包”。
+  </Accordion>
+</Accordions>
+
+---
+
+## 6. 与架构顾问聊聊
+
+每一个工业连接的复杂度都是独特的。如果您正在处理大规模的跨国工厂互联，或者复杂的半导体协议集成，通用的定价包可能无法覆盖您的成本优势。
+
+---
+
+> [!TIP]
+> 已经选择了合适的方案？现在就开始您的 [快速上手指南](./introduction/quick-start)。

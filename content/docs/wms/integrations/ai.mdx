@@ -1,0 +1,116 @@
+---
+title: AI 集成：构建智慧预测型仓储
+description: 详细解析 MSRU | WMS 如何利用原生 AI 引擎实现智能销量预测、库位自动重排及 AGV 路径群体进化。
+icon: BrainCircuit
+---
+
+# AI 集成：构建智慧预测型仓储
+
+在传统的仓储管理中，管理者往往陷于“事后分析”的被动局面。**MSRU | WMS** 改变了这一游戏规则。通过深度集成 MSRU 原生 AI 引擎，我们将仓库从一个被动的物料容器转变为一个具有**预见性（Predictive）**的智能体。
+
+本页面将详细解析 AI 在 MSRU | WMS 中的核心应用场景与集成模型。
+
+<Callout type="info" title="从规则驱动到模型驱动">
+  传统的“先进先出”或“就近原则”是基于固定规则的；而 MSRU 的 AI 模式是基于**概率分布**的。它会学习您过去 36 个月的物料律动规律，从而在下一秒为您推荐最优方案。
+</Callout>
+
+---
+
+## 1. 核心 AI 应用场景
+
+我们将 AI 技术应用于仓储流转的每一个关键节点。
+
+<Cards>
+  <Card 
+    title="智能销量与补货预测" 
+    description="基于长短期记忆网络 (LSTM)，预测未来 7-30 天的物料消耗曲线。自动调整安全库存动态水位，减少 15% 以上的资金占用。" 
+    icon="TrendingUp" 
+  />
+  <Card 
+    title="库位热度自适应 (Slotting AI)" 
+    description="自动识别“爆款”与“呆滞”料。在系统闲暇时段生成移库任务建议，将高频料主动迁移至拣货黄金区。" 
+    icon="Layout" 
+  />
+  <Card 
+    title="AGV 群体路径进化" 
+    description="采用强化学习算法优化的多机调度引擎。实时规避拥堵节点，实现多 AGV 环境下综合吞吐量提升 25%。" 
+    icon="Bot" 
+  />
+</Cards>
+
+---
+
+## 2. 预测模型：动态安全库存推导
+
+AI 引擎会实时训练您的库存波动模型，输出精准的补货点。
+
+<MathEquation 
+  inline={false} 
+  formula={String.raw`R_{point} = \text{Demand}_{avg} \times L + \text{AI}_{residue}(\sigma_d, \sigma_L) + C_{buffer}`} 
+/>
+
+其中 $\text{AI}_{residue}$ 是通过深度神经网络对供应链波动、天气因素及供应商历史准时率进行建模后的非线性补偿项。这种动态调整能力是传统静态公式无法比拟的。
+
+---
+
+## 3. 集成工作流：模型训练与部署
+
+MSRU 提供了简便的“模型即服务”流程。
+
+<Steps>
+  <Step>
+    ### 数据湖同步 (Data Lake)
+    将近两年的 WMS 历史交易记录（Transactions）一键同步至 MSRU AI 训练平台。
+  </Step>
+  <Step>
+    ### 模型自动寻优
+    开启 AutoML。系统会自动在 Transformer、XGBoost 等模型中寻找在该数据集下准确率最高（MAE 最小）的组合。
+  </Step>
+  <Step>
+    ### 边缘侧推理部署 (Edge Inference)
+    将训练好的权重文件（Weights）下发至仓库边缘代理。这样在 PDA 作业时，AI 推荐逻辑可以实现 **10ms 级别的零延迟反馈**。
+  </Step>
+</Steps>
+
+---
+
+## 4. 算法组件与文件规范 (Files)
+
+AI 模块在 WMS 后端代码中的分布。
+
+<Files>
+  <Folder name="apps/wms/ai-services" defaultOpen>
+    <Folder name="demand-forecasting" defaultOpen>
+       <File name="lstm-model-v2.pth (权重文件)" />
+       <File name="data-cleaner.py" />
+    </Folder>
+    <Folder name="path-optimizer">
+       <File name="swarm-intelligence.rs (Rust 实现的高性能调度)" />
+       <File name="collision-avoidance.wasm" />
+    </Folder>
+  </Folder>
+</Files>
+
+---
+
+## 5. 常见问题：AI 决策的可解释性
+
+<Accordions>
+  <Accordion title="为什么 AI 建议我把这个物料从 1 楼搬到 3 楼？">
+    **解释**: 并非系统出错。AI 分析发现该物料与 3 楼的另一组组件具有 85% 以上的“订单关联度（Co-occurrence）”。将它们存放在一起，可以实现“一次出库、合并捡货”，单笔拣选行程缩短了 120 米。
+  </Accordion>
+  <Accordion title="AI 预测失灵了怎么办？">
+    **应对**: MSRU 设有 **“人类专家干预层 (Guardian Layer)”**。管理员可以设置规则上限（如：最大移库量限制）。当模型不确定性（Entropy）过高时，系统会回退至传统的手工规则，并同时标记数据点，进行增量再训练。
+  </Accordion>
+</Accordions>
+
+---
+
+## 6. 总结
+
+在 MSRU 的视野里，仓库不应是静止的物体集合，而是一个不断自我优化的生命系统。集成 AI 后，您的 WMS 即使在睡梦中，也在不停地思考如何让您的物流再快 1 秒钟。
+
+---
+
+> [!TIP]
+> 想要将 AI 预测数据推送至第三方 ERP？请参考 [API 集成指南](./api)。

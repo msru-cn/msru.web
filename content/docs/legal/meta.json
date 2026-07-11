@@ -1,0 +1,6 @@
+{
+  "title": "合规与信任中心",
+  "icon": "ShieldCheck",
+  "root": true,
+  "pages": ["index", "privacy", "terms", "sla", "compliance", "whitepapers", "..."]
+}

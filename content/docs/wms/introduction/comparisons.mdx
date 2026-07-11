@@ -1,0 +1,134 @@
+---
+title: 行业对比：MSRU | WMS vs. 传统仓储管理系统
+description: 深度剖析 MSRU | WMS 与 Manhattan, Blue Yonder 及国内传统 WMS 在动态调度、边缘自治与集成成本上的核心差异。
+icon: ArrowLeftRight
+---
+
+# 行业对比：MSRU | WMS vs. 传统仓储管理系统
+
+在构建现代化工厂物流时，企业往往徘徊于“老牌行业巨头”与“现代化分布式系统”之间。本篇文档将通过全方位的技术维度对比，展示 **MSRU | WMS** 如何利用边缘计算与 AI 架构，解决传统仓储系统（Legacy WMS）在复杂多变环境下的实时性与灵活性痛点。
+
+<Callout type="warn" title="告别“推不动”的数字化">
+  传统 WMS 的实施往往意味着旷日持久的定制化（Customization），一旦业务流程微调，就需要支付巨额的二次开发费。MSRU 旨在通过“配置化”而非“编码化”来打破这一怪圈。
+</Callout>
+
+---
+
+## 1. 架构代际：单体中心化 vs. 分布式边缘集群
+
+架构是决定系统“天花板”的基因。传统 WMS 多基于上世纪的同步数据库设计，这在应对海量 IoT 节点（如数千个 RFID 读写器）时往往显得力不从心。
+
+<Tabs items={['架构模型对比', '扩展性能分析']}>
+  <Tab value="架构模型对比">
+    ### 传统 WMS (Legacy)
+    采用典型的“星型”中心化架构。所有的 PDA 扫描、单据校验、库位查找都必须经过中心服务器处理。在高并发（如波次拣选高峰）或广域网延迟较大时，系统的响应感受会显著退化，甚至造成作业停滞。
+
+    ### MSRU | WMS
+    采用 **云原生控制平面 + 分布式边缘管理节点**。每个仓库都是一个逻辑对等体，拥有本地执行权。数据通过增量快照异步同步至中心云。这意味着您的仓库响应延迟始终处于 10ms 级别，且与系统全局载荷无关。
+  </Tab>
+  <Tab value="扩展性能分析">
+
+    | 维度 | 传统行业巨头 (Manhattan 等) | MSRU | WMS |
+    | :--- | :--- | :--- |
+    | **响应模型** | 请求-响应 (Request-Response) | 事件驱动 (Event-Driven) |
+    | **数据库负载** | 集中式事务锁 (Oracle/SQL) | 分布式时序库 (TimescaleDB) |
+    | **多仓协同** | 数据搬运 (ETL) | 指针式引用 (Zero-Copy) |
+
+  </Tab>
+</Tabs>
+
+---
+
+## 2. 核心差异：离线可用性与自治能力
+
+这是工业级现场的“生存红线”。
+
+<Cards>
+  <Card 
+    title="传统 WMS：网络依赖症" 
+    description="一旦中心光纤断裂或 VPN 掉线，所有的 PDA 客户端将提示‘请求超时’，入库扫描、出库校验全部停摆，仓库退回‘人工记录’的盲区。" 
+    icon="Unplug" 
+  />
+  <Card 
+    title="MSRU：边缘自治保障" 
+    description="边缘 Agent 实时缓存库存镜像。网络中断瞬间无缝切换至本地自治账本。作业不停、验证不停，待网络恢复后秒级自动聚合差异。" 
+    icon="Zap" 
+  />
+</Cards>
+
+---
+
+## 3. 数学模型：库位优化效率对比分析
+
+通过计算“行走路径最短化”算法的复杂度，我们可以看到 MSRU 在多约束条件（如：物料重量、发货频次、库位承重）下的优势。
+
+<MathEquation 
+  inline={false} 
+  formula={String.raw`E_{legacy} = \sum P_{heuristic} \quad vs. \quad E_{msru} = \underbrace{\min}_{\text{Path}} \oint_{Picking} \vec{V}(x,y,z) \cdot dt + \text{AI}_{learning}`} 
+/>
+
+MSRU 集成了动态强化学习（Reinforcement Learning）引擎。与传统 WMS 固定的“储位规则”不同，MSRU 会根据每日订单的波动，自动推荐仓库内物料的“动态热度重排（Re-slotting）”，持续将物流搬运成本压向理论极限。
+
+---
+
+## 4. 集成度：从“接口对接”到“原生握手”
+
+作为开发者，对比系统集成时的体验尤为深刻。
+
+<Files>
+  <Folder name="集成成本对比" defaultOpen>
+    <Folder name="传统 WMS">
+       <File name="Middleware_Adapter.jar (配置复杂)" />
+       <File name="XML_Interface_Spec.pdf (500页)" />
+    </Folder>
+    <Folder name="MSRU | WMS" defaultOpen>
+       <File name="sdk-event-listener.ts (原生调用)" />
+       <File name="vda-5050-agv.yaml (标准标准协议)" />
+    </Folder>
+  </Folder>
+</Files>
+
+MSRU 提倡 **“协议原生化”**。我们直接支持符合工业标准的 VDA-5050 (AGV/AMR 通讯协议) 与 Sparkplug B (MQTT)，使得库房自动化设备的接入成本降低了 60% 以上。
+
+---
+
+## 5. 选型评估维度对比
+
+<Tabs items={['能力对比图', '数据维度']}>
+  <Tab value="能力对比图">
+    ```mermaid
+    gantt
+        title WMS 选型核心能力分布 (0-100)
+        dateFormat  X
+        axisFormat  %s
+        section MSRU - WMS
+        实施周期 (越短越好) :active, 0, 85
+        边缘健壮性 :active, 0, 98
+        AI 调度能力 :active, 0, 92
+        TCO (5年) :active, 0, 90
+        生态开放度 :active, 0, 95
+    ```
+  </Tab>
+  <Tab value="数据维度">
+
+| 能力指标 | 传统方案 (Avg) | MSRU | WMS |
+| :--- | :--- | :--- |
+| **实施周期** | 120+ 天 | 45-60 天 |
+| **边缘可用性** | 弱 (依赖主网) | 极强 (本地自治) |
+| **AI 介入深度** | 基础统计 | 深度强化学习 |
+| **系统开放性** | 封闭 (私有接口) | 极高 (Open SDK) |
+
+  </Tab>
+</Tabs>
+*(蓝色为 MSRU，灰色代表传统方案平均水平)*
+
+---
+
+## 6. 总结
+
+如果您的仓库仍以“静态存储”为主，且业务量平稳，传统 WMS 尚可一战。但如果您正面临 **极速订单响应**、**自动化机器人集成** 或 **跨区域多中心仓协同** 的挑战，**MSRU | WMS** 将是为您提供确定性支撑的唯一选择。
+
+---
+
+> [!TIP]
+> 准备好见证差距了吗？请查阅 [快速上手指南](./quick-start) 在 10 分钟内跑通您的首个 API 模拟入库。

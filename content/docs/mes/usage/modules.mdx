@@ -1,0 +1,135 @@
+---
+title: 模块详解：工单、路线与追溯的业务闭环
+description: 深入解析 MSRU | MES 的核心功能模块，涵盖工单全生命周期、柔性工艺路线建模及细粒度追溯体系。
+icon: AppWindow
+---
+
+# 模块详解：工单、路线与追溯的业务闭环
+
+如果说架构是 MES 的骨架，那么业务模块则是其跳动的肌肉与神经。MSRU | MES 将生产现场的复杂协同抽象为相互解耦、又高度联动的模块阵列。本页面将带领业务架构师与生产主管，深入了解 MSRU 的三大核心支柱。
+
+<Callout type="info" title="模块化设计哲学">
+  MSRU 拒绝大而全的臃肿逻辑。我们的每个模块（如：质量检测）都可以独立于主工单运行。这意味着您可以先部署最急需的“追溯”功能，随后再无感式地挂载“高级排产”模块。
+</Callout>
+
+---
+
+## 1. 智能工单管理 (Work Order Management)
+
+工单是制造执行的起始点，它承载了从 ERP 计划到物理动作的转化。
+
+<Cards>
+  <Card 
+    title="全生命周期管控" 
+    description="支持【创建-下达-开工-暂停-完工-关闭】的标准状态机，强制要求 BOM 锁与物料就绪检查（Oon-Hand Check）。" 
+    icon="Clock" 
+  />
+  <Card 
+    title="多级订单拆解" 
+    description="自动将父级订单（Parent Order）按工艺路线拆解为子工单（Sub-Jobs），精确控制半成品（WIP）的流转节奏。" 
+    icon="Layers" 
+  />
+</Cards>
+
+### 核心计算逻辑：工单进度与延迟系数
+系统会基于实时报工数据，动态推算工单的预计完工时间（ETC）。
+<MathEquation 
+  inline={false} 
+  formula={String.raw`ETC = T_{now} + \sum_{p \in Ops} \left( \frac{Q_{remain}}{\min(v_{theory}, v_{actual})} + T_{setup} \right) \cdot \lambda_{jitter}`} 
+/>
+
+---
+
+## 2. 柔性工艺路线 (Routing & Process Modeling)
+
+在小批量、多品种（High-mix, Low-volume）的制造环境下，工艺路线的灵活性决定了工厂的竞争力。
+
+<Tabs items={['图形化配置', '逻辑分支 (Logic)', 'SOP 映射']}>
+  <Tab value="图形化配置">
+    ### 拖拽式建模
+    工艺工程师可以使用 MSRU 的低代码编辑器，像绘制流程图一样配置工艺。
+    - **并行段**: 允许多个工序同时开工。
+    - **逻辑门**: 根据上一道工序的 ATE 测试结果，自动判定下一道去向（包装或返修）。
+  </Tab>
+  <Tab value="逻辑分支 (Logic)">
+    ```mermaid
+    graph TD
+        start((开始)) --> op10[OP-10 绕线]
+        op10 --> op20{质量检测}
+        op20 -- 合格 --> op30[OP-30 装配]
+        op20 -- 缺陷 --> op99[OP-99 离线分析]
+        op99 --> op10
+        op30 --> finish((结束))
+    ```
+  </Tab>
+  <Tab value="SOP 映射">
+    每个工序节点均支持 **多尺度文档挂载**。在 32 寸看板显示 3D 装配模型，在 10 寸平板显示文本检查清单。
+  </Tab>
+</Tabs>
+
+---
+
+## 3. 全链路细粒度追溯 (Traceability)
+
+追溯不只是为了“事后追责”，更是为了“过程防错”。
+
+<Steps>
+  <Step>
+    ### “正向”与“横向”穿透
+    从一个最终产品的序列号（SN），秒级穿透至每一个原材料的供应商批次、当班的操作工、甚至该产品加工时的烤箱实时温度。
+  </Step>
+  <Step>
+    ### 反向穿透（召回模拟）
+    如果某个原材料批次被曝存在质量风险，MSRU 能够立即定位所有使用了该批次的产品分布位置（已入库、在途、已发货）。
+  </Step>
+  <Step>
+    ### 追溯树逻辑可视化
+    MSRU 提供了树状关联图谱，清晰展示物料的合并与拆分路径。
+  </Step>
+</Steps>
+
+---
+
+## 4. 目录与数据结构：模块化的后端体现 (Files)
+
+对于需要进行二开的团队，理解模块在文件系统中的分布是必要的。
+
+<Files>
+  <Folder name="apps/mes/modules" defaultOpen>
+    <Folder name="order-engine" defaultOpen>
+       <File name="status-machine.ts" />
+       <File name="bom-resolver.go" />
+    </Folder>
+    <Folder name="route-manager">
+       <File name="graph-dsl.json" />
+       <File name="validator.rs" />
+    </Folder>
+    <Folder name="tracing-lake">
+       <File name="relationship-mapper.ts" />
+    </Folder>
+  </Folder>
+</Files>
+
+---
+
+## 5. 常见问题：复杂业务场景处理
+
+<Accordions>
+  <Accordion title="如何处理“强制拆单”或“紧急插单”？">
+    MSRU 支持 **“柔性调度锁”**。系统会评估插单对现有工单交期的影响指数，并允许在不重启状态机的前提下，动态调整生产序列。
+  </Accordion>
+  <Accordion title="如果 BOM 在生产中途版本更新了，老工单怎么办？">
+    MSRU 遵循 **“工单快照模式”**。一旦工单下发，它所引用的 BOM 版本即被冻结到该工单实例中。只有通过显式的“变更审核流程（ECN）”才能在执行中途替换物料。
+  </Accordion>
+</Accordions>
+
+---
+
+## 6. 总结
+
+工单、路线与追溯构成了制造执行的“铁三角”。MSRU | MES 通过对这三大核心模块的极致打磨，确保了生产过程的每一分钟都被记录，每一件产品都可溯源，每一项投入都产生效益。
+
+---
+
+> [!TIP]
+> 想要了解如何整合质量检测？请查看 [QMS 模块集成](../../qms/index)。

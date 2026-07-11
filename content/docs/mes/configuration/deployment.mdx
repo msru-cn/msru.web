@@ -1,0 +1,160 @@
+---
+title: 部署指南：生产环境下的多尺度架构落地
+description: 详细指导如何在 K8s 私有云及工业边缘节点上部署 MSRU | MES 集群。
+icon: HardDriveDownload
+---
+
+# 部署指南：生产环境下的多尺度架构落地
+
+部署 MSRU | MES 不同于安装普通的业务软件。由于其承担着工业现场的强实时执行（Execution）与边缘自治（Autonomy）生命周期，我们需要在 **“云端管理层”** 与 **“边缘执行层”** 之间构建一个具备确定性响应的复杂拓扑。
+
+本指南适用于系统架构师、离线运维工程师（Site Reliability Engineers）以及数字化实施顾问。
+
+<Callout type="important" title="部署前提：零信任网络与 TPM 芯片">
+  MSRU 遵循“设备即身份”的安全原则。在进行任何边缘节点部署前，请确保您的硬件支持 TPM 2.0 规范，或者已预装 MSRU 官方签发的 X.509 软证书。
+</Callout>
+
+---
+
+## 1. 部署拓扑架构分析
+
+MSRU | MES 支持高度灵活的拓扑组合，以满足从小型单体工厂到跨国集团的业务需求。
+
+<Tabs items={['混合云架构', '纯私有化架构']}>
+  <Tab value="混合云架构">
+    **适用场景**：希望降低中心端运维成本、但要求生产线 100% 稳定的中大型企业。
+    
+    *   **中心端 (Control Plane)**：部署在多租户的 MSRU 公有化云平台或企业内网 K8s。
+    *   **边缘端 (Execution Plane)**：每个物理产线部署一个边缘算力单元（Edge Unit），执行实时报工逻辑。
+  </Tab>
+  <Tab value="纯私有化架构">
+    **适用场景**：军工、机密制造或完全隔离网络环境（Air-gapped Environment）。
+    
+    *   **全栈本地化**：中心管理后台、数据库集群、时序处理引擎全部运行在工厂侧的私有服务器房内。
+    *   **部署工具**：主要使用标准化的 Helm Charts 与 MSRU 专有的离线安装包。
+  </Tab>
+</Tabs>
+
+---
+
+## 2. 边缘节点 (Edge Node) 部署流程
+
+边缘节点是 MES 系统在物理世界的触角。它直接与 PLC 通讯，并在断网时充当自治大脑。
+
+<Steps>
+  <Step>
+    ### 环境准入校验
+    确保宿主机运行环境为最新的 Ubuntu LTS 或 RTOS 兼容内核。
+    ```bash
+    # 检查内核是否支持 eBPF (用于高性能网络监控)
+    grep BPF /boot/config-`uname -r`
+    ```
+  </Step>
+  <Step>
+    ### 容器镜像拉取与配置
+    我们推荐使用 Docker Compose 进行边缘侧的快速生命周期管理。
+    ```yaml showLineNumbers {7-10}
+    # edge-compose.yaml
+    services:
+      msru-edge-agent:
+        image: msru/edge-agent:v2.1
+        restart: always
+        volumes:
+          - /dev/tpm0:/dev/tpm0
+          - ./config:/etc/msru/config
+        environment:
+          - NODE_ID=LN-SH-05
+          - SYNC_POLICY=DELTA_GRAFTING
+    ```
+  </Step>
+  <Step>
+    ### 证书挂载与初次握手
+    运行 Agent。成功后，边缘节点将向云端发起双向 TLS (mTLS) 握手请求。
+  </Step>
+</Steps>
+
+---
+
+## 3. 存储层部署：确保数据追溯的强一致性
+
+MES 的核心是数据。MSRU | MES 采用了独特的 **“双轨存储机制”** 解决工业场景下的数据可靠性问题。
+
+<Cards>
+  <Card 
+    title="主关系数据库 (Postgres)" 
+    description="存储 BOM、工艺路线、用户权限等元数据。要求部署为高可用 (HA) 架构。" 
+    icon="Database" 
+  />
+  <Card 
+    title="边缘时序库 (Local Data Lake)" 
+    description="在边缘端使用极致压缩的本地库，缓存设备秒级波形。仅在异常发生时上传到云端归档。" 
+    icon="HardDrive" 
+  />
+</Cards>
+
+计算模型如下：
+<MathEquation 
+  inline={false} 
+  formula={String.raw`Storage_{total} = \sum_{sites} (\text{Primary DB}) + \prod_{edge} (\text{Delta Archive}) \times \alpha_{\text{compression}}`} 
+/>
+
+---
+
+## 4. 生产环境的目录文件规范
+
+在我们的部署脚本中，必须严格遵循以下目录权限规范，以通过 MSRU 及其企业级安全审计。
+
+<Files>
+  <Folder name="/opt/msru/mes" defaultOpen>
+    <Folder name="bin" defaultOpen>
+       <File name="agent-loader" />
+       <File name="health-check.sh" />
+    </Folder>
+    <Folder name="data">
+       <File name="offline.db (本地自治账本)" />
+       <Folder name="logs">
+          <File name="trace.log" />
+       </Folder>
+    </Folder>
+    <Folder name="config">
+       <File name="deployment.yaml" />
+       <File name="ca.crt (加密证书)" />
+    </Folder>
+  </Folder>
+</Files>
+
+---
+
+## 5. 高阶技巧：自动化扩容与自愈 (Auto-healing)
+
+在 K8s 环境下，MSRU 提供了一个专有的 **MES Operator**，能够执行以下高级运维任务：
+
+<Accordions>
+  <Accordion title="节点失效自动漂移">
+    如果某个计算节点发生硬件故障，Operator 会自动在冗余节点上重启边缘服务，并利用分布于 SAN 存储中的本地账本副本实现秒级恢复。
+  </Accordion>
+  <Accordion title="基于生产峰值的动态扩容">
+    在大型促销季或订单爆发期，系统检测到消息队列堆积，会自动横向克隆微服务 Pod 以分担计算压力。
+  </Accordion>
+</Accordions>
+
+---
+
+## 6. 部署后的健康基准检查 (Sanity Check)
+
+完成部署后，请务必执行以下自动化脚本以验证系统的“生产就绪（Production Ready）”状态：
+
+```bash
+# 验证端到端延迟
+msru-cli bench-latency --target node-05
+# 响应应低于 10ms
+
+# 模拟断网压力测试
+msru-cli simulate-offline --duration 5m
+# 检查数据是否在 5m 内实现增量重聚合
+```
+
+---
+
+> [!NOTE]
+> 部署过程中遇到端口占用或证书过期？请查阅 [故障排查文档](../../faq) 或联系我们的工程师进行实施审计。

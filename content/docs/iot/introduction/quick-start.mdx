@@ -1,0 +1,137 @@
+---
+icon: Zap
+title: 快速上手：5 分钟开启工业数据流
+description: 本指南将带您完成从拉起边缘节点到成功订阅首个西门子 PLC 变量的全过程。
+---
+
+# 快速上手指南
+
+本指南旨在协助系统集成商、IT 运维人员或 OT 工程师，在最短时间内于本地开发环境或工厂现场验证 **MSRU | IoT** 的连通性。
+
+我们将模拟一个最常见的任务：**订阅一个 Siemens S7-1200 PLC 的主轴转速变量。**
+
+<Callout type="info" title="前提条件">
+  1. 您已经拥有 MSRU 控制台的管理员权限。
+  2. 您手边有一台支持 Docker 或 K3s 的工业网关（或是运行 Ubuntu 的本地开发机）。
+  3. PLC 与网关处于同一局域网网段，且已开启 S7 通讯权限。
+</Callout>
+
+---
+
+## 1. 核心操作链路 (The Golden Path)
+
+通过以下四个步骤，您将建立起一条从硬件到位到数据上云的“数字化高速公路”：
+
+<Steps>
+  <Step>
+    ### 环境拉起：部署边缘 Agent
+    在网关上执行部署脚本。该脚本会自动下载并拉起 MSRU IoT 的核心容器镜像，包括驱动层、流处理引擎及离线存储库。
+    ```bash
+    curl -sSL https://get.msru.sh/iot-edge | bash -s -- --token <YOUR_PROVISIONING_TOKEN>
+    ```
+  </Step>
+  <Step>
+    ### 驱动配置：定义 PLC 连接
+    前往控制台 [驱动管理]，新增一个 **S7-Protocol** 连接。
+    - **IP 地址**：`192.168.1.10`
+    - **槽位 (Rack/Slot)**：`0 / 1`
+    - **超时阈值**：`1000ms`
+  </Step>
+  <Step>
+    ### 物模型映射：定义变量 Tags
+    在 [物模型] 中为该设备定义一个 Tag：
+    - **变量名**：`Spindle_Speed`
+    - **地址 (S7 Address)**：`DB1.DBD10` (实数类型)
+    - **采集频率**：`500ms`
+  </Step>
+  <Step>
+    ### 实时验证：开启数据预览
+    进入 [设备监控]，您将看到数值开始跳动，Cpk 趋势图实时由于数据的流入而开始渲染。
+  </Step>
+</Steps>
+
+---
+
+## 2. 开发者模式：利用模拟器进行测试 (Simulator)
+
+如果您暂时没有真实的硬件 PLC，可以利用我们内置的 **Virtual Device** 驱动进行测试：
+
+<Tabs items={['模拟器代码 (JS)', '仿真配置', '数据流向']}>
+<Tab value="模拟器代码 (JS)">
+```javascript
+// 模拟一个正弦波波动的温度传感器信号
+IoT.simulate('TEMP_SENSOR_01', (time) => {
+  return 25 + 5 * Math.sin(time / 1000);
+});
+```
+</Tab>
+<Tab value="仿真配置">
+在 `.env` 中开启 `SIMULATOR_MODE=TRUE`。系统会自动加载 10 个预置的工业虚拟设备供您进行 UI 调试。
+</Tab>
+<Tab value="数据流向">
+虚拟数据会经过完整的“边缘驱动解析”和“物模型映射”，其处理链条与真实硬件完全一致，是前端开发的完美沙盒。
+</Tab>
+</Tabs>
+
+---
+
+## 3. 部署配置文件详解 (Manifest)
+
+对于习惯使用 IaC（基础设施即代码）的团队，可以通过以下 YAML 文件进行一键式大规模节点部署：
+
+<Files>
+  <Folder name="iot-provisioning" defaultOpen>
+    <File name="edge-agent-compose.yaml">
+      ```yaml
+      services:
+        iot-agent:
+          image: msru/iot-edge:latest
+          volumes:
+            - /etc/msru:/config
+            - /var/lib/msru/ledger:/data
+          environment:
+            - NODE_ID=SITE-SH-001
+            - PROTOCOLS=modbus,s7,opcua
+      ```
+    </File>
+  </Folder>
+</Files>
+
+---
+
+## 4. 连通性数学校验
+
+系统会自动计算链路的 **QoS (服务质量指数)**。
+
+<MathEquation 
+  inline={false} 
+  formula={String.raw`QoS_{link} = (1 - \text{Drop Rate}) \times \frac{T_{scheduled}}{T_{actual\_mean}} \cdot 100\%`} 
+/>
+
+当 $QoS_{link}$ 低于 90% 时，控制台将自动将当前设备标记为“亚健康”，并建议检查网线的屏蔽层或中间交换机的丢包情况。
+
+---
+
+## 5. 指导手册：常见“坑”点排查 (Troubleshooting)
+
+<Accordions>
+  <Accordion title="为什么状态显示‘已连接’但数据全是 0？">
+    **排查建议**：
+    1. 检查 PLC 内的 DB 块是否取消了“优化块访问(Optimized Block Access)”选项。
+    2. 确认变量地址对齐方式（Byte Alignment）是否与物模型配置一致。
+  </Accordion>
+  <Accordion title="我可以修改数据的采样权重吗？">
+    **可以**。在物模型设置中，您可以配置“死区（Deadband）”策略。例如：仅当温度变化超过 0.5 度时才上传云端，减少无效的网络流量开销。
+  </Accordion>
+</Accordions>
+
+---
+
+## 6. 成功！开启数智工厂第一步
+
+恭喜！您已经成功激活了一台物理生产设备的“数字人格”。
+
+---
+
+> [!TIP]
+> 基础数据已接入？现在可以前往 [边缘部署指南](../configuration/deployment) 了解如何将采集逻辑分发到全厂的上千台网关。

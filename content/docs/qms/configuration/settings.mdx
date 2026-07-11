@@ -1,0 +1,128 @@
+---
+icon: SlidersHorizontal
+title: 系统设置：精细化质量规则引擎配置
+description: 深度解析 MSRU | QMS 的后台配置矩阵，涵盖质量特性建模、多维抽样方案及全局拦截阈值的参数调优。
+---
+
+# 系统设置指南
+
+在 **MSRU | QMS** 中，“质量”不是一个抽象的概念，而是一组预设参数与逻辑流转的集合。
+
+本指南将协助质量管理专家（QM）与系统管理员，通过后台配置中心将复杂的物理检验标准转化为系统可执行的“判定代码”。
+
+<Callout type="info" title="配置核心：标准驱动执行">
+  QMS 的所有前端作业（如 PDA 扫描、自动检测）均严格受控于后台的【质量方案】设置。任何未经配置的物料将无法在生产现场触发质检流程。
+</Callout>
+
+---
+
+## 1. 质量特性模型 (Inspection Characteristics)
+
+每一个检测动作的元定义是质量管控的基石。
+
+<Tabs items={['属性类配置', '计数类配置', '计算类配置']}>
+<Tab value="属性类配置">
+**适用场景**：颜色、外观破损、异物监测。
+**关键设置**：
+- **OK/NG 判定键**：定义异常描述代码（如：`SCRATCH-001` 代表“表面划痕”）。
+- **严重等级**：致命（Critical）、严重（Major）、轻微（Minor）。
+</Tab>
+<Tab value="计数类配置">
+**适用场景**：尺寸、重量、压力值。
+**关键设置**：
+- **名义值与公差**：如 $25.00 \pm 0.05$。
+- **单位换算**：支持多尺度单位（如：$mm \leftrightarrow inch$）。
+- **自动采集源**：绑定特定的串口或蓝牙设备 UUID。
+</Tab>
+<Tab value="计算类配置">
+**适用场景**：通过多个检测项动态生成的派生值（如：体积计算）。
+**逻辑定义**：支持标准的数学表达式与逻辑运算符。
+</Tab>
+</Tabs>
+
+---
+
+## 2. 抽样方案与自动化逻辑 (Sampling SOP)
+
+MSRU 内置了符合全球工业标准的动态抽样算法，显著平衡了“检验成本”与“质量风险”。
+
+<Steps>
+  <Step>
+    ### 抽样标准库声明
+    在系统中激活所需的国际标准（如 MIL-STD-105E 或 GB/T 2828.1）。也可以定义企业的“特供抽样标准”。
+  </Step>
+  <Step>
+    ### 转移规则配置 (Switching Rules)
+    设定质量水平的动态切换条件。例如：连续 5 批合格，系统自动由“正常检验”切换为“放宽检验”。一处不合格，立即重置为“加严检验”。
+  </Step>
+  <Step>
+    ### 触发点映射
+    将质量方案挂载到具体的业务节点。
+    - **WMS.Receive** $\rightarrow$ IQC 指令任务。
+    - **MES.Process_End** $\rightarrow$ IPQC/FQC 指令任务。
+  </Step>
+</Steps>
+
+---
+
+## 3. 全局拦截与红线配置
+
+配置 QMS 对异常情况的“强制干预”深度。
+
+<Files>
+  <Folder name="qms-interceptor-configs" defaultOpen>
+    <File name="global_blocker.yaml">
+      ```yaml
+      # 质量拦截策略配置
+      interceptor:
+        hard_block: true # NG 批次强制禁止物料移动
+        mrb_timeout: 4h  # 不合格品评审 4 小时未处理报警
+        spc_alert:
+          type: "WECO-Modified"
+          trigger_action: "PAUSE_CNC_MACHINE" # 自动停机信令
+      ```
+    </File>
+  </Folder>
+</Files>
+
+---
+
+## 4. 统计分析参数调优 (SPC Tuner)
+
+SPC 引擎的灵敏度取决于参数的设置。
+
+<MathEquation 
+  inline={false} 
+  formula={String.raw`K_{sensitivity} = \frac{\Delta \text{Parameter}}{\sigma} \cdot \log(\text{Sample Size})`} 
+/>
+
+在 [高级设置] 中，您可以调整系统对“异常趋势”的包容度。对于高精密零件（如航发叶片），建议将其设定为最高灵敏度，即任何 1.5 倍标准差外的波动均被视为“潜伏风险”。
+
+---
+
+## 5. 权限与角色矩阵 (RBAC)
+
+质量数据的严肃性由严谨的权限矩阵保障。
+
+<Accordions>
+  <Accordion title="质检员 (Inspector) 权限">
+    仅限执行任务、读取标准、上传图片及保存结果。禁止修改已锁定的公差带及删除检测记录。
+  </Accordion>
+  <Accordion title="质量工程师 (QE) 权限">
+    管理检验方案、审阅 SPC 异常、执行 MRB（不合格品评审）裁决及导出完整合规报表。
+  </Accordion>
+  <Accordion title="系统审计员 (Auditor) 权限">
+    受限的“只读”权限，但可访问完整的【审计追踪 (Audit Trail) 日志】，查看每一笔记录的原始修改快照。
+  </Accordion>
+</Accordions>
+
+---
+
+## 6. 总结
+
+系统设置是 QMS 的“大脑皮层”。一个优化良好的设置矩阵能够让质量管理进入“无人值守”的境界，通过预设的逻辑引导现场工人，并精准规避由于人为标准不一带来的管理风险。
+
+---
+
+> [!TIP]
+> 完成设置后，您可以尝试通过 [AI 质量预测集方案](../integrations/ai) 来进一步自动化您的拦截逻辑。

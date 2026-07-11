@@ -1,0 +1,134 @@
+---
+title: 模块详解：从收货到发货的数智闭环
+description: 深度拆解 MSRU | WMS 的核心业务模块，涵盖波次算法、策略路由及高并行单据引擎的运行机制。
+icon: AppWindow
+---
+
+# 模块详解：从收货到发货的数智闭环
+
+WMS 的强大不仅在于其底层的分布式架构，更在于其对复杂物流场景的精细化建模。**MSRU | WMS** 将仓库的日常作业拆解为多个相互联动、数据闭环的业务模块。
+
+本页面将协助业务流程师（BPI）与仓库主管深度理解 MSRU 三大支柱模块的运行逻辑。
+
+<Callout type="info" title="模块的解耦与联动">
+  在 MSRU 体系中，每一个模块（如“质检模块”）都可以作为独立的微服务运行。这使得您可以先行启动“基础库存系统”，之后再无感式地挂载“自动波次引擎”或“冷链监控插件”。
+</Callout>
+
+---
+
+## 1. 敏捷入库引擎 (Agile Inbound)
+
+入库是数据的起点，决定了后续追溯的质量。
+
+<Cards>
+  <Card 
+    title="收货预告 (ASN) 同步" 
+    description="支持与供应商 Portal 协同。通过 ASN 提取批次与过期日信息，实现“未到先检、到货即收”。" 
+    icon="Inbox" 
+  />
+  <Card 
+    title="智能上架规则 (Put-away)" 
+    description="自动根据物料属性（重量、体积、温控）与当前库位热度，分发最优上架指令。" 
+    icon="ArrowUpCircle" 
+  />
+</Cards>
+
+### 上架路径优化模型
+系统会计算每一个候选库位的综合得分：
+<MathEquation 
+  inline={false} 
+  formula={String.raw`Score = \omega_{v} \cdot \text{Volume}_{idle} + \omega_{f} \cdot \text{Freq}_{item} - \omega_{d} \cdot \text{Dist}(Dock)`} 
+/>
+权重 $\omega$ 会基于仓库的历史作业瓶颈进行动态自我修正。
+
+---
+
+## 2. 动态库存与波次管理 (Wave Management)
+
+在库管理不仅仅是静态的存储，更是对逻辑资产流向的精准把控。
+
+<Tabs items={['波次引擎 (Wave)', '库存策略', '业务流图']}>
+  <Tab value="波次引擎 (Wave)">
+    ### 并行处理大规模订单
+    将数百个碎片化的出库单（SO/MO）按照收货区域或承运商进行自动聚合。
+    - **波次策略**: 支持定时触发或满额触发。
+    - **逻辑过滤**: 自动隔离品质异常库区。
+  </Tab>
+  <Tab value="库存策略">
+    -   **FIFO (先进先出)**: 系统强制要求优先拣选最早入库的批次。
+    -   **Dynamic Slotting**: 系统空闲时，AI 自动生成建议：将高频料移至更便捷的位置。
+  </Tab>
+  <Tab value="业务流图">
+    ```mermaid
+    graph LR
+        SO[出库订单] --> Wave[波次聚合]
+        Wave --> Allocate[库存预占用]
+        Allocate --> Picking[PDA 拣货任务]
+        Picking --> Loading[装车单生成]
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## 3. 全链路物流追溯 (Logistics Provenance)
+
+MSRU | WMS 提供颗粒度极细的追溯体系，确保每一笔交易都不可篡改。
+
+<Steps>
+  <Step>
+    ### “来源”穿透 (Vertical Trace)
+    从一个库存批次追溯到最初的 PO 采购单、供应商质检报告以及对应的报关文档。
+  </Step>
+  <Step>
+    ### “去向”追踪 (Horizontal Trace)
+    某批次原材料被领用到哪个 MES 工单、发往了哪个客户基地，实现全链路的“召回模拟”。
+  </Step>
+  <Step>
+    ### 事务快照审计
+    MSRU 的每一个 `Stock-In` 或 `Stock-Out` 动作都带有 **“多维元数据”**（操作工 ID、设备指纹、GPS 坐标）。
+  </Step>
+</Steps>
+
+---
+
+## 4. 后端核心资源：模块化的实现 (Files)
+
+对于技术架构师，了解模块在代码仓库中的分离至关重要。
+
+<Files>
+  <Folder name="apps/wms/modules" defaultOpen>
+    <Folder name="inbound-gate" defaultOpen>
+       <File name="asn_resolver.go (单据解析器)" />
+       <File name="gr_logic.rs (收货核心事务)" />
+    </Folder>
+    <Folder name="wave-optimizer">
+       <File name="cluster_algorithm.wasm" />
+       <File name="picking_path.go" />
+    </Folder>
+  </Folder>
+</Files>
+
+---
+
+## 5. 业务场景 FAQ
+
+<Accordions>
+  <Accordion title="如何处理“越库作业 (Cross-docking)”？">
+    **方案**: 在入库策略中开启 `CrossDock_Monitor`。当系统检测到刚收到的物料已有急迫的出库订单排队时，会直接分发“收货 -> 发货区”的直发建议，跳过中间存储环节。
+  </Accordion>
+  <Accordion title="多单位（UoM）转换如何配置？">
+    **方案**: 在物料主档中配置换算比例（如：1 托 = 24 箱 = 1440 支）。WMS 在库位层始终以“最小零售单元”计费，但在作业层自动按包装尺度指引工人。
+  </Accordion>
+</Accordions>
+
+---
+
+## 6. 总结
+
+功能模块是 WMS 执行力的基石。MSRU | WMS 通过高度模块化且算法驱动的设计，确保您的物流流转不仅是快速的，更是具备“业务智慧”的。
+
+---
+
+> [!TIP]
+> 想要了解如何整合质量检测？请查看 [QMS 模块集成](../../qms/index)。

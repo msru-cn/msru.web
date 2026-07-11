@@ -1,0 +1,110 @@
+---
+title: MS.RU Platform Monorepo
+description: Best document ever
+icon: Rocket
+---
+
+
+
+# MS.RU Platform Monorepo
+
+这是一个基于 Turborepo 的 Monorepo 项目，集成了 Shadcn UI 组件库。
+
+## 快速开始
+
+### 1. 安装依赖
+
+```bash
+pnpm install
+```
+
+### 2. 启动开发环境
+
+```bash
+pnpm dev
+# 默认启用 Turbopack 加速
+```
+
+### 3. 构建生产版本
+
+```bash
+pnpm build
+```
+
+## UI 组件管理
+
+本项目采用统一的 UI 包 (`packages/ui`) 管理策略。所有业务应用 (`apps/*`) 共享这套组件库。
+
+### 添加新组件
+
+请**务必**在 `packages/ui` 目录下执行 shadcn 命令：
+
+```bash
+cd packages/ui
+pnpm dlx shadcn@latest add [component-name]
+# 例如: pnpm dlx shadcn@latest add card
+```
+
+### 自动同步导出
+
+添加组件后，运行以下命令自动更新导出索引（`index.ts`），以便在应用中统一引用：
+
+```bash
+pnpm --filter @msru/ui gen:exports
+```
+
+## 在应用中使用
+
+在 `apps/web` 等应用中，你可以直接从 `@msru/ui/components` 导入组件：
+
+```tsx
+import { Button, Card } from "@msru/ui/components"
+
+export default function Page() {
+  return (
+    <Card>
+      <Button>Click me</Button>
+    </Card>
+  )
+}
+```
+
+## 项目结构
+
+- `apps/web`: Next.js 应用程序
+- `packages/ui`: 共享 Shadcn UI 组件库
+- `packages/typescript-config`: 统一 TypeScript 配置
+- `packages/eslint-config`: 统一 ESLint 配置
+
+## 添加新应用 (例如 MES)
+
+## 添加新应用 (例如 MES)
+
+我们提供了一个交互式的生成器，帮你一键创建符合 Monorepo 规范的新应用。
+
+### 1. 运行生成器
+
+```bash
+pnpm gen
+```
+
+1.  选择 **`workspace`**。
+2.  输入应用名称（例如 `mes`）。
+
+生成器会自动创建 `apps/mes` 并配置好 `package.json`, `tsconfig.json`, `eslint.config.js` 等所有依赖。
+
+### 2. 安装依赖 (重要)
+
+生成器创建完文件后，**必须**运行一次安装命令来链接依赖：
+
+```bash
+pnpm install
+```
+
+### 3. 启动应用
+
+```bash
+pnpm dev
+# 或者只启动特定应用
+pnpm dev --filter mes
+```

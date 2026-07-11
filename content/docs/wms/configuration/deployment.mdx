@@ -1,0 +1,129 @@
+---
+title: 部署指南 (Deployment Guide)
+description: 详细指导如何在混合云环境下部署 MSRU | WMS，涵盖仓库边缘代理、PDA 通讯网关及分布式存储架构。
+icon: Server
+---
+
+# 部署指南：构建高可用的仓储底座
+
+WMS 系统的部署质量直接决定了现场作业的流畅度。MSRU | WMS 采用了 **“云边协同”** 的部署模式：复杂的逻辑处理、AI 预测与全球报表运行在中心云端；而实时的条码校验、设备控制与离线缓存则运行在仓库现场的边缘节点。
+
+本指南将为您提供从零开始构建生产级仓储软件环境的完整指引。
+
+<Callout type="important" title="网络安全准入">
+  在开始部署前，请确保仓库内所有 PDA 所属的无线网段与 MSRU 边缘服务器之间满足 mTLS 安全认证要求。建议为仓库边缘节点配置固定 IP，并开启 443(HTTPS) 与 1883(MQTT) 端口，以支持数据传输。
+</Callout>
+
+---
+
+## 1. 部署架构概览
+
+MSRU 推荐采用以下的混合云架构，以最大化系统的健壮性。
+
+<Tabs items={['混合云架构', '私有化部署', '硬件要求']}>
+  <Tab value="混合云架构">
+    -   **Cloud Control Plane**: 托管在 Azure/AWS 或企业私有云 K8s 集群中。负责多租户隔离、元数据同步与外部系统（ERP/WMS）集成。
+    -   **Edge Site Agent**: 部署在仓库现场的工业网关或小型服务器中。它是现场作业的“大脑”，提供毫秒级响应。
+  </Tab>
+  <Tab value="私有化部署">
+    对于有极端保密需求的企业，MSRU 支持全量私有化容器部署。
+    -   **容器运行时**: Docker / Containerd
+    -   **编排工具**: K3s (轻量化) 或标准 K8s
+    -   **存储底座**: MinIO (对象存储) + PostgreSQL
+  </Tab>
+  <Tab value="硬件要求">
+    | 组件 | 推荐配置 | 操作系统 |
+    | :--- | :--- | :--- |
+    | 边缘代理 (Edge) | 4C/8G/256GB SSD | Ubuntu 22.04 LTS / RHEL 8 |
+    | PDA 终端 | Android 10+ / 内核支持扫描驱动 | - |
+    | 扫描通道门 | 支持 LLRP 协议的 RFID 读写器 | - |
+    </Tab>
+</Tabs>
+
+---
+
+## 2. 边缘节点的初始化与配置
+
+边缘代理（Edge Agent）是 WMS 自治能力的核心载体。
+
+<Steps>
+  <Step>
+    ### 获取部署镜像与 Token
+    从 MSRU Portal 的 [设备管理] 页面下载 `msru-edge-wms` 镜像包，并生成唯一的 `SITE_ENROLL_TOKEN`。
+  </Step>
+  <Step>
+    ### 安装容器组件
+    执行以下一键式安装脚本（建议在具备 sudo 权限的终端运行）：
+    ```bash
+    curl -sfL https://get.msru.sh/wms-edge | sh -s - \
+      --token <YOUR_ENROLL_TOKEN> \
+      --storage /mnt/data/msru-wms
+    ```
+  </Step>
+  <Step>
+    ### 配置本地缓存策略
+    编辑 `/etc/msru/wms-edge.yaml`，设置离线数据留存时长。
+    ```yaml
+    edge_cache:
+      max_size_gb: 50
+      retention_days: 7
+      autonomous_mode: true
+    ```
+  </Step>
+</Steps>
+
+---
+
+## 3. 存储策略：数据的一致性平衡
+
+由于 WMS 涉及到频繁的资产库存变动，数据写入的原子性至关重要。
+
+<MathEquation 
+  inline={false} 
+  formula={String.raw`P_{consistency} = \frac{\sum_{site} Node_{healthy}}{Total_{Nodes}} \times 100\% \quad \text{Constraint: } Latency < 50ms`} 
+/>
+
+在多仓协同场景下，MSRU 使用其独有的 **“逻辑时钟锚点 (Logical Clock Anchors)”**。即便不同地域的仓库由于网速快慢导致数据同步有先后，系统也能根据业务发生的时间顺序进行冲突裁决。
+
+---
+
+## 4. 文件系统层级结构 (Files)
+
+部署完成后，边缘服务器中的核心资源分布如下。
+
+<Files>
+  <Folder name="var/lib/msru-wms" defaultOpen>
+    <Folder name="local-db" defaultOpen>
+       <File name="inventory-snapshot.db (实时库存镜像)" />
+       <File name="transaction.log (待同步流水)" />
+    </Folder>
+    <Folder name="pda-assets">
+       <File name="ui-layout-config.json" />
+       <File name="firmware-v2.bin" />
+    </Folder>
+  </Folder>
+</Files>
+
+---
+
+## 5. 高可用 (HA) 与故障恢复 FAQ
+
+<Accordions>
+  <Accordion title="如何实现仓库边缘节点的冗余？">
+    我们建议在同一个仓库内部署两个 Edge Agent 节点，并通过 **Keepalived** 或 **MetalLB** 提供虚拟 IP（VIP）。当主节点发生硬件故障（如：主板烧毁），备节点将在 3 秒内接管 VIP，确保 PDA 作业不间断。
+  </Accordion>
+  <Accordion title="如果本地数据库损坏了怎么办？">
+    MSRU 边缘代理每小时会将状态快照上报至云端。在极端损坏情况下，您只需重装 Agent，系统会自动从云端下发最近一次的 **“全量库存视图”** 快速重建本地账本。
+  </Accordion>
+</Accordions>
+
+---
+
+## 6. 总结
+
+成功的 WMS 部署是数字化仓储的“定海神针”。通过 MSRU 提供的标准化部署体系，您可以轻松构建起一个既具备云端全局视角的敏捷性，又具备边缘本地响应确定性的高可用环境。
+
+---
+
+> [!TIP]
+> 部署完成后，第一件事应该是确认您的库位建模是否正确。请参考 [系统设置与空间建模](./settings)。

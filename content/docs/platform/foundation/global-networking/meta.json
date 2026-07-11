@@ -1,0 +1,5 @@
+{
+  "title": "全局组网与网络基线",
+  "icon": "Globe",
+  "pages": ["mesh-vpn", "firewall-ports", "edge-routing"]
+}

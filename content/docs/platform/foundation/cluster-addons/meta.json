@@ -1,0 +1,5 @@
+{
+  "title": "核心集群插件",
+  "icon": "Puzzle",
+  "pages": ["storage-provisioning", "ingress-traffic"]
+}

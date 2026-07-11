@@ -1,0 +1,121 @@
+---
+icon: LayoutDashboard
+title: 使用概览：掌控工厂的“感知网格”
+description: 本指南将协助现场工程师与生产运营主管快速熟悉 MSRU | IoT 的日常监控、异常排查及数据导出的操作路径。
+---
+
+# 使用概览
+
+**MSRU | IoT** 平台的设计理念是“可见即所得”。我们深知，在复杂的工厂环境里，能够快速定位一台掉线的设备或查看一段异常的波动，其价值远胜于复杂的配置。
+
+本手册将引导您从用户的视角，走通一个标准的“巡检-监控-告警-归档”的日常作业。
+
+<Callout type="info" title="全平台联动">
+  IoT 数据会实时流向 [MES 控制塔](../../mes/usage/overview)。如果您是生产调度员，通常无需打开 IoT 界面，只需在业务流程中关注系统派发的设备预警信息。
+</Callout>
+
+---
+
+## 1. 现场工程师：设备上线与调试 (Daily Operations)
+
+对于负责 OT 对接的工程师，主要关注设备的连通质量。
+
+<Steps>
+  <Step>
+    ### 驱动健康自检
+    登录 IoT 控制台。在“节点列表”中查看各边缘网关的 CPU 与负载情况。确认关键驱动（如 S7-Driver）是否处于 **Connected** 状态。
+  </Step>
+  <Step>
+    ### 点位探测与时数分析
+    点击特定资产。进入“测点观测窗”，查看寄存器原始值与物模型转换后的业务值。
+    - **波形预览**：利用内置的极简示波器查看高频信号（如：压力脉冲）是否平稳。
+    - **手动写入测试**：在授权模式下下发 `Test_Cmd`，验证 PLC 输出点的动作是否符合逻辑。
+  </Step>
+  <Step>
+    ### 告警阈值现场修正
+    根据产线实际工况，在线微调 [死区策略](../configuration/settings#采集点参数优化-tag-engineering)。减少由于环境震动导致的无效告警上报。
+  </Step>
+</Steps>
+
+---
+
+## 2. 运营主管：效率与能效监控 (Dashboard)
+
+主管通过全局视角监控全厂资产的“健康度”与“产出比”。
+
+<Tabs items={['实时资产大屏', '能耗与负荷分析', '告警响应流']}>
+<Tab value="实时资产大屏">
+### 工厂数字影子
+- **设备稼动率 (OEE) 实时分布**：各产线设备是处于“生产”、“待机”还是“故障”状态。
+- **采集链路延时排行**：快速识别哪些区域的工业 Wi-Fi 信号不稳定。
+</Tab>
+<Tab value="能耗与负荷分析">
+### 碳足迹与运营成本
+IoT 自动聚合各工位的电、气、水传感数据。
+<MathEquation 
+  inline={false} 
+  formula={String.raw`Efficiency = \frac{\text{Actual Output}}{\sum \text{Unit Energy Consumption}} \implies \text{Goal: Maximize Ratio}`} 
+/>
+通过与 MES 产量的自动关联，您可以实时核算每万件产品的能源成本梯度。
+</Tab>
+<Tab value="告警响应流">
+```mermaid
+graph LR
+    Trigger[物理异常触发] --> Engine[IoT 告警引擎]
+    Engine --> Push[推送钉钉/短信]
+    Push --> Claim[技术员领单处理]
+    Claim --> Resolve[恢复连接/关闭告警]
+    Resolve --> Archive[写入资产履历中心]
+```
+</Tab>
+</Tabs>
+
+---
+
+## 3. 审计与数据资产导出 (Reporting)
+
+IoT 平台不仅是实时的，更是可追溯的。
+
+<Files>
+  <Folder name="iot-data-vault" defaultOpen>
+    <Folder name="audit-logs" defaultOpen>
+       <File name="Control_Command_History.pdf (控制权变更记录)" />
+    </Folder>
+    <Folder name="time-series-export">
+       <File name="Sensor_Raw_60Hz.csv.zip (高频原始值备份)" />
+       <File name="OEE_Monthly_2026-03.xlsx (月度运行报表)" />
+    </Folder>
+  </Folder>
+</Files>
+
+---
+
+## 4. UI 交互：移动端优先
+
+考虑到现场巡检场景，我们的监控界面会自动适配 **MSRU | Pad**。所有的实时曲线都支持“手势缩放”，方便技术员在现场排查毫秒级的瞬时尖峰数据。
+
+---
+
+## 5. 用户常见问题 (FAQ)
+
+<Accordions>
+  <Accordion title="为什么看板上的数值反映比现场仪表慢了 2 秒？">
+    **可能原因**：
+    1. **数据脱敏与转发**：云端看报可能存在一定的转发延迟。如果您需要亚秒级显示，请通过网关所在的本地局域网访问“边缘组态视图”。
+    2. **死区策略**：您的死区设置可能过大，导致小范围的波动被系统自动过滤。
+  </Accordion>
+  <Accordion title="如何查看某一确定时间点（如昨天下午三点）的所有变量值？">
+    **操作路径**：进入“资产分析”，选择“时间旅行 (Time-Travel)”功能。将进度条拖动至指定时刻，系统会通过时序数据库检索出所有关联 Tags 在该瞬间的影子状态。
+  </Accordion>
+</Accordions>
+
+---
+
+## 6. 与资产对话，预见生产未来
+
+MSRU | IoT 的使用概览仅是开始。随着数据的不断累积，您将发现您的工厂资产正逐渐由“冰冷的机器”演化为“智能的对话者”。
+
+---
+
+> [!TIP]
+> 熟悉界面了吗？如果您需要开发更复杂的自动化联动逻辑，请查看 [AI 集成指南](../integrations/ai)。

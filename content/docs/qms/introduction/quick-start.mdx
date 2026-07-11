@@ -1,0 +1,146 @@
+---
+icon: Zap
+title: 快速上手：10 分钟拉起数智化品控闭环
+description: 从定义首个检验特性到执行边缘侧结果录入，本指南将带您快速走通 MSRU | QMS 的标准作业流。
+---
+
+# 快速上手指南
+
+本指南旨在协助质量工程师（QE）与系统管理员，在最短时间内于本地或仿真环境中运行起 **MSRU | QMS** 的核心逻辑。
+
+我们将模拟一个典型的离散制造场景：对一个名为 `Engine-Case-01` 的工件进行关键尺寸的【首检】。
+
+<Callout type="info" title="准备工作">
+  您需要拥有 MSRU 平台的云端控制台访问权限，并至少已注册一个处于“就绪”状态的边缘节点（Edge Node）。
+</Callout>
+
+---
+
+## 1. 核心操作路径 (Critical Path)
+
+完成一个完整的质量反馈闭环，您需要依次走过以下四个里程碑：
+
+<Steps>
+  <Step>
+    ### 指标建模：定义检验方案
+    在 [质量标准] 模块，创建名为 `Standard-001` 的方案。
+    - **检测项**：外径尺寸。
+    - **标准值**：$50mm$。
+    - **公差**：$\pm 0.05mm$。
+  </Step>
+  <Step>
+    ### 任务触发：从 MES 关联
+    在 [工单管理] 中启动对应的生产任务。QMS 会根据关联的质量方案，自动在对应的 [边缘工位] 生成一条待检任务（Task）。
+  </Step>
+  <Step>
+    ### 结果执行：边缘侧录入
+    打开 MSRU 移动质检 App，扫描工位二维码。
+    - **测量结果**：通过蓝牙卡尺直接读取，或手动输入 $50.02$。
+    - **结果**：系统自动判定为 OK（绿色）。
+  </Step>
+  <Step>
+    ### 数据激活：查看 SPC 实时看板
+    返回控制台 [质量看板]，您将看到该数据点已实时更新在 SPC 均值控制图中，Cpk 值同步刷新。
+  </Step>
+</Steps>
+
+---
+
+## 2. 模拟运行：通过 API 极速注入数据
+
+如果您暂时没有真实的硬件设备，可以通过以下 RESTful API 调用来模拟一次高频的数据采集过程：
+
+<Tabs items={['Request (curl)', 'Response', 'Data Structure']}>
+<Tab value="Request (curl)">
+```bash
+curl -X POST "https://edge-node-01.msru.sh/api/v1/qms/capture" \
+     -H "Authorization: Bearer ${MSRU_TOKEN}" \
+     -d '{
+       "task_id": "T001-2026",
+       "parameter_id": "DIM_001",
+       "value": 50.04,
+       "timestamp": "2026-03-15T10:30:00Z",
+       "device_id": "CALIPER-BL-09"
+     }'
+```
+</Tab>
+<Tab value="Response">
+```json
+{
+  "status": "SUCCESS",
+  "judgement": "OK",
+  "spc_alert": false,
+  "transaction_hash": "0xac78...e4d2"
+}
+```
+</Tab>
+<Tab value="Data Structure">
+| 字段 | 类型 | 说明 |
+| :--- | :--- | :--- |
+| `task_id` | `uuid` | 关联的质检单号。 |
+| `value` | `float` | 实际测量值。 |
+| `judgement` | `enum` | 系统自动判定结果（OK/NG）。 |
+</Tab>
+</Tabs>
+
+---
+
+## 3. 部署你的首个 SPC 控制引擎
+
+SPC 是 QMS 的灵魂。要在边缘侧开启趋势分析，请确保您的 `.env` 配置中已激活统计模块：
+
+<Files>
+  <Folder name="qms-configs" defaultOpen>
+    <File name="edge.yaml" />
+    <File name="algorithms.config">
+      ```yaml
+      # SPC 推理配置
+      spc_engine:
+        enabled: true
+        sample_size: 5
+        rules: ["WECO-1", "WECO-2"] # 开启西电判等准则
+        alert_threshold: 0.95
+      ```
+    </File>
+  </Folder>
+</Files>
+
+---
+
+## 4. 数学校验：什么是受控状态？
+
+系统会基于统计学原理自动计算当前的质量边界。
+
+<MathEquation 
+  inline={false} 
+  formula={String.raw`\sigma = \frac{\bar{R}}{d_{2}} \implies \text{Upper Limit} = \mu + 3\sigma`} 
+/>
+
+当连续 9 个点落在均值同一侧时，QMS 会自动在 [异常中心] 生成一个待处置事项，无需等待最终报废产生。
+
+---
+
+## 5. 快速排障 (Troubleshooting)
+
+<Accordions>
+  <Accordion title="为什么质检任务没有自动生成？">
+    **核对项**：
+    1. 检查物料主档中是否勾选了“受控物料”。
+    2. 确保生产工单的状态已变更为“运行中（In Progress）”。
+    3. 确认质量方案的“触发条件”已设定为当前工序。
+  </Accordion>
+  <Accordion title="边缘节点采集的数据在云端看板延迟极大怎么办？">
+    **优化建议**：检查边缘侧的 `Sync_Policy`。若设置为 `Lazy` 模式，数据将每 5 分钟批量同步。请将其改为 `Real-time`（如果网络带宽允许）。
+  </Accordion>
+</Accordions>
+
+---
+
+## 6. 下一步动作
+
+恭喜！您已经走通了 MSRU | QMS 的基础闭环。
+
+---
+
+> [!TIP]
+> 想要进一步通过 AI 视觉替代人工录入？请参考 [AI 质量预测指南](../integrations/ai)。

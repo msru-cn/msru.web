@@ -1,0 +1,130 @@
+---
+icon: Server
+title: 部署指南：构建可扩展的边缘感知网格
+description: 深入解析 MSRU | IoT 的云边端协同部署架构，涵盖边缘 K3s 组网、容器化网关管理及大规模时序数据的持久化调优。
+---
+
+# 部署指南
+
+工业物联网的落地挑战往往不在于单点采集，而在于如何管理成百上千个散布在不同车间、不同网段的边缘网关。
+
+**MSRU | IoT** 采用 **“云端定义，边缘执行”** 的部署架构。本指南旨在协助架构师如何在复杂的工业网络环境中，部署一套具备自动化运维与高可用特性的 IoT 感知网络。
+
+<Callout type="warn" title="部署核心：计算下沉">
+  在 MSRU 体系中，除管理面板外，所有的协议驱动、流计算规则及告警判定逻辑均必须部署在边缘侧，以确保物理链路的极致实时性。
+</Callout>
+
+---
+
+## 1. 系统拓扑图：云-边协同架构
+
+MSRU | IoT 的部署栈由三个关键层级组成：
+
+<Tabs items={['控制面 (Cloud Plane)', '边缘自治层 (Edge Mesh)', '资产连接层 (Connectivity)']}>
+<Tab value="控制面 (Cloud Plane)">
+**驻留位置**：公有云/私有云 K8s 容器环境。
+**职责**：
+- 全局设备资产台账（Registry）。
+- 驱动库版本管理与分发中心（Marketplace）。
+- 大规模历史数据冷存储与多厂区汇总报表。
+</Tab>
+<Tab value="边缘自治层 (Edge Mesh)">
+**驻留位置**：车间工业 PC 或边缘计算盒子。
+**职责**：
+- **实时驱动解析**：执行高频次的点位轮询或订阅。
+- **本地流处理**：运行 SQL 规则进行本地滤波与告警。
+- **断网续排**：利用本地持久化库在离线状态下存证数据。
+</Tab>
+<Tab value="资产连接层 (Connectivity)">
+**驻留位置**：PLC、传感器、智能摄像头。
+**职责**：产生原始物理信号。
+</Tab>
+</Tabs>
+
+---
+
+## 2. 部署方案一：基于 Docker 的快速单节点部署
+
+适用于原型验证或轻量级车间。
+
+<Steps>
+  <Step>
+    ### 驱动适配与内核参数调优
+    工业网关需开启对串口（Serial）及高能网卡的支持。
+    ```bash
+    # 允许容器访问系统串口
+    sudo usermod -aG dialout ${USER}
+    ```
+  </Step>
+  <Step>
+    ### 环境配置与 Compose 拉起
+    配置专有的部署令牌（Provisioning Token）。
+    ```yaml
+    # docker-compose-iot.yaml 核心片段
+    services:
+      msru-iot:
+        image: msru/iot-agent:stable
+        network_mode: "host" # 为了访问局域网内的 PLC 建议使用 host 模式
+        volumes:
+          - ./config:/etc/msru/config
+    ```
+  </Step>
+  <Step>
+    ### 离线账本磁盘挂载
+    为了保证数据非正常掉电不丢失，边缘网关必须配置 SSD 级别的持久化存储卷，建议文件系统使用 `XFS` 或 `Ext4 (noatime)`。
+  </Step>
+</Steps>
+
+---
+
+## 3. 部署方案二：基于 K3s 的工业集群部署 (High Availability)
+
+适用于对稳定性有“制造业级”要求的核心生产线。
+
+<Files>
+  <Folder name="iot-k8s-manifests" defaultOpen>
+    <Folder name="monitoring">
+       <File name="prometheus-exporter.yaml (指标采集)" />
+       <File name="grafana-iot-dash.json (采集监控)" />
+    </Folder>
+    <File name="iot-agent-daemonset.yaml (全节点设备发现插件)" />
+    <File name="storage-class-iscsi.yaml (分布式存储配置)" />
+  </Folder>
+</Files>
+
+---
+
+## 4. 边缘侧数据一致性模型 (Consistency Model)
+
+针对工业网段常出现的丢包现象，我们引入了 **“双向校验队列”**。
+
+<MathEquation 
+  inline={false} 
+  formula={String.raw`E_{consistency} = \sum_{msg \in \text{Edge}} \text{CRC32}(msg) \equiv \sum_{msg \in \text{Cloud}} \text{CRC32}(msg) \quad \text{Constraint: } \text{Latency} \le 5s`} 
+/>
+
+这意味着，每一个上传到云端的消息包都会在后台进行哈希值自动比对。若云端由于网络波动导致数据跳变或缺失，边缘侧的 **“补偿侦听器（Backfill Listener）”** 会在链路稳定后的静默期自动补齐缺失的时间切片。
+
+---
+
+## 5. 运维常见故障排除 (Operations FAQ)
+
+<Accordions>
+  <Accordion title="如何进行大规模网关的批量驱动更新？">
+    **方案**：利用 MSRU 控制台的 **“灰度升级计划”**。您可以先在测试网关上推行新版本驱动，验证通过后，通过分布式消息管道一键下发至全厂的所有边缘节点。
+  </Accordion>
+  <Accordion title="由于防火墙限制，网关无法连接外网怎么办？">
+    **方案**：部署 **MSRU IoT Proxy (隔离中继器)**。在有外网权限的办公网或 DMZ 区内部署中继节点，边缘网关通过加密隧道直接与中继通讯。
+  </Accordion>
+</Accordions>
+
+---
+
+## 6. 总结
+
+部署 MSRU | IoT 感知网格是构建“软件定义工厂”的基石。这种 **“去中心化采集、中心化管理”** 的部署模式，能够确保您的数字化系统具备极强的伸缩性，无论是一台设备还是万台设备，都能保持一致的稳定性体验。
+
+---
+
+> [!TIP]
+> 环境部署完毕？下一步是进行 [协议与物模型配置](./settings)。

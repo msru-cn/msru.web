@@ -1,0 +1,146 @@
+---
+icon: CircleDollarSign
+title: 价格与订阅 (Pricing)
+description: 探索 MSRU | QMS 的商业授权模型、多尺度节点计费策略及针对行业合规性的分层定价。
+---
+
+# 商业报价与授权模式
+
+在数字化转型中，质量管理不应成为一项沉重的支出，而应是一项带来确定性收益的投资。**MSRU | QMS** 引入了灵活的、可预测的订阅体系，旨在协助企业根据实际的品质管控规模进行弹性对价。
+
+我们打破了传统 QMS 动辄百万级的“黑盒”授权模式，将费用拆解为透明的资源消耗维度。
+
+<Callout type="info" title="定价哲学：按价值交付">
+  无论您是需要导入基础的 8D 流程管理，还是集成复杂的 AI 视觉自动判等，MSRU 的定价始终与您的质量效益正相关。
+</Callout>
+
+---
+
+## 1. 订阅版本矩阵 (Subscription Schemes)
+
+我们提供三档核心方案，满足从中小企业到跨国集团的差异化品控需求。
+
+<Cards>
+  <Card 
+    title="专业版 (Professional)" 
+    description="适用于单体工厂的质量数字化。包含基础的 IQC/IPQC/FQC 流程、不合格品管理及标准报表。" 
+    icon="Rocket" 
+  />
+  <Card 
+    title="企业版 (Enterprise)" 
+    description="支持多组织、多工厂协同。包含 SPC 统计分析、LIMS 实验室集成接口及边缘节点高可用支持。" 
+    icon="Building2" 
+  />
+  <Card 
+    title="旗舰版 (Grand Master)" 
+    description="面向离散制造的极致品质要求。包含 AI 质量预测模型、全量视觉质检插件、定制化合规审计支持及源码级导出权限。" 
+    icon="Crown" 
+  />
+</Cards>
+
+---
+
+## 2. 核心计费维度：多尺度资源估算
+
+MSRU | QMS 的费用构成由以下三部分组成：
+
+### A. 活跃检测节点 (Inspection Points)
+按系统中配置的 **“活跃质检工位”** 计费。一个工位可以是 Pad 录端、自动测量站或集成式视觉工位。这种模式鼓励企业在关键工艺点位部署数字化采集，而非全厂平摊。
+
+### B. SPC 算力点数 (SPC Process Tokens)
+针对高频大数据量的 SPC（统计过程控制）计算，我们使用算力点数衡量边缘节点的实时分析载荷。
+<MathEquation 
+  inline={false} 
+  formula={String.raw`Cost_{spc} = \sum_{node} (\text{Samples} \times \text{Frequency} \times \text{Complexity})`} 
+/>
+
+### C. 合规模块包 (Compliance Add-ons)
+针对特定行业标准（如医药 GAMP5、汽车 IATF 16949）的自动化审计工具包，作为增选模块提供。
+
+---
+
+## 3. 企业价值对比演示 (TCO Analysis)
+
+通过下方的对比预览，评估 MSRU 订阅模式与传统买断模式的经济性。
+
+<Tabs items={['成本演进', '功能矩阵表']}>
+<Tab value="成本演进">
+<div className="p-6 border border-zinc-800 rounded-xl bg-zinc-950/50 mt-4 space-y-4 shadow-2xl">
+  <h3 className="text-zinc-100 font-bold">5 年总拥有成本 (TCO) 预测</h3>
+  <div className="space-y-2">
+    <div className="flex justify-between text-sm">
+      <span className="text-zinc-400">传统行业级 QMS (高额定制)</span>
+      <span className="text-red-400">¥ 1,800,000+</span>
+    </div>
+    <div className="h-2 w-full bg-zinc-800 rounded-full overflow-hidden">
+      <div className="h-full bg-red-600" style={{ width: '100%' }}></div>
+    </div>
+  </div>
+  <div className="space-y-2">
+    <div className="flex justify-between text-sm">
+      <span className="text-zinc-400">MSRU QMS 高级预览版</span>
+      <span className="text-teal-400">¥ 450,000 (随用随付)</span>
+    </div>
+    <div className="h-2 w-full bg-zinc-800 rounded-full overflow-hidden">
+      <div className="h-full bg-teal-500" style={{ width: '25%' }}></div>
+    </div>
+  </div>
+  <p className="text-xs text-zinc-500 italic text-center">
+    * 提升品质后的报废成本降低及合规审计效率提升未计入其中。
+  </p>
+</div>
+</Tab>
+<Tab value="功能矩阵表">
+<TypeTable
+  type={{
+    "SPC 控制图类型": { 
+      type: 'string', 
+      description: '专业版支持 3 种基本图，企业/旗舰版支持全库图（含斜率监控）。' 
+    },
+    "AI 视觉模型集成": { 
+      type: 'boolean', 
+      description: '旗舰版专属，支持自训练模型下发。' 
+    },
+    "多尺度数据追溯": { 
+      type: 'number', 
+      description: '全版本支持，存储深度从 1 年到终身不等。' 
+    }
+  }}
+/>
+</Tab>
+</Tabs>
+
+---
+
+## 4. 商业级组件展示 (SaaS 实时同步)
+
+以下是 MSRU 官方实时同步的 QMS 订阅明细表。
+
+<PricingTable />
+
+---
+
+## 5. 商务 FAQ：解决您的后顾之忧
+
+<Accordions>
+  <Accordion title="如果我只是一个小车间，有入门级方案吗？">
+    **有的**。我们为初创或小型试验线提供 **“Seed 种子计划”** 授权，支持 3 个检测工位以内完全免费，具备完整的 IQC/FQC 流程能力。
+  </Accordion>
+  <Accordion title="私有化部署的维护成本如何？">
+    MSRU | QMS 采用容器化部署。如果您选择企业级方案，我们通过 **Edge Synchronizer** 实现自动化、补丁级的增量更新，您无需配备专门的软件运维团队。
+  </Accordion>
+  <Accordion title="数据安全与审计完整性 (ALCOA+)">
+    我们的所有付费版本均遵循 ALCOA+ 准则。系统记录完整的 **Audit Trail（审计追踪）**，任何对原始测量值的修改都会被标记，并要求录入电子签名与变更原因。
+  </Accordion>
+</Accordions>
+
+---
+
+## 6. 与架构顾问聊聊
+
+如果您正在负责一家跨国医疗器械或航空零部件企业的全球质量中枢构建，标准的订阅包可能无法完全体现您的场景复杂度。
+
+---
+
+> [!TIP]
+> 准备好迈向“零缺陷”了吗？[点击这里](./introduction/quick-start) 注册您的首个边缘质量引擎账号。

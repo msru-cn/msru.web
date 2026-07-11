@@ -1,0 +1,139 @@
+---
+title: 通讯集成：工业协议与物流硬件的桥梁
+description: 详细解析 MSRU | WMS 如何通过 VDA-5050, RFID 通道门及 PLC 寄存器映射，实现仓储自动化的深度互联。
+icon: Network
+---
+
+# 通讯集成：工业协议与物流硬件的桥梁
+
+在 WMS 的实战应用中，软件与物理硬件的“通讯效率”决定了仓库的吞吐上限。MSRU | WMS 内置了 **Edge-Link 通讯矩阵**，旨在解决工业现场协议碎片化的问题。
+
+从简单的手持扫气枪到复杂的 AGV 调度集群，MSRU 提供了标准化的连接范式，确保物流数据的获取是**无损、实时且高可用**的。
+
+<Callout type="info" title="通讯的“最后 10 厘米”">
+  为什么很多 WMS 在自动化仓库失效？是因为它们只管单据，不管信号。MSRU 则是“信号驱动型 WMS”。当 RFID 扫描到一个托盘经过，系统直接在边缘侧触发入库逻辑，无需人工中转。
+</Callout>
+
+---
+
+## 1. 核心通讯协议支持矩阵
+
+MSRU | WMS 预置了覆盖 90% 物流场景的驱动库。
+
+<Cards>
+  <Card 
+    title="AGV 调度 (VDA-5050)" 
+    description="支持与国内外主流 AGV 控制器（NAV/Seer/Quicktron）的原生对接，负责路径拓扑下发与实时坐标同步。" 
+    icon="Bot" 
+  />
+  <Card 
+    title="RFID & 通道门 (LLRP)" 
+    description="支持高性能 RFID 读写协议。针对多标签冲撞、误读进行了算法过滤。适用于整托盘秒级收发货。" 
+    icon="Unplug" 
+  />
+  <Card 
+    title="立库 PLC 对接 (TCP/IP)" 
+    description="通过私有协议或 Modbus TCP 直接操作堆垛机定位寄存器。支持状态心跳检测与紧急停机指令。" 
+    icon="Zap" 
+  />
+</Cards>
+
+---
+
+## 2. 边缘网关：数据清洗与映射 (Mapping)
+
+在 MSRU 体系中，物理信号被抽象为具有业务语义的 **“物流 Tag”**。
+
+<Tabs items={['Tag 模型', '数据过滤 (Script)', '同步性能推导']}>
+  <Tab value="Tag 模型">
+    ### 寄存器到业务字段的绑定
+    我们将 RFID 读写器的原始十六进制值映射为 `PALLET_SN`。
+    - **Trigger**: 信号电平跳变模式。
+    - **Buffer**: 本地暂存 100 毫秒，待批处理完成。
+  </Tab>
+  <Tab value="数据过滤 (Script)">
+    ```typescript showLineNumbers
+    // wms-edge-logic.ts
+    export function onPalletArrived(raw_data: string) {
+      const palletID = parseRFID(raw_data);
+      if (isValid(palletID)) {
+        // 直接在边缘侧触发 WMS 入库状态机
+        WmsEdge.invoke('RECEIPT', { id: palletID });
+      }
+    }
+    ```
+  </Tab>
+  <Tab value="同步性能推导">
+    为了确保 AGV 在 1m/s 移动速度下不发生通讯丢失。
+    <MathEquation 
+      inline={false} 
+      formula={String.raw`T_{Cycle\_Budget} \ge T_{Scan} + T_{Logic} + T_{Network\_RTT} \le 50ms`} 
+    />
+  </Tab>
+</Tabs>
+
+---
+
+## 3. 分布式通讯拓扑：跨仓 VPN 与 5G 切片
+
+对于特大型园区，通讯网络的物理分层至关重要。
+
+<Steps>
+  <Step>
+    ### 5G/专网部署
+    对于移动设备（AGV/PDA），我们建议采用 5G 工业切片网络。MSRU 边缘代理支持直接接入核心网，减少空口延迟。
+  </Step>
+  <Step>
+    ### 本地冗余心跳
+    通过 Keepalived 配置通讯 VIP。当主网关断电时，流量自动切换到备用链路。
+  </Step>
+  <Step>
+    ### 离线断点续传
+    通讯层带有 **Persistent Queue**。如果网络暂时抖动，信号会持久化在边缘侧，待连接恢复后有序回传，绝不丢包。
+  </Step>
+</Steps>
+
+---
+
+## 4. 后端资源结构：通讯驱动管理 (Files)
+
+开发者可以通过向 `/drivers` 录入插件实现对极其罕见硬件的支持。
+
+<Files>
+  <Folder name="wms-edge-link" defaultOpen>
+    <Folder name="drivers" defaultOpen>
+       <File name="zebra-rfid.so (高性能 C 驱动)" />
+       <File name="vda5050-bridge.rs" />
+    </Folder>
+    <Folder name="logs">
+       <File name="comm-stack.log (通讯轨迹追踪)" />
+    </Folder>
+  </Folder>
+</Files>
+
+---
+
+## 5. 故障排查与诊断：通讯监控中心
+
+<Accordions>
+  <Accordion title="为什么 PDA 与边缘 Agent 握手失败？">
+    **排查步骤**:
+    1.  检查 SSL/TLS 证书是否已过期。
+    2.  确认防火墙是否允许 1883/8883 (MQTT) 流量通过。
+    3.  使用 `msru-diag` 工具进行链路延迟测试（Ping/Traceroute）。
+  </Accordion>
+  <Accordion title="高频并发扫描导致 Agent CPU 100%？">
+    **优化手段**: 开启 **“信号防抖 (Signal Debouncing)”**。针对极短时间内重复出现的 RFID 信号进行内存合并，减少对 WMS 核心业务逻辑的无效冲击。
+  </Accordion>
+</Accordions>
+
+---
+
+## 6. 总结
+
+通讯集成是智慧仓储的“神经末梢”。通过 MSRU 强大且开放的通讯层，我们将冷冰冰的物流硬件转化为灵活、可编程的数字化资源。这不仅提升了仓储效率，更确立了系统应对未来复杂业务场景的韧性。
+
+---
+
+> [!TIP]
+> 正在面对旧有仓库的数字化改造？请查阅 [传统设备数字化驱动 (Legacy Driver)](../../guides/legacy-modbus)。

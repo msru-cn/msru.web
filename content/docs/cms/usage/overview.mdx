@@ -1,0 +1,121 @@
+---
+icon: LayoutDashboard
+title: 使用概览：掌控企业的“数字知识资产”
+description: 本指南将协助内容编辑、质量专家及系统管理员快速熟悉 MSRU | CMS 的日常创作、审核流转及多端分发监控的操作路径。
+---
+
+# 使用概览 (User Operations)
+
+在 **MSRU | CMS** 中，内容不再是散落在各处的静态文件，而是能够实时感知业务需求并自动触达产线的动态资产。本概览旨在为您提供一个清晰的“场景化地图”，无论您是进行初次建模还是处理紧急的合规性更替，都能在这里找到最优操作路径。
+
+<Callout type="info" title="角色视角">
+  系统界面会基于您的 **[RBAC 权限设置](../configuration/settings)** 自动微调。本文所述操作基于“空间管理员 (Space Admin)”权限。
+</Callout>
+
+---
+
+## 1. 场景化操作流 (Operational Paths)
+
+根据您的核心任务，选择相应的操作规程：
+
+### 场景 A：从 0 到 1 构建技术规范 (Documentation)
+1. **建模**：前往“内容建模中心”，定义符合规格的技术模型（如包含版本、设备 ID、附件）。
+2. **创作**：在“内容列表”中新建条目。利用 **[AI Copilot](../integrations/ai)** 快速录入核心参数并进行多语言翻译。
+3. **审核**：提交签发流程。系统会自动通知相关的质量专家进行数字签名审查。
+4. **验证**：查阅“预览沙箱”，确认在 HMI 和移动端屏上的渲染样式。
+
+### 场景 B：紧急下发安全警示 (Ad-hoc Pushing)
+1. **选择模板**：点击“快速创作”，选择预设的“安全通告”模型。
+2. **设定范围**：通过“标签关联”，定向指向受影响的特定车间（如 `SHOP_02`）。
+3. **发布**：系统通过 **[MQTT 协议](../integrations/communications)** 毫秒级广播至所有关联终端，并强制弹出置顶提醒。
+
+---
+
+## 2. 管理面板导航 (Admin Console)
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <div className="border rounded-xl p-6 bg-zinc-50 dark:bg-zinc-900 shadow-sm relative overflow-hidden group">
+    <div className="flex items-center gap-3 mb-4">
+      <div className="p-2 bg-emerald-500/10 rounded-lg text-emerald-500"><Library className="size-5" /></div>
+      <h3 className="font-bold">内容资源库 (Library)</h3>
+    </div>
+    <div className="text-xs text-zinc-500 leading-relaxed">
+      核心编辑器区域。支持树状目录管理、多版本平行编辑及全文检索。
+    </div>
+  </div>
+  
+  <div className="border rounded-xl p-6 bg-zinc-50 dark:bg-zinc-900 shadow-sm relative overflow-hidden group">
+    <div className="flex items-center gap-3 mb-4">
+      <div className="p-2 bg-blue-500/10 rounded-lg text-blue-500"><Activity className="size-5" /></div>
+      <h3 className="font-bold">分发大盘 (Distribution)</h3>
+    </div>
+    <p className="text-xs text-zinc-500 leading-relaxed">
+      监控全球 Edge 节点的同步状态、终端查询频率及 CDN 缓存命中率。
+    </p>
+  </div>
+</div>
+
+---
+
+## 3. 统计过程控制：内容健康度 (Metrics)
+
+我们通过以下模型来评估企业知识资产的活跃度：
+
+<MathEquation 
+  inline={false} 
+  formula={String.raw`Health\_Score = \omega_1 \cdot \text{Update\_Freq} + \omega_2 \cdot \text{Audit\_Pass\_Rate} - \omega_3 \cdot \text{Sync\_Lag}`} 
+/>
+
+- **更新频率**：反映了技术文档与实际生产状况的贴合程度。
+- **同步滞后**：衡量边缘节点与中心云之间的数据差值。若该值持续偏高，建议检查 **[部署设置](../configuration/deployment)**。
+
+---
+
+## 4. 文件组织逻辑 (Repository View)
+
+了解 CMS 后台是如何通过物理隔离保证多租户安全的。
+
+<Files>
+  <Folder name="msru-cms-root" defaultOpen>
+    <Folder name="fac_shanghai_01" defaultOpen>
+       <Folder name="audit-trail">
+          <File name="2026-Q1-Compliance.sig" />
+       </Folder>
+       <Folder name="static-assets">
+          <File name="safety-intro.webp" />
+       </Folder>
+    </Folder>
+    <Folder name="fac_berlin_02">
+       <File name="settings.json" />
+    </Folder>
+  </Folder>
+</Files>
+
+---
+
+## 5. 常见操作 FAQ
+
+<Accordions>
+  <Accordion title="误删除了正在使用的 SOP 怎么办？">
+    **方案**：CMS 提供 **“软删除 (Soft Delete)”** 保护。您可以前往“回收站”中心查找 30 天内删除的内容，并一键还原。若已在此期间发布了新版，还原操作会将其置为“待冲突解决”状态。
+  </Accordion>
+  <Accordion title="某些终端收不到最新的图片更新？">
+    **排查路径**：
+    1. 检查各终端的 **[SDK 通讯日志](../integrations/sdk)** 是否报错。
+    2. 查看云端管理后台的“发布任务队列”，确认分发是否卡在了某个地域的边缘节点。
+    3. 尝试在“系统工具”中选择“强制刷新 CDN 边缘缓存”。
+  </Accordion>
+</Accordions>
+
+---
+
+## 6. 总结
+
+**MSRU | CMS** 的直观性旨在让每一个知识节点都变得触手可及。
+
+无论您是在总部进行宏观的品牌治理，还是在工厂一线处理快速的技术迭代，这套系统都将化为隐形的数字管道，支持着企业信息的每一次跃迁。
+
+---
+
+> [!TIP]
+> 已经是专家级用户了？尝试调用 [API 参考](../integrations/api) 构建您自己的自动化内容工作流。

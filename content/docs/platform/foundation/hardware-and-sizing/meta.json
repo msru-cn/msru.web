@@ -1,0 +1,5 @@
+{
+  "title": "物理层与算力规划",
+  "icon": "HardDrive",
+  "pages": ["capacity-planning", "node-roles"]
+}

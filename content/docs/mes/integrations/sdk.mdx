@@ -1,0 +1,142 @@
+---
+title: SDK 使用指南：构建深度集成的工业应用
+description: 详细介绍 MSRU | MES 的跨语言 SDK，涵盖边缘侧插件开发、实时数据流拦截与业务逻辑嵌入。
+icon: Box
+---
+
+# SDK 使用指南：构建深度集成的工业应用
+
+如果说 [API 参考](./api) 是通过网络协议与 MES 进行“远程对话”，那么 **MSRU SDK** 则是允许开发者直接进入 MES 的“生命运行域（Runtime Domain）”，在内存级别进行逻辑扩展。
+
+为了适配工业场景中对响应速度、硬件平台及语言生态的多样化需求，MSRU 提供了覆盖主流开发栈的 SDK 支持。
+
+<Callout type="info" title="为什么使用 SDK 而非 API？">
+  在需要执行 **毫秒级防错逻辑**（如：在 5ms 内判定物料 SN 是否匹配并驱动机械臂停机）时，网络请求的 RTT 延迟是不可接受的。SDK 允许您在边缘 Agent 服务内部运行嵌入式脚本或原生二进制代码。
+</Callout>
+
+---
+
+## 1. 语言生态与多尺度适配
+
+MSRU SDK 针对不同的计算尺度提供了针对性的底层实现。
+
+<Cards>
+  <Card 
+    title="Rust SDK (MSRU Core)" 
+    description="极致性能。适用于编写边缘 Agent 插件，直接操作内存缓冲区，支持 eBPF 级别的流量拦截。" 
+    icon="FerrisWheel" 
+  />
+  <Card 
+    title="TypeScript/Node.js SDK" 
+    description="高开发效率。适用于编写业务逻辑钩子（Hooks）与 Web 端报表展示组件。" 
+    icon="Monitor" 
+  />
+  <Card 
+    title="C++ SDK (Legacy Bridge)" 
+    description="硬件兼容性强。专门用于为 20 年前遗留的 C/C++ 驱动程序提供现代化的 MES 云端连接能力。" 
+    icon="Cpu" 
+  />
+</Cards>
+
+---
+
+## 2. 核心架构：基于“控制反转 (IoC)”的 Hooks 体系
+
+MSRU SDK 的核心逻辑是：**“不要调用我们，我们会调用你。”** 开发者通过 SDK 注册自己的业务函数，MES 会在生产流程的关键锚点（Anchor Points）执行这些代码。
+
+<Tabs items={['代码结构 (TS)', '生命周期钩子', '性能基准']}>
+  <Tab value="代码结构 (TS)">
+    ```typescript showLineNumbers
+    import { MsruEdgeClient, Events } from "@msru/sdk-edge"
+
+    const client = new MsruEdgeClient({ nodeId: "LANE-05" })
+
+    // 拦截工单下发前的校验逻辑
+    client.on(Events.BEFORE_ORDER_START, async (order) => {
+      const isOk = await customSafetyCheck(order.params);
+      if (!isOk) {
+        throw new Error("SAFETY_PROTOCOL_VIOLATION");
+      }
+    })
+    ```
+  </Tab>
+  <Tab value="生命周期钩子">
+    | 钩子名称 | 触发时机 | 允许操作 |
+    | :--- | :--- | :--- |
+    | `onMaterialScan` | 扫描枪读取数据后 | 修改扫描值、阻断流程 |
+    | `onStateChange` | 工单状态机流转时 | 触发第三方系统同步 |
+    | `onTelemetry` | 周期性 IoT 数据到达 | 计算衍生 Tag、触发本地存储 |
+  </Tab>
+  <Tab value="性能基准">
+    由于采用了内存级进程内通讯（In-Process IPC），SDK 的逻辑开销极低。
+    <MathEquation 
+      inline={false} 
+      formula={String.raw`Latency_{total} = T_{Runtime\_Invocation} + T_{User\_Logic} < 1ms`} 
+    />
+  </Tab>
+</Tabs>
+
+---
+
+## 3. 高级功能：边缘侧数据降维与缓存 (LocalStorage)
+
+SDK 提供了对边缘 Agent 本地持久化存储的直接访问权，这在处理“断网自治”逻辑时极其有用。
+
+<Steps>
+  <Step>
+    ### 初始化本地空间
+    通过 SDK 申请一个专有的业务命名空间（Namespace），MSRU 会在磁盘上为您分配一个加密的 SQLite 或 LevelDB 实例。
+  </Step>
+  <Step>
+    ### 业务状态缓存
+    在断网期间，您的 SDK 插件可以将临时的加工参数存储在本地。
+  </Step>
+  <Step>
+    ### 冲突裁决逻辑
+    当恢复云端连接后，SDK 允许您编写自定义的 **“冲突合并策略（Conflict Resolution Policy）”**，决定是以边缘端数据为准还是以云端数据为准。
+  </Step>
+</Steps>
+
+---
+
+## 4. 文件与目录规范：插件化部署
+
+编写完成的 SDK 插件模块应遵循以下分发结构，以便通过 MSRU CLI 进行一键式现场同步。
+
+<Files>
+  <Folder name="msru-extensions" defaultOpen>
+    <Folder name="src" defaultOpen>
+       <File name="safety-gate.ts" />
+       <File name="package.json" />
+    </Folder>
+    <Folder name="dist">
+       <File name="safety-gate.js (编译后的产物)" />
+    </Folder>
+    <File name="manifest.yaml (插件元数据申明)" />
+  </Folder>
+</Files>
+
+---
+
+## 5. 常见陷阱与 FAQ
+
+<Accordions>
+  <Accordion title="为什么我的异步 Hook 导致工位卡死了？">
+    **原因**: MES 的核心流程在等待您的 SDK 函数返回。如果您在 Hook 内部执行了耗时很长的网络请求（如：调用一个不稳定的 ERP API），会阻塞整个报工线程。
+    **解决**: 建议为所有 SDK 函数设置严格的超时控制，或者使用 `fireAndForget` 异步发射模式。
+  </Accordion>
+  <Accordion title="SDK 升级是否需要停机？">
+    对于 TypeScript 编写的逻辑插件，MSRU 支持 **“热重载 (Hot Reload)”**。系统会自动检测文件变化，并在无损保存上下文的前提下完成逻辑替换。
+  </Accordion>
+</Accordions>
+
+---
+
+## 6. 总结
+
+MSRU SDK 为工业开发者授予了“制造上帝视角”。通过 API 与 SDK 的组合拳，您可以将 MES 从一个标准化的管理工具，改造为专属于您企业核心工艺逻辑的“超级执行引擎”。
+
+---
+
+> [!TIP]
+> 准备好编写第一行工业扩展代码了吗？请访问我们的 [GitHub 示例仓库](https://github.com/msru-platform/sdk-examples) 获取模板。

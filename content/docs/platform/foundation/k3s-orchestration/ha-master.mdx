@@ -1,0 +1,356 @@
+---
+title: 控制面高可用部署与灾备
+description: 深度解析 K3s 控制面的架构哲学。涵盖单机 SQLite 到多节点 etcd 高可用集群的演进路径、Raft 共识原理、kube-vip 负载均衡注入及企业级灾备恢复 SOP。
+icon: ShieldAlert
+---
+
+# 控制面高可用部署与灾备
+
+在 MSRU（微服务与多尺度资源利用）平台中，K3s 控制面（Control Plane）承担着全局状态存储、API 路由分配、微服务调度以及鉴权的核心职责。控制面的崩溃不仅意味着无法发布新服务，在极端情况下甚至会导致边缘节点失去管控，引发产线停机。
+
+本文档不仅提供点火启动的实施步骤，更深入探讨底层的分布式一致性原理、硬件基准测试标准以及灾难恢复预案。作为 SRE 或架构师，您必须基于此指南为不同 SLA 要求的交付场景制定标准作业程序。
+
+
+
+---
+
+## 一、 架构演进与容错数学模型
+
+Kubernetes 状态存储的核心在于解决“脑裂（Split-brain）”与“数据一致性”问题。
+
+### 1. Raft 共识算法与节点规划矩阵
+高可用 etcd 集群底层依赖 Raft 协议。在网络分区或节点宕机时，集群必须选出唯一的 Leader 才能继续处理写请求。这涉及到严格的数学仲裁机制（Quorum）。
+
+<MathEquation 
+  inline={false} 
+  formula={String.raw`\text{Quorum (法定存活人数)} = \lfloor \frac{N_{total}}{2} \rfloor + 1`} 
+/>
+
+基于上述公式，我们得出以下绝对的架构部署铁律：
+
+<Cards>
+  <Card
+    title="单节点 (N=1)"
+    description="Quorum = 1。无任何容错能力。一旦宿主机宕机，控制面即刻瘫痪。适用于开发测试或具有底层虚机快照恢复能力的轻量级环境。"
+    icon="Server"
+  />
+  <Card
+    title="三节点 (N=3)"
+    description="Quorum = 2。最多容忍 1 台机器离线。这是 MSRU 标准生产环境的最小配置底线。三台机器必须位于同一物理机房以保证极低的网络延迟。"
+    icon="ServerCrash"
+  />
+  <Card
+    title="五节点 (N=5)"
+    description="Quorum = 3。最多容忍 2 台机器同时离线。适用于金融级或大型制造总部枢纽。超过 5 个节点会导致 Raft 投票通信开销剧增，性能反而下降。"
+    icon="ShieldCheck"
+  />
+</Cards>
+
+<Callout type="error" title="致命陷阱：为什么绝对不能部署偶数节点 (如 N=2 或 N=4)？">
+  如果部署 2 个 Master，Quorum 依然是 2 ($2/2 + 1 = 2$)。这意味着只要损坏 **1** 台机器，剩下的 1 台无法达到法定人数，整个集群将直接锁定为只读状态。**2 节点的容错率不仅没有提升，反而因为增加了网络同步开销而比 1 节点更脆弱。** 同理，4 节点的容错率与 3 节点完全一样（只能坏 1 台），纯属浪费硬件。
+</Callout>
+
+---
+
+## 二、 硬件基准测试 (Pre-flight Checks)
+
+etcd 是一个对 **磁盘 IOPS** 和 **网络延迟** 极其敏感的组件。每一次 API 对象的变更，etcd 都必须将预写式日志（WAL）同步刷入磁盘（`fsync`）并获得其他节点的确认。
+
+在部署生产级 HA 集群前，必须强制执行以下基准测试。如果测试不达标，集群在面临高并发工单下发时会频繁出现 `context deadline exceeded` 错误。
+
+<Tabs items={['磁盘 IO 基准测试 (fio)', '网络延迟基准测试 (ping)']}>
+  <Tab value="磁盘 IO 基准测试 (fio)">
+    在所有准备作为 Master 的机器上，使用 `fio` 模拟 etcd 的顺序写入负载。要求 99% 的 `fsync` 延迟必须小于 **10ms**。
+
+    ```bash showLineNumbers
+    # 安装 fio 测试工具
+    sudo apt install fio -y
+
+    # 执行 etcd 模拟写入测试
+    sudo fio --rw=write --ioengine=sync --fdatasync=1 \
+      --directory=/var/lib/rancher/k3s/server/db/etcd \
+      --size=22m --bs=2300 --name=etcd_fsync_test
+    ```
+    
+    *如果输出结果中的 `fsync` P99 延迟超过 10ms，请立即将普通 SSD 更换为 NVMe 固态硬盘，或检查云主机的云盘 IOPS 配额。*
+  </Tab>
+  <Tab value="网络延迟基准测试 (ping)">
+    由于 MSRU 采用了 Tailscale 异地组网，如果将 Master 节点部署在不同的城市，Tailscale 隧道的延迟将成为阿喀琉斯之踵。
+
+    ```bash
+    # 在 Master-1 上 Ping Master-2 的 Tailscale IP
+    ping 100.x.x.x -c 100
+    ```
+    * etcd 官方硬性要求：节点间 RTT (往返延迟) 必须持续 `< 50ms`，强烈推荐 `< 10ms`。
+    * 丢包率必须为 `0%`。
+  </Tab>
+</Tabs>
+
+---
+
+## 三、 方案一：单机 SQLite 实施 SOP
+
+适用于资源极度受限的边缘盒子（Edge Computing）、个人研发 Mac mini 虚拟机，或通过 IaaS 层自动快照保障安全的单体云主机。
+
+<Steps>
+  <Step>
+    ### 执行初始化与 Tailscale 绑定
+    确保流量完全包裹在加密隧道内，并打上控制面专属污点。
+
+    ```bash showLineNumbers {5-6}
+    TS_IP=$(tailscale ip -4)
+
+    curl -sfL https://rancher-mirror.rancher.cn/k3s/k3s-install.sh | INSTALL_K3S_MIRROR=cn INSTALL_K3S_EXEC="server \
+      --node-ip=${TS_IP} \
+      --advertise-address=${TS_IP} \
+      --flannel-iface=tailscale0 \
+      --tls-san=${TS_IP} \
+      --node-taint CriticalAddonsOnly=true:NoExecute" sh -
+    ```
+  </Step>
+  <Step>
+    ### 验证集群控制面状态
+    K3s 服务启动后，必须立即核查节点状态与网络绑定情况，确保控制面已成功劫持到 Tailscale 虚拟网卡上。
+
+    <Tabs items={['执行指令', '预期输出', '常见错误排查']}>
+      <Tab value="执行指令">
+        使用 K3s 内置的 kubectl 工具查看节点宽表视图，并检查核心系统 Pods 的调度情况：
+
+        ```bash showLineNumbers
+        # 查看节点状态与 IP 绑定
+        sudo k3s kubectl get node -o wide
+
+        # 检查核心组件（如 CoreDNS, Local-Path-Provisioner）是否 Running
+        sudo k3s kubectl get pods -n kube-system
+        ```
+      </Tab>
+      <Tab value="预期输出">
+        状态必须为 `Ready`，角色必须包含 `control-plane`。
+        
+        <Callout type="info" title="核心核查点：INTERNAL-IP">
+          请务必盯紧 `INTERNAL-IP` 字段，它**必须是 `100.x.x.x`** 的 Tailscale 虚拟 IP。如果显示的是云主机的公网 IP 或 VPC 内网 IP（如 `172.16.x.x`），则说明参数注入失败，后续跨地域节点加入后将发生网络黑洞。
+        </Callout>
+
+        ```text showLineNumbers {3}
+        NAME                      STATUS   ROLES           AGE   VERSION        INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                       KERNEL-VERSION        CONTAINER-RUNTIME
+        izwz91haot4qbqpelk3ngfz   Ready    control-plane   48s   v1.34.5+k3s1   100.97.2.38   <none>        Debian GNU/Linux 13 (trixie)   6.12.57+deb13-amd64   containerd://2.1.5-k3s1
+        ```
+      </Tab>
+      <Tab value="常见错误排查">
+        * **问题 1：`INTERNAL-IP` 显示为物理网卡 IP**
+          * **原因**：启动参数中未正确应用 `--node-ip` 和 `--flannel-iface=tailscale0`。
+          * **对策**：需要通过 `sudo systemctl edit k3s` 修改 `ExecStart` 参数，或者使用 `k3s-uninstall.sh` 卸载后重新带正确参数点火。
+        * **问题 2：节点一直处于 `NotReady` 状态**
+          * **原因**：通常是因为 CNI（容器网络接口）初始化失败，或者服务器内存被榨干导致 Kubelet 假死。
+          * **对策**：使用 `sudo journalctl -u k3s -f` 追踪核心日志，重点检查 `flannel` 相关的报错。
+        * **问题 3：提示 `command not found`**
+          * **原因**：K3s 二进制文件未成功写入 `/usr/local/bin`，或系统环境变量未刷新。
+          * **对策**：执行 `source /etc/profile` 或重新登录 SSH 会话。
+      </Tab>
+    </Tabs>
+  </Step>
+  <Step>
+    ### 获取 Node Token
+    ```bash title="提取出这串极其重要的密钥"
+    sudo cat /var/lib/rancher/k3s/server/node-token
+    ```
+  </Step>
+  <Step>
+    ### 算力节点 (Worker) 扩容接入
+    拿到 Master 的 Token 后，即可在处于同一 Tailscale 虚拟局域网内的任何算力节点上执行接入操作。
+
+    <Callout type="warn" title="macOS / Windows 环境限制">
+      Agent 节点同样强依赖 Linux 内核的 cgroups 与 namespace 特性。如果使用 Mac mini 作为边缘算力，必须在其内部运行 Linux 虚拟机（推荐 OrbStack），并在**虚拟机内部**安装 Tailscale 与 K3s Agent。
+    </Callout>
+
+    ```bash showLineNumbers {5,6}
+    TS_IP=$(tailscale ip -4)
+
+    # 注意：请将 server IP 和 token 替换为实际环境的值
+    curl -sfL [https://rancher-mirror.rancher.cn/k3s/k3s-install.sh](https://rancher-mirror.rancher.cn/k3s/k3s-install.sh) | INSTALL_K3S_MIRROR=cn INSTALL_K3S_EXEC="agent \
+      --server [https://100.97.2.38:6443](https://100.97.2.38:6443) \
+      --token <YOUR_CLUSTER_TOKEN> \
+      --node-ip=${TS_IP} \
+      --flannel-iface=tailscale0" sh -
+    ```
+  </Step>
+  <Step>
+    ### 配置 SQLite 自动化备份 (CronJob)
+    虽然 K3s 默认没有开启 SQLite 的自动备份，但我们可以利用系统自带的 `sqlite3` 工具结合 Cron 实现分钟级状态转储。
+
+    ```bash title="/etc/cron.hourly/k3s-sqlite-backup" showLineNumbers
+    #!/bin/bash
+    BACKUP_DIR="/opt/msru/backups/k3s-db"
+    mkdir -p $BACKUP_DIR
+    
+    # 锁定并导出状态库
+    sqlite3 /var/lib/rancher/k3s/server/db/state.db ".backup '${BACKUP_DIR}/state-$(date +%Y%m%d%H).db'"
+    
+    # 清理 7 天前的旧备份
+    find $BACKUP_DIR -type f -name "*.db" -mtime +7 -delete
+    ```
+  </Step>
+</Steps>
+
+---
+
+## 四、 方案二：多节点 etcd HA 实施 SOP (核心生产标准)
+
+
+
+在具有高 SLA 要求的制造型企业交付中，我们采用 `3 x Master (etcd) + N x Worker` 的标准架构，并在前端挂载虚拟 IP (VIP) 以切断 Worker 对特定 Master 的硬编码依赖。
+
+### 阶段一：建立控制面基座
+
+<Steps>
+  <Step>
+    ### 引导首个 Master 节点 (Leader)
+    这是宇宙大爆炸的奇点。注入 `--cluster-init` 参数声明创建一个全新的 etcd Raft 组。
+
+    ```bash showLineNumbers {2, 6}
+    curl -sfL [https://get.k3s.io](https://get.k3s.io) | INSTALL_K3S_EXEC="server \
+      --cluster-init \
+      --node-ip=$(tailscale ip -4) \
+      --advertise-address=$(tailscale ip -4) \
+      --flannel-iface=tailscale0 \
+      --tls-san=100.90.0.100 \ # 预留给 VIP 的 IP 地址
+      --tls-san=k3s-api.msru.internal \
+      --node-taint CriticalAddonsOnly=true:NoExecute" sh -
+    ```
+  </Step>
+  <Step>
+    ### 同步第二与第三个 Master
+    提取首个节点的 `/var/lib/rancher/k3s/server/node-token`，在另外两台机器上执行接入命令。它们将自动完成 TLS 引导并作为 Follower 节点加入 etcd 集群。
+
+    ```bash showLineNumbers {2-3}
+    curl -sfL [https://get.k3s.io](https://get.k3s.io) | INSTALL_K3S_EXEC="server \
+      --server https://<Master-1-Tailscale-IP>:6443 \
+      --token <Node-Token> \
+      --node-ip=$(tailscale ip -4) \
+      --advertise-address=$(tailscale ip -4) \
+      --flannel-iface=tailscale0 \
+      --tls-san=100.90.0.100 \
+      --tls-san=k3s-api.msru.internal \
+      --node-taint CriticalAddonsOnly=true:NoExecute" sh -
+    ```
+  </Step>
+</Steps>
+
+### 阶段二：注入 kube-vip 负载均衡器
+
+如果 Worker 节点仅指向 `Master-1` 的 IP，一旦 `Master-1` 宕机，即便 `Master-2` 成功接管 etcd Leader，Worker 也会因为无法连接 API Server 而陷入混乱。
+
+我们使用 **kube-vip** 在 3 台 Master 之间通过 ARP 广播抢占一个浮动的 VIP（假设分配给 VIP 的 Tailscale IP 为 `100.90.0.100`）。
+
+<Tabs items={['kube-vip 部署清单 (YAML)', 'Worker 接入命令']}>
+  <Tab value="kube-vip 部署清单 (YAML)">
+    在任意一台 Master 节点上应用此 DaemonSet。它会自动在 3 台 Master 上运行，监控 6443 端口的健康状态并漂移 VIP。
+
+    ```yaml title="kube-vip-daemonset.yaml" showLineNumbers {13-14}
+    apiVersion: apps/v1
+    kind: DaemonSet
+    metadata:
+      name: kube-vip-ds
+      namespace: kube-system
+    spec:
+      template:
+        spec:
+          containers:
+          - name: kube-vip
+            image: ghcr.io/kube-vip/kube-vip:v0.6.0
+            env:
+            - name: vip_arp
+              value: "true" # 开启内网 ARP 广播
+            - name: vip_address
+              value: "100.90.0.100" # 我们预留的 VIP 地址
+            - name: vip_interface
+              value: "tailscale0" # 绑定在 VPN 网卡上
+            securityContext:
+              capabilities:
+                add: ["NET_ADMIN", "NET_RAW"]
+    ```
+  </Tab>
+  <Tab value="Worker 接入命令">
+    此时，所有的 Worker 和 Edge 边缘算力节点，**必须且仅能**通过 VIP 加入集群，彻底与底层具体的物理机解耦。
+
+    ```bash showLineNumbers {2}
+    curl -sfL [https://get.k3s.io](https://get.k3s.io) | INSTALL_K3S_EXEC="agent \
+      --server [https://100.90.0.100:6443](https://100.90.0.100:6443) \
+      --token <Node-Token> \
+      --node-ip=$(tailscale ip -4) \
+      --flannel-iface=tailscale0" sh -
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## 五、 企业级灾备与恢复 (Disaster Recovery)
+
+没有任何架构是绝对安全的。面对机房断电、勒索病毒加密等极端情况，etcd 快照是恢复 MSRU 平台的最后一道防线。K3s 内置了原生的 S3 对象存储备份能力。
+
+<Steps>
+  <Step>
+    ### 配置自动化快照备份至 MinIO/S3
+    修改 Master 节点的 K3s 启动参数（通过 `/etc/systemd/system/k3s.service` 或安装脚本），加入自动化快照策略，将数据安全剥离出本地计算节点。
+
+    ```bash
+    --etcd-snapshot-schedule-cron="0 */4 * * *" \ # 每 4 小时备份一次
+    --etcd-snapshot-retention=12 \               # 保留最近 12 份
+    --etcd-s3 \
+    --etcd-s3-endpoint="minio.msru.internal:9000" \
+    --etcd-s3-access-key="<YOUR_AK>" \
+    --etcd-s3-secret-key="<YOUR_SK>" \
+    --etcd-s3-bucket="k3s-etcd-backups"
+    ```
+  </Step>
+  <Step>
+    ### 灾难恢复 SOP：从灰烬中重生
+    假设 3 台 Master 全部物理损坏。我们需要在一台全新的机器上，利用 S3 中的快照直接恢复出完整的集群控制面。
+
+    ```bash showLineNumbers {3-4}
+    # 停止新的 K3s 服务防止数据覆盖
+    systemctl stop k3s
+
+    # 从外部 S3 恢复集群状态
+    k3s server \
+      --cluster-init \
+      --cluster-reset \
+      --cluster-reset-restore-path="<从 S3 下载的快照文件>.zip"
+    
+    # 重新启动并验证
+    systemctl start k3s
+    kubectl get pods -A
+    ```
+  </Step>
+</Steps>
+
+---
+
+## 六、 深度陷阱与常见问题排查 (FAQ)
+
+对于分布式控制面特有的脑裂、证书过期与同步延迟问题，请对照下方的诊断面板进行排查。
+
+<Accordions>
+  <Accordion title="致命错误：etcd 报错 'request timed out' 或 'context deadline exceeded'">
+    **场景**：业务大规模并发调用 API，或者部署海量微服务时发生。<br/>
+    **根因排查**：
+    1. 磁盘被榨干：使用前文提到的 `fio` 工具检查所在机器的磁盘 IOPS 是否已被其他应用占满。
+    2. Tailscale 带宽瓶颈：如果是跨地域集群，极可能是 P2P 直连失败降级为 DERP 中继，导致节点间同步延迟超过 `50ms`。请使用 `tailscale ping` 检查链路状态。
+  </Accordion>
+  <Accordion title="VIP 无法漂移或 Worker 节点无法解析 API Server">
+    **场景**：某台 Master 宕机后，Worker 节点日志疯狂输出 `connection refused`。<br/>
+    **根因排查**：
+    1. 检查 kube-vip 容器日志：确认它是否有权限在 `tailscale0` 接口上发送 Gratuitous ARP 广播。
+    2. 安全组拦截：云厂商（如阿里云、腾讯云）的 VPC 网络默认拦截非原生的 ARP 欺骗和未登记的虚拟 IP。如果运行在云环境中且未使用 Tailscale 打平网络，kube-vip 的 ARP 模式将失效，必须改用 BGP 路由模式宣告 VIP。
+  </Accordion>
+  <Accordion title="节点 IP 发生变更后，集群证书失效怎么处理？">
+    **场景**：由于某些原因，Tailscale 重新分配了 `100.x.x.x` 的 IP，或者宿主机的内网 IP 发生改变。<br/>
+    **恢复策略**：
+    K3s 的证书默认与安装时的 IP 强绑定。你需要登录 Master 节点，删除旧的动态证书，并重启服务触发自动签发：
+    ```bash
+    sudo rm -rf /var/lib/rancher/k3s/server/tls/dynamic-cert.json
+    sudo systemctl restart k3s
+    ```
+  </Accordion>
+</Accordions>

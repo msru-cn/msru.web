@@ -1,0 +1,102 @@
+---
+icon: PaintRoller
+title: UI 组件库规范
+description: 高内聚的 Shadcn + Tailwind 架构配置、组件生命周期分发与使用范式
+---
+
+## 隔离设计的哲学：单一视觉真理
+
+将 UI 层隔离在单纯的一个 package 内（`packages/ui`，内部注册名 `@msru/ui`）是我们防范代码面条化、维持高度统一的企业视觉系统的**最核心屏障**。
+
+项目中选型了 [Shadcn UI](https://ui.shadcn.com/) 配合 Tailwind CSS：
+这兼顾了高级封装带来的极高审美视觉上限；同时，由于是以源码级别落盘入库的（而非黑盒的 npm i），我们在代码的所有权（Ownership）上拥有绝对的魔改掌控力，彻底告别了传统第三方组件库遇到特性阻碍无法升级或覆盖样式的黑盒陷阱。
+
+---
+
+## 库的层次架构与 Tailwind 继承设计
+
+进入 `packages/ui` ，您会发现这是一个只提供纯净组件和设计 Token 的抽象解耦环境，且自身不负责运行庞大的路由任务：
+
+- **`components/`**：利用 CLI 下载的有头或无头的基础原子 UI 碎片（如 Button、Card、Dialog）。
+- **`lib/utils.ts`**：执行基础底层类名缝合的关键引擎，主要向外暴露 `cn()` 方法函数。它解决了 Tailwind 样式堆叠冲突的致命痛点（下文有详要说明）。
+- **`index.ts`**：所有暴露给外部 `apps/` 业务层进行消费的统一声明 API 出口门面（Facade）。
+- **与 Tailwind-Config 的协同**：在整个空间内，基础的色彩 Token（Primary, Destructive, Muted 等）与动画基座被维护在另一个纯净包 `packages/tailwind-config` 当中。`@msru/ui` 会将该指令集吃透融会，向所有的最终应用下发最终编译出来的全局系统样式体系。
+
+---
+
+## The `cn()` Utility：样式冲突之刃
+
+在 `@msru/ui` 中大量频繁使用了自定义包装引擎 `cn`，这是构建健壮且可拓展组件风格的基石：
+
+```tsx title="packages/ui/lib/utils.ts"
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+```
+
+**为什么要有它？**
+如果基础组件 `Button` 已经带了 `px-4 py-2 bg-blue-500`。某天业务中你强行传入自定义属性 `<Button className="px-8 bg-red-500" />` 时，原生的 React `className` 解析只会单纯将其字符串合并，最终浏览器面对 `bg-blue-500 bg-red-500` 时不知所措（呈现出意外颜色或者被层叠规则随机吃掉）。
+而 `cn` 函数里的 `tailwind-merge` 算法能精确切开指令链，安全剔除冗余属性并保留你的最后强加项（即 `bg-red-500` 将无损击溃替换掉 `bg-blue-500`）。这确保了组件在被应用层消费时的**绝对灵活性可覆盖性**。
+
+---
+
+## 指南：怎么向平台添加一个新的 UI 组件？
+
+> ⚠️ **强制规约原则警告**：原则上，哪怕组件只在一个端侧单点应用中使用，只要它是高度规范的 UI 交互件（例如特定样式的折叠面板、带有弹性的抽屉）、或者是可能脱离业务状态的呈现区块，都必须放置于 `packages/ui` 中，绝不应在 `apps/` 的直接路由文件夹内进行短视拼凑生成脏代码！
+
+### 第 1 步：定位到准确的核心工作目录
+
+进行前端代码注入更新及载入的任何动作，均需明确自己的当前终端路径：
+
+```bash
+# 必须先下沉进入包内空间
+cd packages/ui
+```
+
+### 第 2 步：触发依赖及组件物理注入
+
+架构设计要求我们使用原生的 pnpm 并通过 `dlx` 无锁执行执行指令，直接捕获最新 Shadcn Hub 节点的代码去精准下载与注入。工具链会自动扫描你所需的 radix-ui 相关底层依赖并加盖于锁文件中：
+
+```bash
+# 这里以请求注入一个高频刚需侧边弹出栏组件 sheet 作为演示
+pnpm dlx shadcn@latest add sheet
+```
+
+### 第 3 步：自动化组件路由导出重构（非常核心环节）
+
+运行此动作后，文件会被推入 `packages/ui/components` 当中。但！由于 Node 引擎及 ESM 严格导出网格模块系统（exports field）的限制，它此时对庞大的使用侧（如 `apps/web`）依旧是**完全物理隐形不可见**的阻断状态。外部必须且尽可从 `@msru/ui/components` 寻址进行抓取。
+所以我们需要运行根层级的聚合代码重构脚本，该脚本是由内部生态定制，自动抓取 `components/*.tsx` 拼装至顶头索引门面导出中，免除了所有手动维护 `export * ...` 的痛楚与拼写灾难：
+
+```bash
+# 请退回到整个项目的最高根目录进行联动脚本群发触发过滤命令
+pnpm --filter @msru/ui gen:exports
+```
+
+---
+
+## 业务端如何进行极优美且解耦的代码消费使用？
+
+一旦上述管道链路跑通完毕，我们在 `apps/web/` 等任何平行的消费隔离应用里，就可以如同使用内建标准规范库一样优雅自如。所有的组件自带极高审美，并完美适配黑夜/暗黑系统：
+
+```tsx title="apps/web/app/settings/danger-zone.tsx"
+// 注意这里极其干净优雅的出入口，无处不散发着工程体系的严密之感
+import { Button, Card, CardTitle, CardContent } from "@msru/ui/components";
+
+export default function DangerZonePanel() {
+  return (
+    <Card className="w-full max-w-lg border-destructive/50 shadow-sm">
+        <CardTitle className="text-destructive">高风险毁灭系统级操作</CardTitle>
+        <CardContent className="text-muted-foreground pb-4 mt-2">
+            执行下列核心此项不可逆原子操作，将导致用户在所处租户下的全生命周期资料连带底层索引集群关系直接被清除脱机。
+        </CardContent>
+        {/* 注意该 Button 直接享用了 UI 库内设置好的破坏色 Variant 变体约束体系 */}
+        <Button variant="destructive" className="w-full">
+            我清楚以上极其严重后果，点此强行继续此自毁进程
+        </Button>
+    </Card>
+  );
+}
+```

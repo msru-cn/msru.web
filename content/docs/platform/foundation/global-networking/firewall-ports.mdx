@@ -1,0 +1,93 @@
+---
+title: 防火墙与端口白名单
+description: MSRU 平台全组件网络端口清单，精确到 TCP/UDP 协议，适用于安全组与防火墙规则配置。
+icon: ShieldCheck
+---
+
+# 防火墙与端口白名单
+
+网络安全是工业平台的刚性需求。本文档列出 MSRU 平台所有组件所需开放的端口，按角色分类，方便网络管理员精确配置防火墙规则。
+
+<Callout type="warn" title="最小权限原则">
+  仅开放下表中列出的端口，**禁止使用 `0.0.0.0/0` 全放行规则**。边缘节点仅需出站连接，无需对公网开放入站端口。
+</Callout>
+
+---
+
+## Master 控制面节点
+
+| 端口 | 协议 | 组件 | 方向 | 说明 |
+|------|------|------|------|------|
+| 6443 | TCP | K3s API Server | 入站 | Worker/Edge 节点注册与 kubectl 管理 |
+| 2379-2380 | TCP | etcd | 入站 | 仅 HA 模式下 Master 间通信 |
+| 10250 | TCP | kubelet | 入站 | kubectl exec/logs/port-forward |
+| 8472 | UDP | VXLAN (Flannel) | 双向 | Pod 跨节点网络覆盖 |
+| 51820 | UDP | WireGuard | 双向 | Flannel 使用 WireGuard 后端时 |
+| 41620 | UDP | Tailscale | 出站 | Tailscale 对等连接 |
+
+---
+
+## Worker 算力节点
+
+| 端口 | 协议 | 组件 | 方向 | 说明 |
+|------|------|------|------|------|
+| 10250 | TCP | kubelet | 入站 | 来自 Master 的管理指令 |
+| 8472 | UDP | VXLAN (Flannel) | 双向 | Pod 网络覆盖 |
+| 30000-32767 | TCP | NodePort Services | 入站 | K8s NodePort 服务范围 |
+| 5432 | TCP | PostgreSQL | 内部 | 仅集群内 Pod 访问 |
+| 9000 | TCP | MinIO | 内部 | 对象存储 API |
+| 4222 | TCP | NATS | 内部 | 消息队列 |
+
+---
+
+## Edge 边缘节点
+
+| 端口 | 协议 | 组件 | 方向 | 说明 |
+|------|------|------|------|------|
+| 10250 | TCP | kubelet | 出站→Master | 注册与心跳 |
+| 8472 | UDP | VXLAN (Flannel) | 出站 | Pod 网络 |
+| 41620 | UDP | Tailscale | 出站 | VPN 隧道 |
+| 1883 | TCP | MQTT Broker | 入站(LAN) | 本地 IoT 设备接入 |
+| 502 | TCP | Modbus TCP | 入站(LAN) | 工业 PLC 协议 |
+| 4840 | TCP | OPC UA | 入站(LAN) | 工业设备统一架构 |
+
+<Callout type="info" title="边缘安全最佳实践">
+  边缘节点的工业协议端口（1883/502/4840）仅对本地 LAN 开放，**绝不暴露到公网或 Tailscale 网络**。使用 `iptables` 或 `nftables` 限制源 IP 段。
+</Callout>
+
+---
+
+## 快速配置模板
+
+<Tabs items={['iptables', 'ufw', '阿里云安全组']}>
+  <Tab value="iptables">
+    ```bash
+    # Master 节点 iptables 规则示例
+    iptables -A INPUT -p tcp --dport 6443 -s 100.64.0.0/10 -j ACCEPT   # Tailscale 网段
+    iptables -A INPUT -p tcp --dport 6443 -s 192.168.0.0/16 -j ACCEPT  # 内网网段
+    iptables -A INPUT -p udp --dport 8472 -j ACCEPT                     # VXLAN
+    iptables -A INPUT -p udp --dport 51820 -j ACCEPT                    # WireGuard
+    iptables -A INPUT -p tcp --dport 6443 -j DROP                       # 拒绝其他来源
+    ```
+  </Tab>
+  <Tab value="ufw">
+    ```bash
+    # UFW 简洁配置
+    ufw allow from 100.64.0.0/10 to any port 6443 proto tcp
+    ufw allow 8472/udp
+    ufw allow 51820/udp
+    ufw default deny incoming
+    ufw enable
+    ```
+  </Tab>
+  <Tab value="阿里云安全组">
+    ```
+    规则方向: 入方向
+    授权策略: 允许
+    协议类型: 自定义 TCP
+    端口范围: 6443/6443
+    授权对象: 100.64.0.0/10 (Tailscale CGNAT)
+    描述:     K3s API Server - Tailscale 接入
+    ```
+  </Tab>
+</Tabs>

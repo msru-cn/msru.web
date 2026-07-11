@@ -1,0 +1,148 @@
+---
+title: 深度解析：MES 的技术架构与核心逻辑
+description: 深入探讨 MSRU | MES 的分布式底座、状态机引擎以及多尺度生产建模的实现细节。
+icon: Cpu
+---
+
+# 深度解析：MES 的技术架构与核心逻辑
+
+在 [什么是 MES？](../what-is) 页面中，我们从业务视角审视了制造执行系统。而本篇文档将带领架构师与开发者进入 MSRU | MES 的“引擎内部”，解析它是如何利用现代软件工程技术重塑生产逻辑的。
+
+MSRU | MES 不仅仅是一个数据库驱动的 Web 应用，它是一个高度解耦、强实时、且具备边缘自治能力的 **分布式工业操作系统**。
+
+<Callout type="info" title="技术栈深度集成">
+  MSRU | MES 采用了 Rust 编写的高性能边缘 Agent，结合 Next.js 微前端架构与多租户隔离的分布式数据库，实现了从物理连接到数据决策的全链路贯通。
+</Callout>
+
+---
+
+## 1. 逻辑底座：基于事件驱动的状态机引擎
+
+在 MSRU 体系中，每一个工单、每一批物料、甚至每一台设备，都被抽象为一个 **受控状态机 (Controlled State Machine)**。
+
+### 为什么采用状态机？
+传统的 MES 逻辑分布在成千上万行 `if-else` 或存储过程中，这导致业务流程极其脆弱。MSRU 强迫所有生产逻辑必须通过定义的路由节点流转。
+
+<Tabs items={['工单状态流转', '代码建模 (DSL)']}>
+  <Tab value="工单状态流转">
+    ```mermaid
+    stateDiagram-v2
+        [*] --> Draft: 创建
+        Draft --> Released: 下达 (BOM 锁定)
+        Released --> InProduction: 首道报工
+        InProduction --> QualityChecking: 完工检验
+        QualityChecking --> Finished: 合格
+        QualityChecking --> Rework: 不合格 (重入工序)
+        Finished --> [*]
+    ```
+  </Tab>
+  <Tab value="代码建模 (DSL)">
+    ```json showLineNumbers
+    {
+      "entity": "WorkOrder",
+      "states": ["DRAFT", "ACTIVE", "PAUSED", "COMPLETED"],
+      "transitions": [
+        {
+          "from": "ACTIVE",
+          "to": "PAUSED",
+          "trigger": "EDGE_ALARM_E_STOP",
+          "action": "NOTIFY_SUPERVISOR"
+        }
+      ]
+    }
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## 2. 多尺度资源调度模型
+
+这是 MSRU 的核心竞争力所在。我们不仅关注“任务是什么”，更关注“任务在哪个尺度运行”。
+
+<Cards>
+  <Card 
+    title="微秒级：设备协同" 
+    description="在边缘 Agent 内部，MES 逻辑直接参与运动控制反馈。例如，在检测到物料偏移时，秒级修正补偿参数。" 
+    icon="FastForward" 
+  />
+  <Card 
+    title="秒级：工位交互" 
+    description="报工校验与 SOP 切换。确保工人在 1 秒内获得系统的防错反馈，避免无效操作。" 
+    icon="Timer" 
+  />
+  <Card 
+    title="小时级：车间排产" 
+    description="基于启发式算法的短周期排产。根据现场设备突发故障，实时调整班组生产序列。" 
+    icon="CalendarClock" 
+  />
+</Cards>
+
+---
+
+## 3. 核心计算引擎：OEE 与多维质量分析
+
+MSRU 内置了一个强大的流式计算引擎，能够对实时涌入的工业物联网（IIoT）数据执行高级数学推导。
+
+例如，对于 **MTBF（平均故障间隔时间）** 的实时推算：
+
+<MathEquation 
+  inline={false} 
+  formula={String.raw`MTBF = \frac{\sum (T_{start\_fail} - T_{last\_repair})}{N_{failures}} \approx \int_{t_0}^{t_n} \mathcal{R}(t) dt`} 
+/>
+
+通过这一数学模型，系统不再是死板地记录“停机了”，而是预测“什么时候会停机”。这种从 **反应式维护 (Reactive)** 向 **预测性维护 (Predictive)** 的跃迁，正是 MSRU 架构设计的终极目标。
+
+---
+
+## 4. 文件系统与微服务拓扑
+
+在向开发者展示如何扩展 MES 功能时，了解仓库布局至关重要。MSRU | MES 遵循 Turborepo 规范，实现了逻辑的极致模块化。
+
+<Files>
+  <Folder name="apps/mes" defaultOpen>
+    <Folder name="core-engine" defaultOpen>
+       <File name="state-handler.rs" />
+       <File name="scheduler.go" />
+    </Folder>
+    <Folder name="web-ui">
+       <File name="dashboard.tsx" />
+       <File name="sop-viewer.tsx" />
+    </Folder>
+  </Folder>
+  <Folder name="packages/edge-agent">
+     <File name="iot-adapter.ts" />
+  </Folder>
+</Files>
+
+---
+
+## 5. 扩展性：通过插件定制生产逻辑
+
+我们深知，没有任何一套 MES 能够覆盖 100% 的行业特殊需求。因此，MSRU 提供了强大的插件钩子（Hooks）系统。
+
+<Steps>
+  <Step>
+    ### 注册逻辑钩子
+    在 `source.config.ts` 中定义您的业务切面。例如 `BEFORE_WORKORDER_RELEASE`。
+  </Step>
+  <Step>
+    ### 编写无服务器函数 (Edge Functions)
+    使用 TypeScript 编写您的自定义校验逻辑，例如：“如果当天湿度超过 70%，禁止下放 A 类表面处理任务”。
+  </Step>
+  <Step>
+    ### 部署并生效
+    通过 CI/CD 流水线，您的自定义逻辑将被分发到全球各地的边缘节点，实现云端开发、边缘运行。
+  </Step>
+</Steps>
+
+---
+
+## 6. 总结
+
+MSRU | MES 的架构设计目标是 **“在高不确定性中寻找确定性”**。通过状态机固化流程、通过多尺度计算优化效率、通过插件系统拥抱变化，我们为离散制造提供了一个坚如磐石的数字化底座。
+
+---
+
+> [!NOTE]
+> 对底层通讯协议感兴趣？请移步 [通讯集成](../integrations/communications) 了解 MSRU 如何与 500+ 种 industrial 协议握手。

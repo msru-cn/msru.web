@@ -1,0 +1,5 @@
+{
+  "title": "基础设施",
+  "icon": "Server",
+  "pages": ["hardware-and-sizing", "global-networking", "k3s-orchestration", "cluster-addons"]
+}

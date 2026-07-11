@@ -1,0 +1,144 @@
+---
+title: 价格与订阅 (Pricing)
+description: 探索 MSRU | MES 的企业级商业授权、云端订阅计费模式及多尺度弹性定价。
+icon: CircleDollarSign
+---
+
+# 价格与订阅
+
+在 MSRU，我们相信工业级软件的定价应当如同生产过程本身一样——具备极致的灵活性与透明度。我们打破了传统工业软件动辄数百万预付款（Upfront）的僵化模式，引入了基于云原生能力的 **“按规模计费”** 与 **“按价值付费”** 体系。
+
+<Callout type="info" title="设计理念：从小起步，随需而扩">
+  无论您是拥有 5 台设备的小型精密加工车间，还是管理 50 个全球厂区的跨国巨头，MSRU 的定价模型都能精准匹配您的业务节奏，确保您的每一分 IT 投入都能转化为产线效率的提升。
+</Callout>
+
+---
+
+## 1. 订阅方案矩阵
+
+我们提供三种核心订阅方案，涵盖并满足不同数字化成熟度的企业需求。
+
+<Cards>
+  <Card 
+    title="专业版 (Professional)" 
+    description="适用于单体车间的数字化转型。包含基础工单、BOM 与 IoT 数据采集，满足基本的追溯与合规需求。" 
+    icon="Rocket" 
+  />
+  <Card 
+    title="企业版 (Enterprise)" 
+    description="适用于多车间协同、跨区域部署。包含 AI 预测维护、高级排产（APS）接口与边缘自治集群支持。" 
+    icon="Building2" 
+  />
+  <Card 
+    title="旗舰版 (Grand Master)" 
+    description="专为“灯塔工厂”设计。提供完全私有化部署、源码级安全审计支持以及专属 24/7 驻场实施专家。" 
+    icon="Crown" 
+  />
+</Cards>
+
+---
+
+## 2. 核心计费维度：多尺度评估
+
+不同于市面上常见的按“人头”或“工厂数”计费，MSRU | MES 采用 **“三维计费模型”**，力求实现最公平的资源消耗度量。
+
+### A. 连接节点数 (Connected Nodes)
+我们按活跃连接的 **生产节点** 计费。一个节点可以是一台数控机床、一条全自动组装线或一个人工操作站。这种计费方式鼓励企业将更多设备接入 IoT，实现数据的全量采集。
+
+### B. 边缘算力点数 (Edge Tokens)
+由于 MSRU 涉及大量边缘自治计算，我们使用“算力点数”来衡量边缘网关每小时处理的数据规模。对于普通的离散制造，基础点数通常已足够覆盖；对于海量数据涌入的半导体或新能源行业，可弹性按需增购。
+
+### C. 业务模块订阅 (Module Add-on)
+MES 的核心功能（工单、BOM、追溯）包含在基础订阅中。高级功能如 **AI 质量视觉检测**、**数字孪生监控大屏** 等采用模块化增购模式，即挂即用，无需全局升级。
+
+---
+
+## 3. 企业价值对比演示
+
+下面的表格直观展示了 MSRU 订阅模式与传统“买断式”软件在 5 年生命周期内的成本与收益预期。
+
+<Tabs items={['成本演进曲线', '功能权限表']}>
+  <Tab value="成本演进曲线">
+    <div className="p-6 border border-zinc-800 rounded-xl bg-zinc-950/50 mt-4 space-y-4">
+      <h3 className="text-zinc-100 font-bold">5 年总拥有成本 (TCO)</h3>
+      <div className="space-y-2">
+        <div className="flex justify-between text-sm">
+          <span className="text-zinc-400">传统买断式 (含实施+年维)</span>
+          <span className="text-red-400">¥ 2,800,000+</span>
+        </div>
+        <div className="h-2 w-full bg-zinc-800 rounded-full overflow-hidden">
+          <div className="h-full bg-red-600" style={{ width: '100%' }}></div>
+        </div>
+      </div>
+      <div className="space-y-2">
+        <div className="flex justify-between text-sm">
+          <span className="text-zinc-400">MSRU 企业订阅版</span>
+          <span className="text-teal-400">¥ 1,200,000 (随用随付)</span>
+        </div>
+        <div className="h-2 w-full bg-zinc-800 rounded-full overflow-hidden">
+          <div className="h-full bg-teal-500" style={{ width: '43%' }}></div>
+        </div>
+      </div>
+      <div className="text-xs text-zinc-500 italic">
+        * 基于 100 个生产节点的典型中型工厂估算。MSRU 模式显著降低了初期决策成本与技术风险。
+      </div>
+    </div>
+  </Tab>
+  <Tab value="功能权限表">
+    <TypeTable
+      type={{
+        "边缘自治记录": { 
+          type: 'boolean', 
+          description: '所有版本均支持，旗舰版支持超大规模集群（1000+ 节点）。' 
+        },
+        "AI 预测性维护": { 
+          type: 'string', 
+          description: '专业版（可选配）、企业/旗舰版直接包含。' 
+        },
+        "定制化 RESTful API": { 
+          type: 'number', 
+          description: '专业版每分钟限制 60 次，企业版无限。' 
+        }
+      }}
+    />
+  </Tab>
+</Tabs>
+
+---
+
+## 4. 商业级订阅矩阵 (实时展示)
+
+以下是 MSRU 官方实时同步的订阅明细表。您可以直接根据当前的节点规模进行初步估算。
+
+<div className="mt-8">
+  <PricingTable />
+</div>
+
+---
+
+## 5. FAQ：常见商务问题
+
+<Accordions>
+  <Accordion title="如果我们中途停掉订阅，数据会丢失吗？">
+    绝对不会。MSRU 遵循数据主权原则。如果您停止订阅，系统会进入“只读模式”，您可以随时导出所有历史生产轨迹、追溯记录与审计日志（CSV/JSON 格式）。
+  </Accordion>
+  <Accordion title="私有化部署 (On-Premise) 怎么计费？">
+    私有化部署通常属于“旗舰版”范畴。除了基础订阅费用外，会根据实施的复杂度加收一次性的“环境调优费用”。后续的软件更新依然通过 MSRU 离线同步通道进行按年授权。
+  </Accordion>
+  <Accordion title="学术机构或非营利组织有优惠吗？">
+    有的！我们为“工业 4.0 联合实验室”提供 **MSRU Academy 免费版本**。需提供教育机构代码进行核验。
+  </Accordion>
+</Accordions>
+
+---
+
+## 6. 与我们的架构顾问聊聊
+
+如果您正在负责一家具有高度碎片化需求的大型工厂的数字化升级，标准的订阅列表可能无法完全体现您的业务价值。
+
+我们建议您 [预约一次架构审计](https://example.com/msru-audit)，MSRU 的实施专家将协助您进行多尺度资源评估，为您定制最具性价比的转型路径。
+
+---
+
+> [!TIP]
+> 准备好试用了吗？[点击这里](./introduction/quick-start) 注册您的第一个边缘开发账号。

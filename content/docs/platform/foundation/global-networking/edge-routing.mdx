@@ -1,0 +1,134 @@
+---
+title: 边缘节点特殊网络处理
+description: IPv6 辅助穿透、被墙出海节点中继策略、弱网环境下的连接保持方案。
+icon: Radio
+---
+
+# 边缘节点特殊网络处理
+
+并非所有边缘节点都处于理想的网络环境。本文档覆盖三类典型的「网络困难」场景及其解决方案。
+
+---
+
+## 场景一：严格 NAT / 对称 NAT 环境
+
+某些工业园区网络使用对称 NAT（Symmetric NAT），导致 Tailscale 的 P2P 打洞失败。
+
+**诊断方式：**
+```bash
+# 查看 Tailscale 到目标节点的连接方式
+tailscale ping --c 5 worker-factory-b
+
+# 如果输出持续显示 "via DERP" 而非 "pong from ... via ...:41641"
+# 说明 P2P 直连失败，正在走中继
+```
+
+**解决方案：IPv6 辅助穿透**
+
+<Steps>
+  <Step>
+    ### 启用 IPv6
+    在路由器或运营商侧确认 IPv6 已开通。大多数中国运营商已默认提供 IPv6 地址。
+    ```bash
+    # 确认系统已获取 IPv6 地址
+    ip -6 addr show scope global
+    ```
+  </Step>
+  <Step>
+    ### Tailscale 自动利用 IPv6
+    Tailscale 会自动检测 IPv6 可用性并优先使用。IPv6 天然的端到端可达性可绕过 IPv4 NAT 问题。无需额外配置。
+  </Step>
+  <Step>
+    ### 验证直连恢复
+    ```bash
+    tailscale ping worker-factory-b
+    # 预期输出: pong from worker-factory-b (fd7a:...) via [2409:...]:41641
+    ```
+  </Step>
+</Steps>
+
+---
+
+## 场景二：出海节点 / 跨境中继
+
+部分节点位于海外（如东南亚工厂），直接连接国内控制面可能受到网络策略影响。
+
+<Callout type="warn" title="合规提醒">
+  跨境网络互联需遵守当地法规。MSRU 推荐使用正规的企业级 SD-WAN 或云服务商提供的跨境专线，而非任何违反政策的方式。
+</Callout>
+
+**推荐方案：自建 DERP 中继**
+
+Tailscale 允许用户部署私有 DERP（Designated Encrypted Relay for Packets）服务器，放置在网络质量最优的位置：
+
+```bash
+# 在香港/新加坡 VPS 上部署私有 DERP
+docker run -d --name derp-relay \
+  -p 443:443 -p 3478:3478/udp \
+  -e DERP_DOMAIN=derp.msru.io \
+  -e DERP_CERT_MODE=letsencrypt \
+  ghcr.io/tailscale/derper:latest
+```
+
+然后在 Tailscale ACL 中注册该 DERP：
+```json
+{
+  "derpMap": {
+    "regions": {
+      "900": {
+        "regionID": 900,
+        "regionCode": "msru-hk",
+        "regionName": "MSRU Hong Kong",
+        "nodes": [{
+          "name": "msru-hk-1",
+          "regionID": 900,
+          "hostName": "derp.msru.io"
+        }]
+      }
+    }
+  }
+}
+```
+
+---
+
+## 场景三：弱网 / 高丢包环境
+
+工厂车间内的无线网络（Wi-Fi / 4G）可能存在高丢包率和不稳定延迟。
+
+| 指标 | 正常 | 可容忍 | 危险 |
+|------|------|--------|------|
+| RTT | < 50ms | 50~200ms | > 200ms |
+| 丢包率 | < 0.1% | 0.1~2% | > 2% |
+| 带宽 | > 10Mbps | 5~10Mbps | < 5Mbps |
+
+**优化手段：**
+
+<Cards>
+  <Card
+    title="K3s Agent 心跳调优"
+    description="将 kubelet 的 `--node-status-update-frequency` 从默认 10s 调整为 30s，减少弱网下的心跳超时误判。"
+    icon="HeartPulse"
+  />
+  <Card
+    title="数据压缩"
+    description="启用 MSRU Edge Agent 的 gRPC 压缩选项（gzip），在低带宽场景下减少 60% 的数据传输量。"
+    icon="FileArchive"
+  />
+  <Card
+    title="离线缓冲队列"
+    description="Edge Agent 内置 SQLite WAL 日志，网络中断时自动缓存数据，恢复后按序重传，保证数据零丢失。"
+    icon="Database"
+  />
+</Cards>
+
+<Callout type="info" title="弱网测试工具">
+  使用 `tc`（Linux Traffic Control）模拟弱网环境进行压力测试：
+  ```bash
+  # 模拟 200ms 延迟 + 5% 丢包
+  tc qdisc add dev eth0 root netem delay 200ms loss 5%
+  
+  # 测试结束后清除
+  tc qdisc del dev eth0 root
+  ```
+</Callout>
