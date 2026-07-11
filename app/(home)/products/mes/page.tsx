@@ -18,86 +18,19 @@ import {
   Workflow,
 } from "lucide-react";
 import Link from "next/link";
+import { CTASection, Hero, StatBlock } from "@/components/marketing";
+import { mesCta, mesHero, mesStats } from "@/content/marketing/products/mes";
 import { HeroMockup } from "../../../../components/hero-mockup";
 
 export default function MESPage() {
   return (
     <main className="flex flex-col w-full min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-blue-500/30">
       {/* 1. 极致震撼的 HERO SECTION */}
-      <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-32 pb-20 px-6 text-center overflow-hidden border-b border-border/50">
-        {/* 背景动态光晕 */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] md:w-[1200px] md:h-[700px] bg-blue-500/15 dark:bg-blue-600/10 rounded-[100%] blur-[120px] pointer-events-none" />
-        <div className="absolute -top-40 right-10 w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none" />
-
-        {/* Hero 内容 */}
-        <div className="z-10 relative flex flex-col items-center max-w-5xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 text-blue-500 font-semibold text-sm mb-8 ring-1 ring-blue-500/20 backdrop-blur-sm">
-            <Sparkles className="size-4" /> MSRU MES 5.0 全新发布
-          </div>
-          <h1 className="text-6xl md:text-8xl lg:text-[7rem] font-bold tracking-tighter mb-8 leading-[1.1] text-balance">
-            让工厂心跳， <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-500 to-cyan-400 dark:from-blue-400 dark:to-cyan-300">
-              精准到秒。
-            </span>
-          </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-12 text-balance">
-            颠覆传统的制造执行系统。基于云原生架构与微服务设计，彻底打通 IT 与 OT 的数据壁垒。
-            从订单下达到成品出库，毫秒级数据洞察，重塑车间生产力。
-          </p>
-          <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-            <Link
-              href="/contact"
-              className="w-full sm:w-auto h-14 px-10 inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground text-lg font-medium hover:scale-105 transition-transform shadow-2xl shadow-primary/20 hover:shadow-primary/40"
-            >
-              获取企业版报价
-            </Link>
-            <Link
-              href="/docs"
-              className="w-full sm:w-auto h-14 px-10 inline-flex items-center justify-center rounded-full bg-transparent border border-border text-foreground text-lg font-medium hover:bg-muted transition-colors"
-            >
-              阅读架构白皮书 <ArrowRight className="ml-2 size-5" />
-            </Link>
-          </div>
-        </div>
-
-        {/* 悬浮的Dashboard Mockup 视觉元素 */}
-        <HeroMockup theme="blue" />
-      </section>
+      <Hero {...mesHero} mockup={<HeroMockup theme="blue" />} />
 
       {/* 2. 核心指标统计 - Apple 风格大字 */}
-      <section className="py-24 bg-zinc-950 text-white w-full border-b border-zinc-900">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-20 tracking-tight text-zinc-100">
-            不是口号。是真实的工业增效。
-          </h2>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 divide-x-0 lg:divide-x divide-zinc-800">
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-blue-400 mb-4 tracking-tighter">
-                30<span className="text-4xl md:text-5xl">%</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">产能利用率提升</span>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-blue-400 mb-4 tracking-tighter">
-                99<span className="text-4xl md:text-5xl">.9%</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">全制程追溯准确率</span>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-blue-400 mb-4 tracking-tighter">
-                50<span className="text-4xl md:text-5xl">%</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">在制品(WIP)库存降低</span>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-blue-400 mb-4 tracking-tighter">
-                &lt;1<span className="text-4xl md:text-5xl">s</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">设备状态响应延迟</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      <StatBlock {...mesStats} />
+
 
       {/* 3. 设计哲学宣言 */}
       <section className="py-32 px-6 md:px-12 max-w-6xl mx-auto text-center space-y-8">
@@ -358,36 +291,7 @@ export default function MESPage() {
       </section>
 
       {/* 9. 巨型底部 CTA */}
-      <section className="relative py-32 px-6 overflow-hidden bg-blue-600 dark:bg-blue-900 text-white">
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none" />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-cyan-400/30 rounded-full blur-[120px] pointer-events-none translate-x-1/3 -translate-y-1/3" />
-
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <Target className="size-20 mx-auto mb-8 opacity-80" />
-          <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8 leading-tight">
-            准备好跨越
-            <br />
-            传统的制造边界了吗？
-          </h2>
-          <p className="text-xl md:text-2xl opacity-90 mb-12 max-w-2xl mx-auto">
-            不要让低效的流转继续吞噬您的利润率。让我们的资深架构师为您提供一次免费的产品线诊断。
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
-            <Link
-              href="/contact"
-              className="h-16 px-10 inline-flex items-center justify-center rounded-full bg-white text-blue-600 text-xl font-bold hover:scale-105 transition-transform shadow-2xl"
-            >
-              预约专家现场调研
-            </Link>
-            <Link
-              href="/products"
-              className="h-16 px-10 inline-flex items-center justify-center rounded-full bg-transparent border-2 border-white/30 text-white text-xl font-medium hover:bg-white/10 transition-colors"
-            >
-              查看完整产品矩阵 <ArrowRight className="ml-2 size-5" />
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CTASection {...mesCta} />
     </main>
   );
 }
