@@ -7,6 +7,10 @@ import { createMetadata } from "@/lib/metadata";
 import { getPageImage, source } from "@/lib/source";
 import { getMDXComponents } from "@/mdx-components";
 
+// ISR: 允许在不重新构建的情况下按需/定时刷新文档内容
+export const revalidate = 300;
+export const dynamicParams = true;
+
 export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
   const params = await props.params;
   const page = source.getPage(params.slug);
