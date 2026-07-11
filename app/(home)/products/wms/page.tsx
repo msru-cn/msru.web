@@ -21,6 +21,14 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { HeroMockup } from "@/components/hero-mockup";
+import { StatBlock } from "@/components/marketing";
+
+const WMS_STATS = [
+  { value: "150", unit: "%", label: "拣货人效跃升" },
+  { value: "0", unit: ".01%", label: "发货出错容忍率" },
+  { value: "40", unit: "%", label: "储位空间节省" },
+  { value: "24", unit: "h", label: "黑灯仓库无人转场" },
+];
 
 export default function WMSPage() {
   return (
@@ -67,39 +75,7 @@ export default function WMSPage() {
       </section>
 
       {/* 2. 仓储奇迹 - Apple 风格大字 */}
-      <section className="py-24 bg-zinc-950 text-white w-full border-b border-zinc-900">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-20 tracking-tight text-zinc-100">
-            彻底改写坪效与人效的极限。
-          </h2>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 divide-x-0 lg:divide-x divide-zinc-800">
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-emerald-400 mb-4 tracking-tighter">
-                150<span className="text-4xl md:text-5xl">%</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">拣货人效跃升</span>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-emerald-400 mb-4 tracking-tighter">
-                0<span className="text-4xl md:text-5xl">.01%</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">发货出错容忍率</span>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-emerald-400 mb-4 tracking-tighter">
-                40<span className="text-4xl md:text-5xl">%</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">储位空间节省</span>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-emerald-400 mb-4 tracking-tighter">
-                24<span className="text-4xl md:text-5xl">h</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">黑灯仓库无人转场</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      <StatBlock heading="彻底改写坪效与人效的极限。" accentColor="emerald" stats={WMS_STATS} />
 
       {/* 3. 设计哲学宣言 */}
       <section className="py-32 px-6 md:px-12 max-w-6xl mx-auto text-center space-y-8">
@@ -321,7 +297,7 @@ export default function WMSPage() {
       {/* 8. 巨型底部 CTA */}
       <section className="relative py-32 px-6 overflow-hidden bg-emerald-950 text-white border-t-4 border-teal-500">
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none" />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[radial-gradient(ellipse_at_center,var(--twbg-linear-to-tops))] from-teal-500/40 to-transparent blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-radial from-teal-500/40 to-transparent blur-3xl pointer-events-none" />
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <Container className="size-20 mx-auto mb-8 text-emerald-500 opacity-80" />

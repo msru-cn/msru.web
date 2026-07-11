@@ -11,7 +11,15 @@ import {
   Sparkles,
 } from "lucide-react";
 import Link from "next/link";
+import { StatBlock } from "@/components/marketing";
 import { HeroMockup } from "../../../../components/hero-mockup";
+
+const QMS_STATS = [
+  { value: "60", unit: "%", label: "客诉拦截率提升" },
+  { value: "85", unit: "%", label: "检验人工成本削减" },
+  { value: "100", unit: "%", label: "异常问题闭环率" },
+  { value: "0", unit: "容忍", label: "合规审查数据篡改" },
+];
 
 export default function QMSPage() {
   return (
@@ -58,39 +66,7 @@ export default function QMSPage() {
       </section>
 
       {/* 2. 核心指标统计 - Apple 风格大字 */}
-      <section className="py-24 bg-zinc-950 text-white w-full border-b border-zinc-900">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-20 tracking-tight text-zinc-100">
-            不是检验。是根本的预防。
-          </h2>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 divide-x-0 lg:divide-x divide-zinc-800">
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-rose-400 mb-4 tracking-tighter">
-                60<span className="text-4xl md:text-5xl">%</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">客诉拦截率提升</span>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-rose-400 mb-4 tracking-tighter">
-                85<span className="text-4xl md:text-5xl">%</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">检验人工成本削减</span>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-rose-400 mb-4 tracking-tighter">
-                100<span className="text-4xl md:text-5xl">%</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">异常问题闭环率</span>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-rose-400 mb-4 tracking-tighter">
-                0<span className="text-4xl md:text-5xl">容忍</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">合规审查数据篡改</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      <StatBlock heading="不是检验。是根本的预防。" accentColor="rose" stats={QMS_STATS} />
 
       {/* 3. 设计哲学宣言 */}
       <section className="py-32 px-6 md:px-12 max-w-6xl mx-auto text-center space-y-8">

@@ -10,7 +10,15 @@ import {
   Wrench,
 } from "lucide-react";
 import Link from "next/link";
+import { StatBlock } from "@/components/marketing";
 import { HeroMockup } from "../../../../components/hero-mockup";
+
+const EAM_STATS = [
+  { value: "80", unit: "%", label: "意外停机事故削减" },
+  { value: "25", unit: "%", label: "备件冗余资金释放" },
+  { value: "15", unit: "%", label: "设备平均生命周期延长" },
+  { value: "+30", unit: "%", label: "维修技师响应效率" },
+];
 
 export default function EAMPage() {
   return (
@@ -57,39 +65,7 @@ export default function EAMPage() {
       </section>
 
       {/* 2. 核心指标统计 - Apple 风格大字 */}
-      <section className="py-24 bg-zinc-950 text-white w-full border-b border-zinc-900">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-20 tracking-tight text-zinc-100">
-            不是折旧摊销。是生命周期续航。
-          </h2>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 divide-x-0 lg:divide-x divide-zinc-800">
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-teal-400 mb-4 tracking-tighter">
-                80<span className="text-4xl md:text-5xl">%</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">意外停机事故削减</span>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-teal-400 mb-4 tracking-tighter">
-                25<span className="text-4xl md:text-5xl">%</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">备件冗余资金释放</span>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-teal-400 mb-4 tracking-tighter">
-                15<span className="text-4xl md:text-5xl">%</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">设备平均生命周期延长</span>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-teal-400 mb-4 tracking-tighter">
-                +30<span className="text-4xl md:text-5xl">%</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">维修技师响应效率</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      <StatBlock heading="不是折旧摊销。是生命周期续航。" accentColor="teal" stats={EAM_STATS} />
 
       {/* 3. 设计哲学宣言 */}
       <section className="py-32 px-6 md:px-12 max-w-6xl mx-auto text-center space-y-8">

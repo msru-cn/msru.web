@@ -23,6 +23,14 @@ import Image from "next/image";
 import Link from "next/link";
 import type React from "react";
 import { HeroMockup } from "@/components/hero-mockup";
+import { StatBlock } from "@/components/marketing";
+
+const AI_STATS = [
+  { value: "99", unit: ".9%", label: "机器视觉漏检率小于万一" },
+  { value: "1", unit: "s", label: "专家知识库检索推理延迟" },
+  { value: "24", unit: "/7", label: "无情绪波动全天候当值" },
+  { value: "70", unit: "%", label: "少样本冷启动降低标注成本" },
+];
 
 export default function AIPage() {
   return (
@@ -69,37 +77,7 @@ export default function AIPage() {
       </section>
 
       {/* 2. 量化 AI 的威力 - Apple 风格大字 */}
-      <section className="py-24 bg-zinc-950 text-white w-full border-b border-b-zinc-900 border-t border-t-amber-900/40">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-20 tracking-tight text-zinc-100">当硅基智能介入生产。</h2>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 divide-x-0 lg:divide-x divide-zinc-800">
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-amber-500 mb-4 tracking-tighter">
-                99<span className="text-4xl md:text-5xl">.9%</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">机器视觉漏检率小于万一</span>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-amber-500 mb-4 tracking-tighter">
-                1<span className="text-4xl md:text-5xl">s</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">专家知识库检索推理延迟</span>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-amber-500 mb-4 tracking-tighter">
-                24<span className="text-4xl md:text-5xl">/7</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">无情绪波动全天候当值</span>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-amber-500 mb-4 tracking-tighter">
-                70<span className="text-4xl md:text-5xl">%</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">少样本冷启动降低标注成本</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      <StatBlock heading="当硅基智能介入生产。" accentColor="amber" stats={AI_STATS} />
 
       {/* 3. 设计哲学宣言 */}
       <section className="py-32 px-6 md:px-12 max-w-6xl mx-auto text-center space-y-8">

@@ -21,6 +21,14 @@ import {
   Zap,
 } from "lucide-react";
 import Link from "next/link";
+import { StatBlock } from "@/components/marketing";
+
+const IOT_STATS = [
+  { value: "300", unit: "+", label: "免驱直连工业协议" },
+  { value: "10", unit: "M", label: "QoS 分发高频峰值量" },
+  { value: "1", unit: "ms", label: "网关极端调度延迟" },
+  { value: "30", unit: "d", label: "断网时序数据本地离线缓存" },
+];
 
 export default function IoTPage() {
   return (
@@ -116,37 +124,7 @@ export default function IoTPage() {
         </div>
       </section>
       {/* 2. 海量数据支撑 - Apple 风格大字 */}
-      <section className="py-24 bg-zinc-950 text-white w-full border-b border-b-zinc-900 border-t border-t-purple-900/40">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-20 tracking-tight text-zinc-100">吞吐量，定义了一切。</h2>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 divide-x-0 lg:divide-x divide-zinc-800">
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-purple-400 mb-4 tracking-tighter">
-                300<span className="text-4xl md:text-5xl">+</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">免驱直连工业协议</span>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-purple-400 mb-4 tracking-tighter">
-                10<span className="text-4xl md:text-5xl">M</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">QoS 分发高频峰值量</span>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-purple-400 mb-4 tracking-tighter">
-                1<span className="text-4xl md:text-5xl">ms</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">网关极端调度延迟</span>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <span className="text-6xl md:text-7xl font-bold text-purple-400 mb-4 tracking-tighter">
-                30<span className="text-4xl md:text-5xl">d</span>
-              </span>
-              <span className="text-zinc-400 font-medium text-lg">断网时序数据本地离线缓存</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      <StatBlock heading="吞吐量，定义了一切。" accentColor="purple" stats={IOT_STATS} />
 
       {/* 3. 设计哲学宣言 */}
       <section className="py-32 px-6 md:px-12 max-w-6xl mx-auto text-center space-y-8">
