@@ -1,6 +1,6 @@
 export type AccentColor =
   | "blue" | "emerald" | "amber" | "orange" | "rose"
-  | "slate" | "purple" | "fuchsia" | "teal";
+  | "slate" | "purple" | "fuchsia" | "teal" | "cyan";
 
 export interface AccentClasses {
   text: string;
@@ -19,6 +19,7 @@ const MAP: Record<AccentColor, AccentClasses> = {
   purple:  { text: "text-purple-500",  border: "hover:border-purple-500/50",  glow: "from-purple-500/20 to-transparent",  gradientFrom: "from-purple-500" },
   fuchsia: { text: "text-fuchsia-500", border: "hover:border-fuchsia-500/50", glow: "from-fuchsia-500/20 to-transparent", gradientFrom: "from-fuchsia-500" },
   teal:    { text: "text-teal-500",    border: "hover:border-teal-500/50",    glow: "from-teal-500/20 to-transparent",    gradientFrom: "from-teal-500" },
+  cyan:    { text: "text-cyan-500",    border: "hover:border-cyan-500/50",    glow: "from-cyan-500/20 to-transparent",    gradientFrom: "from-cyan-500" },
 };
 
 export function getAccent(color: AccentColor): AccentClasses {

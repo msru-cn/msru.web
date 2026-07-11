@@ -11,3 +11,7 @@ test("returns full static tailwind classes for blue", () => {
 test("falls back to blue for unknown color", () => {
   expect(getAccent("unknown" as never).text).toBe("text-blue-500");
 });
+
+test("cyan accent resolves", () => {
+  expect(getAccent("cyan").text).toBe("text-cyan-500");
+});
