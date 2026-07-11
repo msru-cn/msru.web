@@ -1,0 +1,20 @@
+import {
+  Activity, AlbumIcon, ArrowRight, Battery, Box, Briefcase, CalendarDays,
+  Camera, CheckCircle, Code, ComponentIcon, Cpu, Database, Eye, FileText,
+  Globe, Handshake, HardDrive, Layers, LayoutTemplate, Network, Package,
+  Puzzle, Settings, Shield, ShieldCheck, Sparkles, Sprout, Star, Terminal,
+  TrendingUp, Users, Zap, type LucideIcon,
+} from "lucide-react";
+
+const REGISTRY: Record<string, LucideIcon> = {
+  Activity, AlbumIcon, ArrowRight, Battery, Box, Briefcase, CalendarDays,
+  Camera, CheckCircle, Code, ComponentIcon, Cpu, Database, Eye, FileText,
+  Globe, Handshake, HardDrive, Layers, LayoutTemplate, Network, Package,
+  Puzzle, Settings, Shield, ShieldCheck, Sparkles, Sprout, Star, Terminal,
+  TrendingUp, Users, Zap,
+};
+
+export function resolveIcon(name?: string): LucideIcon | undefined {
+  if (!name) return undefined;
+  return REGISTRY[name];
+}
