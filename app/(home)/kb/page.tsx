@@ -1,5 +1,6 @@
-import { ArrowRight, BookOpen, Search } from "lucide-react";
+import { BookOpen, Search } from "lucide-react";
 import Link from "next/link";
+import { SubPageCta } from "@/components/marketing";
 
 const KB_CATEGORIES = [
   { title: "快速入门指南", count: 24, desc: "产品安装、首次配置与基础操作教程" },
@@ -57,17 +58,7 @@ export default function KnowledgeBasePage() {
         </div>
       </section>
 
-      <section className="py-24 bg-zinc-50 dark:bg-zinc-900 text-center">
-        <div className="container mx-auto px-6 space-y-6">
-          <h2 className="text-3xl font-bold text-zinc-900 dark:text-white">没找到答案？</h2>
-          <Link
-            href="/support"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-bold rounded-xl hover:opacity-90 transition"
-          >
-            联系技术支持 <ArrowRight className="size-4" />
-          </Link>
-        </div>
-      </section>
+      <SubPageCta title="没找到答案？" cta={{ label: "联系技术支持", href: "/support" }} />
     </div>
   );
 }

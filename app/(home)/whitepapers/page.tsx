@@ -1,4 +1,5 @@
 import { BookOpen, Download } from "lucide-react";
+import { SubPageHero } from "@/components/marketing";
 
 const PAPERS = [
   { title: "智能制造 2025：从MES到全域数字孪生的演进路径", tag: "行业趋势", date: "2025-12", pages: 42 },
@@ -11,21 +12,15 @@ const PAPERS = [
 export default function WhitepapersPage() {
   return (
     <div className="flex flex-col w-full min-h-screen">
-      <section className="relative pt-32 pb-24 bg-zinc-950 overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <div className="max-w-4xl mx-auto space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-[10px] font-bold text-blue-400 uppercase tracking-widest">
-              <BookOpen className="size-3" /> Whitepapers & Insights
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tighter">
-              工业洞察<span className="italic text-zinc-500">白皮书</span>
-            </h1>
-            <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
-              来自 MSRU 研究院与行业分析师的深度报告，洞察智能制造前沿趋势。
-            </p>
-          </div>
-        </div>
-      </section>
+      <SubPageHero
+        badge={{ icon: BookOpen, text: "Whitepapers & Insights" }}
+        title={
+          <>
+            工业洞察<span className="italic text-zinc-500">白皮书</span>
+          </>
+        }
+        subtitle="来自 MSRU 研究院与行业分析师的深度报告，洞察智能制造前沿趋势。"
+      />
 
       <section className="py-24 bg-white dark:bg-zinc-950">
         <div className="container mx-auto px-6 max-w-4xl space-y-6">

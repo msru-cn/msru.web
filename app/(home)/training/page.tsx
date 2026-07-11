@@ -1,5 +1,5 @@
-import { ArrowRight, Award, GraduationCap } from "lucide-react";
-import Link from "next/link";
+import { Award, GraduationCap } from "lucide-react";
+import { SubPageCta, SubPageHero } from "@/components/marketing";
 
 const TRACKS = [
   {
@@ -25,21 +25,16 @@ const TRACKS = [
 export default function TrainingPage() {
   return (
     <div className="flex flex-col w-full min-h-screen">
-      <section className="relative pt-32 pb-24 bg-zinc-950 overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <div className="max-w-4xl mx-auto space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-bold text-emerald-400 uppercase tracking-widest">
-              <GraduationCap className="size-3" /> MSRU Academy
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tighter">
-              官方学院<span className="italic text-zinc-500">与认证</span>
-            </h1>
-            <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
-              系统化的开发者与实施人才赋能体系，从入门到专家的完整成长路径。
-            </p>
-          </div>
-        </div>
-      </section>
+      <SubPageHero
+        badge={{ icon: GraduationCap, text: "MSRU Academy" }}
+        title={
+          <>
+            官方学院<span className="italic text-zinc-500">与认证</span>
+          </>
+        }
+        subtitle="系统化的开发者与实施人才赋能体系，从入门到专家的完整成长路径。"
+        accentColor="emerald"
+      />
 
       <section className="py-24 bg-white dark:bg-zinc-950">
         <div className="container mx-auto px-6 max-w-4xl space-y-8">
@@ -49,7 +44,7 @@ export default function TrainingPage() {
               className="group p-8 rounded-[2rem] border border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 hover:border-emerald-500/50 transition-all space-y-4"
             >
               <div className="flex items-center gap-3">
-                <Award className="size-6 text-emerald-500" />
+                <Award className="size-6 text-emerald-500" aria-hidden="true" />
                 <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-500 text-[10px] font-bold uppercase">
                   {track.level}
                 </span>
@@ -62,17 +57,7 @@ export default function TrainingPage() {
         </div>
       </section>
 
-      <section className="py-24 bg-zinc-50 dark:bg-zinc-900 text-center">
-        <div className="container mx-auto px-6 space-y-6">
-          <h2 className="text-3xl font-bold text-zinc-900 dark:text-white">立即报名下一期培训</h2>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-bold rounded-xl hover:opacity-90 transition"
-          >
-            联系培训团队 <ArrowRight className="size-4" />
-          </Link>
-        </div>
-      </section>
+      <SubPageCta title="立即报名下一期培训" cta={{ label: "联系培训团队", href: "/contact" }} />
     </div>
   );
 }

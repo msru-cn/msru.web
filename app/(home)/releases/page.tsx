@@ -1,5 +1,5 @@
-import { ArrowRight, Code, Tag } from "lucide-react";
-import Link from "next/link";
+import { Code, Tag } from "lucide-react";
+import { SubPageCta, SubPageHero } from "@/components/marketing";
 
 const RELEASES = [
   {
@@ -40,21 +40,15 @@ const RELEASES = [
 export default function ReleasesPage() {
   return (
     <div className="flex flex-col w-full min-h-screen">
-      <section className="relative pt-32 pb-24 bg-zinc-950 overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <div className="max-w-4xl mx-auto space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-bold text-primary uppercase tracking-widest">
-              <Code className="size-3" /> Release Notes
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tighter">
-              发行说明<span className="italic text-zinc-500">与路线图</span>
-            </h1>
-            <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
-              追踪 MSRU 平台每一次重大迭代、安全补丁与功能演进。
-            </p>
-          </div>
-        </div>
-      </section>
+      <SubPageHero
+        badge={{ icon: Code, text: "Release Notes" }}
+        title={
+          <>
+            发行说明<span className="italic text-zinc-500">与路线图</span>
+          </>
+        }
+        subtitle="追踪 MSRU 平台每一次重大迭代、安全补丁与功能演进。"
+      />
 
       <section className="py-24 bg-white dark:bg-zinc-950">
         <div className="container mx-auto px-6 max-w-4xl">
@@ -86,17 +80,7 @@ export default function ReleasesPage() {
         </div>
       </section>
 
-      <section className="py-24 bg-zinc-50 dark:bg-zinc-900 text-center">
-        <div className="container mx-auto px-6 space-y-6">
-          <h2 className="text-3xl font-bold text-zinc-900 dark:text-white">查看版本生命周期</h2>
-          <Link
-            href="/eol"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-bold rounded-xl hover:opacity-90 transition"
-          >
-            版本 EOL 时间表 <ArrowRight className="size-4" />
-          </Link>
-        </div>
-      </section>
+      <SubPageCta title="查看版本生命周期" cta={{ label: "版本 EOL 时间表", href: "/eol" }} />
     </div>
   );
 }

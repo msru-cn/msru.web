@@ -1,5 +1,5 @@
-import { ArrowRight, CheckCircle, HardDrive } from "lucide-react";
-import Link from "next/link";
+import { CheckCircle, HardDrive } from "lucide-react";
+import { SubPageCta, SubPageHero } from "@/components/marketing";
 
 const HARDWARE = [
   { category: "工业边缘网关", items: ["Advantech UNO-2484G", "Siemens IOT2050", "MSRU Edge Box M1"] },
@@ -11,19 +11,12 @@ const HARDWARE = [
 export default function HardwarePartnersPage() {
   return (
     <div className="flex flex-col w-full min-h-screen">
-      <section className="relative pt-32 pb-24 bg-zinc-950 overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <div className="max-w-4xl mx-auto space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-[10px] font-bold text-amber-400 uppercase tracking-widest">
-              <HardDrive className="size-3" /> Certified Hardware
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tighter">认证硬件生态</h1>
-            <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
-              经过 MSRU 实验室严格测试认证的工业网关、PLC、视觉传感器与 RFID 硬件目录。
-            </p>
-          </div>
-        </div>
-      </section>
+      <SubPageHero
+        badge={{ icon: HardDrive, text: "Certified Hardware" }}
+        title="认证硬件生态"
+        subtitle="经过 MSRU 实验室严格测试认证的工业网关、PLC、视觉传感器与 RFID 硬件目录。"
+        accentColor="amber"
+      />
 
       <section className="py-24 bg-white dark:bg-zinc-950">
         <div className="container mx-auto px-6 max-w-5xl">
@@ -47,17 +40,7 @@ export default function HardwarePartnersPage() {
         </div>
       </section>
 
-      <section className="py-24 bg-zinc-50 dark:bg-zinc-900 text-center">
-        <div className="container mx-auto px-6 space-y-6">
-          <h2 className="text-3xl font-bold text-zinc-900 dark:text-white">提交硬件认证申请</h2>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-bold rounded-xl hover:opacity-90 transition"
-          >
-            联系硬件生态团队 <ArrowRight className="size-4" />
-          </Link>
-        </div>
-      </section>
+      <SubPageCta title="提交硬件认证申请" cta={{ label: "联系硬件生态团队", href: "/contact" }} />
     </div>
   );
 }

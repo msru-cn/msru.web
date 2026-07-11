@@ -1,5 +1,5 @@
-import { ArrowRight, Calculator } from "lucide-react";
-import Link from "next/link";
+import { Calculator } from "lucide-react";
+import { SubPageCta, SubPageHero } from "@/components/marketing";
 
 const TCO_ITEMS = [
   { category: "软件许可", traditional: "¥800,000/年", msru: "¥398,000/年", saving: "50%" },
@@ -12,19 +12,12 @@ const TCO_ITEMS = [
 export default function TCOPage() {
   return (
     <div className="flex flex-col w-full min-h-screen">
-      <section className="relative pt-32 pb-24 bg-zinc-950 overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <div className="max-w-4xl mx-auto space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-bold text-emerald-400 uppercase tracking-widest">
-              <Calculator className="size-3" /> Total Cost of Ownership
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tighter">总体拥有成本</h1>
-            <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
-              MSRU 统一平台 vs 传统多系统拼凑方案的 5 年 TCO 对比分析。
-            </p>
-          </div>
-        </div>
-      </section>
+      <SubPageHero
+        badge={{ icon: Calculator, text: "Total Cost of Ownership" }}
+        title="总体拥有成本"
+        subtitle="MSRU 统一平台 vs 传统多系统拼凑方案的 5 年 TCO 对比分析。"
+        accentColor="emerald"
+      />
 
       <section className="py-24 bg-white dark:bg-zinc-950">
         <div className="container mx-auto px-6 max-w-4xl">
@@ -60,17 +53,7 @@ export default function TCOPage() {
         </div>
       </section>
 
-      <section className="py-24 bg-zinc-50 dark:bg-zinc-900 text-center">
-        <div className="container mx-auto px-6 space-y-6">
-          <h2 className="text-3xl font-bold text-zinc-900 dark:text-white">获取定制化 TCO 评估</h2>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-bold rounded-xl hover:opacity-90 transition"
-          >
-            联系方案架构师 <ArrowRight className="size-4" />
-          </Link>
-        </div>
-      </section>
+      <SubPageCta title="获取定制化 TCO 评估" cta={{ label: "联系方案架构师", href: "/contact" }} />
     </div>
   );
 }

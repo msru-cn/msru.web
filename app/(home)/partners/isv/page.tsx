@@ -1,5 +1,6 @@
 import { ArrowRight, Code, Handshake, Puzzle, Sparkles } from "lucide-react";
 import Link from "next/link";
+import { SubPageCardGrid, SubPageHero, SubPageSection } from "@/components/marketing";
 
 const BENEFITS = [
   {
@@ -27,38 +28,22 @@ const BENEFITS = [
 export default function ISVPartnerPage() {
   return (
     <div className="flex flex-col w-full min-h-screen">
-      <section className="relative pt-32 pb-24 bg-zinc-950 overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <div className="max-w-4xl mx-auto space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-[10px] font-bold text-purple-400 uppercase tracking-widest">
-              <Handshake className="size-3" /> ISV Partner Program
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tighter">
-              ISV <span className="italic text-zinc-500">联合方案</span>
-            </h1>
-            <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
-              携手独立软件供应商，共建工业数字化的联合解决方案生态。
-            </p>
-          </div>
-        </div>
-      </section>
+      <SubPageHero
+        badge={{ icon: Handshake, text: "ISV Partner Program" }}
+        title={
+          <>
+            ISV <span className="italic text-zinc-500">联合方案</span>
+          </>
+        }
+        subtitle="携手独立软件供应商，共建工业数字化的联合解决方案生态。"
+        accentColor="purple"
+      />
 
-      <section className="py-24 bg-white dark:bg-zinc-950">
-        <div className="container mx-auto px-6 max-w-5xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {BENEFITS.map((b) => (
-              <div
-                key={b.title}
-                className="p-8 rounded-[2rem] border border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 space-y-4 hover:border-purple-500/50 transition-colors"
-              >
-                {b.icon}
-                <h3 className="text-xl font-bold text-zinc-900 dark:text-white">{b.title}</h3>
-                <p className="text-zinc-500 leading-relaxed">{b.desc}</p>
-              </div>
-            ))}
-          </div>
+      <SubPageSection>
+        <div className="max-w-5xl mx-auto">
+          <SubPageCardGrid cards={BENEFITS} />
         </div>
-      </section>
+      </SubPageSection>
 
       <section className="py-24 bg-purple-600 text-center">
         <div className="container mx-auto px-6 space-y-8">

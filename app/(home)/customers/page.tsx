@@ -1,6 +1,6 @@
-import { ArrowRight, Building2 } from "lucide-react";
+import { Building2 } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import { SubPageCta, SubPageHero } from "@/components/marketing";
 
 const CASES = [
   {
@@ -29,19 +29,15 @@ const CASES = [
 export default function CustomersPage() {
   return (
     <div className="flex flex-col w-full min-h-screen">
-      <section className="relative pt-32 pb-24 bg-zinc-950 overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <div className="max-w-4xl mx-auto space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-bold text-primary uppercase tracking-widest">
-              <Building2 className="size-3" /> Customer Stories
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tighter">
-              全球标杆<span className="italic text-zinc-500">案例库</span>
-            </h1>
-            <p className="text-xl text-zinc-400 max-w-2xl mx-auto">来自千亿级集团的真实数字化转型成果与 ROI 分析。</p>
-          </div>
-        </div>
-      </section>
+      <SubPageHero
+        badge={{ icon: Building2, text: "Customer Stories" }}
+        title={
+          <>
+            全球标杆<span className="italic text-zinc-500">案例库</span>
+          </>
+        }
+        subtitle="来自千亿级集团的真实数字化转型成果与 ROI 分析。"
+      />
 
       <section className="py-24 bg-white dark:bg-zinc-950">
         <div className="container mx-auto px-6 max-w-5xl space-y-12">
@@ -64,17 +60,7 @@ export default function CustomersPage() {
         </div>
       </section>
 
-      <section className="py-24 bg-zinc-50 dark:bg-zinc-900 text-center">
-        <div className="container mx-auto px-6 space-y-6">
-          <h2 className="text-3xl font-bold text-zinc-900 dark:text-white">想成为下一个标杆？</h2>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-bold rounded-xl hover:opacity-90 transition"
-          >
-            预约战略演示 <ArrowRight className="size-4" />
-          </Link>
-        </div>
-      </section>
+      <SubPageCta title="想成为下一个标杆？" cta={{ label: "预约战略演示", href: "/contact" }} />
     </div>
   );
 }
