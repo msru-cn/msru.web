@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { StatBlock } from "@/components/marketing";
-import { HeroMockup } from "../../../../components/hero-mockup";
+import { HeroMockup } from "@/components/hero-mockup";
 
 const QMS_STATS = [
   { value: "60", unit: "%", label: "客诉拦截率提升" },

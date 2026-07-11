@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { StatBlock } from "@/components/marketing";
-import { HeroMockup } from "../../../../components/hero-mockup";
+import { HeroMockup } from "@/components/hero-mockup";
 
 const EAM_STATS = [
   { value: "80", unit: "%", label: "意外停机事故削减" },

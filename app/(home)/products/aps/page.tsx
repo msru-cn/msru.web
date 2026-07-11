@@ -13,7 +13,7 @@ import {
 import Link from "next/link";
 import { CTASection, Hero, StatBlock } from "@/components/marketing";
 import { apsCta, apsHero, apsStats } from "@/content/marketing/products/aps";
-import { HeroMockup } from "../../../../components/hero-mockup";
+import { HeroMockup } from "@/components/hero-mockup";
 
 export default function APSPage() {
   return (
