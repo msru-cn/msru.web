@@ -1,0 +1,10 @@
+[
+  { "type": "hero", "variant": "dark", "badge": { "icon": "Battery", "text": "新能源与电池" }, "title": "从电芯到 PACK，全链路数字化", "subtitle": "高通量极片质检、电芯追溯与循环寿命建模。", "accentColor": "amber" },
+  { "type": "featureGrid", "columns": 3, "cards": [
+    { "icon": "Eye", "title": "极片高通量质检", "desc": "AI 视觉在线检测涂布缺陷，漏检率低于万一。" },
+    { "icon": "Network", "title": "电芯全程追溯", "desc": "从卷绕到化成的单体级数据链路。" },
+    { "icon": "Battery", "title": "循环寿命建模", "desc": "基于工况数据预测衰减曲线与失效风险。" }
+  ] },
+  { "type": "splitMedia", "side": "right", "image": "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=800", "eyebrow": "量产验证", "title": "化成分容全域管控", "body": "打通化成、分容、老化工序数据，异常实时拦截。", "bullets": ["工序级数据看板", "异常自动闭环", "OEE 实时追踪"] },
+  { "type": "cta", "variant": "small", "title": "获取电池行业方案", "cta": { "label": "预约行业演示", "href": "/contact" } }
+]
