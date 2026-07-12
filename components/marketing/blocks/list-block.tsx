@@ -44,8 +44,14 @@ export function ListBlock({ variant = "rows", items }: ListBlockProps) {
               variant === "timeline" && "border-l-2 border-l-primary/40",
             );
             return (
-              <li key={`${it.title}-${i}`} className={cls}>
-                {it.href ? <Link href={it.href} className="block hover:opacity-80">{inner}</Link> : inner}
+              <li key={`${it.title}-${it.meta ?? i}`} className={cls}>
+                {it.href ? (
+                  <Link href={it.href} className="block hover:opacity-80">
+                    {inner}
+                  </Link>
+                ) : (
+                  inner
+                )}
               </li>
             );
           })}

@@ -29,14 +29,19 @@ export function AnimatedBeams({ nodes, edges, heading, subtitle }: AnimatedBeams
       <div className="container mx-auto px-6 text-center space-y-6">
         {heading && <h2 className="text-4xl md:text-5xl font-bold tracking-tighter">{heading}</h2>}
         {subtitle && <p className="text-zinc-400 max-w-2xl mx-auto">{subtitle}</p>}
-        <svg viewBox="0 0 600 300" className="w-full max-w-3xl mx-auto mt-8" role="img" aria-label={heading ?? "architecture data flow"}>
+        <svg
+          viewBox="0 0 600 300"
+          className="w-full max-w-3xl mx-auto mt-8"
+          role="img"
+          aria-label={heading ?? "architecture data flow"}
+        >
           <title>{heading ?? "architecture data flow"}</title>
           {edges.map((e, i) => {
             const a = nodePos(e.from, nodes.length);
             const b = nodePos(e.to, nodes.length);
             return (
               <motion.line
-                key={`e-${i}`}
+                key={`edge-${e.from}-${e.to}`}
                 x1={a.x}
                 y1={a.y}
                 x2={b.x}
@@ -57,7 +62,17 @@ export function AnimatedBeams({ nodes, edges, heading, subtitle }: AnimatedBeams
           </defs>
           {nodes.map((n, i) => {
             const p = nodePos(i, nodes.length);
-            return <circle key={`n-${i}`} cx={p.x} cy={p.y} r={22} fill="#18181b" stroke="#3f3f46" strokeWidth={1.5} />;
+            return (
+              <circle
+                key={`node-${n.label}`}
+                cx={p.x}
+                cy={p.y}
+                r={22}
+                fill="#18181b"
+                stroke="#3f3f46"
+                strokeWidth={1.5}
+              />
+            );
           })}
         </svg>
         <div className="flex flex-wrap justify-center gap-6 mt-4">

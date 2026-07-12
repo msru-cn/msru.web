@@ -1,28 +1,83 @@
 [
-  { "type": "hero", "variant": "dark", "badge": { "icon": "Network", "text": "IoT Platform" }, "title": "IoT 数据采集系统", "subtitle": "海量异构设备接入与边缘数据清洗，秒级边缘计算。", "accentColor": "purple" },
-  { "type": "statBand", "heading": "吞吐量，定义了一切。", "accentColor": "purple", "stats": [
-    { "value": "300", "unit": "+", "label": "免驱直连工业协议" },
-    { "value": "10", "unit": "M", "label": "QoS 分发高频峰值量" },
-    { "value": "1", "unit": "ms", "label": "网关极端调度延迟" },
-    { "value": "30", "unit": "d", "label": "断网时序数据本地离线缓存" }
-  ] },
-  { "type": "animatedBeams", "heading": "从采集到执行，数据一路流动。", "subtitle": "IoT 边缘节点将现场数据清洗后注入平台，驱动上层业务。", "nodes": [
-    { "icon": "Network", "label": "IoT 采集" },
-    { "icon": "Cpu", "label": "边缘清洗" },
-    { "icon": "Box", "label": "平台底座" },
-    { "icon": "Package", "label": "MES/WMS" }
-  ], "edges": [ { "from": 0, "to": 1 }, { "from": 1, "to": 2 }, { "from": 2, "to": 3 } ] },
-  { "type": "statement", "title": "只传有用的，", "body": "边缘侧完成滤波、聚合与异常判定，把带宽和算力留给真正的决策。" },
-  { "type": "bento", "items": [
-    { "icon": "Network", "accentColor": "purple", "title": "全协议接入", "tagline": "即插即接", "description": "Modbus/OPC-UA/MQTT 等 300+ 协议免驱直连。", "span": "wide" },
-    { "icon": "Database", "accentColor": "blue", "title": "时序存储", "tagline": "海量高频", "description": "百万级测点秒级写入与断网续传。" },
-    { "icon": "Cpu", "accentColor": "teal", "title": "边缘计算", "tagline": "就近决策", "description": "规则引擎与轻量模型在网关侧实时执行。" }
-  ] },
-  { "type": "connectivityGlobe", "heading": "全球工业节点，实时互联。", "subtitle": "跨区域工厂设备统一接入同一张数据网络。", "autoRotate": true, "markers": [
-    { "lat": 22.27, "lng": 113.57, "label": "珠海" },
-    { "lat": 31.23, "lng": 121.47, "label": "上海" },
-    { "lat": 50.11, "lng": 8.68, "label": "法兰克福" },
-    { "lat": 37.77, "lng": -122.42, "label": "旧金山" }
-  ] },
-  { "type": "cta", "variant": "small", "title": "接入您的第一台设备", "cta": { "label": "预约 IoT 演示", "href": "/contact" } }
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": { "icon": "Network", "text": "IoT Platform" },
+    "title": "IoT 数据采集系统",
+    "subtitle": "海量异构设备接入与边缘数据清洗，秒级边缘计算。",
+    "accentColor": "purple"
+  },
+  {
+    "type": "statBand",
+    "heading": "吞吐量，定义了一切。",
+    "accentColor": "purple",
+    "stats": [
+      { "value": "300", "unit": "+", "label": "免驱直连工业协议" },
+      { "value": "10", "unit": "M", "label": "QoS 分发高频峰值量" },
+      { "value": "1", "unit": "ms", "label": "网关极端调度延迟" },
+      { "value": "30", "unit": "d", "label": "断网时序数据本地离线缓存" }
+    ]
+  },
+  {
+    "type": "animatedBeams",
+    "heading": "从采集到执行，数据一路流动。",
+    "subtitle": "IoT 边缘节点将现场数据清洗后注入平台，驱动上层业务。",
+    "nodes": [
+      { "icon": "Network", "label": "IoT 采集" },
+      { "icon": "Cpu", "label": "边缘清洗" },
+      { "icon": "Box", "label": "平台底座" },
+      { "icon": "Package", "label": "MES/WMS" }
+    ],
+    "edges": [{ "from": 0, "to": 1 }, { "from": 1, "to": 2 }, { "from": 2, "to": 3 }]
+  },
+  {
+    "type": "statement",
+    "title": "只传有用的，",
+    "body": "边缘侧完成滤波、聚合与异常判定，把带宽和算力留给真正的决策。"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Network",
+        "accentColor": "purple",
+        "title": "全协议接入",
+        "tagline": "即插即接",
+        "description": "Modbus/OPC-UA/MQTT 等 300+ 协议免驱直连。",
+        "span": "wide"
+      },
+      {
+        "icon": "Database",
+        "accentColor": "blue",
+        "title": "时序存储",
+        "tagline": "海量高频",
+        "description": "百万级测点秒级写入与断网续传。"
+      },
+      {
+        "icon": "Cpu",
+        "accentColor": "teal",
+        "title": "边缘计算",
+        "tagline": "就近决策",
+        "description": "规则引擎与轻量模型在网关侧实时执行。"
+      }
+    ]
+  },
+  {
+    "type": "connectivityGlobe",
+    "heading": "全球工业节点，实时互联。",
+    "subtitle": "跨区域工厂设备统一接入同一张数据网络。",
+    "autoRotate": true,
+    "markers": [
+      { "lat": 22.27, "lng": 113.57, "label": "珠海" },
+      { "lat": 31.23, "lng": 121.47, "label": "上海" },
+      { "lat": 50.11, "lng": 8.68, "label": "法兰克福" },
+      { "lat": 37.77, "lng": -122.42, "label": "旧金山" }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "small",
+    "title": "接入您的第一台设备",
+    "cta": { "label": "预约 IoT 演示", "href": "/contact" }
+  }
 ]

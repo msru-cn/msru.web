@@ -160,7 +160,23 @@ const animatedBeams = z.object({
 });
 
 export const blockSchema = z.discriminatedUnion("type", [
-  hero, statBand, featureGrid, bento, ctaBlock, pricingTable, custom, splitMedia, list, caseList, statement, logoWall, faq, testimonial, mediaShowcase, connectivityGlobe, animatedBeams,
+  hero,
+  statBand,
+  featureGrid,
+  bento,
+  ctaBlock,
+  pricingTable,
+  custom,
+  splitMedia,
+  list,
+  caseList,
+  statement,
+  logoWall,
+  faq,
+  testimonial,
+  mediaShowcase,
+  connectivityGlobe,
+  animatedBeams,
 ]);
 export const pageSchema = z.array(blockSchema);
 export type Block = z.infer<typeof blockSchema>;

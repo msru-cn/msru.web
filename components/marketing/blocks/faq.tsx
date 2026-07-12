@@ -20,7 +20,10 @@ export function Faq({ items }: FaqProps) {
           >
             <summary className="flex items-center justify-between cursor-pointer font-bold text-zinc-900 dark:text-white list-none">
               {it.q}
-              <ChevronDown className="size-5 text-zinc-400 group-open:rotate-180 transition-transform" aria-hidden="true" />
+              <ChevronDown
+                className="size-5 text-zinc-400 group-open:rotate-180 transition-transform"
+                aria-hidden="true"
+              />
             </summary>
             <p className="mt-4 text-zinc-500 leading-relaxed">{it.a}</p>
           </details>

@@ -110,7 +110,9 @@ export function renderBlock(block: Block, index: number): ReactNode {
     case "faq":
       return <Faq key={key} items={block.items} />;
     case "testimonial":
-      return <Testimonial key={key} quote={block.quote} author={block.author} role={block.role} avatar={block.avatar} />;
+      return (
+        <Testimonial key={key} quote={block.quote} author={block.author} role={block.role} avatar={block.avatar} />
+      );
     case "mediaShowcase":
       return <MediaShowcase key={key} media={block.media} title={block.title} caption={block.caption} />;
     case "connectivityGlobe":
@@ -125,7 +127,13 @@ export function renderBlock(block: Block, index: number): ReactNode {
       );
     case "animatedBeams":
       return (
-        <AnimatedBeams key={key} nodes={block.nodes} edges={block.edges} heading={block.heading} subtitle={block.subtitle} />
+        <AnimatedBeams
+          key={key}
+          nodes={block.nodes}
+          edges={block.edges}
+          heading={block.heading}
+          subtitle={block.subtitle}
+        />
       );
     default:
       return null;

@@ -27,9 +27,7 @@ export function SplitMedia({ image, side = "left", eyebrow, title, body, bullets
           <Image src={image} alt={title} fill className="object-cover" />
         </div>
         <div className="w-full lg:w-1/2 space-y-5">
-          {eyebrow && (
-            <span className="text-[10px] font-bold uppercase tracking-widest text-primary">{eyebrow}</span>
-          )}
+          {eyebrow && <span className="text-[10px] font-bold uppercase tracking-widest text-primary">{eyebrow}</span>}
           <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white tracking-tight">{title}</h2>
           <p className="text-lg text-zinc-500 leading-relaxed">{body}</p>
           {bullets && (
@@ -42,7 +40,10 @@ export function SplitMedia({ image, side = "left", eyebrow, title, body, bullets
             </ul>
           )}
           {cta && (
-            <Link href={cta.href} className="inline-flex items-center gap-2 font-bold text-primary hover:gap-3 transition-all">
+            <Link
+              href={cta.href}
+              className="inline-flex items-center gap-2 font-bold text-primary hover:gap-3 transition-all"
+            >
               {cta.label} <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
           )}
