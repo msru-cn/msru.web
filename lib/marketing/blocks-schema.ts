@@ -128,8 +128,16 @@ const faq = z.object({
   items: z.array(z.object({ q: z.string(), a: z.string() })),
 });
 
+const testimonial = z.object({
+  type: z.literal("testimonial"),
+  quote: z.string(),
+  author: z.string(),
+  role: z.string().optional(),
+  avatar: z.string().optional(),
+});
+
 export const blockSchema = z.discriminatedUnion("type", [
-  hero, statBand, featureGrid, bento, ctaBlock, pricingTable, custom, splitMedia, list, caseList, statement, logoWall, faq,
+  hero, statBand, featureGrid, bento, ctaBlock, pricingTable, custom, splitMedia, list, caseList, statement, logoWall, faq, testimonial,
 ]);
 export const pageSchema = z.array(blockSchema);
 export type Block = z.infer<typeof blockSchema>;

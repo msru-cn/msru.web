@@ -9,6 +9,7 @@ import { ListBlock } from "./blocks/list-block";
 import { LogoWall } from "./blocks/logo-wall";
 import { SplitMedia } from "./blocks/split-media";
 import { Statement } from "./blocks/statement";
+import { Testimonial } from "./blocks/testimonial";
 import { PricingTable } from "./pricing-table";
 import { StatBlock } from "./stat-block";
 import { SubPageCardGrid, SubPageCta, SubPageHero } from "./sub-page-template";
@@ -105,6 +106,8 @@ export function renderBlock(block: Block, index: number): ReactNode {
       return <LogoWall key={key} items={block.items} />;
     case "faq":
       return <Faq key={key} items={block.items} />;
+    case "testimonial":
+      return <Testimonial key={key} quote={block.quote} author={block.author} role={block.role} avatar={block.avatar} />;
     default:
       return null;
   }
