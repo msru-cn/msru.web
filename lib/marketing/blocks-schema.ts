@@ -143,8 +143,16 @@ const mediaShowcase = z.object({
   caption: z.string().optional(),
 });
 
+const connectivityGlobe = z.object({
+  type: z.literal("connectivityGlobe"),
+  markers: z.array(z.object({ lat: z.number(), lng: z.number(), label: z.string().optional() })).optional(),
+  autoRotate: z.boolean().optional(),
+  heading: z.string().optional(),
+  subtitle: z.string().optional(),
+});
+
 export const blockSchema = z.discriminatedUnion("type", [
-  hero, statBand, featureGrid, bento, ctaBlock, pricingTable, custom, splitMedia, list, caseList, statement, logoWall, faq, testimonial, mediaShowcase,
+  hero, statBand, featureGrid, bento, ctaBlock, pricingTable, custom, splitMedia, list, caseList, statement, logoWall, faq, testimonial, mediaShowcase, connectivityGlobe,
 ]);
 export const pageSchema = z.array(blockSchema);
 export type Block = z.infer<typeof blockSchema>;

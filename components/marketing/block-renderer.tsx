@@ -16,6 +16,7 @@ import { StatBlock } from "./stat-block";
 import { SubPageCardGrid, SubPageCta, SubPageHero } from "./sub-page-template";
 
 const Faq = dynamic(() => import("./blocks/faq").then((m) => m.Faq));
+const ConnectivityGlobe = dynamic(() => import("./blocks/connectivity-globe").then((m) => m.ConnectivityGlobe));
 
 export function renderBlock(block: Block, index: number): ReactNode {
   const key = index;
@@ -111,6 +112,16 @@ export function renderBlock(block: Block, index: number): ReactNode {
       return <Testimonial key={key} quote={block.quote} author={block.author} role={block.role} avatar={block.avatar} />;
     case "mediaShowcase":
       return <MediaShowcase key={key} media={block.media} title={block.title} caption={block.caption} />;
+    case "connectivityGlobe":
+      return (
+        <ConnectivityGlobe
+          key={key}
+          markers={block.markers}
+          autoRotate={block.autoRotate}
+          heading={block.heading}
+          subtitle={block.subtitle}
+        />
+      );
     default:
       return null;
   }
