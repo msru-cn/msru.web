@@ -7,6 +7,7 @@ import { BentoCard, BentoGrid } from "./bento-card";
 import { CaseList } from "./blocks/case-list";
 import { ListBlock } from "./blocks/list-block";
 import { LogoWall } from "./blocks/logo-wall";
+import { MediaShowcase } from "./blocks/media-showcase";
 import { SplitMedia } from "./blocks/split-media";
 import { Statement } from "./blocks/statement";
 import { Testimonial } from "./blocks/testimonial";
@@ -108,6 +109,8 @@ export function renderBlock(block: Block, index: number): ReactNode {
       return <Faq key={key} items={block.items} />;
     case "testimonial":
       return <Testimonial key={key} quote={block.quote} author={block.author} role={block.role} avatar={block.avatar} />;
+    case "mediaShowcase":
+      return <MediaShowcase key={key} media={block.media} title={block.title} caption={block.caption} />;
     default:
       return null;
   }

@@ -136,8 +136,15 @@ const testimonial = z.object({
   avatar: z.string().optional(),
 });
 
+const mediaShowcase = z.object({
+  type: z.literal("mediaShowcase"),
+  media: z.string(),
+  title: z.string().optional(),
+  caption: z.string().optional(),
+});
+
 export const blockSchema = z.discriminatedUnion("type", [
-  hero, statBand, featureGrid, bento, ctaBlock, pricingTable, custom, splitMedia, list, caseList, statement, logoWall, faq, testimonial,
+  hero, statBand, featureGrid, bento, ctaBlock, pricingTable, custom, splitMedia, list, caseList, statement, logoWall, faq, testimonial, mediaShowcase,
 ]);
 export const pageSchema = z.array(blockSchema);
 export type Block = z.infer<typeof blockSchema>;
