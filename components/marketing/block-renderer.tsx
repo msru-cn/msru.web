@@ -17,6 +17,7 @@ import { SubPageCardGrid, SubPageCta, SubPageHero } from "./sub-page-template";
 
 const Faq = dynamic(() => import("./blocks/faq").then((m) => m.Faq));
 const ConnectivityGlobe = dynamic(() => import("./blocks/connectivity-globe").then((m) => m.ConnectivityGlobe));
+const AnimatedBeams = dynamic(() => import("./blocks/animated-beams").then((m) => m.AnimatedBeams));
 
 export function renderBlock(block: Block, index: number): ReactNode {
   const key = index;
@@ -121,6 +122,10 @@ export function renderBlock(block: Block, index: number): ReactNode {
           heading={block.heading}
           subtitle={block.subtitle}
         />
+      );
+    case "animatedBeams":
+      return (
+        <AnimatedBeams key={key} nodes={block.nodes} edges={block.edges} heading={block.heading} subtitle={block.subtitle} />
       );
     default:
       return null;

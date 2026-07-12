@@ -151,8 +151,16 @@ const connectivityGlobe = z.object({
   subtitle: z.string().optional(),
 });
 
+const animatedBeams = z.object({
+  type: z.literal("animatedBeams"),
+  nodes: z.array(z.object({ icon: z.string(), label: z.string() })),
+  edges: z.array(z.object({ from: z.number(), to: z.number() })),
+  heading: z.string().optional(),
+  subtitle: z.string().optional(),
+});
+
 export const blockSchema = z.discriminatedUnion("type", [
-  hero, statBand, featureGrid, bento, ctaBlock, pricingTable, custom, splitMedia, list, caseList, statement, logoWall, faq, testimonial, mediaShowcase, connectivityGlobe,
+  hero, statBand, featureGrid, bento, ctaBlock, pricingTable, custom, splitMedia, list, caseList, statement, logoWall, faq, testimonial, mediaShowcase, connectivityGlobe, animatedBeams,
 ]);
 export const pageSchema = z.array(blockSchema);
 export type Block = z.infer<typeof blockSchema>;
