@@ -1,0 +1,197 @@
+
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": { "icon": "Sparkles", "text": "描述驱动 · 工业软件内核" },
+    "title": "可被描述的，皆可生长。",
+    "subtitle": "你能把一件事描述得多清楚，就能把它管得多好。描述一次——有哪些东西、哪些规矩、会经历哪些环节——存储、接口、权限、流程、记录，系统照着描述自己接着长。",
+    "accentColor": "blue",
+    "ctas": [
+      { "label": "看看它怎么长出来", "href": "/products" },
+      { "label": "预约一次聊聊", "href": "/contact" }
+    ]
+  },
+  {
+    "type": "logoWall",
+    "eyebrow": "先从制造业落地",
+    "items": [
+      { "name": "动力电池", "icon": "Battery" },
+      { "name": "半导体", "icon": "Cpu" },
+      { "name": "汽车零部件", "icon": "Settings" },
+      { "name": "3C 电子", "icon": "Box" },
+      { "name": "智能装备", "icon": "Package" },
+      { "name": "现代农业", "icon": "Sprout" }
+    ]
+  },
+  {
+    "type": "statBand",
+    "heading": "写一次描述，底层自己长出来。",
+    "accentColor": "blue",
+    "stats": [
+      { "value": "1", "unit": "份描述", "label": "写一次，存储·接口·权限·事件·状态机·记录自己生成" },
+      { "value": "7", "unit": "样", "label": "一份描述自动长出的底层能力" },
+      { "value": "0", "unit": "行", "label": "通用内核里的行业专用代码，对所有行业为真" },
+      { "value": "1:1", "unit": "", "label": "一个客户，一套独立的数据边界" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "声明即投影。",
+    "body": "你只描述业务是什么、有哪些规矩、会经历哪些环节。剩下的——存储、接口、权限、流程、记录——系统照着描述自己生成。你写业务，它写底层。",
+    "accentColor": "blue"
+  },
+  {
+    "type": "featureGrid",
+    "columns": 3,
+    "cards": [
+      { "icon": "Puzzle", "title": "流程编排", "desc": "把业务规则拖成一张流程图，条件分支、并行、事件触发都能连；画好就能跑。" },
+      { "icon": "Box", "title": "WASM 扩展", "desc": "把你自己写的函数（Go / Rust / C++）编译成插件，像内置功能一样被流程和 AI 调用。" },
+      { "icon": "Activity", "title": "状态机", "desc": "工单、审批、维保这些有状态的事，用同一套状态机管，什么能转、什么不能，配置说了算。" },
+      { "icon": "Sparkles", "title": "AI 协作", "desc": "接入语音、检索和多个大模型；AI 照着同一套规矩帮你操作界面，而不是绕过流程。" },
+      { "icon": "Shield", "title": "关系型授权", "desc": "基于关系的权限控制（SpiceDB，Google Zanzibar 那套），谁能看、谁能改，精确到每一条数据。" },
+      { "icon": "FileText", "title": "描述即标准", "desc": "一份描述就是唯一标准，前后端照着同一份对齐，接口不会再对不上。" }
+    ]
+  },
+  {
+    "type": "bento",
+    "items": [
+      { "icon": "Cpu", "accentColor": "blue", "title": "MES 生产执行", "tagline": "工序记清楚", "description": "每一道工序、每一次报工都记下来，出了问题回头查得到。", "span": "wide" },
+      { "icon": "Package", "accentColor": "emerald", "title": "WMS 仓储", "tagline": "账实对得上", "description": "货在哪、动过谁、还剩多少，账和实物对得上。" },
+      { "icon": "CalendarDays", "accentColor": "amber", "title": "APS 排程", "tagline": "排得开", "description": "什么时候做什么、谁先谁后，按约束排得开，交期能提前推演。" },
+      { "icon": "ShieldCheck", "accentColor": "rose", "title": "QMS 品质", "tagline": "查得到", "description": "标准贯穿全流程，异常能定位，用 SPC 把错挡在发生之前。" },
+      { "icon": "Settings", "accentColor": "slate", "title": "EAM 设备", "tagline": "提前知道", "description": "根据设备运行数据提前提示保养，备件台账不乱。" },
+      { "icon": "Network", "accentColor": "purple", "title": "IoT 设备接入", "tagline": "接得进来", "description": "把大量设备接进来，数据先在边缘算一遍再上传。" },
+      { "icon": "Zap", "accentColor": "fuchsia", "title": "AI 能力", "tagline": "照规矩帮你干", "description": "智能排产、视觉质检、工艺分析——让 AI 照着业务规矩干活。", "span": "wide" }
+    ]
+  },
+  {
+    "type": "animatedBeams",
+    "heading": "从设备到决策，数据一条线贯通。",
+    "subtitle": "设备数据先在边缘清洗，进入 Core 内核，经统一网关分发到各业务模块，全程可查。",
+    "nodes": [
+      { "icon": "Network", "label": "设备采集" },
+      { "icon": "Cpu", "label": "边缘清洗" },
+      { "icon": "Box", "label": "Core 内核" },
+      { "icon": "Package", "label": "MES / WMS" }
+    ],
+    "edges": [
+      { "from": 0, "to": 1 },
+      { "from": 1, "to": 2 },
+      { "from": 2, "to": 3 }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "/uploads/msru_future_factory.png",
+    "eyebrow": "按需开通",
+    "title": "要哪块，开哪块；不用了，就停。",
+    "body": "每个业务模块独立部署、独立进程。像装 App 一样开通能力，不用推倒重来，也不为用不到的功能付钱。",
+    "bullets": [
+      "按需开通、独立部署、到期就停",
+      "加一个新模块，建目录、配一下，流水线自动发现并构建",
+      "自研函数用 WASM 打包，随时上线"
+    ],
+    "cta": { "label": "看看架构怎么搭的", "href": "/products" }
+  },
+  {
+    "type": "connectivityGlobe",
+    "heading": "一个后台，管到每个厂区。",
+    "subtitle": "多个厂区、多个区域的设备接进同一张网，在一个控制台看全局。（下方为示意坐标，上线前替换为真实厂区）",
+    "autoRotate": true,
+    "markers": [
+      { "lat": 22.27, "lng": 113.57, "label": "厂区示意 A" },
+      { "lat": 31.23, "lng": 121.47, "label": "厂区示意 B" },
+      { "lat": 23.13, "lng": 113.26, "label": "厂区示意 C" }
+    ]
+  },
+  {
+    "type": "list",
+    "variant": "steps",
+    "items": [
+      { "title": "写下描述", "meta": "01", "desc": "用一份描述写清楚：有哪些东西、哪些关系、哪些规矩。" },
+      { "title": "自动生成", "meta": "02", "desc": "存储、接口、权限、状态机、记录，照着描述自己长出来。" },
+      { "title": "连成流程", "meta": "03", "desc": "在画布上把业务规则拖成一条能跑的流程。" },
+      { "title": "上线运行", "meta": "04", "desc": "一键部署到你自己的服务器，AI 随即能照规矩帮忙操作。" }
+    ]
+  },
+  {
+    "type": "mediaShowcase",
+    "media": "/uploads/msru_hardware_synergy.png",
+    "title": "软硬一体，虚实对得上。",
+    "caption": "从边缘网关到 3D 车间画面，看到的和现场是同一份事实。"
+  },
+  {
+    "type": "caseList",
+    "cases": [
+      {
+        "company": "多产线动力电池厂（典型场景）",
+        "industry": "新能源 · 动力电池",
+        "result": "换型排程与追溯闭环",
+        "quote": "MES 和 APS 打通后，换型的排程和追溯能对上，交期不用再靠人盯。",
+        "image": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&q=80&w=800"
+      },
+      {
+        "company": "半导体封测（典型场景）",
+        "industry": "半导体 · 封装测试",
+        "result": "异常定位到分钟级",
+        "quote": "QMS 的 SPC 闭环加上实时采集，异常从发现到定位能缩到分钟级。",
+        "image": "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=800"
+      }
+    ]
+  },
+  {
+    "type": "testimonial",
+    "quote": "我不想每上一个新场景就重写一遍底层。描述一次，权限、事件、状态机全都长出来——工业软件本该是这样。",
+    "author": "许强",
+    "role": "msru 创始人"
+  },
+  {
+    "type": "pricingTable",
+    "plans": [
+      {
+        "name": "Starter",
+        "price": "¥0",
+        "unit": "/ 起步",
+        "description": "单车间先试起来，快速看到价值。",
+        "features": ["Core 内核 + 1 个业务模块", "5 个席位", "社区支持", "标准流程模板"],
+        "cta": { "label": "免费开始", "href": "/contact" }
+      },
+      {
+        "name": "Growth",
+        "price": "按需",
+        "unit": "/ 模块",
+        "description": "多个模块一起用，成长型工厂的主力选择。",
+        "popular": true,
+        "features": ["业务模块自由组合", "不限席位", "关系型细粒度授权", "AI 协作 + WASM 扩展", "优先技术支持"],
+        "cta": { "label": "预约聊聊", "href": "/contact" }
+      },
+      {
+        "name": "Enterprise",
+        "price": "定制",
+        "unit": "/ 私有化",
+        "description": "面向集团多工厂的私有化交付。",
+        "features": ["全模块 + 私有化部署", "专属实施与咨询", "老系统逐步迁移", "SLA 与专线支持"],
+        "cta": { "label": "联系我们", "href": "/contact" }
+      }
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      { "q": "和传统 MES / ERP 有什么不一样？", "a": "传统方案是一个个孤立系统；这里是一个统一内核，各业务模块共享同一套身份、权限、事件和数据底层，天然互通。" },
+      { "q": "可以只用其中一个模块吗？", "a": "可以。所有模块按需开通、到期就停，独立部署，用多少付多少。" },
+      { "q": "能接我们现有的设备和系统吗？", "a": "支持直连主流工业协议；老系统也提供逐步迁移的方案，数据安全地一步步替换，不用一次推倒。" },
+      { "q": "自研的算法或函数能集成进来吗？", "a": "能。用 WASM 把 Go / C++ / Rust 函数打包成插件，供流程和 AI 统一调用。" }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "把你的业务描述给我们听。",
+    "description": "不管厂子多大、场景多特殊，聊聊你的业务，看看这套内核能为你长出什么。",
+    "cta": { "label": "预约一次聊聊", "href": "/contact" },
+    "accentColor": "blue"
+  }
+]

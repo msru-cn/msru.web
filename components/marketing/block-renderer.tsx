@@ -106,7 +106,7 @@ export function renderBlock(block: Block, index: number): ReactNode {
     case "statement":
       return <Statement key={key} title={block.title} body={block.body} accentColor={block.accentColor} />;
     case "logoWall":
-      return <LogoWall key={key} items={block.items} />;
+      return <LogoWall key={key} eyebrow={block.eyebrow} items={block.items} />;
     case "faq":
       return <Faq key={key} items={block.items} />;
     case "testimonial":

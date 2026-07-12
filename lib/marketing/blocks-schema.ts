@@ -120,7 +120,8 @@ const statement = z.object({
 
 const logoWall = z.object({
   type: z.literal("logoWall"),
-  items: z.array(z.object({ name: z.string(), src: z.string().optional() })),
+  eyebrow: z.string().optional(),
+  items: z.array(z.object({ name: z.string(), src: z.string().optional(), icon: z.string().optional() })),
 });
 
 const faq = z.object({

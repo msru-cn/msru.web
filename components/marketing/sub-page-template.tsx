@@ -20,8 +20,8 @@ export function SubPageHero({ badge, title, subtitle, accentColor = "blue" }: Su
   const accent = getAccent(accentColor);
   const Badge = badge?.icon;
   return (
-    <section className="relative pt-32 pb-24 bg-zinc-950 overflow-hidden">
-      <div className={cn("absolute inset-0 opacity-40 bg-linear-to-b", accent.glow)} aria-hidden="true" />
+    <section className="relative pt-32 pb-24 bg-white dark:bg-zinc-950 overflow-hidden">
+      <div className={cn("absolute inset-0 opacity-30 dark:opacity-40 bg-linear-to-b", accent.glow)} aria-hidden="true" />
       <div className="container mx-auto px-6 relative z-10 text-center">
         <div className="max-w-4xl mx-auto space-y-6">
           {badge && Badge && (
@@ -34,8 +34,10 @@ export function SubPageHero({ badge, title, subtitle, accentColor = "blue" }: Su
               <Badge className="size-3" /> {badge.text}
             </div>
           )}
-          <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tighter">{title}</h1>
-          {subtitle && <p className="text-xl text-zinc-400 leading-relaxed max-w-2xl mx-auto">{subtitle}</p>}
+          <h1 className="text-5xl md:text-7xl font-bold text-zinc-900 dark:text-white tracking-tighter">{title}</h1>
+          {subtitle && (
+            <p className="text-xl text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-2xl mx-auto">{subtitle}</p>
+          )}
         </div>
       </div>
     </section>
