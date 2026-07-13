@@ -1,5 +1,8 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
   Breadcrumb,
@@ -9,9 +12,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 // --- 配置数据开始 ---
 
@@ -144,8 +144,8 @@ const FOOTER_COLUMNS = [
       {
         title: "开发者与架构",
         links: [
-          { label: "微服务与 DDD 架构概览", href: "/docs/architecture" },
-          { label: "API 与 Webhook 参考", href: "/docs/api" },
+          { label: "系统架构指南", href: "/docs/framework" },
+          { label: "Platform 平台基座", href: "/docs/platform" },
           { label: "发行说明与路线图", href: "/releases" },
           { label: "系统实时状态与 RCA", href: "/status" },
           { label: "版本生命周期表 (EOL)", href: "/eol" },
@@ -225,7 +225,7 @@ const FOOTER_COLUMNS = [
         title: "关于 MSRU 集团",
         links: [
           { label: "愿景与高管团队", href: "/company/about" },
-          { label: "投资者关系与财报", href: "/company/investors" },
+          { label: "投资者关系与财报", href: "/investors" },
           { label: "技术博客", href: "/blog/engineering" },
           { label: "加入我们 (热招)", href: "/careers" },
         ],

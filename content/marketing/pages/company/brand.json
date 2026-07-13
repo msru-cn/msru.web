@@ -1,0 +1,201 @@
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": {
+      "icon": "Sparkles",
+      "text": "BRAND IDENTITY & GUIDELINES"
+    },
+    "title": "赋予工业数据品牌之魂",
+    "subtitle": "MSRU 坚信：工业软件不仅仅是工具，它是智慧的封装。我们的视觉识别系统旨在通过标准化的色彩与符号，传递“压缩即智能”的核心哲学。",
+    "accentColor": "amber",
+    "ctas": [
+      {
+        "label": "获取品牌 Kit",
+        "href": "#"
+      },
+      {
+        "label": "探索视觉哲学",
+        "href": "#philosophy"
+      }
+    ],
+    "bgImage": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "statement",
+    "title": "压缩即智能 · Compression is Intelligence",
+    "body": "无论是大模型的预测逻辑、APS 的约束求解，还是 MES 的生产流转，其本质都是将海量的工业熵通过数字化手段“压缩”为可被执行的确定性智能。\"在这种极致的简约中，隐藏着极客与工厂最完美的共振。\"",
+    "accentColor": "amber"
+  },
+  {
+    "type": "subHero",
+    "badge": {
+      "icon": "Box",
+      "text": "Logo"
+    },
+    "title": "品牌标志规范",
+    "subtitle": "标准化的视觉符号是品牌一致性的基石。我们提供多种场景下的适配方案。",
+    "accentColor": "amber"
+  },
+  {
+    "type": "featureGrid",
+    "columns": 2,
+    "cards": [
+      {
+        "icon": "Box",
+        "accentColor": "amber",
+        "title": "标准字标 (Global Standard)",
+        "desc": "适用于浅色背景，传递纯粹与通透。"
+      },
+      {
+        "icon": "Box",
+        "accentColor": "slate",
+        "title": "反白字标 (Reverse Identity)",
+        "desc": "用于深色背景或高对比度工业绘图。"
+      }
+    ]
+  },
+  {
+    "type": "subHero",
+    "title": "职能色调体系",
+    "subtitle": "MSRU 采用“主体色驱动”的视觉逻辑。各模块 UI 仅会在主体色上产生偏移，确保全局结构的一致性。",
+    "accentColor": "amber"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Sparkles",
+        "title": "Brand / Framework",
+        "tagline": "核心品牌标识 (Core Identity)",
+        "description": "代表 MSRU 的‘原始引力’。金色与暗黑的融合象征着从混乱的工业数据中提取出黄金般的智能。它是系统的骨架，也是所有交互的终点。",
+        "accentColor": "amber",
+        "span": "wide"
+      },
+      {
+        "icon": "Cpu",
+        "title": "MES (Manufacturing)",
+        "tagline": "生产执行职能",
+        "description": "制造执行系统的‘流动紫色’。象征着电子流与实体物流在车间现场的精准汇聚。它代表了实时性、并发性与生产力的脉动。",
+        "accentColor": "purple"
+      },
+      {
+        "icon": "Package",
+        "title": "WMS (Warehouse)",
+        "tagline": "生产执行职能",
+        "description": "智能仓储的‘活力橙’。代表了货位的跃迁与物流的周转。它传递出高效、预警与快节奏的供应链律动。",
+        "accentColor": "orange"
+      },
+      {
+        "icon": "CheckCircle",
+        "title": "QMS (Quality)",
+        "tagline": "生产执行职能",
+        "description": "质量管理的‘严谨粉’。代表了工业标准、预警与闭环控制。它是对完美的偏执，确保每一批次产品都遵循严苛的质量契约。",
+        "accentColor": "fuchsia"
+      },
+      {
+        "icon": "HardDrive",
+        "title": "EAM (Equipment)",
+        "tagline": "生产执行职能",
+        "description": "设备管理的‘传承金’。象征着工业资产的稳健运行与知识的沉淀。它代表了可预测的维护策略与设备全生命周期的守护。",
+        "accentColor": "amber"
+      },
+      {
+        "icon": "Zap",
+        "title": "IoT (Connection)",
+        "tagline": "生产执行职能",
+        "description": "物联网的‘洞察青’。代表着无处不在的数据连接与毫秒级的反馈回路。它通过数字化映射，将冰冷的机器转化为可对话的智能节点。",
+        "accentColor": "cyan"
+      },
+      {
+        "icon": "Database",
+        "title": "APS (Scheduling)",
+        "tagline": "决策与模型职能",
+        "description": "高级计划排程的‘睿智丁香’。它代表了多约束求解时的深度逻辑与动态平衡。色调平和但充满张力，隐喻复杂的算法推理过程。",
+        "accentColor": "purple"
+      },
+      {
+        "icon": "Sparkles",
+        "title": "Industrial AI",
+        "tagline": "决策与模型职能",
+        "description": "工业大模型的‘认知涌现’。AI 模块通过共享深邃的金色底蕴，象征着从底层数据向顶层智能的升华，代表了认知与预测的极致维度。",
+        "accentColor": "amber"
+      },
+      {
+        "icon": "Globe",
+        "title": "Platform / Ecosystem",
+        "tagline": "治理与合规体系",
+        "description": "开发者生态的‘生命绿’。代表开放、共赢与持续生长的插件架构。它鼓励社区贡献，是系统生命力的源泉。",
+        "accentColor": "emerald"
+      },
+      {
+        "icon": "Scale",
+        "title": "Legal / Compliance",
+        "tagline": "治理与合规体系",
+        "description": "合规与法务的‘正义蓝’。代表了工业生产中的契约精神与数据合规的尊严。色调稳健，传递出不容置疑的专业性与安全感。",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "FileText",
+        "title": "CMS (Content)",
+        "tagline": "治理与合规体系",
+        "description": "内容治理的‘品牌红’。代表了品牌声量与知识的传播。它负责将复杂的工业洞察转化为清晰、动人的产品叙事。",
+        "accentColor": "rose"
+      }
+    ]
+  },
+  {
+    "type": "featureGrid",
+    "columns": 2,
+    "cards": [
+      {
+        "icon": "FileText",
+        "accentColor": "amber",
+        "title": "字体与全局样式规范",
+        "desc": "MSRU 强制采用系统级无衬线字体（System Sans-serif），追求纯粹的信息传递。代码字体则严选 JetBrains Mono，致敬极致的生产力文化。"
+      },
+      {
+        "icon": "Layers",
+        "accentColor": "amber",
+        "title": "自动继承 CSS 变量池",
+        "desc": "所有色标实时同步自项目的 global.css。这种单一真值（SSoT）架构确保了设计与代码的绝对一致。"
+      },
+      {
+        "icon": "ComponentIcon",
+        "accentColor": "blue",
+        "title": "多态组件设计哲学",
+        "desc": "不同业务模块仅通过注入 Functional Color 即可完成主题切换，底层共用同一套高健壮性的 UI 基石。"
+      }
+    ]
+  },
+  {
+    "type": "subHero",
+    "title": "品牌延伸与实验室",
+    "subtitle": "探索 MSRU 品牌的更多可能性，从算法生成的视觉艺术到实际的产品示例。",
+    "accentColor": "amber"
+  },
+  {
+    "type": "list",
+    "variant": "cards",
+    "items": [
+      {
+        "title": "分型艺术实验室 (Fractal)",
+        "desc": "通过多种数学算法（如漂移多边形、递归树、科赫雪花等）实时生成 MSRU 的动态视觉符号。",
+        "tag": "进入实验室",
+        "href": "/company/brand/fractal"
+      },
+      {
+        "title": "北空演示站点 (Norsky)",
+        "desc": "结合 MSRU 设计规范构建的沉浸式风控与全球化工业云概念站点。",
+        "tag": "访问站点",
+        "href": "/company/brand/norsky"
+      },
+      {
+        "title": "视觉识别规范 (VI)",
+        "desc": "涵盖了品牌标志、排版、色彩组合及 UI 物理原则的完整设计指南。",
+        "tag": "查看规范",
+        "href": "/company/brand/vi"
+      }
+    ]
+  }
+]

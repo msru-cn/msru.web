@@ -1,0 +1,45 @@
+[
+  {
+    "type": "hero",
+    "badge": {
+      "icon": "FileText",
+      "text": "Whitepapers & Insights"
+    },
+    "title": "工业洞察",
+    "titleAccent": "白皮书",
+    "subtitle": "来自 MSRU 研究院与行业分析师的深度报告，洞察智能制造前沿趋势。",
+    "accentColor": "blue",
+    "bgImage": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "list",
+    "variant": "cards",
+    "items": [
+      {
+        "title": "智能制造 2025：从MES到全域数字孪生的演进路径",
+        "desc": "2025-12 · 42 页",
+        "tag": "行业趋势"
+      },
+      {
+        "title": "工业大模型落地实践：从 POC 到量产的三大关键",
+        "desc": "2025-10 · 36 页",
+        "tag": "AI 实践"
+      },
+      {
+        "title": "动力电池制造数字化转型 ROI 分析报告",
+        "desc": "2025-08 · 28 页",
+        "tag": "新能源"
+      },
+      {
+        "title": "零信任架构在工业 OT 网络中的应用",
+        "desc": "2025-06 · 32 页",
+        "tag": "安全"
+      },
+      {
+        "title": "Gartner MES 魔力象限解读与 MSRU 定位分析",
+        "desc": "2025-03 · 18 页",
+        "tag": "市场分析"
+      }
+    ]
+  }
+]

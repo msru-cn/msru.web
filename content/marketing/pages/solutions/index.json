@@ -1,0 +1,73 @@
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": {
+      "icon": "Briefcase",
+      "text": "Industry Solutions"
+    },
+    "title": "每个行业都有专属蓝图",
+    "subtitle": "我们深耕高端制造的垂直沃土。不是泛用型工具的简单拼凑，而是为每一条产线量身锻造的数字化破局武器。",
+    "accentColor": "blue",
+    "bgImage": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "splitMedia",
+    "side": "left",
+    "image": "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=800",
+    "eyebrow": "Industry #1",
+    "title": "新能源与电池",
+    "body": "从电芯化成到模组 PACK，覆盖高通量极片质检、电芯追溯与循环寿命建模的全链路数字化方案。",
+    "cta": {
+      "label": "探索行业方案",
+      "href": "/solutions/ev-battery"
+    }
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&q=80&w=800",
+    "eyebrow": "Industry #2",
+    "title": "半导体与泛半导体",
+    "body": "无尘车间全域管控、SECS/GEM 设备集成与晶圆级良率追踪，满足顶级 Fab 的极致要求。",
+    "cta": {
+      "label": "探索行业方案",
+      "href": "/solutions/semiconductor"
+    }
+  },
+  {
+    "type": "splitMedia",
+    "side": "left",
+    "image": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&q=80&w=800",
+    "eyebrow": "Industry #3",
+    "title": "汽车与高端装备",
+    "body": "JIT/JIS 准时制排产、供应链协同与全流程 IATF 16949 质量管理体系深度集成。",
+    "cta": {
+      "label": "探索行业方案",
+      "href": "/solutions/automotive"
+    }
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1524486361537-8ad15938e1a3?q=80&w=2070&auto=format&fit=crop",
+    "eyebrow": "Industry #4",
+    "title": "智慧农业全栈底座",
+    "body": "融合 IoT 实时感控、AI 农业大脑与 3D 数字孪生，为现代农业产业升级与科研转化提供端到端闭环。由真实土壤孕育，由数字逻辑重构。",
+    "cta": {
+      "label": "探索行业方案",
+      "href": "/solutions/agriculture"
+    }
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "没有找到您的行业？",
+    "description": "我们的底层微服务架构天生具备跨行业适配能力。联系我们的解决方案架构师，获取定制化蓝图。",
+    "cta": {
+      "label": "联系解决方案专家",
+      "href": "/contact"
+    },
+    "accentColor": "amber"
+  }
+]

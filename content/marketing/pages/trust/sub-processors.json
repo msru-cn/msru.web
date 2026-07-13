@@ -1,0 +1,32 @@
+[
+  {
+    "type": "hero",
+    "badge": { "icon": "ShieldCheck", "text": "Sub-Processors" },
+    "title": "次级处理者列表",
+    "subtitle": "以下第三方服务提供商参与处理 MSRU 客户数据。所有合作方均已签署数据处理协议 (DPA)。",
+    "accentColor": "teal",
+    "bgImage": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "statement",
+    "body": "最后更新：2026 年 1 月 15 日 · 变更通知将提前 30 天发送至数据保护联系人"
+  },
+  {
+    "type": "list",
+    "variant": "rows",
+    "items": [
+      {
+        "title": "Amazon Web Services (AWS)",
+        "meta": "基础设施托管 (IaaS)",
+        "desc": "数据区域：全球多区",
+        "tag": "✅ DPA"
+      },
+      { "title": "阿里云 (Alibaba Cloud)", "meta": "中国区基础设施", "desc": "数据区域：中国大陆", "tag": "✅ DPA" },
+      { "title": "Cloudflare", "meta": "CDN 与 DDoS 防御", "desc": "数据区域：全球", "tag": "✅ DPA" },
+      { "title": "SendGrid (Twilio)", "meta": "事务邮件发送", "desc": "数据区域：美国", "tag": "✅ DPA" },
+      { "title": "Sentry", "meta": "异常监控与追踪", "desc": "数据区域：美国/欧盟", "tag": "✅ DPA" },
+      { "title": "Stripe", "meta": "在线支付处理", "desc": "数据区域：全球", "tag": "✅ DPA" },
+      { "title": "Intercom", "meta": "客户在线沟通", "desc": "数据区域：美国/欧盟", "tag": "✅ DPA" }
+    ]
+  }
+]

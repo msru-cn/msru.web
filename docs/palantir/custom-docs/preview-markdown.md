@@ -1,0 +1,42 @@
+Title: Palantir
+
+URL Source: https://www.palantir.com/docs/foundry/custom-docs/preview-markdown/
+
+Markdown Content:
+
+# [](https://www.palantir.com/docs/foundry/custom-docs/preview-markdown/#preview-custom-documentation-in-code-repositories)Preview custom documentation in Code Repositories
+
+To help you write and edit custom documentation, you can preview Markdown files in your documentation repository using Code Repositories. Markdown previews are rendered side-by-side with the source Markdown code in the code editor, as shown in the screenshot below.
+
+![Image 3: Screenshot showing a previewed Markdown file](https://www.palantir.com/docs/resources/foundry/custom-docs/markdown-preview.png)
+
+## [](https://www.palantir.com/docs/foundry/custom-docs/preview-markdown/#how-to-turn-on-markdown-preview)How to turn on Markdown preview
+
+To view a rendered preview of your Markdown files in Code Repositories, you can turn on Markdown preview by following these steps.
+
+*   Right-click on your open Markdown file tab.
+*   Select **Split vertically** or **Split horizontally** to view the contents in two panes.
+*   Turn on **Toggle render Markdown** in the pane you would like to render as Markdown.
+
+![Image 4: Screenshot splitting panes and rendering Markdown](https://www.palantir.com/docs/resources/foundry/custom-docs/split-and-render-markdown.png)
+
+## [](https://www.palantir.com/docs/foundry/custom-docs/preview-markdown/#differences-between-rendered-markdown-preview-and-published-custom-documentation)Differences between rendered Markdown preview and published custom documentation
+
+Note that not all features of Palantir custom documentation will be fully rendered in a Markdown preview using Code Repositories, as the Markdown preview uses "vanilla" Markdown without Palantir-specific additions. The Markdown preview is intended to facilitate the custom documentation process but does not display a 1:1 copy of the final published documentation; Palantir-specific formatting will be applied later in the publishing process.
+
+In particular the following will not render in their display format until published:
+
+*   Palantir-custom syntax - denoted by the `@` tag, such as `@title` or `@description` - will appear as plain text in Markdown preview but will be applied later in the publishing process.
+*   [Navigational elements](https://www.palantir.com/docs/foundry/custom-docs/custom-docs-bundle-structure/), as designated in the table of contents `ordering.md` file, may not be available in Markdown preview.
+*   HTML elements such as [callouts](https://www.palantir.com/docs/foundry/custom-docs/add-callouts/) will not appear the same as in their final published form.
+
+[← PREVIOUS Create custom docs bundle](https://www.palantir.com/docs/foundry/custom-docs/add-new-bundle/)
+
+[NEXT Custom docs bundle structure →](https://www.palantir.com/docs/foundry/custom-docs/custom-docs-bundle-structure/)
+
+© 2026 Palantir Technologies Inc. All rights reserved.
+
+[Cookies Statement ↗](https://www.palantir.com/cookie-statement/)[Privacy Statement ↗](https://www.palantir.com/privacy-and-security/)[Terms of Use ↗](https://www.palantir.com/terms-and-conditions/)
+
+Do Not Sell or Share My Personal Information
+

@@ -1,0 +1,118 @@
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": {
+      "icon": "Sparkles",
+      "text": "MSRU QMS 全面质量基座"
+    },
+    "title": "让品质缺陷，无所遁形。",
+    "subtitle": "超越检验的数字化质量管家。将单纯的事后检测升级为事态预测，把 IQA、PQA、OQA 与供应商评级打通。基于实时数据建立全面标准化质量防线，捍卫企业声誉。",
+    "accentColor": "rose",
+    "ctas": [
+      {
+        "label": "获取企业版报价",
+        "href": "/contact"
+      },
+      {
+        "label": "阅读架构白皮书",
+        "href": "/docs"
+      }
+    ],
+    "bgImage": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "statBand",
+    "heading": "不是检验。是根本的预防。",
+    "accentColor": "rose",
+    "stats": [
+      {
+        "value": "60",
+        "unit": "%",
+        "label": "客诉拦截率提升"
+      },
+      {
+        "value": "85",
+        "unit": "%",
+        "label": "检验人工成本削减"
+      },
+      {
+        "value": "100",
+        "unit": "%",
+        "label": "异常问题闭环率"
+      },
+      {
+        "value": "0",
+        "unit": "容忍",
+        "label": "合规审查数据篡改"
+      }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "每一次抽检，都将驱动流程进化。",
+    "body": "QMS 不仅是一个质检记录电子化工具。其背后依托的 CAPA (纠正与预防措施) 与 8D 闭环跟踪系统使得每一次异常上报都会自动驱动上游供应链的改善或制造工程的标准修订。不解决根因，流程永不关停。",
+    "accentColor": "rose"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Eye",
+        "accentColor": "rose",
+        "title": "全面检验管控引擎",
+        "description": "涵盖来料检验 (IQC)、首检巡检 (IPQC)、制程检验 (PQC) 到最终出货检验 (OQC)。支持按 AQL 表实现动态放宽与加严抽样转换逻辑。全面适配无线测量仪器自动数据透传。",
+        "span": "wide"
+      },
+      {
+        "icon": "Activity",
+        "accentColor": "rose",
+        "title": "CAPA 与 8D 闭环",
+        "description": "严格贯彻围堵、排查、根因分析、长效预防四大阶段。强制流转多部门会签，并自动归档形成集团知识库 FMEA 的原始参考。",
+        "span": "wide"
+      },
+      {
+        "icon": "Scale",
+        "accentColor": "rose",
+        "title": "供应商质量绩效 (SQM)",
+        "description": "按批次退货率、让步接收率自动绘制多维供应商画像，实现黑白名单准入直连拦截。"
+      },
+      {
+        "icon": "TrendingUp",
+        "accentColor": "rose",
+        "title": "多维 SPC 及直通车",
+        "description": "对关键特性参数自动生成 CPK 控制图并执行西电八项判异准则，自动抛出异常预警事件。"
+      },
+      {
+        "icon": "FileText",
+        "accentColor": "rose",
+        "title": "受控文档版本审批",
+        "description": "受控文档版本审批"
+      },
+      {
+        "icon": "Eye",
+        "accentColor": "rose",
+        "title": "MSA 与量具校准体系",
+        "description": "MSA 与量具校准体系"
+      },
+      {
+        "icon": "Lock",
+        "accentColor": "rose",
+        "title": "FDA 21 CFR Part 11 合规内审级",
+        "description": "为高端制造业提供最高等阶的数字防串改电子签名（E-Signature）与全链路不可篡改审计日志流水（Audit Trail），轻松应对最严苛的跨国采购审查框架。",
+        "span": "wide"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "用质量信誉拓宽您的全球市场。",
+    "description": "质量不是检验出来的，是设计和管控出来的。立即部署零缺陷的高压质量生态墙。",
+    "cta": {
+      "label": "预约 QMS 功能演示",
+      "href": "/contact"
+    },
+    "accentColor": "rose"
+  }
+]

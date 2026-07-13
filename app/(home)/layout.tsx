@@ -125,6 +125,7 @@ export default function Layout({ children }: LayoutProps<"/">) {
       className="dark:bg-neutral-950 dark:[--color-fd-background:var(--color-neutral-950)] [--color-fd-primary:var(--color-brand)]"
     >
       <div id="home-content-wrapper" className="transition-all duration-500 will-change-[filter,transform]">
+        <div className="page-stage" aria-hidden="true" />
         {children}
         <AppleFooter />
       </div>

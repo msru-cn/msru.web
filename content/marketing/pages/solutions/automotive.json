@@ -1,0 +1,33 @@
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": { "icon": "Settings", "text": "Automotive & Equipment" },
+    "title": "驱动每一台精密装备",
+    "subtitle": "为汽车零部件与高端装备制造企业提供 JIT 精准排产、IATF 16949 全面质量管理与多级供应链协同的一体化数字方案。",
+    "accentColor": "rose",
+    "bgImage": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "subHero",
+    "title": "专为汽车工业锻造的核心能力",
+    "accentColor": "rose"
+  },
+  {
+    "type": "featureGrid",
+    "columns": 2,
+    "cards": [
+      { "icon": "CheckCircle", "title": "JIT/JIS 准时制排产", "desc": "精准匹配主机厂节拍，消除线边库积压" },
+      { "icon": "CheckCircle", "title": "IATF 16949 质量闭环", "desc": "从 APQP 到 PPAP 全流程数字化管控" },
+      { "icon": "CheckCircle", "title": "供应链多级协同", "desc": "Tier 1/2/3 实时产能可视与风险预警" },
+      { "icon": "CheckCircle", "title": "零缺陷追溯体系", "desc": "从原材料批次到整车 VIN 正反向穿透" }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "让每一条产线，都精准如瑞士钟表",
+    "cta": { "label": "预约行业演示", "href": "/contact" },
+    "accentColor": "rose"
+  }
+]

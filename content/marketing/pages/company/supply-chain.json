@@ -1,0 +1,65 @@
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": { "icon": "ShieldCheck", "text": "Safe & Scalable Supply Chain" },
+    "title": "构建韧性、透明的全球制造基座",
+    "subtitle": "在 MSRU，供应链是实现工业进化的神经末梢。我们通过数字化协议与合规准则，与全球合作伙伴共同建设一个高效、廉洁且具备高度韧性的供应网络。",
+    "accentColor": "blue",
+    "bgImage": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "featureGrid",
+    "columns": 3,
+    "cards": [
+      {
+        "icon": "Globe",
+        "accentColor": "blue",
+        "title": "透明采购流程",
+        "desc": "所有供应商必须通过 MSRU 统一采购平台进行数字化准入，确保每一个订单流程可追溯、防篡改。"
+      },
+      {
+        "icon": "Users",
+        "accentColor": "emerald",
+        "title": "公平准入原则",
+        "desc": "我们打破地域限制，为具备创新能力的初创企业与中小型供应商提供平等的竞争红利与接入机会。"
+      },
+      {
+        "icon": "Handshake",
+        "accentColor": "amber",
+        "title": "联合技术进化",
+        "desc": "不仅是买卖关系，我们与供应商共享数字化基座模型，共同推进行业级高性能硬件与软件的协同演进。"
+      }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "供应商合规手册 2.0",
+    "body": "这份文档详细规定了 MSRU 合作伙伴在环境、人权、反腐败及信息安全等方面的核心准则。我们要求所有一级供应商及其分支机构严格遵守。",
+    "accentColor": "emerald"
+  },
+  {
+    "type": "list",
+    "variant": "rows",
+    "items": [
+      { "title": "禁止强迫劳动与非法用工" },
+      { "title": "碳排放披露要求" },
+      { "title": "零容忍的反商业贿赂政策" },
+      { "title": "数据安全协议" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "举报通道 (Reporting Channel)",
+    "body": "如果您发现任何违反供应链准则的行为，可通过加密通道进行匿名举报（compliance@msru.ai）。我们严格保护举报人信息。供应商合规手册 V2.4 (15MB) 可下载 PDF 版本。",
+    "accentColor": "slate"
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "寻找卓越的物流伙伴",
+    "description": "随着 MSRU 全球研发中心的补全，我们正在寻找具备高数字化程度、能提供端到端可视化追踪能力的区域性及全球性物流供应商。",
+    "cta": { "label": "申请成为供应商", "href": "mailto:compliance@msru.ai" },
+    "accentColor": "blue"
+  }
+]

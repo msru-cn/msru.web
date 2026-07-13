@@ -1,0 +1,108 @@
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": {
+      "icon": "Terminal",
+      "text": "Engineering Blog"
+    },
+    "title": "代码、架构与工业未来",
+    "subtitle": "来自 MSRU 核心研发团队，分享我们在分布式系统、实时数据处理与工业渲染领域的深度实践。",
+    "accentColor": "emerald",
+    "bgImage": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "statBand",
+    "heading": "Open Source First",
+    "accentColor": "emerald",
+    "stats": [
+      {
+        "value": "10k+",
+        "unit": "PRs",
+        "label": "PRs merged"
+      },
+      {
+        "value": "50+",
+        "unit": "",
+        "label": "开源项目"
+      },
+      {
+        "value": "300+",
+        "unit": "",
+        "label": "技术文章"
+      }
+    ]
+  },
+  {
+    "type": "list",
+    "variant": "cards",
+    "items": [
+      {
+        "title": "MSRU 存储引擎底层优化：从 B+ 树到 LSM 树的演进",
+        "desc": "深入分析在超大规模工业数据吞吐场景下，我们如何通过重构存储引擎将写入性能提升 3x。（Chen Yao · 2024-05-15 · 12 min）",
+        "tag": "Architecture"
+      },
+      {
+        "title": "WebGPU 在工业数字孪生中的实时渲染实践",
+        "desc": "探讨如何利用次世代 Web 渲染技术在浏览器中实现百万级三角面片的丝滑流畅交互。（Liu Ming · 2024-05-02 · 8 min）",
+        "tag": "Frontend"
+      },
+      {
+        "title": "工业网关零拷贝内存管理策略",
+        "desc": "如何在资源受限的边缘节点实现高效的数据包处理？解析我们的零拷贝 (Zero-Copy) 实现细节。（Zhang Wei · 2024-04-20 · 15 min）",
+        "tag": "IoT / C++"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800",
+    "side": "left",
+    "eyebrow": "Open Source",
+    "title": "我们拥抱开源工业生态",
+    "body": "从核心通信驱动到高性能图表组件，MSRU 坚信开源是推动工业进步的最短路径。探索我们维护的 50+ 个开源项目。",
+    "cta": {
+      "label": "View on GitHub",
+      "href": "https://github.com/msru-platform"
+    }
+  },
+  {
+    "type": "logoWall",
+    "eyebrow": "Tech Stack Roadmap",
+    "items": [
+      {
+        "name": "Rust"
+      },
+      {
+        "name": "TypeScript"
+      },
+      {
+        "name": "SurrealDB"
+      },
+      {
+        "name": "Three.js"
+      },
+      {
+        "name": "WebGPU"
+      },
+      {
+        "name": "Kubernetes"
+      },
+      {
+        "name": "Erlang"
+      },
+      {
+        "name": "Go"
+      },
+      {
+        "name": "TensorFlow"
+      }
+    ]
+  },
+  {
+    "type": "testimonial",
+    "quote": "在这里，每一行提交的代码都有可能成为支撑全球数千台机械臂稳定运行的基石。",
+    "author": "MSRU 核心研发团队",
+    "role": "JOIN THE DEV TEAM"
+  }
+]

@@ -1,0 +1,39 @@
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": { "icon": "Box", "text": "3D Digital Twin" },
+    "title": "3D 实时数字孪生",
+    "subtitle": "基于 WebGPU 的下一代实时 3D 渲染引擎，将您的物理工厂 1:1 映射为可交互、可推演的数字化镜像。",
+    "accentColor": "cyan",
+    "bgImage": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "featureGrid",
+    "columns": 3,
+    "cards": [
+      {
+        "icon": "Layers",
+        "title": "全厂 3D 建模",
+        "desc": "自动生成工厂布局的三维可视化场景，支持设备、产线、仓库的精准空间映射。"
+      },
+      {
+        "icon": "Eye",
+        "title": "实时数据联动",
+        "desc": "IoT 传感器数据驱动 3D 模型实时响应，设备状态、温度、振动一目了然。"
+      },
+      {
+        "icon": "Box",
+        "title": "仿真推演",
+        "desc": "在数字世界中预演产线改造、布局调整与异常场景，零成本验证方案可行性。"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "体验下一代工厂可视化",
+    "cta": { "label": "预约 3D 演示", "href": "/contact" },
+    "accentColor": "cyan"
+  }
+]

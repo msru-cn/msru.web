@@ -1,0 +1,82 @@
+[
+  {
+    "type": "hero",
+    "variant": "narrative",
+    "badge": {
+      "icon": "Sparkles",
+      "text": "Our Vision & Mission"
+    },
+    "title": "将工厂视作一个可进化的产品",
+    "subtitle": "在 MSRU，我们相信工厂不仅仅是生产线的堆砌，而是一个具有感知、响应与自我进化能力的“生命体”。我们的使命是为全球制造业提供不可或缺的数字神经系统。",
+    "accentColor": "blue",
+    "bgImage": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "splitMedia",
+    "image": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000",
+    "side": "left",
+    "eyebrow": "核心理念",
+    "title": "核心理念：底层模型驱动",
+    "body": "传统的烟囱式系统开发已成为工业瓶颈。MSRU 提倡自底向上的核心架构，通过统一的模型语法 (Unified Model Schema) 描述工厂中的每一个原子动作。\"我们不是在简单的数字化，而是在重写工业制造的底层逻辑。\" — MSRU 创始团队"
+  },
+  {
+    "type": "featureGrid",
+    "columns": 2,
+    "cards": [
+      {
+        "icon": "Target",
+        "accentColor": "blue",
+        "title": "高频进化",
+        "desc": "支持周级别的功能迭代，工厂无需停机即可升级数字化能力。"
+      },
+      {
+        "icon": "Sparkles",
+        "accentColor": "emerald",
+        "title": "数据主权",
+        "desc": "通过零信任架构，确保每一个字节的所有权永远归属于工厂主。"
+      }
+    ]
+  },
+  {
+    "type": "list",
+    "variant": "timeline",
+    "items": [
+      {
+        "meta": "2012",
+        "title": "项目启动",
+        "desc": "MSRU 项目在硅谷车库启动，致力于解决工业数据孤岛问题。"
+      },
+      {
+        "meta": "2015",
+        "title": "首个自研 WMS 引擎上线",
+        "desc": "首个自研 WMS 引擎在半导体头部厂商上线，实现像素级物料追踪。"
+      },
+      {
+        "meta": "2018",
+        "title": "Factory as a Product",
+        "desc": "“Factory as a Product” 理念正式提出，定义统一工业底层模型。"
+      },
+      {
+        "meta": "2021",
+        "title": "MSRU Platform 2.0",
+        "desc": "全球研发节点补全，正式发布全栈数字化基座 MSRU Platform 2.0。"
+      },
+      {
+        "meta": "2024",
+        "title": "灯塔工厂建设",
+        "desc": "入选全球数字化转型影响力企业，主导 100+ 灯塔工厂建设。"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "下一站，通用工业 AI",
+    "description": "我们正在研发支撑自主规划与执行的工业大模型。如果你也相信代码可以重构物理世界，请加入我们的行列。",
+    "cta": {
+      "label": "加入我们",
+      "href": "/careers"
+    },
+    "accentColor": "blue"
+  }
+]

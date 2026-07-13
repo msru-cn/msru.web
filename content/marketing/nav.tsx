@@ -108,17 +108,17 @@ export const productsMegaMenu: MegaMenuItem[] = [
     className: "lg:col-start-4 lg:row-start-2",
   },
   {
-    href: "/docs/architecture",
-    title: "微服务与 DDD 架构",
+    href: "/docs/framework",
+    title: "系统架构指南",
     description: "底层模型拆解与数据流转图谱",
     icon: <Box className="text-cyan-500" />,
     image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=800", // 服务器机房/网络节点
     className: "lg:col-start-2 lg:row-start-3",
   },
   {
-    href: "/docs/api",
-    title: "API 与开发者中心",
-    description: "OpenAPI 字典与 Webhook 集成",
+    href: "/docs/platform",
+    title: "Platform 平台基座",
+    description: "统一数据主线与多租户微服务基座",
     icon: <Terminal className="text-indigo-500" />,
     image: "https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&q=80&w=800", // 屏幕代码
     className: "lg:col-start-3 lg:row-start-3",
@@ -181,6 +181,7 @@ export const solutionsMegaMenu: MegaMenuItem[] = [
     title: "商业许可与 TCO",
     description: "版本对比与总体拥有成本计算器",
     icon: <TrendingUp className="text-emerald-500" />,
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=800", // 财务计算/成本
     className: "lg:col-start-2 lg:row-start-3",
   },
   {
@@ -188,6 +189,7 @@ export const solutionsMegaMenu: MegaMenuItem[] = [
     title: "工业洞察白皮书",
     description: "Gartner 报告与行业前瞻讲义",
     icon: <AlbumIcon className="text-blue-500" />,
+    image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=800", // 书籍/研究报告
     className: "lg:col-start-3 lg:row-start-3",
   },
   {
@@ -195,6 +197,7 @@ export const solutionsMegaMenu: MegaMenuItem[] = [
     title: "全球标杆案例库",
     description: "千亿级集团灯塔图谱与 ROI 分析",
     icon: <Briefcase className="text-indigo-500" />,
+    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=800", // 商务协作/标杆
     className: "lg:col-start-4 lg:row-start-3",
   },
 ];
@@ -296,7 +299,7 @@ export const trustMegaMenu: MegaMenuItem[] = [
     className: "lg:col-start-2 lg:row-start-1",
   },
   {
-    href: "/trust/compliance",
+    href: "/trust/compliance-matrix",
     title: "全球合规矩阵",
     description: "ISO/SOC2 档案与区域监管对接",
     icon: <Globe className="text-blue-500" />,
@@ -304,7 +307,7 @@ export const trustMegaMenu: MegaMenuItem[] = [
     className: "lg:col-start-3 lg:row-start-1",
   },
   {
-    href: "/trust/data",
+    href: "/trust/data-residency",
     title: "数据驻留与可携权",
     description: "跨境传输政策与合规退网指南",
     icon: <Network className="text-emerald-500" />,
@@ -414,60 +417,72 @@ export const docsMegaMenu: MegaMenuItem[] = [
     title: "系统架构指南",
     description: "平台整体架构设计、技术选型与开发规范",
     icon: <Layers className="text-indigo-500" />,
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=800", // 服务器机房/网络节点
   },
   {
     href: "/docs/platform",
     title: "Platform 美仁平台",
     description: "统一数据主线与多租户微服务基座",
     icon: <Box className="text-blue-500" />,
+    image: "https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&q=80&w=800", // 屏幕代码
   },
   {
     href: "/docs/cms",
     title: "CMS 内容管理",
     description: "企业级内容管理与多渠道发布引擎",
     icon: <FileText className="text-pink-500" />,
+    image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80&w=800", // 内容编辑/写作
   },
   {
     href: "/docs/mes",
     title: "MES 制造执行",
     description: "全面质量管控与动态排产执行系统",
     icon: <Cpu className="text-orange-500" />,
+    image: "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?auto=format&fit=crop&q=80&w=800", // 机械臂/车间
   },
   {
     href: "/docs/wms",
     title: "WMS 智能仓储",
     description: "智能库位管理与自动化拣配调度",
     icon: <Package className="text-amber-500" />,
+    image: "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80&w=800", // 立体仓库
   },
   {
     href: "/docs/aps",
     title: "APS 高级排程",
     description: "多约束有限产能优化排程引擎",
     icon: <CalendarDays className="text-cyan-500" />,
+    image:
+      "https://plus.unsplash.com/premium_photo-1706191097438-a86238a40cfd?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2NoZWR1bGV8ZW58MHx8MHx8fDA%3D", // 排程/日历
   },
   {
     href: "/docs/qms",
     title: "QMS 质量管理",
     description: "全流程质量追溯与 SPC 统计过程控制",
     icon: <ShieldCheck className="text-emerald-500" />,
+    image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&q=80&w=800", // 质检/精密
   },
   {
     href: "/docs/eam",
     title: "EAM 设备管理",
     description: "设备全生命周期管理与预测性维护",
     icon: <Settings className="text-purple-500" />,
+    image:
+      "https://plus.unsplash.com/premium_photo-1682147307418-07ad7e897bc9?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW5kdXN0cmlhbCUyMGVxdWlwbWVudHxlbnwwfHwwfHx8MA%3D%3D", // 工业设备
   },
   {
     href: "/docs/iot",
     title: "IOT 数据采集",
     description: "海量异构设备接入与边缘数据清洗",
     icon: <Activity className="text-teal-500" />,
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800", // 电路/物联网
   },
   {
     href: "/docs/legal",
     title: "合规与信任中心",
     description: "隐私政策、服务条款与合规白皮书",
     icon: <Globe className="text-rose-500" />,
+    image: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=800", // 法律/合规
   },
 ];
 

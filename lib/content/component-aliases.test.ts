@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { SEMANTIC_ALIASES, resolveAlias } from "./component-aliases";
+import { resolveAlias, SEMANTIC_ALIASES } from "./component-aliases";
 
 describe("resolveAlias (语义别名归一化)", () => {
   test("maps upstream note-like tags to Callout", () => {

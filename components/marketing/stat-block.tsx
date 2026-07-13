@@ -13,20 +13,28 @@ export interface StatBlockProps {
   stats: Stat[];
 }
 
+/**
+ * 数据带 —— glass-stage 背景 + 玻璃统计卡。数字用强调色，明暗双主题自适应。
+ */
 export function StatBlock({ heading, accentColor = "blue", stats }: StatBlockProps) {
   const accent = getAccent(accentColor);
   return (
-    <section className="py-32 bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-white w-full border-y border-zinc-100 dark:border-zinc-900">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-16">{heading}</h2>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 divide-x-0 lg:divide-x divide-zinc-200 dark:divide-zinc-800">
+    <section className="glass-stage w-full py-28 md:py-32">
+      <div className="mx-auto max-w-7xl px-6 md:px-12">
+        <h2 className="mb-16 text-center text-4xl font-bold tracking-tight text-zinc-900 md:text-5xl dark:text-white">
+          {heading}
+        </h2>
+        <div className="grid grid-cols-2 gap-5 lg:grid-cols-4 lg:gap-6">
           {stats.map((s) => (
-            <div key={s.label} className="flex flex-col items-center justify-center">
-              <span className={cn("text-6xl md:text-7xl font-bold mb-4 tracking-tighter", accent.text)}>
+            <div
+              key={s.label}
+              className="glass glass-hover flex flex-col items-center justify-center rounded-3xl px-6 py-10 text-center"
+            >
+              <span className={cn("mb-3 text-5xl font-bold tracking-tighter md:text-6xl", accent.text)}>
                 {s.value}
-                <span className="text-4xl md:text-5xl">{s.unit}</span>
+                <span className="text-3xl md:text-4xl">{s.unit}</span>
               </span>
-              <span className="text-zinc-500 dark:text-zinc-400 font-medium text-lg text-center">{s.label}</span>
+              <span className="text-base font-medium text-zinc-500 dark:text-zinc-400">{s.label}</span>
             </div>
           ))}
         </div>

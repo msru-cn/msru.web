@@ -18,6 +18,10 @@ test("wide span applies col-span classes", () => {
 });
 
 test("BentoGrid renders children", () => {
-  render(<BentoGrid><div>child</div></BentoGrid>);
+  render(
+    <BentoGrid>
+      <div>child</div>
+    </BentoGrid>,
+  );
   expect(screen.getByText("child")).toBeInTheDocument();
 });

@@ -1,0 +1,48 @@
+[
+  {
+    "type": "hero",
+    "badge": {
+      "icon": "Code",
+      "text": "Release Notes"
+    },
+    "title": "发行说明",
+    "titleAccent": "与路线图",
+    "subtitle": "追踪 MSRU 平台每一次重大迭代、安全补丁与功能演进。",
+    "accentColor": "blue",
+    "bgImage": "https://images.unsplash.com/photo-1611224923853-80b023f02d71?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "list",
+    "variant": "timeline",
+    "items": [
+      {
+        "title": "v5.4.0",
+        "meta": "2026-02-15",
+        "desc": "AI 视觉质检模型 v3.2 发布，精度提升 18%；APS 排程引擎支持多约束并行求解；WMS 新增 AGV 路径优化算法；性能优化：GraphQL 响应时间降低 35%",
+        "tag": "Latest"
+      },
+      {
+        "title": "v5.3.2",
+        "meta": "2026-01-20",
+        "desc": "修复多租户环境下的权限穿透漏洞；IoT 边缘节点断网续传稳定性改进；QMS SPC 控制图支持自定义规则；安全补丁：升级 OpenSSL 至 3.2.1",
+        "tag": "Stable"
+      },
+      {
+        "title": "v5.3.0",
+        "meta": "2025-12-01",
+        "desc": "全新数字孪生 3D 渲染引擎 (WebGPU)；EAM 预测维护模型支持 LSTM 时序分析；MES 工单流支持审批工作流可视化编排；新增日语与韩语界面语言包",
+        "tag": "Stable"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "small",
+    "title": "查看版本生命周期",
+    "cta": {
+      "label": "版本 EOL 时间表",
+      "href": "/eol"
+    },
+    "accentColor": "blue"
+  }
+]

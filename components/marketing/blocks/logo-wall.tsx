@@ -11,11 +11,15 @@ export interface LogoWallProps {
   items: LogoItem[];
 }
 
+/**
+ * 行业信任墙 —— 玻璃 pill 陈列在 glass-stage 之上，
+ * 光斑/网格作可折射内容层，明暗双主题自适应。
+ */
 export function LogoWall({ eyebrow, items }: LogoWallProps) {
   return (
-    <section className="py-20 bg-zinc-50 dark:bg-zinc-950 border-y border-zinc-100 dark:border-zinc-900">
+    <section className="glass-stage py-20 md:py-24">
       <div className="container mx-auto px-6">
-        <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-10">
+        <p className="mb-10 text-center text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400">
           {eyebrow ?? "深耕高端制造，服务关键行业"}
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4">
@@ -24,14 +28,14 @@ export function LogoWall({ eyebrow, items }: LogoWallProps) {
             return it.src ? (
               <div
                 key={it.name}
-                className="flex items-center rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 px-5 py-2.5 grayscale opacity-70 transition hover:opacity-100 hover:grayscale-0"
+                className="glass glass-hover flex items-center rounded-full px-5 py-2.5 opacity-80 grayscale transition hover:opacity-100 hover:grayscale-0"
               >
                 <Image src={it.src} alt={it.name} width={104} height={32} className="object-contain" />
               </div>
             ) : (
               <div
                 key={it.name}
-                className="group flex items-center gap-2 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 px-5 py-2.5 text-sm font-medium text-zinc-600 dark:text-zinc-300 transition hover:border-blue-500/40 hover:text-zinc-900 dark:hover:text-white hover:shadow-sm"
+                className="group glass glass-hover flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-200"
               >
                 {Icon && (
                   <Icon

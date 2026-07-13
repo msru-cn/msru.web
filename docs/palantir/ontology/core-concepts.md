@@ -1,0 +1,96 @@
+Title: Palantir
+
+URL Source: https://www.palantir.com/docs/foundry/ontology/core-concepts/
+
+Published Time: Thu, 09 Jul 2026 17:47:57 GMT
+
+# [](https://www.palantir.com/docs/foundry/ontology/core-concepts/#core-concepts)Core concepts
+
+This page describes major concepts related to the Ontology in Foundry.
+
+## [](https://www.palantir.com/docs/foundry/ontology/core-concepts/#ontology)Ontology
+
+An Ontology is a categorization of the world. In Foundry, the Ontology is the digital twin of an organization, integrating the organization's digital assets (datasets and models) into a coherent whole. The Foundry Ontology creates a complete picture of an organization’s world by mapping datasets and models to object types, properties, link types, and action types.
+
+*   An [object type](https://www.palantir.com/docs/foundry/ontology/core-concepts/#object-type) defines an entity or event in an organization.
+*   A [property](https://www.palantir.com/docs/foundry/ontology/core-concepts/#property) defines the object type’s characteristics.
+*   A [link type](https://www.palantir.com/docs/foundry/ontology/core-concepts/#link-type) defines the relationship between two object types.
+*   An [action type](https://www.palantir.com/docs/foundry/ontology/core-concepts/#action-type) defines how an object type can be modified.
+
+The concepts that comprise the Ontology have parallels in the structure of a dataset. You can think of each object type as analogous to a dataset; an object is an instance of an object type, just as a row is one entry in a dataset. The columns in a dataset are analogous to properties of an object, as they provide additional information for a given row. The value in a dataset field (like a cell in a spreadsheet) is akin to the property value of an object. And just as datasets can be joined together in various ways, objects can have links between them based on property values. The table below summarizes this comparison:
+
+| Datasets | Ontology |
+| --- | --- |
+| Dataset | Object type |
+| Row | Object |
+| Column | Property |
+| Field | Property value |
+| Join | Link type |
+
+The diagram below demonstrates how these concepts can come together to create an Ontology. The content below continues to define the different components of the Ontology in more depth.
+
+![Image 2: Aviation Ontology](https://www.palantir.com/docs/resources/foundry/ontology/airline-ontology.png)
+## [](https://www.palantir.com/docs/foundry/ontology/core-concepts/#object-type)Object type
+
+An **object type** is the schema definition of a real-world entity or event. An **object** refers to a single instance of an object type; an object corresponds to a single real-world entity or event. An **object set** refers to a collection of multiple object instances; that is, an object set represents a group of real-world entities or events.
+
+[Learn more about object types.](https://www.palantir.com/docs/foundry/object-link-types/object-types-overview/)
+
+## [](https://www.palantir.com/docs/foundry/ontology/core-concepts/#property)Property
+
+A **property** of an object type is the schema definition of a characteristic of a real-world entity or event. A **property value** refers to the value of a property on an object, or a single instance of that real world entity or event.
+
+[Learn more about properties.](https://www.palantir.com/docs/foundry/object-link-types/properties-overview/)
+
+## [](https://www.palantir.com/docs/foundry/ontology/core-concepts/#shared-property)Shared property
+
+A **shared property** is a property that can be used on multiple object types in your ontology. Shared properties allow for consistent data modeling across object types and centralized management of property metadata.
+
+[Learn more about shared properties.](https://www.palantir.com/docs/foundry/object-link-types/shared-property-overview/)
+
+## [](https://www.palantir.com/docs/foundry/ontology/core-concepts/#link-type)Link type
+
+A **link type** is the schema definition of a relationship between two object types. A **link** refers to a single instance of that relationship between two objects.
+
+[Learn more about link types.](https://www.palantir.com/docs/foundry/object-link-types/link-types-overview/)
+
+## [](https://www.palantir.com/docs/foundry/ontology/core-concepts/#action-type)Action type
+
+An **action type** is the schema definition of a set of changes or edits to objects, property values, and links that a user can take at once. It also includes the side effect behaviors that occur with action submission. Once an action type is configured in the Ontology, end users can make changes to objects by applying actions.
+
+[Learn more about action types.](https://www.palantir.com/docs/foundry/action-types/overview/)
+
+## [](https://www.palantir.com/docs/foundry/ontology/core-concepts/#roles)Roles
+
+**Roles** are the central permissioning model in the Ontology. Similar to roles in the Foundry filesystem, Ontology roles grant access to ontological resources. Roles can be granted on the Ontology level or the individual resource level.
+
+Learn more about [Ontology roles](https://www.palantir.com/docs/foundry/object-permissioning/ontology-permissions/) and how they are used for object types, link types, and action types.
+
+## [](https://www.palantir.com/docs/foundry/ontology/core-concepts/#functions)Functions
+
+A **function** is a piece of code-based logic that takes in input parameters and returns an output. Functions are natively integrated with the Ontology: they can take objects and object sets as input, read property values of objects, and be used across action types and applications that build on the Ontology.
+
+[Learn more about Functions in general](https://www.palantir.com/docs/foundry/functions/overview/), or [learn more about Ontology-based Functions](https://www.palantir.com/docs/foundry/functions/functions-on-objects/).
+
+## [](https://www.palantir.com/docs/foundry/ontology/core-concepts/#interfaces)Interfaces
+
+An **interface** is an Ontology type that describes the shape of an object type and its capabilities. Interfaces provide object type polymorphism, allowing for consistent modeling of and interaction with object types that share a common shape.
+
+Learn more about [interfaces](https://www.palantir.com/docs/foundry/interfaces/interface-overview/).
+
+## [](https://www.palantir.com/docs/foundry/ontology/core-concepts/#object-views)Object Views
+
+**Object Views** are a central hub for all information and workflows related to a particular object. This includes key information about an object, any linked objects, and related metrics, as well as analyses, dashboards, and applications related to the object.
+
+[Learn more about Object Views.](https://www.palantir.com/docs/foundry/object-views/overview/)
+
+[← PREVIOUS Models in the Ontology](https://www.palantir.com/docs/foundry/ontology/models/)
+
+[NEXT Ontology-aware applications →](https://www.palantir.com/docs/foundry/ontology/applications/)
+
+© 2026 Palantir Technologies Inc. All rights reserved.
+
+[Cookies Statement ↗](https://www.palantir.com/cookie-statement/)[Privacy Statement ↗](https://www.palantir.com/privacy-and-security/)[Terms of Use ↗](https://www.palantir.com/terms-and-conditions/)
+
+Do Not Sell or Share My Personal Information
+

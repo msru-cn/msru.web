@@ -1,0 +1,149 @@
+Title: Palantir
+
+URL Source: https://www.palantir.com/docs/foundry/analytics/types-of-analysis/
+
+Markdown Content:
+
+# [](https://www.palantir.com/docs/foundry/analytics/types-of-analysis/#types-of-analysis)Types of analysis
+
+The Foundry analytical suite supports both point-and-click analysis (no-code or low-code) and code-based data analysis, with tools optimized for different analysis and source types as well as tools for dashboarding and reporting.
+
+A summary of tools and supported workflows is below:
+
+|  | Point-and-click analysis | Code-based analysis |
+| --- | --- | --- |
+| Tabular data | Contour | Code Workbook |
+| Object data (Ontology) | Insight, Quiver |  |
+| Time series data | Quiver | Code Workbook |
+| Map (geospatial) data | Map, Contour, Quiver, Insight |  |
+
+## [](https://www.palantir.com/docs/foundry/analytics/types-of-analysis/#point-and-click-analysis)Point-and-click analysis
+
+Foundry provides several tools for point-and-click analysis: Contour, Insight, and Quiver.
+
+*   **Contour** enables data analysis on [tabular data](https://www.palantir.com/docs/foundry/analytics/datasets-object-sets/#datasets) at scale.
+*   **Insight** is designed for operational users to analyze the ontology and create [object sets](https://www.palantir.com/docs/foundry/analytics/datasets-object-sets/#object-sets).
+*   **Quiver** supports advanced ontology analysis, dashboard creation, and [time series](https://www.palantir.com/docs/foundry/time-series/time-series-overview/) data.
+
+Additionally, **Object Explorer** is a search and discovery tool for the [Ontology layer](https://www.palantir.com/docs/foundry/ontology/overview/) that supports searching across the ontology and finding individual objects.
+
+Contour, Insight, and Quiver allow you to:
+
+*   Visualize, filter, and transform data without code.
+*   Leverage expression languages for more advanced transformations and aggregations.
+*   Organize complex analyses.
+*   Create interactive dashboards that allow others to explore and investigate data in a guided, structured way.
+*   Share analyses with colleagues.
+
+Learn more below about the specific use cases for which these tools are optimized.
+
+### [](https://www.palantir.com/docs/foundry/analytics/types-of-analysis/#contour)Contour
+
+![Image 5: contour](https://www.palantir.com/docs/resources/foundry/analytics/getting-started-contour.png)
+
+Contour is a good fit for analytical use cases where:
+
+*   **Some or all of the data you want to use is not mapped in the Ontology:** In general, we recommend using the [Ontology layer](https://www.palantir.com/docs/foundry/ontology/overview/) whenever possible, but there are some cases where this may not be appropriate, such as a one-time upload that will not be cleaned or reused. Not all data is intended for the ontology layer. For example Contour can be useful for looking at intermediary datasets in pipelines.
+*   **You need to operate on a very large dataset:** Contour was designed to facilitate analytical operations on very large datasets, while Quiver supports object aggregations of up to 50,000 rows.
+*   **You want to share your analysis results as a new dataset for use in other Foundry tools.**[Learn more about saving results as datasets](https://www.palantir.com/docs/foundry/analytics/datasets-object-sets/).
+*   **You want to build parameterized analyses to easily switch between different views of the data and results.**
+
+[Learn how to get started with Contour.](https://www.palantir.com/docs/foundry/contour/getting-started/)
+
+### [](https://www.palantir.com/docs/foundry/analytics/types-of-analysis/#insight)Insight
+
+![Image 6: Insight](https://www.palantir.com/docs/resources/foundry/analytics/insight-analysis.png)
+
+Insight is a good fit for analytical use cases where:
+
+*   **Your data is mapped in the Ontology:** Insight leverages Ontology data such as object types, interfaces, link types, and actions.
+*   **You need to perform ad-hoc analysis without code:** The visual analysis path makes it easy to build complex queries step by step, supporting both simple and complex drill down workflows.
+*   **You want to explore relationships between objects:** The **Link** step lets you follow links to discover connected objects across the Ontology as well as filter data based on linked properties.
+*   **You want to write data back to the Ontology:** Insight supports creating, updating, and deleting objects from your analysis results.
+
+[Learn how to get started with Insight.](https://www.palantir.com/docs/foundry/contour/getting-started/)
+
+### [](https://www.palantir.com/docs/foundry/analytics/types-of-analysis/#quiver)Quiver
+
+![Image 7: quiver](https://www.palantir.com/docs/resources/foundry/analytics/getting-started-quiver.png)
+
+Quiver is a good fit for analytical use cases where:
+
+*   **Your data is mapped in the Ontology:** Links between objects are natively represented in the Ontology, so Quiver users do not have to perform joins or worry about identifying primary or foreign keys. Joins represented as links are returned by performing a [Search Around](https://www.palantir.com/docs/foundry/quiver/objects-import-linked/) on an object or object set to retrieve any linked objects.
+*   **You are working with time series data:** Quiver has been optimized to work with time series data. Quiver includes a specific time series library with sensor and signal processing functions and can be backed by a proprietary time series database that has been optimized for specific operations on high frequency signals. See [Time series analysis](https://www.palantir.com/docs/foundry/analytics/types-of-analysis/#time-series-analysis) for more information.
+*   **You want to embed your findings into other object-aware applications:** Quiver dashboards can be embedded into operational applications such as [Workshop](https://www.palantir.com/docs/foundry/workshop/overview/).
+*   **You want to write back to the Ontology:** Quiver can be used to write analytical decisions back to the Ontology using an [Action](https://www.palantir.com/docs/foundry/action-types/overview/). This allows you to capture analytical conclusions immediately for use by others.
+
+[Learn how to get started with Quiver.](https://www.palantir.com/docs/foundry/quiver/getting-started/)
+
+### [](https://www.palantir.com/docs/foundry/analytics/types-of-analysis/#object-explorer)Object Explorer
+
+Users can conduct simple object-based analytical workflows in [Object Explorer](https://www.palantir.com/docs/foundry/object-explorer/overview/). Object Explorer is a search and analysis tool for answering questions about anything in the Ontology layer. Users can visually compose search queries in Object Explorer, ranging from simple filters to Search-arounds to find objects of interest. Object Explorer is a good fit for analytical workflows in which:
+
+*   **You want to search terms across your Ontology:** Object Explorer provides a search entry point to find objects or object types across the ontology. The search results page supports viewing object instance and object type results.
+*   **You want to explore an object type and its properties:** Object Explorer is a great starting point for finding relevant object data and looking at Object Views.
+*   **Your end goal is creating a list of relevant objects (object set):** Object Explorer enables creating object explorations and object lists to share with others or use in other applications like Quiver or Insight for further analysis. [Learn more about explorations and object lists.](https://www.palantir.com/docs/foundry/object-explorer/save-explorations/)
+
+[Learn how to get started with Object Explorer.](https://www.palantir.com/docs/foundry/object-explorer/getting-started/)
+
+## [](https://www.palantir.com/docs/foundry/analytics/types-of-analysis/#code-based-analysis)Code-based analysis
+
+### [](https://www.palantir.com/docs/foundry/analytics/types-of-analysis/#code-workbook)Code Workbook
+
+Code Workbook is an application that allows users to analyze and transform data using an intuitive graphical interface.
+
+![Image 8: code workbook](https://www.palantir.com/docs/resources/foundry/analytics/getting-started-code-workbook.png)
+
+Code Workbook was designed with these principles in mind:
+
+*   **Iteration speed:** Users can quickly test and refine logic for transformation and visualization in order to produce useful results.
+*   **Low barrier to entry:** Code Workbook's graphical interface and support for using pre-authored logic were designed to enable easy onboarding of users of varying technical skill.
+*   **Collaboration:** Disparate groups of users can share logic and work together on a single analysis in Code Workbook.
+*   **Model creation:** Users can iterate on Foundry Models in Code Workbook, and easily view Model stages and metrics. Models can then be submitted to Modeling objectives and used operationally.
+*   **Platform interoperability:** Users can productionize their findings across the platform by adding visualizations to Notepads and promoting production-ready pipelines to Code Repository.
+
+Key features of Code Workbook include:
+
+*   An **interactive console** for rapid iteration on transformation logic and ad-hoc data exploration.
+*   **Visualization support** to create detailed, interactive images with commonly used packages (Matplotlib, Plotly, Seaborn).
+*   **Templates** that enable reuse of complex and domain-specific logic through a simple interface.
+*   Support for **multiple languages** (Python, SQL, R) for code and templates to allow users to select the best language for an analysis and leverage multiple languages in a single analysis.
+*   **Branching** to facilitate collaboration by isolating users’ changes from one another.
+*   An **intuitive user interface** that makes it easy to customize the Spark environment, set input types for transforms, and view relationships between nodes.
+
+[Learn how to get started with Code Workbook.](https://www.palantir.com/docs/foundry/code-workbook/getting-started/)
+
+Which tool should I use to build pipelines?
+
+Code Workbook is not optimized for building production pipelines. If you are building or maintaining production pipelines, use the Code Repositories application, which includes version history, branching and pull requests, and other functionality essential for robust pipelines. More information can be found in [this comparison of Foundry’s tools for writing code-based transformations.](https://www.palantir.com/docs/foundry/code-workbook/code-products-comparison/)
+
+## [](https://www.palantir.com/docs/foundry/analytics/types-of-analysis/#time-series-analysis)Time series analysis
+
+Foundry provides advanced end-to-end tooling for time series storage, monitoring, transformation, analysis, and writeback. Workflows from historical performance analysis to trend and correlation analysis to forecasting can make use of Foundry's time series capabilities.
+
+Both [Quiver](https://www.palantir.com/docs/foundry/quiver/overview/) and [Code Workbook](https://www.palantir.com/docs/foundry/code-workbook/overview/) support time series analysis for no-code and code-based analysis respectively. [Learn how to get started with time series.](https://www.palantir.com/docs/foundry/time-series/time-series-overview/)
+
+## [](https://www.palantir.com/docs/foundry/analytics/types-of-analysis/#map-based-geospatial-analysis)Map-based (geospatial) analysis
+
+Geospatial data is often a key input for Foundry users seeking to connect analytics with operations. Foundry streamlines geospatial data transformations and analytics and can enable map-based workflows.
+
+The [Map application](https://www.palantir.com/docs/foundry/map/overview/) is a powerful application for geospatial analysis. Also, [Contour](https://www.palantir.com/docs/foundry/contour/overview/) and [Quiver](https://www.palantir.com/docs/foundry/quiver/overview/) include map widgets for use in analyses that include geospatial data.
+
+## [](https://www.palantir.com/docs/foundry/analytics/types-of-analysis/#dashboarding)Dashboarding
+
+Both Contour and Quiver support building interactive dashboards based on analytical results. [Learn more about dashboarding.](https://www.palantir.com/docs/foundry/analytics/dashboards/)
+
+## [](https://www.palantir.com/docs/foundry/analytics/types-of-analysis/#reporting)Reporting
+
+Notepad is Foundry’s next-gen reporting tool and is recommended for the majority of reporting use cases. [Learn more about reporting.](https://www.palantir.com/docs/foundry/analytics/reporting/)
+
+[← PREVIOUS Overview](https://www.palantir.com/docs/foundry/analytics/overview/)
+
+[NEXT Analytical results / Dashboards →](https://www.palantir.com/docs/foundry/analytics/dashboards/)
+
+© 2026 Palantir Technologies Inc. All rights reserved.
+
+[Cookies Statement ↗](https://www.palantir.com/cookie-statement/)[Privacy Statement ↗](https://www.palantir.com/privacy-and-security/)[Terms of Use ↗](https://www.palantir.com/terms-and-conditions/)
+
+Do Not Sell or Share My Personal Information
+

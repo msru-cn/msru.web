@@ -1,0 +1,76 @@
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": { "icon": "Building2", "text": "创立于 2012" },
+    "title": "极客精神驱动的工业进化",
+    "subtitle": "MSRU (Matrix Smart Resource Union) 是全球领先的工业数字化基座提供商。我们通过统一的数据主线与自研核心引擎，重新定义人类高效制造的方式。",
+    "accentColor": "slate",
+    "bgImage": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "statBand",
+    "heading": "全球影响力",
+    "accentColor": "blue",
+    "stats": [
+      { "value": "8,500", "unit": "+", "label": "全球员工 · 分布于 12 个国家" },
+      { "value": "65", "unit": "%", "label": "研发占比 · 极客驱动的文化" },
+      { "value": "1,200", "unit": "+", "label": "持有专利 · 核心底层技术积累" },
+      { "value": "24", "unit": "", "label": "灯塔工厂 · 深度参与数字化转型" }
+    ]
+  },
+  {
+    "type": "featureGrid",
+    "columns": 2,
+    "cards": [
+      {
+        "icon": "MapPin",
+        "accentColor": "blue",
+        "title": "珠海",
+        "desc": "全球总部 / 基础平台研发"
+      },
+      {
+        "icon": "MapPin",
+        "accentColor": "emerald",
+        "title": "新加坡",
+        "desc": "国际业务 / 云原生安全中心"
+      },
+      {
+        "icon": "MapPin",
+        "accentColor": "amber",
+        "title": "慕尼黑",
+        "desc": "工业物联网与自动化实验室"
+      },
+      {
+        "icon": "MapPin",
+        "accentColor": "purple",
+        "title": "硅谷",
+        "desc": "AI 算法与大模型研究"
+      }
+    ]
+  },
+  {
+    "type": "list",
+    "variant": "cards",
+    "items": [
+      {
+        "title": "投资者关系",
+        "desc": "查阅最新财报、董事会报告及治理架构。",
+        "tag": "查看详情",
+        "href": "/investors"
+      },
+      {
+        "title": "环境、社会与治理",
+        "desc": "我们对可持续供应链与碳中和路线的承诺。",
+        "tag": "报告下载",
+        "href": "/esg"
+      },
+      {
+        "title": "供应链准则",
+        "desc": "建立透明、廉洁且高效的全球供应商伙伴关系。",
+        "tag": "了解合规",
+        "href": "/company/supply-chain"
+      }
+    ]
+  }
+]

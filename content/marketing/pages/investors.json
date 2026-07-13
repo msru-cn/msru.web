@@ -1,0 +1,63 @@
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": { "icon": "TrendingUp", "text": "Investor Relations" },
+    "title": "透明、稳健与共赢",
+    "subtitle": "我们致力于通过技术透明度与财务稳健性为全球投资者创造长效价值。在这里获取 MSRU 最新的市场表现与商业决策信息。",
+    "accentColor": "blue",
+    "bgImage": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [{ "label": "下载最新财报", "href": "#" }, { "label": "IR 联系人", "href": "#" }]
+  },
+  {
+    "type": "statBand",
+    "heading": "Financial Highlights",
+    "accentColor": "emerald",
+    "stats": [
+      { "value": "$1.42B", "unit": "+28.5%", "label": "年度总营收 (FY23) · 持续高速增长中" },
+      { "value": "72", "unit": "% (+5.2%)", "label": "订阅收入占比 · SaaS 核心业务稳固" },
+      { "value": "38", "unit": "% (+12.1%)", "label": "国际业务占比 · 全球化扩张加速" },
+      { "value": "High", "unit": "Grade A", "label": "现金流充足度 · 具备极强抗风险能力" }
+    ]
+  },
+  {
+    "type": "list",
+    "variant": "rows",
+    "items": [
+      {
+        "title": "MSRU 2023 全球业务与可持续发展年度汇总",
+        "meta": "年度报告 · 2024-03-25",
+        "desc": "12.4 MB",
+        "tag": "年度报告"
+      },
+      {
+        "title": "MSRU 2024 第一季度经营情况说明",
+        "meta": "季度快报 · 2024-05-12",
+        "desc": "4.8 MB",
+        "tag": "季度快报"
+      },
+      {
+        "title": "2024 夏季投资者交流日产品演进蓝图",
+        "meta": "路演简报 · 2024-06-02",
+        "desc": "8.2 MB",
+        "tag": "路演简报"
+      }
+    ]
+  },
+  {
+    "type": "list",
+    "variant": "timeline",
+    "items": [
+      { "meta": "8月15日", "title": "2024 中期财报分析说明会" },
+      { "meta": "9月02日", "title": "高盛全球工业互联网峰会路演" }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "small",
+    "title": "分析师专区",
+    "description": "申请接入 MSRU 实时商业动态仪表盘，获取关于工业底层基座市场的深度研究数据。",
+    "cta": { "label": "Request Access", "href": "#" },
+    "accentColor": "emerald"
+  }
+]

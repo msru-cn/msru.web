@@ -70,9 +70,11 @@ export function ConnectivityGlobe({ markers = [], autoRotate = true, heading, su
   }, [markers, autoRotate, isDark]);
 
   return (
-    <section className="py-24 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white overflow-hidden">
+    <section className="glass-stage overflow-hidden py-24 md:py-28">
       <div className="container mx-auto px-6 text-center space-y-6">
-        {heading && <h2 className="text-4xl md:text-5xl font-bold tracking-tighter">{heading}</h2>}
+        {heading && (
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 dark:text-white">{heading}</h2>
+        )}
         {subtitle && <p className="text-zinc-500 dark:text-zinc-400 max-w-2xl mx-auto">{subtitle}</p>}
         <div className="relative mx-auto mt-8 aspect-square w-full max-w-[600px]">
           <canvas ref={canvasRef} className="w-full h-full" style={{ contain: "layout paint size" }} />

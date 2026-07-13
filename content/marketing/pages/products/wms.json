@@ -1,0 +1,157 @@
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": {
+      "icon": "Sparkles",
+      "text": "下一代智能仓储大模型驱动"
+    },
+    "title": "让每一寸空间，极尽其用。",
+    "subtitle": "告别找货慢、盘点难、错发漏发的纯人工仓库。从 3D 数字孪生库区规划，到驱动 AGV 机器人的最优路径调度，MSRU WMS 赋予沉寂的货架以灵动的数字生命。",
+    "accentColor": "emerald",
+    "ctas": [
+      {
+        "label": "申请数字演示",
+        "href": "/contact"
+      },
+      {
+        "label": "浏览波次策略白皮书",
+        "href": "/docs"
+      }
+    ],
+    "bgImage": "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "statBand",
+    "heading": "彻底改写坪效与人效的极限。",
+    "accentColor": "emerald",
+    "stats": [
+      {
+        "value": "150",
+        "unit": "%",
+        "label": "拣货人效跃升"
+      },
+      {
+        "value": "0",
+        "unit": ".01%",
+        "label": "发货出错容忍率"
+      },
+      {
+        "value": "40",
+        "unit": "%",
+        "label": "储位空间节省"
+      },
+      {
+        "value": "24",
+        "unit": "h",
+        "label": "黑灯仓库无人转场"
+      }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "不要再让您的工人，在迷宫里寻找货物。",
+    "body": "好的仓库管理不是事后记录，而是事前指引。传统的 \"人找货\" 模式正在拖垮您的物流吞吐。MSRU WMS 以动态波次算法与路径规划引擎为核心，结合智能立库设备，实现 \"货找人\"。让每一次入库与出库，都是最优解。",
+    "accentColor": "emerald"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Layers",
+        "accentColor": "emerald",
+        "title": "波次算法与任务合并",
+        "description": "引擎在后场静默分析成千上万个订单。按客户、承运商、线路或物料相似度自动合并创建波次（Wave Picking），通过计算重叠路径生成任务。让一趟叉车，完成过去五趟的活。",
+        "span": "wide"
+      },
+      {
+        "icon": "Box",
+        "accentColor": "emerald",
+        "title": "3D 数字孪生热力图",
+        "description": "全局上帝视角俯瞰仓库。实时高频更新商品动销率（ABC分类），以热力图形式呈现呆滞物料死角，并智能建议货位洗牌（Slotting Optimization）。",
+        "span": "wide"
+      },
+      {
+        "icon": "Package",
+        "accentColor": "emerald",
+        "title": "WCS 设备控制塔",
+        "description": "无缝衔接底层自动化，下发指令调度堆垛机、四向穿梭车、传送带集群，全硬件握手。"
+      },
+      {
+        "icon": "ScanLine",
+        "accentColor": "emerald",
+        "title": "盲扫与校验防错",
+        "description": "收货入库与打包出库支持强制扫码双重校验。一旦错误扫描，终端锁屏并在设备端发出声光报警。"
+      },
+      {
+        "icon": "Package",
+        "accentColor": "emerald",
+        "title": "按容积自适应上架",
+        "description": "按容积自适应上架"
+      },
+      {
+        "icon": "Package",
+        "accentColor": "emerald",
+        "title": "FIFO 严选约束",
+        "description": "FIFO 严选约束"
+      },
+      {
+        "icon": "CheckCircle",
+        "accentColor": "emerald",
+        "title": "精细至批号与保质期",
+        "description": "为食品、化妆品及电子元器件等敏感行业打造。根据产品特性可设置 FEFO（先到期先出）、LIFO（后进先出），且支持混放与多包装条码聚合解析。",
+        "span": "wide"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "left",
+    "eyebrow": "分布式调度",
+    "title": "不仅仅是一个库。而是一张网。",
+    "body": "如果您的企业拥有全国甚至全球级的多级分发网络（中心仓、CDC、RDC、前置门店仓），MSRU WMS 将是最佳的神经中枢。它能依据客户收货地与各地库存余量，智能拆单、并单，将订单分派至成本或时效最优的物理节点。",
+    "bullets": [
+      "跨仓调拨算法：自动计算安全库存水位，在缺货发生前生成内调指令。",
+      "多货主 (3PL) 计费：三方物流的绝对福音。按库位占用面积、作业频次自动生成按月账单。"
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "eyebrow": "监控塔",
+    "title": "每一秒的吞吐，尽收眼底。",
+    "body": "为仓储经理配备了犹如机场控制塔般的指挥中心大屏。进港卡车排队状态、月台拥堵情况、AGV电量及位置、各波次拣货完成百分比……数据无需等待第二天出表，全部以秒级刷新呈现在您眼前。",
+    "bullets": [
+      "库区预警与塞车熔断",
+      "月台进出场道闸联动"
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "我们目前只有人工叉车，能用这套高端系统吗？",
+        "a": "不仅能用，而且最能体现人效提升。系统会将最佳路径发往工人的手持 PDA，人工只需循着 PDA 指示行动。等您日后购买了 AGV，系统可无缝切换下发指令给机器人，无需二次采购软件。"
+      },
+      {
+        "q": "我们的 ERP 系统已经有简单的库存管理，为什么还需要 WMS？",
+        "a": "ERP 给的是账面库存，即 \"有多少个\"；而真正的 WMS 给的是实物动态控制，即 \"货确切在哪个通道的第几层\" 以及 \"哪辆车去搬最快\"。对于中大型仓库，账务分离与动作级管控是必不可少的。"
+      },
+      {
+        "q": "多久可以上线？新老数据可以平滑过渡吗？",
+        "a": "标准版本的现场实施可控制在 4 周内。我们提供完善的历史条码期初资产导入工具。在一个周末的停机盘点窗口内，即可将几十万条的历史期初库存平坦地迁移至新数字仓库。"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "消除仓储死角。就在今天。",
+    "description": "停止用落后的方式管理最重要的资产。获取专属演示，看看我们将如何让您的库容运转如风。",
+    "cta": {
+      "label": "立即联系交付团队",
+      "href": "/contact"
+    },
+    "accentColor": "emerald"
+  }
+]

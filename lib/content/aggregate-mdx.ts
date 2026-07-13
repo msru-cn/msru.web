@@ -1,24 +1,28 @@
 import { compileMDX } from "@fumadocs/mdx-remote";
+import type { TOCItemType } from "fumadocs-core/toc";
 import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
 import { Callout } from "fumadocs-ui/components/callout";
 import { Card, Cards } from "fumadocs-ui/components/card";
 import { Step, Steps } from "fumadocs-ui/components/steps";
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
-import type { TOCItemType } from "fumadocs-core/toc";
-import { unstable_cache } from "next/cache";
 import type { MDXComponents } from "mdx/types";
+import { unstable_cache } from "next/cache";
 import type { AggregationSource } from "./aggregation-sources";
 import { buildAggregatedRawUrl } from "./aggregation-sources";
 import { resolveAlias } from "./component-aliases";
-import { extractComponentTags, sanitizeMdxSource } from "./mdx-sanitize";
-import { makeUnknownTagFallback } from "./unknown-tag-fallback";
+import { readLocalRaw } from "./local-source";
+import { cleanJinaScrape, extractComponentTags, sanitizeMdxSource } from "./mdx-sanitize";
 import type { RemoteDoc } from "./remote-mdx";
+import { makeUnknownTagFallback } from "./unknown-tag-fallback";
 
 export function aggregatedCacheTag(sourceId: string, slug: string): string {
   return `knowledge:${sourceId}:${slug}`;
 }
 
 async function rawFetcher(source: AggregationSource, slug: string): Promise<string | null> {
+  if (source.mode === "local") {
+    return readLocalRaw(source, slug);
+  }
   const url = buildAggregatedRawUrl(source, slug);
   const res = await fetch(url);
   if (!res.ok) return null;
@@ -81,12 +85,25 @@ export interface AggregatedDoc extends RemoteDoc {
 export async function compileAggregatedMdx(source: AggregationSource, slug: string): Promise<AggregatedDoc | null> {
   const rawText = await cachedRaw(source, slug);
   if (rawText == null) return null;
-  const sanitized = sanitizeMdxSource(rawText);
+
+  let working = rawText;
+  let extractedTitle: string | undefined;
+  if (source.mode === "local") {
+    working = cleanJinaScrape(rawText);
+    // 抓取型文档无 frontmatter：取首个 H1 作标题，并从正文剥掉这行，避免与 DocsTitle 重复。
+    const h1 = working.match(/^#\s+(.+?)\s*$/m);
+    if (h1) {
+      extractedTitle = h1[1].trim();
+      working = working.replace(h1[0], "").replace(/^\s*\n/, "");
+    }
+  }
+
+  const sanitized = sanitizeMdxSource(working);
   const tags = extractComponentTags(sanitized);
   const compiled = await compileMDX({ source: sanitized });
   const fm = compiled.frontmatter as { title?: string; description?: string };
   return {
-    title: fm.title ?? slug,
+    title: fm.title ?? extractedTitle ?? slug,
     description: fm.description,
     Body: compiled.body,
     raw: rawText,

@@ -1,0 +1,73 @@
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": {
+      "icon": "Code",
+      "text": "MSRU 高阶定制研发"
+    },
+    "title": "超越标准，重塑边界。",
+    "subtitle": "应对最苛刻的非标业务场景。依托 MSRU 平台强大的底座支撑与微服务架构，我们的研发团队为您打造独一无二的专属数字利器。",
+    "accentColor": "purple",
+    "bgImage": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "subHero",
+    "title": "定制服务范畴",
+    "subtitle": "不破坏标准产品的升级兼容性。所有的定制开发均以微服务或插件的形式动态注入，保障骨干架构的极简与健壮。",
+    "accentColor": "purple"
+  },
+  {
+    "type": "featureGrid",
+    "columns": 2,
+    "cards": [
+      {
+        "icon": "Puzzle",
+        "title": "深度业务应用开发",
+        "desc": "针对细分行业的特殊要求（如半导体 Defect 追踪、医药类合规电子签名增强），开发完全融合于 MSRU UI 与权限体系内的新功能模块。"
+      },
+      {
+        "icon": "Network",
+        "title": "非标异构系统集成",
+        "desc": "面对企业内部陈旧的自研 ERP 或者难以开放 API 的历史系统，提供基于中间库、RPA 甚至软硬件结合的定制级集成通路。"
+      },
+      {
+        "icon": "LayoutTemplate",
+        "title": "专属工业终端适配",
+        "desc": "为特定的工厂硬件（超小屏手持 PDA、三防特种平板、车载叉车终端等）重新设计并编译极致精简的前端交互 UI，提升一线工效。"
+      },
+      {
+        "icon": "Settings",
+        "title": "私有化设备协议解析",
+        "desc": "当标准 IoT 网关无法覆盖极其偏门的闭源机床协议时，原厂研发团队下钻至底层链路进行反向工程与专属驱动开发。"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "提出定制需求",
+    "description": "购买交钥匙功能包，或购买专家人天包。",
+    "cta": {
+      "label": "提出定制需求",
+      "href": "/contact"
+    },
+    "accentColor": "purple"
+  },
+  {
+    "type": "list",
+    "variant": "cards",
+    "items": [
+      {
+        "title": "购买交钥匙功能包",
+        "tag": "Turnkey",
+        "href": "/services/custom/turnkey"
+      },
+      {
+        "title": "购买专家人天包",
+        "tag": "Man-Day",
+        "href": "/services/custom/man-day"
+      }
+    ]
+  }
+]

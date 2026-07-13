@@ -1,0 +1,68 @@
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": {
+      "icon": "GraduationCap",
+      "text": "MSRU 官方认证学院"
+    },
+    "title": "为智能制造，培养火种。",
+    "subtitle": "从初级开发者到企业级系统架构师。我们提供体系化的实战课程与高含金量的官方认证，构建企业自足的数字化团队。",
+    "accentColor": "emerald",
+    "bgImage": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "subHero",
+    "title": "三大官方认证路径",
+    "subtitle": "选择最适合您的职业进阶路线，获取行业认可的权威证书。",
+    "accentColor": "emerald"
+  },
+  {
+    "type": "pricingTable",
+    "plans": [
+      {
+        "name": "认证开发者",
+        "price": "MCD",
+        "description": "MSRU Certified Developer · 面向研发人员，掌握基于 MSRU 底层框架的二次开发、API 扩展与组件定制能力。",
+        "features": [
+          "核心框架 API 深度解析",
+          "前端组件与后端路由扩展",
+          "上机实操代码考核"
+        ],
+        "cta": {
+          "label": "查看课程大纲",
+          "href": "#"
+        }
+      },
+      {
+        "name": "认证实施顾问",
+        "price": "MCC",
+        "description": "MSRU Certified Consultant · 面向业务与交付人员，精通标准系统模块配置、业务蓝图转化及工厂建模方法论。",
+        "popular": true,
+        "features": [
+          "MES/WMS 标准功能全景",
+          "零代码工艺路线与表单配置",
+          "敏捷项目实施沙盘演练"
+        ],
+        "cta": {
+          "label": "查看课程大纲",
+          "href": "#"
+        }
+      },
+      {
+        "name": "认证架构师",
+        "price": "MCA",
+        "description": "MSRU Certified Architect · 面向卓越技术领袖，主导集团级多工厂分布式架构、高可用部署及微服务治理。",
+        "features": [
+          "需拥有 MCD 且具备 5 年经验",
+          "异构系统集群集成方案",
+          "数字孪生与 AI 底座架构设计"
+        ],
+        "cta": {
+          "label": "申请资质审核",
+          "href": "#"
+        }
+      }
+    ]
+  }
+]

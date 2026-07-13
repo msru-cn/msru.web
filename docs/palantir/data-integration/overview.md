@@ -1,0 +1,42 @@
+Title: Palantir
+
+URL Source: https://www.palantir.com/docs/foundry/data-integration/overview/
+
+Markdown Content:
+
+# [](https://www.palantir.com/docs/foundry/data-integration/overview/#data-connectivity-and-integration)Data connectivity and integration
+
+Foundry provides a highly configurable set of data connectivity and integration tools that extend far beyond typical extract-transform-load (ETL) or extract-load-transform (ELT) solutions. Foundry is designed to reduce the cost of data integration over time through a rich suite of capabilities that act as a force multiplier for data teams. While commodity cloud services provide storage and compute for basic pipelines and experimentation, many additional layers of capability are required to manage, deliver, and validate datasets for critical operations. Foundry is designed to serve as the data integration backbone for the most complex environments in the world.
+
+## [](https://www.palantir.com/docs/foundry/data-integration/overview/#connecting-data)Connecting data
+
+This begins with an extensible data connection framework that establishes connections with all types of source systems - structured, unstructured, or semi-structured – and with all key data transfer approaches, such as batch, micro-batch, or streaming. This functionality is integrated with the platform’s data transformation and data management functionality, which includes full lineage of data versions, granular security for collaborative management of data extraction, and branching of data sync configurations.
+
+[Learn more about connecting to data in Foundry.](https://www.palantir.com/docs/foundry/data-integration/connecting-to-data/)
+
+## [](https://www.palantir.com/docs/foundry/data-integration/overview/#data-transformation)Data transformation
+
+For **data transformation**, Foundry provides an extensible, scalable _build system for data_ which leverages multimodal compute to produce output datasets. Foundry’s compute-agnostic “Build” framework provides fully integrated security and data lineage, and enables mixing-and-matching of third-party compute runtimes. Foundry also includes an integrated suite of data transformation authoring, change management, data quality, pipeline scheduling, and metadata introspection capabilities that work cohesively to provide a "mission control" for data engineers.
+
+[Learn more about transforming data with Foundry.](https://www.palantir.com/docs/foundry/data-integration/data-pipeline/)
+
+## [](https://www.palantir.com/docs/foundry/data-integration/overview/#pipeline-management)Pipeline management
+
+Foundry’s **pipeline management** capabilities combine change management, data quality, and data loading features.
+
+The Pipeline Builder application enables fast, flexible, and scalable delivery of data pipelines while providing robustness and security. [Learn more about Pipeline Builder.](https://www.palantir.com/docs/foundry/pipeline-builder/overview/)
+
+Data engineers can define a rigorous release process for production pipelines, including health checks that guarantee only fully compliant data will be deployed to production. Where issues are found, the platform provides diagnostics on the discrepancies detected.
+
+Diagnostics are available both in Foundry's integrated analysis and modeling tools, as well as to any third-party tools accessing the outputs via REST APIs or other interfaces.
+
+[Learn more about maintaining and managing pipelines in Foundry.](https://www.palantir.com/docs/foundry/maintaining-pipelines/overview/)
+
+[NEXT Connecting to data →](https://www.palantir.com/docs/foundry/data-integration/connecting-to-data/)
+
+© 2026 Palantir Technologies Inc. All rights reserved.
+
+[Cookies Statement ↗](https://www.palantir.com/cookie-statement/)[Privacy Statement ↗](https://www.palantir.com/privacy-and-security/)[Terms of Use ↗](https://www.palantir.com/terms-and-conditions/)
+
+Do Not Sell or Share My Personal Information
+

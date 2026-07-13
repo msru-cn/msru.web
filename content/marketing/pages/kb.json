@@ -1,0 +1,30 @@
+[
+  {
+    "type": "hero",
+    "variant": "search",
+    "badge": { "icon": "FileText", "text": "Knowledge Base" },
+    "title": "技术知识库",
+    "subtitle": "搜索 300+ 篇经过工程师审核的技术文章，快速解决您在使用中遇到的一切问题。",
+    "accentColor": "blue",
+    "bgImage": "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "list",
+    "variant": "cards",
+    "items": [
+      { "title": "快速入门指南", "desc": "产品安装、首次配置与基础操作教程", "meta": "24 篇", "href": "/docs" },
+      { "title": "常见问题排查", "desc": "按模块分类的高频问题与解决方案", "meta": "156 篇", "href": "/docs" },
+      { "title": "API 集成参考", "desc": "接口调用示例、错误码与最佳实践", "meta": "89 篇", "href": "/docs" },
+      { "title": "版本升级指南", "desc": "跨版本迁移步骤与数据兼容性说明", "meta": "18 篇", "href": "/docs" },
+      { "title": "安全与合规", "desc": "权限配置、加密策略与审计日志教程", "meta": "32 篇", "href": "/docs" },
+      { "title": "性能调优手册", "desc": "数据库优化、缓存策略与高并发配置", "meta": "45 篇", "href": "/docs" }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "small",
+    "title": "没找到答案？",
+    "cta": { "label": "联系技术支持", "href": "/support" },
+    "accentColor": "blue"
+  }
+]

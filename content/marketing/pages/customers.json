@@ -4,7 +4,8 @@
     "variant": "dark",
     "badge": { "icon": "Briefcase", "text": "Customer Stories" },
     "title": "全球标杆案例库",
-    "subtitle": "来自千亿级集团的真实数字化转型成果与 ROI 分析。"
+    "subtitle": "来自千亿级集团的真实数字化转型成果与 ROI 分析。",
+    "bgImage": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=2000"
   },
   {
     "type": "caseList",

@@ -38,9 +38,5 @@ export type ProductComparisonInput = z.infer<typeof ProductComparisonSchema>;
 export type PricingInput = z.infer<typeof PricingSchema>;
 export type SolutionInput = z.infer<typeof SolutionSchema>;
 
-export const GENUI_TOOL_NAMES = [
-  "provideProductComparison",
-  "providePricing",
-  "provideSolution",
-] as const;
+export const GENUI_TOOL_NAMES = ["provideProductComparison", "providePricing", "provideSolution"] as const;
 export type GenUiToolName = (typeof GENUI_TOOL_NAMES)[number];

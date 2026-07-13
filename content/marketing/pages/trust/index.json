@@ -1,0 +1,73 @@
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": {
+      "icon": "Shield",
+      "text": "Trust & Security Center"
+    },
+    "title": "信任，是我们的底层架构",
+    "subtitle": "工业数据的敏感性不容妥协。探索 MSRU 如何通过硬核安全架构、全球合规矩阵与数据治理构筑不可穿透的防线。",
+    "accentColor": "purple",
+    "bgImage": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "featureGrid",
+    "columns": 3,
+    "cards": [
+      {
+        "icon": "Shield",
+        "accentColor": "purple",
+        "title": "多租户安全架构",
+        "desc": "数据物理隔离、零信任网络与端到端加密"
+      },
+      {
+        "icon": "Globe",
+        "accentColor": "blue",
+        "title": "全球合规矩阵",
+        "desc": "ISO 27001 / SOC 2 / GDPR / 等保三级全覆盖"
+      },
+      {
+        "icon": "Network",
+        "accentColor": "emerald",
+        "title": "数据驻留与跨境",
+        "desc": "策略化物理隔离与合规退网指南"
+      },
+      {
+        "icon": "Zap",
+        "accentColor": "amber",
+        "title": "AI 伦理与管辖",
+        "desc": "大模型训练边界与数据脱敏策略"
+      },
+      {
+        "icon": "Eye",
+        "accentColor": "rose",
+        "title": "数字包容性 (VPAT)",
+        "desc": "WCAG 2.1 AA 无障碍标准遵从"
+      },
+      {
+        "icon": "Lock",
+        "accentColor": "purple",
+        "title": "漏洞披露政策",
+        "desc": "负责任的安全研究者奖励计划"
+      },
+      {
+        "icon": "ShieldCheck",
+        "accentColor": "teal",
+        "title": "次级处理者列表",
+        "desc": "所有参与数据处理的第三方服务商披露"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "需要安全合规白皮书？",
+    "description": "联系我们的合规团队获取针对您所在区域的定制化安全评估报告。",
+    "cta": {
+      "label": "联系安全团队",
+      "href": "/contact"
+    },
+    "accentColor": "purple"
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "type": "hero",
+    "badge": {
+      "icon": "Box",
+      "text": "MSRU Marketplace"
+    },
+    "title": "插件市场",
+    "subtitle": "由全球 ISV 合作伙伴联合开发的低代码应用与扩展模块集，一键安装即刻增强平台能力。",
+    "accentColor": "purple",
+    "bgImage": "https://images.unsplash.com/photo-1551033406-611cf9a28f67?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "list",
+    "variant": "rows",
+    "items": [
+      {
+        "title": "Smart Energy Dashboard",
+        "tag": "★ 4.8",
+        "meta": "GreenTech Co.",
+        "desc": "能源管理"
+      },
+      {
+        "title": "Predictive QA Toolkit",
+        "tag": "★ 4.9",
+        "meta": "QualityAI",
+        "desc": "AI 质检"
+      },
+      {
+        "title": "Advanced Kanban Board",
+        "tag": "★ 4.7",
+        "meta": "LeanFlow",
+        "desc": "精益生产"
+      },
+      {
+        "title": "MRO Inventory Optimizer",
+        "tag": "★ 4.6",
+        "meta": "SpareMax",
+        "desc": "备件管理"
+      },
+      {
+        "title": "Supplier Portal Pro",
+        "tag": "★ 4.5",
+        "meta": "ChainSync",
+        "desc": "供应链协同"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "title": "想发布您的应用？",
+    "cta": {
+      "label": "加入 ISV 计划",
+      "href": "/partners/isv"
+    },
+    "accentColor": "purple"
+  }
+]

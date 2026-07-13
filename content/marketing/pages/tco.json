@@ -1,0 +1,37 @@
+[
+  {
+    "type": "hero",
+    "badge": { "icon": "TrendingUp", "text": "Total Cost of Ownership" },
+    "title": "总体拥有成本",
+    "subtitle": "MSRU 统一平台 vs 传统多系统拼凑方案的 5 年 TCO 对比分析。",
+    "accentColor": "emerald",
+    "bgImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "list",
+    "variant": "rows",
+    "items": [
+      { "title": "软件许可", "meta": "传统方案：¥800,000/年", "desc": "MSRU 平台：¥398,000/年", "tag": "节省 50%" },
+      { "title": "硬件基础设施", "meta": "传统方案：¥500,000", "desc": "MSRU 平台：¥200,000", "tag": "节省 60%" },
+      { "title": "实施与定制", "meta": "传统方案：¥1,200,000", "desc": "MSRU 平台：¥600,000", "tag": "节省 50%" },
+      {
+        "title": "年度运维维护",
+        "meta": "传统方案：¥300,000/年",
+        "desc": "MSRU 平台：¥0 (含于订阅)",
+        "tag": "节省 100%"
+      },
+      { "title": "培训与赋能", "meta": "传统方案：¥150,000", "desc": "MSRU 平台：¥50,000", "tag": "节省 67%" }
+    ]
+  },
+  {
+    "type": "statement",
+    "body": "* 以上数据基于 500 人规模中型制造企业的典型部署场景。实际成本因企业规模、定制需求与部署架构而异。"
+  },
+  {
+    "type": "cta",
+    "variant": "small",
+    "title": "获取定制化 TCO 评估",
+    "cta": { "label": "联系方案架构师", "href": "/contact" },
+    "accentColor": "emerald"
+  }
+]

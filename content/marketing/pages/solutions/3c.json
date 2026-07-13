@@ -1,0 +1,32 @@
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": { "icon": "Phone", "text": "3C Electronics" },
+    "title": "3C 消费电子组装",
+    "subtitle": "为手机、平板与智能硬件产线提供 SMT 全流程追溯、高速 AOI 集成与装配防呆的一体化方案。",
+    "accentColor": "blue",
+    "bgImage": "https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "featureGrid",
+    "columns": 2,
+    "cards": [
+      {
+        "icon": "CheckCircle",
+        "title": "SMT 贴片追溯",
+        "desc": "锡膏印刷、贴片精度与回流焊温度曲线的全流程数据采集与追溯"
+      },
+      { "icon": "CheckCircle", "title": "组装防呆防错", "desc": "基于视觉引导与条码校验的装配工序防错，杜绝漏装错装" },
+      { "icon": "CheckCircle", "title": "高速 AOI 集成", "desc": "无缝对接主流 AOI 设备，缺陷图像自动归档与统计分析" },
+      { "icon": "CheckCircle", "title": "整机测试闭环", "desc": "功能测试、老化测试与包装出货的一站式数字化管控" }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "让每一台设备都有完整的数字档案",
+    "cta": { "label": "预约 3C 产线演示", "href": "/contact" },
+    "accentColor": "blue"
+  }
+]

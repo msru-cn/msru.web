@@ -29,17 +29,7 @@ export const SEMANTIC_ALIASES: Record<string, string> = {
 };
 
 /** 已知规范组件（mdx-components 提供）——别名与直接命中都归此集合。 */
-const CANONICAL = new Set([
-  "Callout",
-  "Tabs",
-  "Tab",
-  "Steps",
-  "Step",
-  "Card",
-  "Cards",
-  "Accordion",
-  "Accordions",
-]);
+const CANONICAL = new Set(["Callout", "Tabs", "Tab", "Steps", "Step", "Card", "Cards", "Accordion", "Accordions"]);
 
 /**
  * 解析一个上游标签名：

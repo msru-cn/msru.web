@@ -1,0 +1,82 @@
+Title: Palantir
+
+URL Source: https://www.palantir.com/docs/foundry/building-pipelines/infer-schema/
+
+Markdown Content:
+
+# [](https://www.palantir.com/docs/foundry/building-pipelines/infer-schema/#infer-a-schema-for-csv-or-json-files)Infer a schema for CSV or JSON files
+
+It's easiest to work with datasets in Foundry if they have a schema. Foundry allows you to manually add a schema to datasets containing CSV or JSON files by selecting the **Apply a schema** button in the dataset. The **Apply a schema** button will automatically infer the schema based on a subset of the data. Once a schema is applied, select **Edit schema** in the dataset view to modify column types or apply additional parsing options to drop jagged rows, change encoding, or add additional columns like file path, byte offset for row, import timestamp, or row number.
+
+Schemas applied statically based on the initial dataset's files can become out of date if data changes. Thus, it can be helpful to have Spark dynamically infer a schema as the first step of a transforms pipeline on semi-structured data.
+
+Note that inferring a schema dynamically on each pipeline build has a performance cost, so this technique should only be used sparingly (for instance, when the schema may change).
+
+Below are examples for CSV and JSON inputs.
+
+Parquet, the default output file format for Transforms, does not allow certain special characters that may be present in an automatically-inferred schema. Therefore, we recommend that you use `sanitize_schema_for_parquet` as in the examples below to prevent potential issues.
+
+Other than dynamic schema inference, there are many other use-cases for reading all or a subset of dataset files with [SparkSession.read ↗](https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.SparkSession.read.html) as in the examples below. If your use-case is one that does not actually need the dynamic schema inference behavior, you should disable it either by setting `inferSchema` to `False` (which will result in all columns being strings) or by leaving that option out and [explicitly passing a schema ↗](https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.DataFrameReader.schema.html#pyspark.sql.DataFrameReader.schema). Disabling automatic schema inference will result in significantly better performance and consistency especially for incremental pipelines where different schema inference results between incremental batches can be problematic.
+
+### [](https://www.palantir.com/docs/foundry/building-pipelines/infer-schema/#csv)CSV
+
+Copied!
+
+```python
+1from transforms.api import transform, Input, Output
+2from transforms.verbs.dataframes import sanitize_schema_for_parquet
+3
+4@transform(
+5    output=Output("/Company/sourceA/parsed/data"),
+6    raw=Input("/Company/sourceA/raw/data_csv"),
+7)
+8def read_csv(ctx, raw, output):
+9    filesystem = raw.filesystem()
+10    hadoop_path = filesystem.hadoop_path
+11    files = [f"{hadoop_path}/{f.path}" for f in filesystem.ls()]
+12    df = (
+13        ctx
+14        .spark_session
+15        .read
+16        .option("encoding", "UTF-8")  # UTF-8 is the default
+17        .option("header", True)
+18        .option("inferSchema", True)
+19        .csv(files)
+20    )
+21    output.write_dataframe(sanitize_schema_for_parquet(df))
+```
+
+### [](https://www.palantir.com/docs/foundry/building-pipelines/infer-schema/#json)JSON
+
+Copied!
+
+```python
+1from transforms.api import transform, Input, Output
+2from transforms.verbs.dataframes import sanitize_schema_for_parquet
+3
+4@transform(
+5    output=Output("/Company/sourceA/parsed/data"),
+6    raw=Input("/Company/sourceA/raw/data_json"),
+7)
+8def read_json(ctx, raw, output):
+9    filesystem = raw.filesystem()
+10    hadoop_path = filesystem.hadoop_path
+11    files = [f"{hadoop_path}/{f.path}" for f in filesystem.ls()]
+12    df = (
+13        ctx
+14        .spark_session
+15        .read
+16        .option("multiline", False)  # False is the default; use True if each file contains a single JSON object instead of newline-delimited JSON objects
+17        .json(files)
+18    )
+19    output.write_dataframe(sanitize_schema_for_parquet(df))
+```
+
+[← PREVIOUS Overview](https://www.palantir.com/docs/foundry/building-pipelines/unstructured-overview/)
+
+[NEXT Pipeline security / Overview →](https://www.palantir.com/docs/foundry/building-pipelines/security-overview/)
+
+© 2026 Palantir Technologies Inc. All rights reserved.
+
+[Cookies Statement ↗](https://www.palantir.com/cookie-statement/)[Privacy Statement ↗](https://www.palantir.com/privacy-and-security/)[Terms of Use ↗](https://www.palantir.com/terms-and-conditions/)
+

@@ -1,0 +1,109 @@
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": {
+      "icon": "Sparkles",
+      "text": "我们正在寻找改变工业的人才"
+    },
+    "title": "编写工业的未来",
+    "subtitle": "在 MSRU，我们不只是在提供软件。我们是在用代码重构物理世界的每一台机器。加入我们，与全球顶尖的极客一起攻克工业领域的硬核难题。",
+    "accentColor": "blue",
+    "bgImage": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "featureGrid",
+    "columns": 3,
+    "cards": [
+      {
+        "icon": "Cpu",
+        "accentColor": "blue",
+        "title": "纯粹技术驱动",
+        "desc": "我们崇尚卓越的技术选型，不为业务折中。从内核到前端，我们追求极致的性能与优雅。"
+      },
+      {
+        "icon": "Zap",
+        "accentColor": "amber",
+        "title": "高频敏捷交付",
+        "desc": "这里没有冗长的会议，只有高效的协作。我们通过极致的自动化流程保障代码的高频、安全发布。"
+      },
+      {
+        "icon": "Globe",
+        "accentColor": "emerald",
+        "title": "全球数字游民",
+        "desc": "我们支持灵活的办公模式。无论你身处何地，只要你有卓越的产出，地球就是你的办公室。"
+      }
+    ]
+  },
+  {
+    "type": "list",
+    "variant": "rows",
+    "items": [
+      {
+        "title": "高级分布式系统工程师 (Rust/Go)",
+        "meta": "核心引擎组 · 珠海/新加坡 · 40k - 75k + 期权",
+        "desc": "高性能计算 · 分布式协议 · 内核开发",
+        "tag": "立即申请",
+        "href": "#"
+      },
+      {
+        "title": "工业大脑 AI 算法专家",
+        "meta": "AI 实验室 · 慕尼黑/硅谷 · 50k - 90k + Equity",
+        "desc": "强化学习 · 运筹优化 · LLM",
+        "tag": "立即申请",
+        "href": "#"
+      },
+      {
+        "title": "资深 3D 渲染引擎开发",
+        "meta": "数字孪生组 · 珠海 · 35k - 65k",
+        "desc": "WebGPU · Three.js · 图形学",
+        "tag": "立即申请",
+        "href": "#"
+      },
+      {
+        "title": "资深 混子 没啥能耐",
+        "meta": "混子组 · 佛山 · 35 - 65",
+        "desc": "混子 · 摸鱼 · 摆烂",
+        "tag": "立即申请",
+        "href": "#"
+      }
+    ]
+  },
+  {
+    "type": "featureGrid",
+    "columns": 2,
+    "cards": [
+      {
+        "icon": "CheckCircle",
+        "title": "顶配 MacBook Pro + 高刷显示器",
+        "desc": "为极致生产力配备的硬件。"
+      },
+      {
+        "icon": "CheckCircle",
+        "title": "灵活的工作制度（支持远程）",
+        "desc": "地球就是你的办公室。"
+      },
+      {
+        "icon": "CheckCircle",
+        "title": "具有竞争力的底薪 + 厚实的股权",
+        "desc": "分享公司成长的价值。"
+      },
+      {
+        "icon": "CheckCircle",
+        "title": "完善的年度体检与高端医疗险",
+        "desc": "全方位守护你的健康。"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "还没准备好申请？",
+    "description": "即使你现在没有看到合适的职位，我们也随时欢迎天才的毛遂自荐。将你的简历或 GitHub/Portfolio 发送到简历库，我们会主动联系你。",
+    "cta": {
+      "label": "talent@msru.ai",
+      "href": "mailto:talent@msru.ai"
+    },
+    "accentColor": "blue"
+  }
+]

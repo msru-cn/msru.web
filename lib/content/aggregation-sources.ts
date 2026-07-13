@@ -21,8 +21,13 @@ export interface AggregationSource {
   contentDir: string;
   /** 文档文件扩展名，"md" 或 "mdx"；默认 mdx。纯 markdown 书库用 md。 */
   ext?: "md" | "mdx";
-  /** 默认 snapshot（指向 fork）；live 仅对自己/完全信任源开放。 */
-  mode: "snapshot" | "live";
+  /** 默认 snapshot（指向 fork）；live 仅对自己/完全信任源开放；local 直读本仓文件系统。 */
+  mode: "snapshot" | "live" | "local";
+  /**
+   * 本地模式（mode==="local"）专用：文档所在目录（相对仓根，如 "docs/palantir"）。
+   * 走文件系统直读，不联网。用于验证本地知识库导入渲染。
+   */
+  localDir?: string;
   /** 原始上游 owner/repo；snapshot 记录来源，live 与 repo 相同。 */
   upstream?: string;
   /** SPDX 标识或自由文本。 */
@@ -35,6 +40,23 @@ export interface AggregationSource {
   };
   /** 可选：导航硬猜时的人工覆盖（补在此，绝不写回 fork）。 */
   navOverride?: NavOverrideNode[];
+  /**
+   * 可选：多语言约定。基准语言 = 无后缀文件（如 overview.md）；
+   * 每个额外 locale 用文件名后缀标记译文（如 -cn → overview-cn.md）。
+   * 导航按基准语言收敛（隐藏译文叶子），渲染页据 ?lang=<code> 切换。
+   */
+  i18n?: {
+    /** 基准语言展示名（无后缀文件），如 "English"。 */
+    defaultLabel: string;
+    locales: {
+      /** 语言码，用于 ?lang= 与 <html lang>，如 "zh"。 */
+      code: string;
+      /** 展示名，如 "中文"。 */
+      label: string;
+      /** 译文文件名后缀（不含扩展名），如 "-cn"。 */
+      suffix: string;
+    }[];
+  };
 }
 
 /**
@@ -42,6 +64,24 @@ export interface AggregationSource {
  * 生产默认应 fork 进 msru-cn 后改 snapshot + 指向 fork（见 P4-T6）。
  */
 export const AGGREGATION_SOURCES: AggregationSource[] = [
+  {
+    id: "palantir",
+    repo: "palantir/foundry-docs-local",
+    branch: "main",
+    contentDir: "docs/palantir",
+    localDir: "docs/palantir",
+    ext: "md",
+    mode: "local",
+    license: "Proprietary（Palantir 官方文档，仅本地导入渲染验证用）",
+    attribution: {
+      text: "内容来源：Palantir Foundry 官方文档（本地导入，中英双语）。",
+      originBaseUrl: "https://www.palantir.com/docs/foundry",
+    },
+    i18n: {
+      defaultLabel: "English",
+      locales: [{ code: "zh", label: "中文", suffix: "-cn" }],
+    },
+  },
   {
     id: "nextjs",
     repo: "vercel/next.js",

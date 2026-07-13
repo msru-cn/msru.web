@@ -1,0 +1,26 @@
+[
+  {
+    "type": "hero",
+    "badge": { "icon": "CalendarDays", "text": "End of Life" },
+    "title": "版本生命周期表 (EOL)",
+    "subtitle": "了解每个版本的支持状态、维护窗口与最终终止日期。",
+    "accentColor": "blue",
+    "bgImage": "https://images.unsplash.com/photo-1611224923853-80b023f02d71?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "list",
+    "variant": "rows",
+    "items": [
+      { "title": "v5.4.x", "meta": "全面支持", "desc": "EOL 日期：—", "tag": "活跃" },
+      { "title": "v5.3.x", "meta": "安全补丁", "desc": "EOL 日期：2027-06-30", "tag": "活跃" },
+      { "title": "v5.2.x", "meta": "仅安全补丁", "desc": "EOL 日期：2026-12-31", "tag": "维护期" },
+      { "title": "v5.1.x", "meta": "已终止", "desc": "EOL 日期：2026-03-31", "tag": "已终止" },
+      { "title": "v5.0.x", "meta": "已终止", "desc": "EOL 日期：2025-09-30", "tag": "已终止" },
+      { "title": "v4.x", "meta": "已终止", "desc": "EOL 日期：2025-03-31", "tag": "已终止" }
+    ]
+  },
+  {
+    "type": "statement",
+    "body": "* 已终止 (EOL) 的版本除应对极危 0-Day 漏洞的特批热补丁外，不再提供任何更新支持。建议尽快升级至最新版本。"
+  }
+]

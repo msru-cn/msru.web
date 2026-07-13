@@ -1,0 +1,184 @@
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": {
+      "icon": "Sparkles",
+      "text": "MSRU DIGITAL MATRIX V5"
+    },
+    "title": "全面进化的七大引擎 重塑智能制造",
+    "subtitle": "告别七拼八凑的孤岛系统。我们耗时五年，基于统一微服务底座与单一数据主线打造了七大全域数字基座。从边缘物联设备的心跳，到大模型视觉质检的毫秒推演，真正实现跨越层级的无缝连接。",
+    "accentColor": "blue",
+    "ctas": [
+      {
+        "label": "获取全架构解决方案",
+        "href": "/contact"
+      },
+      {
+        "label": "向下探索矩阵",
+        "href": "#products"
+      }
+    ],
+    "bgImage": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "statBand",
+    "heading": "正在掌管全球 500 万亿级产能。",
+    "accentColor": "slate",
+    "stats": [
+      {
+        "value": "150",
+        "unit": "+",
+        "label": "世界 500 强企业的选择"
+      },
+      {
+        "value": "5",
+        "unit": "M",
+        "label": "当前在线高精工业节点"
+      },
+      {
+        "value": "99",
+        "unit": ".99%",
+        "label": "微服务集群云端高可用保障"
+      },
+      {
+        "value": "2",
+        "unit": "B",
+        "label": "日均吞吐物联网消息规模"
+      }
+    ]
+  },
+  {
+    "type": "subHero",
+    "title": "全业务链，逐一击破。",
+    "subtitle": "点按任意产品模块，探索深不可测的企业级细节。",
+    "accentColor": "blue"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Cpu",
+        "accentColor": "blue",
+        "title": "MES",
+        "tagline": "制造执行引擎",
+        "description": "承载最高密度的业务闭环。防呆防错、百万级工单 APS 高级排产调度、实时 OEE 追踪与全面追溯。作为真正的全厂控制中枢，它连接了物理世界与数字化财务账本的最后一步。",
+        "span": "wide"
+      },
+      {
+        "icon": "Package",
+        "accentColor": "emerald",
+        "title": "WMS",
+        "tagline": "智能仓储物流",
+        "description": "打破静态货架的束缚。支持 3D 库位映射，运用智能波次合并算法，结合自动化设备（堆垛机、四向车、AGV）实现黑灯立体库。消除找货痛苦，将坪效与人效推向绝对极限。"
+      },
+      {
+        "icon": "CalendarDays",
+        "accentColor": "orange",
+        "title": "APS",
+        "tagline": "高级计划与排程",
+        "description": "打破产能与交期的测算黑盒。毫秒级求解数万条约束规则，实现基于设备、物料、模具、人员的四维联合排产。从客户订单到车间工序，提供端到端的绝对掌控力。"
+      },
+      {
+        "icon": "ShieldCheck",
+        "accentColor": "rose",
+        "title": "QMS",
+        "tagline": "全域质量管理",
+        "description": "将品质管控提升至主动防御级别。从 IQC 来料到 OQC 出货，整合 SPC 实时监控与 FMEA 失效分析。消除不良品流出风险，构建坚若磐石的企业质量信用体系。"
+      },
+      {
+        "icon": "Settings",
+        "accentColor": "teal",
+        "title": "EAM",
+        "tagline": "企业设备资产管理",
+        "description": "从“坏了再修”向“预测性维护”的全面跨越。实时掌握高价值关键设备健康度，全生命周期追踪备品备件消耗。彻底杜绝非计划停机，将设备潜能发挥到极致。"
+      },
+      {
+        "icon": "Network",
+        "accentColor": "purple",
+        "title": "IoT",
+        "tagline": "边缘物联云基座",
+        "description": "终结信息黑匣。万物互联的神经末梢底座，支持 300+ 工业协议免驱集成。内置断网续传、本地边缘规则计算与百万并发级 MQTT Broker，将僵死的冰冷机器变身为在线的发声者。"
+      },
+      {
+        "icon": "Zap",
+        "accentColor": "amber",
+        "title": "AI",
+        "tagline": "工业大模型视觉",
+        "description": "未来五年的竞争壁垒。超越人类疲劳极限的 CV 缺陷识别集群，叠加百亿参数级的设备私域 RAG 大语文维修助手。它不仅看图纸，更理解逻辑；它不是软件，而是一位数字首席技术官。",
+        "span": "wide"
+      }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "拼图的价值，在于完美咬合。",
+    "body": "当单独采购时，它们在各自领域无可挑剔。但当这七大基座结合在同一个内网中时，产生了不可思议的生态化学反应："
+  },
+  {
+    "type": "featureGrid",
+    "columns": 2,
+    "cards": [
+      {
+        "icon": "Network",
+        "title": "IoT 报修触发 MES 停机，WMS 调拨配件，AI 指导修复",
+        "desc": "一个完整的纵向击穿流，横跨了设备侧、计划侧、仓储侧与维护侧，而其中没有一个多余的人工传话动作。"
+      },
+      {
+        "icon": "Database",
+        "title": "单一全局对象模型库 (One Object Model)",
+        "desc": "无需在多个子系统间互相写冗杂的 API 同步物料主数据与人员架构，全产品级复用统一的基础设施服务栈。"
+      }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "生于大厂，强在边缘。",
+    "body": "MSRU 平台基于 Golang / GoZero 与 Spring Cloud 混合微服务构建，前端采用 Next.js 高阶 SSR 层。既可以轻量级一键 Helm Chart 部署在私有本地物理服务器，也能弹性扩展在 AWS / 阿里云的 K8s 容器海中。"
+  },
+  {
+    "type": "featureGrid",
+    "columns": 3,
+    "cards": [
+      {
+        "icon": "Server",
+        "title": "SaaS 共有云",
+        "desc": "免运维开箱即用。适合小批量试水的中小型工厂集群，按月订阅无需高昂初装费。"
+      },
+      {
+        "icon": "Briefcase",
+        "title": "企业级私有化",
+        "desc": "将控制权 100% 握在手中。我们提供从数据库到应用容器的单机柜一体机镜像物理交付套件。"
+      },
+      {
+        "icon": "Globe",
+        "title": "云边局域网混合",
+        "desc": "中心汇总管理全局账务指标，车间层放置边缘计算节点提供超低延迟执行，即时外网断列依然不罢工。"
+      }
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "我是中型工厂，买不起四大全套产品怎么办？",
+        "a": "平台底层是解耦的。您可以仅订阅 MES，甚至仅仅采购一套具备极高价值回报率的 WMS 或者单个 AI 瑕疵检测视觉柜。所有的系统都可以像积木一样在日后单独拔插扩容。"
+      },
+      {
+        "q": "是否有基于大厂的定制化交付实施？",
+        "a": "是的，除了 SaaS 层面的标准功能外，面对大型国有制造局和合资企业。我们的专属架构技术团队会进驻您的基地完成深度驻场代码级二次定制与旧平台割接。"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "停止内耗。启动智能纪元。",
+    "description": "不再妥协于难用的丑陋界面与迟缓繁琐的人工报表中。",
+    "cta": {
+      "label": "预约战略演示",
+      "href": "/contact"
+    },
+    "accentColor": "blue"
+  }
+]

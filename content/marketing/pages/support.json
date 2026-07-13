@@ -1,0 +1,39 @@
+[
+  {
+    "type": "hero",
+    "badge": { "icon": "Headphones", "text": "Support Center" },
+    "title": "7x24",
+    "titleAccent": "全天候支持",
+    "subtitle": "全球 NOC 响应中心，由资深工程师值守，确保您的生产线永不停歇。",
+    "bgImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "featureGrid",
+    "columns": 3,
+    "cards": [
+      {
+        "icon": "Phone",
+        "accentColor": "blue",
+        "title": "电话热线",
+        "desc": "400-800-1904 · 7x24 全天候服务"
+      },
+      {
+        "icon": "Mail",
+        "accentColor": "emerald",
+        "title": "邮件工单",
+        "desc": "support@msru.ai · SLA 4 小时内首次响应"
+      },
+      {
+        "icon": "MessageSquare",
+        "accentColor": "amber",
+        "title": "在线即时聊天",
+        "desc": "平台右下角 · 工作时间实时接入"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "title": "查看系统实时运行状态",
+    "cta": { "label": "系统状态面板", "href": "/status" }
+  }
+]

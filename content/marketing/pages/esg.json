@@ -1,0 +1,63 @@
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": { "icon": "Sprout", "text": "Sustainability & Governance" },
+    "title": "绿色算法筑就永续工业",
+    "subtitle": "我们不只在优化生产效率，更在通过数字化手段大幅削减全球工业排放。MSRU 的每一行代码都在为地球的未来贡献绿色动能。",
+    "accentColor": "emerald",
+    "bgImage": "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "statBand",
+    "heading": "ESG 关键指标",
+    "accentColor": "emerald",
+    "stats": [
+      { "value": "35", "unit": "% (vs 2020)", "label": "碳足迹减少 · 100% 工业级精准追踪" },
+      { "value": "85", "unit": "% (Global)", "label": "可再生能源使用 · 目标 2030 实现 100%" },
+      { "value": "92", "unit": "% (Efficient)", "label": "水资源循环率 · 领先的工业节水方案" },
+      { "value": "42", "unit": "% (Inclusive)", "label": "多样性员工占比 · 构建无边界的人才环境" }
+    ]
+  },
+  {
+    "type": "featureGrid",
+    "columns": 3,
+    "cards": [
+      {
+        "icon": "Sprout",
+        "accentColor": "emerald",
+        "title": "环境责任 (E)",
+        "desc": "我们通过工业大模型优化能源调度，在不牺牲产出的情况下帮助工厂削减了平均 25% 的碳足迹。我们承诺到 2030 年实现 MSRU 全球运营网点的零碳排。"
+      },
+      {
+        "icon": "Heart",
+        "accentColor": "rose",
+        "title": "社会包容 (S)",
+        "desc": "我们支持全球 20+ 个非营利技术社区，并为发展中国家的工业教育提供免费的数字化教学资产，让每个人都能触及最先进的制造文明。"
+      },
+      {
+        "icon": "ShieldCheck",
+        "accentColor": "blue",
+        "title": "治理标准 (G)",
+        "desc": "公开透明的治理流程。我们的年度报告通过国际严苛审计，确保任何关联交易与重大决策都受到充分的监督与披露。"
+      }
+    ]
+  },
+  {
+    "type": "list",
+    "variant": "cards",
+    "items": [
+      { "title": "可持续发展综合报告", "meta": "2023 年度报告", "desc": "PDF / 8.5MB", "href": "#" },
+      { "title": "可持续发展综合报告", "meta": "2022 年度报告", "desc": "PDF / 8.5MB", "href": "#" },
+      { "title": "可持续发展综合报告", "meta": "2021 年度报告", "desc": "PDF / 8.5MB", "href": "#" }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "small",
+    "title": "ESG 报告板",
+    "description": "查阅并下载 MSRU 每一年度的可持续发展与治理报告。",
+    "cta": { "label": "联系我们的 ESG 委员会", "href": "mailto:esg@msru.ai" },
+    "accentColor": "emerald"
+  }
+]

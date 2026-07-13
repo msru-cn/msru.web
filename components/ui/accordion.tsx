@@ -1,10 +1,9 @@
 "use client";
 
-import { cn } from "@/lib/cn";
-
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import { Accordion as AccordionPrimitive } from "radix-ui";
 import type * as React from "react";
+import { cn } from "@/lib/cn";
 
 function Accordion({ className, ...props }: React.ComponentProps<typeof AccordionPrimitive.Root>) {
   return (
@@ -63,4 +62,4 @@ function AccordionContent({ className, children, ...props }: React.ComponentProp
   );
 }
 
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };
+export { Accordion, AccordionContent, AccordionItem, AccordionTrigger };

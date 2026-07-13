@@ -1,0 +1,62 @@
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": {
+      "icon": "ShieldCheck",
+      "text": "MSRU 客户成功保障体系"
+    },
+    "title": "端到端交付，赋能全生命周期。",
+    "subtitle": "不只是提供坚实的软件底座。我们通过标准化的实施方法论、高响应的安全护航与深度的定制开发，伴随企业走完数字化转型的每一公里。",
+    "accentColor": "teal",
+    "ctas": [
+      {
+        "label": "获取交付方案",
+        "href": "/contact"
+      },
+      {
+        "label": "了解技术支持",
+        "href": "/services/support"
+      }
+    ],
+    "bgImage": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "subHero",
+    "title": "覆盖全链路的",
+    "titleAccent": "服务矩阵",
+    "subtitle": "无论是首个灯塔工厂的标杆树立，还是跨国集团的全面铺开，我们皆有对应的标准服务组块。",
+    "accentColor": "teal"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Activity",
+        "title": "实施交付与蓝图落地",
+        "description": "从业务调研、蓝图设计到系统配置与最终上线，MSRU 敏捷交付法确保项目严格按期高质量兑现。",
+        "span": "wide",
+        "accentColor": "teal"
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "技术支持 7x24",
+        "description": "原厂 L3 级别直通支持。提供主动式健康巡检、紧急故障排查机动响应网络保障产线不停摆。",
+        "span": "wide",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "Users",
+        "title": "培训与认证",
+        "description": "赋能企业内部团队。涵盖操作员、关键用户至系统架构师的官方权威认证体系与实训工场。",
+        "accentColor": "emerald"
+      },
+      {
+        "icon": "Code",
+        "title": "定制研发",
+        "description": "特定行业协议解析与非标场景的专属平台扩展开发。",
+        "accentColor": "purple"
+      }
+    ]
+  }
+]

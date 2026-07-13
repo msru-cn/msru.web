@@ -1,0 +1,52 @@
+[
+  {
+    "type": "hero",
+    "badge": {
+      "icon": "HardDrive",
+      "text": "Certified Hardware"
+    },
+    "title": "认证硬件生态",
+    "subtitle": "经过 MSRU 实验室严格测试认证的工业网关、PLC、视觉传感器与 RFID 硬件目录。",
+    "accentColor": "amber",
+    "bgImage": "https://images.unsplash.com/photo-1620288627223-53302f4e8c74?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "featureGrid",
+    "columns": 2,
+    "cards": [
+      {
+        "icon": "Cpu",
+        "accentColor": "blue",
+        "title": "工业边缘网关",
+        "desc": "Advantech UNO-2484G · Siemens IOT2050 · MSRU Edge Box M1"
+      },
+      {
+        "icon": "Settings",
+        "accentColor": "purple",
+        "title": "PLC 与协议转换",
+        "desc": "Siemens S7-1500 · Allen-Bradley CompactLogix · Mitsubishi iQ-R"
+      },
+      {
+        "icon": "Camera",
+        "accentColor": "emerald",
+        "title": "工业视觉硬件",
+        "desc": "Basler ace 2 系列 · HIKROBOT MV-CS 系列 · MSRU AI Vision Cabinet"
+      },
+      {
+        "icon": "Network",
+        "accentColor": "amber",
+        "title": "RFID 与条码",
+        "desc": "Zebra FX9600 · Impinj R700 · Honeywell Granit 1920i"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "title": "提交硬件认证申请",
+    "cta": {
+      "label": "联系硬件生态团队",
+      "href": "/contact"
+    },
+    "accentColor": "amber"
+  }
+]

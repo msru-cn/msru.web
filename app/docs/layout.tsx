@@ -1,8 +1,8 @@
-import { buttonVariants } from "@/components/ui/button";
 import { DocsLayout } from "fumadocs-ui/layouts/docs";
 import { MessageCircleIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import { AISearch, AISearchPanel, AISearchTrigger } from "@/components/ai/search";
+import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 import { baseOptions, logo } from "@/lib/layout.shared";
 import { getSection } from "@/lib/navigation";

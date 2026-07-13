@@ -1,9 +1,5 @@
 import { describe, expect, test } from "vitest";
-import {
-  buildAggregatedRawUrl,
-  getSource,
-  navPathToSlug,
-} from "./aggregation-sources";
+import { buildAggregatedRawUrl, getSource, navPathToSlug } from "./aggregation-sources";
 
 describe("getSource", () => {
   test("returns registered source by id", () => {
@@ -22,14 +18,21 @@ describe("buildAggregatedRawUrl", () => {
     const s = getSource("nextjs");
     if (!s) throw new Error("nextjs source missing");
     const url = buildAggregatedRawUrl(s, "01-app/index");
-    expect(url).toBe(
-      "https://raw.githubusercontent.com/vercel/next.js/canary/docs/01-app/index.mdx",
-    );
+    expect(url).toBe("https://raw.githubusercontent.com/vercel/next.js/canary/docs/01-app/index.mdx");
   });
 
   test("uses .md extension when source ext is md", () => {
     const url = buildAggregatedRawUrl(
-      { id: "x", repo: "o/r", branch: "main", contentDir: "docs", ext: "md", mode: "live", license: "MIT", attribution: { text: "", originBaseUrl: "" } },
+      {
+        id: "x",
+        repo: "o/r",
+        branch: "main",
+        contentDir: "docs",
+        ext: "md",
+        mode: "live",
+        license: "MIT",
+        attribution: { text: "", originBaseUrl: "" },
+      },
       "guide/intro",
     );
     expect(url).toBe("https://raw.githubusercontent.com/o/r/main/docs/guide/intro.md");
@@ -37,7 +40,15 @@ describe("buildAggregatedRawUrl", () => {
 
   test("handles empty contentDir without double slash", () => {
     const url = buildAggregatedRawUrl(
-      { id: "x", repo: "o/r", branch: "main", contentDir: "", mode: "live", license: "MIT", attribution: { text: "", originBaseUrl: "" } },
+      {
+        id: "x",
+        repo: "o/r",
+        branch: "main",
+        contentDir: "",
+        mode: "live",
+        license: "MIT",
+        attribution: { text: "", originBaseUrl: "" },
+      },
       "guide",
     );
     expect(url).toBe("https://raw.githubusercontent.com/o/r/main/guide.mdx");

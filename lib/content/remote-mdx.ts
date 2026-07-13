@@ -1,6 +1,6 @@
 import { compileMDX } from "@fumadocs/mdx-remote";
-import { unstable_cache } from "next/cache";
 import type { MDXProps } from "mdx/types";
+import { unstable_cache } from "next/cache";
 import type { FC } from "react";
 
 export interface RemoteRepoConfig {

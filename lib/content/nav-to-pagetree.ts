@@ -26,7 +26,7 @@ function toNode(node: NavNode, sourceId: string): PageTree.Node {
     const folder: PageTree.Folder = {
       type: "folder",
       name: node.title,
-      children: node.children!.map((c) => toNode(c, sourceId)),
+      children: (node.children ?? []).map((c) => toNode(c, sourceId)),
     };
     if (node.slug) {
       folder.index = { type: "page", name: node.title, url: urlFor(sourceId, node.slug) };

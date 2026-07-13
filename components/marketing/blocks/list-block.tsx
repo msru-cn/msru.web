@@ -13,40 +13,44 @@ export interface ListBlockProps {
   items: ListItem[];
 }
 
+/**
+ * 通用列表 —— timeline/cards/rows/steps 四态。glass-stage 背景 + 玻璃条目。
+ * 明暗双主题自适应。
+ */
 export function ListBlock({ variant = "rows", items }: ListBlockProps) {
   const grid = variant === "cards" ? "grid grid-cols-1 md:grid-cols-2 gap-6" : "space-y-4";
   return (
-    <section className="py-24 bg-white dark:bg-zinc-950">
-      <div className="container mx-auto px-6 max-w-4xl">
+    <section className="glass-stage py-24 md:py-28">
+      <div className="container mx-auto max-w-4xl px-6">
         <ol className={grid}>
           {items.map((it, i) => {
             const inner = (
               <>
-                <div className="flex items-center gap-3 flex-wrap">
+                <div className="flex flex-wrap items-center gap-3">
                   {variant === "steps" && (
-                    <span className="size-7 rounded-full bg-primary/10 text-primary text-sm font-bold grid place-items-center">
+                    <span className="grid size-7 place-items-center rounded-full bg-linear-to-br from-blue-500 to-cyan-500 text-sm font-bold text-white">
                       {i + 1}
                     </span>
                   )}
                   <h3 className="font-bold text-zinc-900 dark:text-white">{it.title}</h3>
                   {it.tag && (
-                    <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500">
+                    <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] font-bold text-emerald-500">
                       {it.tag}
                     </span>
                   )}
                   {it.meta && <span className="text-xs text-zinc-400">{it.meta}</span>}
                 </div>
-                {it.desc && <p className="text-sm text-zinc-500 mt-2">{it.desc}</p>}
+                {it.desc && <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">{it.desc}</p>}
               </>
             );
             const cls = cn(
-              "p-6 rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50",
-              variant === "timeline" && "border-l-2 border-l-primary/40",
+              "glass glass-hover rounded-2xl p-6",
+              variant === "timeline" && "border-l-2 border-l-blue-500/50",
             );
             return (
               <li key={`${it.title}-${it.meta ?? i}`} className={cls}>
                 {it.href ? (
-                  <Link href={it.href} className="block hover:opacity-80">
+                  <Link href={it.href} className="block">
                     {inner}
                   </Link>
                 ) : (

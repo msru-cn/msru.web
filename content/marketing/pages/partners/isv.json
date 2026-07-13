@@ -1,0 +1,48 @@
+[
+  {
+    "type": "hero",
+    "badge": { "icon": "Handshake", "text": "ISV Partner Program" },
+    "title": "ISV",
+    "titleAccent": "联合方案",
+    "subtitle": "携手独立软件供应商，共建工业数字化的联合解决方案生态。",
+    "accentColor": "purple",
+    "bgImage": "https://images.unsplash.com/photo-1551033406-611cf9a28f67?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "featureGrid",
+    "columns": 2,
+    "cards": [
+      {
+        "icon": "Puzzle",
+        "accentColor": "purple",
+        "title": "联合解决方案开发",
+        "desc": "与 MSRU 核心团队协作，将您的垂直行业专长深度集成到统一平台中。"
+      },
+      {
+        "icon": "Code",
+        "accentColor": "blue",
+        "title": "技术沙箱与 API",
+        "desc": "获取完整的开发者沙箱环境、技术文档与优先 API 支持通道。"
+      },
+      {
+        "icon": "Sparkles",
+        "accentColor": "amber",
+        "title": "联合市场推广",
+        "desc": "共享全球客户资源池，参与联合品牌活动、案例包装与渠道分销。"
+      },
+      {
+        "icon": "Handshake",
+        "accentColor": "emerald",
+        "title": "商业激励计划",
+        "desc": "基于营收共享的透明分成模式，以及年度最佳合作伙伴评选。"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "成为 MSRU ISV 合作伙伴",
+    "cta": { "label": "申请加入", "href": "/contact" },
+    "accentColor": "purple"
+  }
+]

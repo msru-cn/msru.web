@@ -27,9 +27,7 @@ export function makeUnknownTagFallback(tagName: string, ctx: FallbackContext): F
     }
     // 代码化：无可渲染子内容，占位展示标签名，永不崩溃
     return (
-      <code className="rounded bg-fd-muted px-1.5 py-0.5 text-xs text-fd-muted-foreground">
-        {`<${tagName} />`}
-      </code>
+      <code className="rounded bg-fd-muted px-1.5 py-0.5 text-xs text-fd-muted-foreground">{`<${tagName} />`}</code>
     );
   };
 }

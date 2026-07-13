@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
-import { buildNavFromTree, humanizeTitle, stripOrderPrefix } from "./nav-model";
 import type { TreeEntry } from "./nav-model";
+import { buildNavFromTree, humanizeTitle, stripOrderPrefix } from "./nav-model";
 
 describe("stripOrderPrefix / humanizeTitle", () => {
   test("strips leading NN- numeric prefix", () => {
@@ -35,10 +35,7 @@ describe("buildNavFromTree (文件树档 + 数字前缀排序)", () => {
   test("orders by numeric prefix, not alphabetic", () => {
     const nav = buildNavFromTree(tree, "docs");
     const appGroup = nav.find((n) => n.title === "App");
-    expect(appGroup?.children?.map((c) => c.title)).toEqual([
-      "Installation",
-      "Project Structure",
-    ]);
+    expect(appGroup?.children?.map((c) => c.title)).toEqual(["Installation", "Project Structure"]);
     // 01-app before 02-pages (numeric-prefixed folders sort before plain names)
     expect(nav.slice(0, 3).map((n) => n.title)).toEqual(["Index", "App", "Pages"]);
   });

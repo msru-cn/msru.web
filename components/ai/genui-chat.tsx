@@ -27,12 +27,14 @@ export function GenUiChat() {
             {message.parts.map((part, i) => {
               if (part.type === "text") {
                 return (
+                  // biome-ignore lint/suspicious/noArrayIndexKey: 流式消息 part 无稳定 id，index 是必要的 key 组成
                   <div key={`${message.id}-t-${i}`} className="prose text-sm">
                     <Markdown text={part.text} />
                   </div>
                 );
               }
               if (isToolPart(part.type) && "output" in part && part.output) {
+                // biome-ignore lint/suspicious/noArrayIndexKey: 流式消息 part 无稳定 id，index 是必要的 key 组成
                 return <GenUiToolPart key={`${message.id}-c-${i}`} type={part.type} data={part.output} />;
               }
               return null;

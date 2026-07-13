@@ -1,0 +1,71 @@
+Title: Palantir
+
+URL Source: https://www.palantir.com/docs/foundry/automate/effect-logic/
+
+Markdown Content:
+
+# [](https://www.palantir.com/docs/foundry/automate/effect-logic/#logic-effects)Logic effects
+
+Logic effects allow you to automatically run [AIP Logic functions](https://www.palantir.com/docs/foundry/logic/overview/) when an automation triggers or recovers. Logic functions enable AI-powered workflows that can analyze data, make decisions, and propose or automatically execute Ontology edits.
+
+## [](https://www.palantir.com/docs/foundry/automate/effect-logic/#configuration)Configuration
+
+To set up a Logic effect, open the automation configuration wizard. On the **Effects** page, add a **Logic** effect; this will take you to the Logic effect configuration page.
+
+![Image 3: Setting up a new automation with a Logic effect](https://www.palantir.com/docs/resources/foundry/automate/effect-logic-add-new.png)
+
+Alternatively, you can create an automation directly from your AIP Logic in the **Usage** tab. Learn more about [creating automations from Logic files](https://www.palantir.com/docs/foundry/logic/aip-logic-integration-automate/).
+
+### [](https://www.palantir.com/docs/foundry/automate/effect-logic/#logic-function)Logic function
+
+Select a Logic function and specify the version. You can toggle **Auto upgrade to compatible versions**, which will automatically upgrade non-prerelease versions up until the next major version. This allows the automation to use newer compatible Logic function versions as they become available. Note that auto upgrade is not supported with Project scope mode.
+
+The interface will display the parameters required by the selected Logic function. Then, configure the required function inputs.
+
+The Logic function output must return an ontology edit for the automation to execute properly.
+
+![Image 4: A Logic function for an automation must return an ontology edit as output.](https://www.palantir.com/docs/resources/foundry/automate/effect-logic-output-returns-ontology-object.png)
+
+### [](https://www.palantir.com/docs/foundry/automate/effect-logic/#execution-mode)Execution mode
+
+Depending on your Logic function configuration, the function will either execute once for _all_ objects added or once per _each_ object added.
+
+#### [](https://www.palantir.com/docs/foundry/automate/effect-logic/#execute-once-per-object)Execute once per object
+
+When your Logic function uses a single affected object parameter, the function will execute once for each object that triggered the automation. For example, if the automation is triggered by three `Support Ticket` objects, the Logic function will execute three separate times—once for each `Support Ticket`.
+
+For executions that are once per object, you can choose to customize function parallelization.
+
+#### [](https://www.palantir.com/docs/foundry/automate/effect-logic/#customize-function-parallelization)Customize function parallelization
+
+Enable this setting to customize the number of Logic functions executed at a time. By default, Logic functions will execute in groups of 20. Decreasing parallelization will potentially reduce conflicts between function edits at the expense of longer runtime. Note that this parallelization setting applies only within each individual automation trigger.
+
+### [](https://www.palantir.com/docs/foundry/automate/effect-logic/#error-handling)Error handling
+
+You can configure multiple ways to handle a failed Logic function, including a retry strategy. Available retry strategies include:
+
+*   **Constant backoff:** Automatically retry with a fixed wait time between attempts.
+*   **Exponential backoff:** Wait time increases exponentially between retries.
+
+You can also configure the amount of **jitter**, which is a variation in delay time between retries to prevent simultaneous retries.
+
+For information about Logic effect execution guarantees and how to handle potential duplicate executions, review the [execution guarantees](https://www.palantir.com/docs/foundry/automate/effect-settings/#execution-guarantees) section in the execution settings documentation.
+
+You can also configure a [fallback effect](https://www.palantir.com/docs/foundry/automate/effect-fallback/) to handle failures gracefully by executing alternative actions when the primary Logic function fails. For more information about Logic errors, review the [error reference](https://www.palantir.com/docs/foundry/automate/errors/) documentation.
+
+## [](https://www.palantir.com/docs/foundry/automate/effect-logic/#permissions)Permissions
+
+Logic functions are associated with the owner of an automation. This means that the Logic function will be run on behalf of the owner of the automation. The owner of the Logic function configuration must have the necessary permissions to execute that function and perform any resulting Ontology edits.
+
+Since Logic functions run on behalf of a specific user (the owner of an automation), a Logic function will no longer run if the associated user account is disabled or deleted.
+
+[← PREVIOUS Action effects](https://www.palantir.com/docs/foundry/automate/effect-actions/)
+
+[NEXT Function effects →](https://www.palantir.com/docs/foundry/automate/effect-function/)
+
+© 2026 Palantir Technologies Inc. All rights reserved.
+
+[Cookies Statement ↗](https://www.palantir.com/cookie-statement/)[Privacy Statement ↗](https://www.palantir.com/privacy-and-security/)[Terms of Use ↗](https://www.palantir.com/terms-and-conditions/)
+
+Do Not Sell or Share My Personal Information
+

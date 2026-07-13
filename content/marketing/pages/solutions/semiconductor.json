@@ -1,0 +1,44 @@
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": { "icon": "Cpu", "text": "Semiconductor" },
+    "title": "半导体 智造方案",
+    "subtitle": "为晶圆制造、封装测试产线提供 SECS/GEM 无缝集成与良率追踪的端到端数字化方案。",
+    "accentColor": "purple",
+    "bgImage": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "featureGrid",
+    "columns": 2,
+    "cards": [
+      {
+        "icon": "CheckCircle",
+        "title": "SECS/GEM 设备集成",
+        "desc": "原生支持 SEMI E30/E37/E40 标准协议，实现设备自动化与主机通信的即插即用"
+      },
+      {
+        "icon": "CheckCircle",
+        "title": "无尘车间管控",
+        "desc": "实时监控微粒计数、温湿度与压差，自动联动 FOUP/SMIF 调度系统"
+      },
+      {
+        "icon": "CheckCircle",
+        "title": "良率追踪与分析",
+        "desc": "Wafer Map 全流程追溯，集成 SPC/FDC 实现工艺偏移的亚秒级预警"
+      },
+      {
+        "icon": "CheckCircle",
+        "title": "配方与工艺管理",
+        "desc": "多层级 Recipe 版本受控分发，支持 Golden Run 对标与参数漂移检测"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "用 MSRU 驱动每一片晶圆的良率跃迁",
+    "cta": { "label": "预约半导体方案演示", "href": "/contact" },
+    "accentColor": "purple"
+  }
+]

@@ -9,6 +9,45 @@
  * 文档示例代码，是要展示给读者的正文，不是真的模块导入。
  */
 
+/**
+ * 清洗 Jina Reader（r.jina.ai）抓取残留 —— 仅用于本地导入的抓取型 markdown。
+ *
+ * 两类杂质：
+ *  1) 文首键值前言：`Title:` / `URL Source:` / `Published Time:` / `Markdown Content:`，
+ *     出现在首个 markdown 标题之前，逐行剥离（含其间空行）。
+ *  2) 空锚点链接前缀：`[](https://…#anchor)标题` —— Jina 在每个标题前注入的回链，
+ *     统一折叠成纯文本 `标题`。
+ * 设计为幂等：已干净的 markdown 上运行为 no-op。绝不进代码围栏。
+ */
+const JINA_PREAMBLE_KEY = /^(Title|URL Source|Published Time|Markdown Content|Language|Warning|Images?)\s*:/i;
+const EMPTY_ANCHOR = /\[\]\((?:https?:)?\/\/[^)]*\)/g;
+
+export function cleanJinaScrape(src: string): string {
+  const segments = splitByFences(src);
+  let sawContent = false;
+  return segments
+    .map((seg) => {
+      if (seg.isCode) {
+        sawContent = true;
+        return seg.text;
+      }
+      const lines = seg.text.split("\n");
+      const kept: string[] = [];
+      for (const line of lines) {
+        // 文首前言：仅在尚未遇到任何正文内容前剥离已知键值行
+        if (!sawContent) {
+          if (line.trim() === "") continue;
+          if (JINA_PREAMBLE_KEY.test(line)) continue;
+          sawContent = true;
+        }
+        // 折叠空锚点链接前缀（标题与正文通用）
+        kept.push(line.replace(EMPTY_ANCHOR, ""));
+      }
+      return kept.join("\n");
+    })
+    .join("\n");
+}
+
 /** 将源码按代码围栏切成"代码段"与"非代码段"，只对非代码段做处理。 */
 function splitByFences(src: string): { text: string; isCode: boolean }[] {
   const lines = src.split("\n");
@@ -57,7 +96,7 @@ export function stripEsmStatements(src: string): string {
       if (seg.isCode) return seg.text;
       return seg.text
         .split("\n")
-        .map((line) => (/^\s*(import|export)\s[^]*/.test(line) ? "" : line))
+        .map((line) => (/^\s*(import|export)\s.*/.test(line) ? "" : line))
         .join("\n");
     })
     .join("\n");

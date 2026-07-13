@@ -1,5 +1,6 @@
 import { unstable_cache } from "next/cache";
 import type { AggregationSource } from "./aggregation-sources";
+import { buildLocalNav } from "./local-source";
 import { buildNavFromTree, type NavNode, type TreeEntry } from "./nav-model";
 
 /**
@@ -35,6 +36,9 @@ async function fetchTree(source: AggregationSource): Promise<TreeEntry[]> {
 async function buildNav(source: AggregationSource): Promise<NavNode[]> {
   if (source.navOverride && source.navOverride.length > 0) {
     return source.navOverride.map((n, i) => normalizeOverride(n, i));
+  }
+  if (source.mode === "local") {
+    return buildLocalNav(source);
   }
   const tree = await fetchTree(source);
   return buildNavFromTree(tree, source.contentDir);

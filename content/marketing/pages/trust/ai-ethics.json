@@ -1,0 +1,52 @@
+[
+  {
+    "type": "hero",
+    "badge": {
+      "icon": "Zap",
+      "text": "AI Ethics & Governance"
+    },
+    "title": "AI 伦理与管辖",
+    "subtitle": "我们坚信负责任的 AI 是工业智能化的基石。了解 MSRU 在大模型训练、数据脱敏与可解释性方面的坚定承诺。",
+    "accentColor": "amber",
+    "bgImage": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "featureGrid",
+    "columns": 2,
+    "cards": [
+      {
+        "icon": "Database",
+        "accentColor": "amber",
+        "title": "训练数据边界",
+        "desc": "客户生产数据永远不会被用于训练公共 AI 模型。所有模型训练仅使用经脱敏处理的合成数据集。"
+      },
+      {
+        "icon": "Lock",
+        "accentColor": "blue",
+        "title": "数据脱敏策略",
+        "desc": "在任何分析或推理流程之前，自动执行 k-匿名化、差分隐私与字段级掩码处理。"
+      },
+      {
+        "icon": "Eye",
+        "accentColor": "emerald",
+        "title": "可解释性承诺",
+        "desc": "所有 AI 决策输出附带置信度评分与归因分析，拒绝黑箱操作。"
+      },
+      {
+        "icon": "ShieldCheck",
+        "accentColor": "rose",
+        "title": "人类监督回路",
+        "desc": "关键工业决策始终保留人在回路 (Human-in-the-loop) 的最终审批权。"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "title": "了解更多 AI 治理细节",
+    "cta": {
+      "label": "联系 AI 治理团队",
+      "href": "/contact"
+    },
+    "accentColor": "amber"
+  }
+]

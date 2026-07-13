@@ -1,0 +1,77 @@
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": {
+      "icon": "MapPin",
+      "text": "MSRU 敏捷交付法 (M-ADM)"
+    },
+    "title": "把蓝图，毫秒不差地落地。",
+    "subtitle": "告别传统工业软件动辄数年的漫长实施。我们遵循精益原则构建了标准实施路径，从业务调研到最终上线，实现 100% 透明、可测与按期交付。",
+    "accentColor": "teal",
+    "bgImage": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "featureGrid",
+    "columns": 3,
+    "cards": [
+      {
+        "icon": "TrendingUp",
+        "title": "业务价值导向",
+        "desc": "拒绝“为了上系统而上系统”。每一次功能配置均与 KPI 相关联，直接解决产线堵点。"
+      },
+      {
+        "icon": "Zap",
+        "title": "积木式极速部署",
+        "desc": "依靠 MSRU 强大的元数据驱动引擎，将传统数月的二次开发缩短为数周的拖拽配置。"
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "零风险切线",
+        "desc": "基于数字孪生沙盘的全量压测验证，结合蓝绿发布策略，保障新系统上线工厂不停摆。"
+      }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "标准化交付时间线",
+    "body": "以下是一套涵盖核心 MES/WMS 的标准 12 周实施落地图谱。",
+    "accentColor": "teal"
+  },
+  {
+    "type": "list",
+    "variant": "timeline",
+    "items": [
+      {
+        "title": "业务痛点诊断与蓝图确认",
+        "meta": "Phase 1: 蓝图与需求 | Week 1-2",
+        "desc": "资深顾问驻场，梳理 AS-IS 流程并设计 TO-BE 蓝图。产出《系统业务流程蓝图》。"
+      },
+      {
+        "title": "标准化配置与定制验证",
+        "meta": "Phase 2: 系统构建 | Week 3-7",
+        "desc": "在沙箱环境中进行工厂建模、工艺路线配置及接口打通。阶段末完成系统功能原型确认 (UAT1)。"
+      },
+      {
+        "title": "关键用户培训与模拟演练",
+        "meta": "Phase 3: UAT 与培训 | Week 8-10",
+        "desc": "通过真实数据进行全链路压力测试，向用户交付操作手册并组织考核认证。"
+      },
+      {
+        "title": "平滑切线与 7x24 护航",
+        "meta": "Phase 4: 上线与护航 | Week 11-12",
+        "desc": "系统正式 Go-Live。原厂顾问双重驻场，保障新旧系统平滑切换，产线产能不跌波。"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "预约顾问评估",
+    "cta": {
+      "label": "预约顾问评估",
+      "href": "/contact"
+    },
+    "accentColor": "teal"
+  }
+]

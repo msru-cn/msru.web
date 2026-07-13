@@ -10,10 +10,77 @@ const hero = z.object({
   variant: z.enum(["dark", "narrative", "search"]).default("dark"),
   badge: z.object({ icon: z.string(), text: z.string() }).optional(),
   title: z.string(),
+  titleAccent: z.string().optional(),
   subtitle: z.string().optional(),
   accentColor: accent,
   bgImage: z.string().optional(),
   ctas: z.array(cta).optional(),
+});
+
+const subHero = z.object({
+  type: z.literal("subHero"),
+  badge: z.object({ icon: z.string().optional(), text: z.string() }).optional(),
+  title: z.string(),
+  titleAccent: z.string().optional(),
+  subtitle: z.string().optional(),
+  accentColor: accent,
+  bgImage: z.string().optional(),
+});
+
+const contactForm = z.object({
+  type: z.literal("contactForm"),
+  heading: z.string().optional(),
+  subtitle: z.string().optional(),
+  submitLabel: z.string().optional(),
+  submitEmail: z.string().optional(),
+  accentColor: accent,
+  fields: z.array(
+    z.object({
+      name: z.string(),
+      label: z.string(),
+      type: z.enum(["text", "email", "tel", "textarea", "select"]).optional(),
+      placeholder: z.string().optional(),
+      required: z.boolean().optional(),
+      options: z.array(z.string()).optional(),
+    }),
+  ),
+});
+
+const topHero = z.object({
+  type: z.literal("topHero"),
+  badge: z.object({ icon: z.string(), text: z.string() }).optional(),
+  title: z.string(),
+  subtitle: z.string().optional(),
+  accentColor: accent,
+  channels: z.array(z.object({ icon: z.string(), label: z.string(), href: z.string() })).optional(),
+  video: z.object({ src: z.string(), poster: z.string().optional() }).optional(),
+  intro: z
+    .object({
+      heading: z.string().optional(),
+      paragraphs: z.array(z.string()).optional(),
+      ctas: z.array(cta).optional(),
+    })
+    .optional(),
+});
+
+const tabbedHero = z.object({
+  type: z.literal("tabbedHero"),
+  heading: z.string().optional(),
+  subtitle: z.string().optional(),
+  defaultIndex: z.number().optional(),
+  tabs: z.array(
+    z.object({
+      label: z.string(),
+      icon: z.string().optional(),
+      bgImage: z.string().optional(),
+      accentColor: accent,
+      eyebrow: z.string().optional(),
+      title: z.string(),
+      description: z.string().optional(),
+      bullets: z.array(z.string()).optional(),
+      ctas: z.array(cta).optional(),
+    }),
+  ),
 });
 
 const statBand = z.object({
@@ -75,7 +142,7 @@ const custom = z.object({
 
 const splitMedia = z.object({
   type: z.literal("splitMedia"),
-  image: z.string(),
+  image: z.string().optional(),
   side: z.enum(["left", "right"]).default("left"),
   eyebrow: z.string().optional(),
   title: z.string(),
@@ -113,7 +180,7 @@ const caseList = z.object({
 
 const statement = z.object({
   type: z.literal("statement"),
-  title: z.string(),
+  title: z.string().optional(),
   body: z.string().optional(),
   accentColor: accent,
 });
@@ -162,6 +229,10 @@ const animatedBeams = z.object({
 
 export const blockSchema = z.discriminatedUnion("type", [
   hero,
+  subHero,
+  contactForm,
+  topHero,
+  tabbedHero,
   statBand,
   featureGrid,
   bento,

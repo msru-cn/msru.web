@@ -1,0 +1,45 @@
+[
+  {
+    "type": "hero",
+    "badge": { "icon": "ShieldCheck", "text": "SLA" },
+    "title": "SLA 与退款政策",
+    "subtitle": "最后更新：2026 年 1 月 1 日",
+    "accentColor": "blue",
+    "bgImage": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "statement",
+    "title": "1. 服务可用性承诺",
+    "body": "MSRU 承诺 SaaS 云服务的月度可用性不低于 99.95%。可用性计算排除计划维护窗口。"
+  },
+  {
+    "type": "statement",
+    "title": "2. 可用性等级与信用额度",
+    "body": "月度可用性 ≥ 99.95%：服务信用额度无；99.0% — 99.95%：月费 10%；95.0% — 99.0%：月费 25%；< 95.0%：月费 50%。"
+  },
+  {
+    "type": "list",
+    "variant": "rows",
+    "items": [
+      { "title": "≥ 99.95%", "meta": "无" },
+      { "title": "99.0% — 99.95%", "meta": "月费 10%" },
+      { "title": "95.0% — 99.0%", "meta": "月费 25%" },
+      { "title": "< 95.0%", "meta": "月费 50%" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "3. 服务信用申请",
+    "body": "客户须在停机事件发生后 30 个工作日内提交信用申请。信用额度将在下一个计费周期自动抵扣。"
+  },
+  {
+    "type": "statement",
+    "title": "4. 退款政策",
+    "body": "年度订阅客户在首次购买后 30 天内可申请全额退款。超过 30 天后，按剩余服务期限按比例退款（扣除已使用期间的标准月费）。"
+  },
+  {
+    "type": "statement",
+    "title": "5. 排除条件",
+    "body": "以下情况不适用 SLA 信用：客户网络故障、不可抗力事件、客户自行修改导致的问题、以及计划维护窗口内的短暂中断。"
+  }
+]

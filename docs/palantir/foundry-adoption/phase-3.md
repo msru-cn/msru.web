@@ -1,0 +1,46 @@
+Title: Palantir
+
+URL Source: https://www.palantir.com/docs/foundry/foundry-adoption/phase-3/
+
+Published Time: Thu, 09 Jul 2026 17:47:54 GMT
+
+# [](https://www.palantir.com/docs/foundry/foundry-adoption/phase-3/#phase-3-platform-growth-through-autonomy)Phase 3: Platform growth through autonomy
+
+## [](https://www.palantir.com/docs/foundry/foundry-adoption/phase-3/#what-does-the-organizations-use-of-foundry-look-like)What does the organization’s use of Foundry look like?
+
+*   Significant expansion of use cases that often exist across a wide array of business domains. Foundry usage has also grown significantly; in this phase, organizations generally have hundreds of regular users.
+*   Governance and program processes are implemented and formalized, including both internal processes for the day-to-day functioning of the Program team, as well as cross-functional processes to ensure continued growth across the organization and structured collaboration with multiple business domains.
+*   The Program team should expand to include: explicit ownership of Platform maintenance; dedicated resources for data security and permissions processes and architecture; and monitoring Foundry usage, including compute optimization and storage growth.
+*   Education and training initiatives should be running with clear owners in place and with established offerings across use cases and workflows.
+*   The Foundry Program should be well-established within the broader organization. The Program goals are focused on scalability and continued growth across business domains, while ensuring that new use cases are developed in alignment with the broader organizational data strategy. Progress reporting to leadership and across business areas to maintain confidence in the Program is key during this time.
+
+## [](https://www.palantir.com/docs/foundry/foundry-adoption/phase-3/#what-does-the-foundry-program-team-look-like)What does the Foundry Program team look like?
+
+*   The Foundry Program team should have strong teams in place to manage use case implementation, feedback loops with business teams to ingest new requirements and projects into the roadmap, and data integrations and ontology maintenance. The focus of this phase should be in building out dedicated resourcing for Platform Management, which is often managed by IT and technology teams outside of the Program team until this phase.
+*   Adding Platform Management responsibilities into the Program team with dedicated resources to own areas like IT services, permissions management, and technical compliance, enabling the Program team to run the Foundry platform in alignment with the overall strategy and goals of the program.
+*   A dedicated Platform Management team ensures that there are dedicated individuals with subject matter expertise about the Foundry platform’s setup and operations; these subject matter experts are able to plan, build, and remediate IT, permissions, and compliance issues within the platform and its connections to the broader business’ IT infrastructure. In-Program Platform Management creates autonomy and unlocks a new level of scalability into the next phase.
+*   Additionally, in this phase there should be enough usage of Foundry that internal support structures are required. Use Cases and workflows are unique to every organization, so internal support teams should be the first line of defense in triaging issues and resolving problems and questions. Internal ownership of support needs also creates a strong feedback loop back into planning and maintenance processes for data and implementation teams to use when building in Foundry.
+
+## [](https://www.palantir.com/docs/foundry/foundry-adoption/phase-3/#how-do-we-focus-our-resourcing-efforts)How do we focus our resourcing efforts?
+
+*   Find a strong Head of Platform who can successfully build and lead a team and also has strong connections into the organization’s broader IT organization. This role is crucial to the success of the Platform team within the Foundry Program; the Head of Platform must understand the organization’s existing IT architecture and processes and develop platform management processes for Foundry in alignment with organizational expectations. They also must be knowledgeable in managing Foundry costs and reporting structures around costs for the platform, and in permission administration requirements and best practices.
+*   Start building a support team. Leverage training and education resources to make sure that SOPs for investigation and issue remediation are built out, and develop monitoring and metrics around support issues. Build an internal support team that can maintain strong relationships with data and implementation teams with the goal of continuously improving the organization’s use of Foundry over time based on internal user feedback.
+
+## [](https://www.palantir.com/docs/foundry/foundry-adoption/phase-3/#phase-3-roles)Phase 3 roles
+
+The following diagram shows the various roles and teams within the Foundry Program team that are responsible for Foundry implementation in Phase 3:
+
+![Image 2: Phase 3 roles diagram](https://www.palantir.com/docs/resources/foundry/foundry-adoption/pteam-3.png)
+
+[Learn more about Program team roles and responsibilities in Phase 3.](https://www.palantir.com/docs/foundry/foundry-adoption/phase-3-roles/)
+
+[← PREVIOUS Phase 2: Develop infrastructure to unlock scaling / Roles and responsibilities](https://www.palantir.com/docs/foundry/foundry-adoption/phase-2-roles/)
+
+[NEXT Roles and responsibilities →](https://www.palantir.com/docs/foundry/foundry-adoption/phase-3-roles/)
+
+© 2026 Palantir Technologies Inc. All rights reserved.
+
+[Cookies Statement ↗](https://www.palantir.com/cookie-statement/)[Privacy Statement ↗](https://www.palantir.com/privacy-and-security/)[Terms of Use ↗](https://www.palantir.com/terms-and-conditions/)
+
+Do Not Sell or Share My Personal Information
+

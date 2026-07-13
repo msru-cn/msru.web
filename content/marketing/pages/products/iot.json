@@ -5,7 +5,8 @@
     "badge": { "icon": "Network", "text": "IoT Platform" },
     "title": "IoT 数据采集系统",
     "subtitle": "海量异构设备接入与边缘数据清洗，秒级边缘计算。",
-    "accentColor": "purple"
+    "accentColor": "purple",
+    "bgImage": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=2000"
   },
   {
     "type": "statBand",

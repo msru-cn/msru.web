@@ -17,7 +17,9 @@ describe("stripEsmStatements", () => {
   });
 
   test("does NOT touch import inside fenced code blocks", () => {
-    const src = ["# Doc", "", "```js", "import Image from 'next/image'", "export default App", "```", "", "after"].join("\n");
+    const src = ["# Doc", "", "```js", "import Image from 'next/image'", "export default App", "```", "", "after"].join(
+      "\n",
+    );
     const out = stripEsmStatements(src);
     // the code fence content must survive intact
     expect(out).toContain("import Image from 'next/image'");

@@ -6,17 +6,24 @@ export interface MediaShowcaseProps {
   caption?: string;
 }
 
+/**
+ * 媒体展示 —— glass-stage 背景中一块玻璃相框裹主视觉。明暗双主题自适应。
+ */
 export function MediaShowcase({ media, title, caption }: MediaShowcaseProps) {
   return (
-    <section className="py-24 bg-white dark:bg-zinc-950">
-      <div className="container mx-auto px-6 max-w-6xl text-center space-y-8">
+    <section className="glass-stage py-24 md:py-28">
+      <div className="container mx-auto max-w-6xl space-y-8 px-6 text-center">
         {title && (
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-zinc-900 dark:text-white">{title}</h2>
+          <h2 className="text-balance text-4xl font-bold tracking-tighter text-zinc-900 md:text-5xl dark:text-white">
+            {title}
+          </h2>
         )}
-        <div className="relative w-full aspect-video rounded-[2.5rem] overflow-hidden">
-          <Image src={media} alt={title ?? caption ?? "media"} fill className="object-cover" />
+        <div className="glass glass-hover overflow-hidden rounded-[2.5rem] p-2">
+          <div className="relative aspect-video w-full overflow-hidden rounded-[2rem]">
+            <Image src={media} alt={title ?? caption ?? "media"} fill className="object-cover" />
+          </div>
         </div>
-        {caption && <p className="text-zinc-500">{caption}</p>}
+        {caption && <p className="text-zinc-500 dark:text-zinc-400">{caption}</p>}
       </div>
     </section>
   );

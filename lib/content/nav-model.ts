@@ -73,12 +73,10 @@ function ensureChild(parent: MutableNode, name: string): MutableNode {
 }
 
 function finalize(node: MutableNode): NavNode {
-  const children = [...node.childrenMap.values()]
-    .map(finalize)
-    .sort((a, b) => {
-      if (a.order !== b.order) return a.order - b.order;
-      return a.title.localeCompare(b.title);
-    });
+  const children = [...node.childrenMap.values()].map(finalize).sort((a, b) => {
+    if (a.order !== b.order) return a.order - b.order;
+    return a.title.localeCompare(b.title);
+  });
   const out: NavNode = { title: node.title, order: node.order };
   if (node.slug) out.slug = node.slug;
   if (children.length > 0) out.children = children;

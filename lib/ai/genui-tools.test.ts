@@ -9,11 +9,7 @@ vi.mock("@/lib/content/products-repo", () => ({
 
 test("exposes three gen UI tools", async () => {
   const { genuiTools } = await import("./genui-tools");
-  expect(Object.keys(genuiTools).sort()).toEqual([
-    "providePricing",
-    "provideProductComparison",
-    "provideSolution",
-  ]);
+  expect(Object.keys(genuiTools).sort()).toEqual(["providePricing", "provideProductComparison", "provideSolution"]);
 });
 
 test("provideProductComparison.execute pulls real data by slug", async () => {

@@ -5,7 +5,8 @@
     "badge": { "icon": "Battery", "text": "新能源与电池" },
     "title": "从电芯到 PACK，全链路数字化",
     "subtitle": "高通量极片质检、电芯追溯与循环寿命建模。",
-    "accentColor": "amber"
+    "accentColor": "amber",
+    "bgImage": "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=2000"
   },
   {
     "type": "featureGrid",

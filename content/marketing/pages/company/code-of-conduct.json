@@ -1,0 +1,56 @@
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": { "icon": "Scale", "text": "Code of Conduct" },
+    "title": "商业行为准则",
+    "subtitle": "MSRU 全球员工、管理层与合作伙伴必须共同遵循的商业道德底线。",
+    "accentColor": "blue",
+    "bgImage": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "featureGrid",
+    "columns": 2,
+    "cards": [
+      {
+        "icon": "ShieldCheck",
+        "accentColor": "blue",
+        "title": "诚信与透明",
+        "desc": "在所有商业活动中保持最高标准的诚信，拒绝任何形式的贿赂、腐败或利益冲突。"
+      },
+      {
+        "icon": "Scale",
+        "accentColor": "emerald",
+        "title": "公平竞争",
+        "desc": "严格遵守各司法管辖区的反垄断与反不正当竞争法规，通过产品实力赢得市场。"
+      },
+      {
+        "icon": "Users",
+        "accentColor": "amber",
+        "title": "多元包容",
+        "desc": "尊重每一位员工、合作伙伴与客户，构建零歧视、无骚扰的工作与合作环境。"
+      },
+      {
+        "icon": "Heart",
+        "accentColor": "rose",
+        "title": "社会责任",
+        "desc": "积极回馈社区，支持工业教育与可持续发展事业，做负责任的企业公民。"
+      }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "举报渠道",
+    "body": "如您发现任何违反本准则的行为，可通过以下渠道匿名举报：匿名举报邮箱 ethics@msru.ai；公司内部举报热线 400-800-1904 转 9；独立第三方举报平台（即将上线）。MSRU 严禁对善意举报者进行任何形式的报复，违反者将受到严厉纪律处分直至解除劳动关系。",
+    "accentColor": "blue"
+  },
+  {
+    "type": "list",
+    "variant": "rows",
+    "items": [
+      { "title": "匿名举报邮箱", "desc": "ethics@msru.ai", "href": "mailto:ethics@msru.ai" },
+      { "title": "公司内部举报热线", "desc": "400-800-1904 转 9" },
+      { "title": "独立第三方举报平台", "desc": "即将上线" }
+    ]
+  }
+]

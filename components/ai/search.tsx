@@ -1,6 +1,5 @@
 "use client";
 import { type UIMessage, type UseChatHelpers, useChat } from "@ai-sdk/react";
-import { buttonVariants } from "@/components/ui/button";
 import { Presence } from "@radix-ui/react-presence";
 import { DefaultChatTransport } from "ai";
 import Link from "fumadocs-core/link";
@@ -18,6 +17,7 @@ import {
   useState,
 } from "react";
 import type { z } from "zod";
+import { buttonVariants } from "@/components/ui/button";
 import { cn } from "../../lib/cn";
 import type { ProvideLinksToolSchema } from "../../lib/inkeep-qa-schema";
 import { Markdown } from "./markdown";

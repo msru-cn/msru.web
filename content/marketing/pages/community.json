@@ -1,0 +1,47 @@
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": {
+      "icon": "Handshake",
+      "text": "Open Source Community"
+    },
+    "title": "开发者社区与开源矩阵",
+    "subtitle": "加入全球工业级开源工具生态的共建行列。代码、知识与经验——在这里自由流动。",
+    "accentColor": "cyan",
+    "bgImage": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "featureGrid",
+    "columns": 3,
+    "cards": [
+      {
+        "icon": "Github",
+        "title": "GitHub 开源组织",
+        "desc": "参与核心工具库、CLI 与协议适配器的开源共建"
+      },
+      {
+        "icon": "MessageSquare",
+        "accentColor": "blue",
+        "title": "Discord 技术社区",
+        "desc": "与全球开发者实时交流、获取技术支持与分享最佳实践"
+      },
+      {
+        "icon": "Globe",
+        "accentColor": "emerald",
+        "title": "技术博客与演讲",
+        "desc": "来自核心架构团队的开源技术解析与行业峰会分享"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "small",
+    "title": "与 5,000+ 工业开发者同行",
+    "cta": {
+      "label": "加入社区",
+      "href": "/contact"
+    },
+    "accentColor": "cyan"
+  }
+]

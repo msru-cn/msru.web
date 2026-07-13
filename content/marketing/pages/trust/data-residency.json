@@ -1,0 +1,57 @@
+[
+  {
+    "type": "hero",
+    "badge": {
+      "icon": "Network",
+      "text": "Data Residency"
+    },
+    "title": "数据驻留与跨境声明",
+    "subtitle": "MSRU 支持按企业需求将数据物理驻留在指定区域，满足各地数据主权法规的严格要求。",
+    "accentColor": "emerald",
+    "bgImage": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "statement",
+    "title": "全球数据中心区域",
+    "accentColor": "emerald"
+  },
+  {
+    "type": "featureGrid",
+    "columns": 2,
+    "cards": [
+      {
+        "icon": "MapPin",
+        "accentColor": "emerald",
+        "title": "中国大陆",
+        "desc": "提供商：阿里云 · 物理位置：上海 / 深圳 · 合规框架：等保三级 · PIPL"
+      },
+      {
+        "icon": "MapPin",
+        "accentColor": "blue",
+        "title": "亚太 (APAC)",
+        "desc": "提供商：AWS · 物理位置：新加坡 / 东京 · 合规框架：PDPA · APPI"
+      },
+      {
+        "icon": "MapPin",
+        "accentColor": "purple",
+        "title": "欧盟 (EU)",
+        "desc": "提供商：AWS · 物理位置：法兰克福 · 合规框架：GDPR · Schrems II"
+      },
+      {
+        "icon": "MapPin",
+        "accentColor": "amber",
+        "title": "北美 (NA)",
+        "desc": "提供商：AWS · 物理位置：弗吉尼亚 · 合规框架：CCPA · SOC 2"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "title": "需要定制化的数据驻留方案？",
+    "cta": {
+      "label": "联系合规团队",
+      "href": "/contact"
+    },
+    "accentColor": "emerald"
+  }
+]

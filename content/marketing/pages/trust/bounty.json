@@ -1,0 +1,32 @@
+[
+  {
+    "type": "hero",
+    "badge": { "icon": "Bug", "text": "Bug Bounty Program" },
+    "title": "漏洞披露政策",
+    "subtitle": "我们欢迎负责任的安全研究者帮助我们发现并修复潜在漏洞。提交有效报告将获得丰厚的现金奖励。",
+    "accentColor": "purple",
+    "bgImage": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "statement",
+    "title": "奖励等级",
+    "accentColor": "purple"
+  },
+  {
+    "type": "list",
+    "variant": "rows",
+    "items": [
+      { "title": "关键级 (Critical)", "tag": "¥50,000 - ¥200,000", "desc": "远程代码执行、认证绕过、数据库注入" },
+      { "title": "高危级 (High)", "tag": "¥15,000 - ¥50,000", "desc": "权限提升、敏感信息泄露、SSRF" },
+      { "title": "中危级 (Medium)", "tag": "¥3,000 - ¥15,000", "desc": "存储型 XSS、CSRF、逻辑缺陷" },
+      { "title": "低危级 (Low)", "tag": "¥500 - ¥3,000", "desc": "反射型 XSS、信息披露、配置缺陷" }
+    ]
+  },
+  {
+    "type": "cta",
+    "title": "准备提交报告？",
+    "description": "请将漏洞详情发送至专用安全邮箱，我们承诺 24 小时内响应。",
+    "cta": { "label": "security@msru.ai", "href": "mailto:security@msru.ai" },
+    "accentColor": "purple"
+  }
+]

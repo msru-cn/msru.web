@@ -1,0 +1,118 @@
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": {
+      "icon": "Sparkles",
+      "text": "MSRU APS 智能排程引擎"
+    },
+    "title": "让生产计划，精确到毫秒。",
+    "subtitle": "打破传统黑盒式的经验排产。基于运筹学与 AI 启发式算法，全局统筹人员、机台、物料与模具边界约束。一键生成全局最优的最短交期与最低成本生产计划。",
+    "accentColor": "orange",
+    "ctas": [
+      {
+        "label": "获取企业版报价",
+        "href": "/contact"
+      },
+      {
+        "label": "阅读架构白皮书",
+        "href": "/docs"
+      }
+    ],
+    "bgImage": "https://plus.unsplash.com/premium_photo-1706191097438-a86238a40cfd?w=2000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2NoZWR1bGV8ZW58MHx8MHx8fDA%3D"
+  },
+  {
+    "type": "statBand",
+    "heading": "不是预估。是真实的运筹优化。",
+    "accentColor": "orange",
+    "stats": [
+      {
+        "value": "98",
+        "unit": "%",
+        "label": "按期交货履行率 (OTD)"
+      },
+      {
+        "value": "40",
+        "unit": "%",
+        "label": "生产换型时间缩短"
+      },
+      {
+        "value": "85",
+        "unit": "%",
+        "label": "排产人工成本降低"
+      },
+      {
+        "value": "<5",
+        "unit": "min",
+        "label": "十万级工序重排响应"
+      }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "应对插单危机，从未如此从容。",
+    "body": "急单来了？物料迟到了？设备突然当机？传统计划体系往往需要推倒重来，耗费数天。APS 动态重排引擎能在数分钟内评估影响涟漪效应，快速在数千种替代方案中计算出最优解，确保全局损失最小化。",
+    "accentColor": "orange"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Network",
+        "accentColor": "orange",
+        "title": "多维资源约束建模 (Finite Capacity)",
+        "description": "不仅考虑设备产能，更将人员技能矩阵、辅助治具/模具数量、能源峰谷波动、甚至是同工序防污染隔离要求等硬软维约束全息建模，拒绝生成任何“纸上谈兵”的虚假计划。",
+        "span": "wide"
+      },
+      {
+        "icon": "Package",
+        "accentColor": "orange",
+        "title": "精益物料需求演算 (JIT)",
+        "description": "基于展开后的 BOM 分阶级联计算，打通底层仓库/在途进耗存数据。自动推演齐套缺件瓶颈，精确指示采购入库节点，大幅削减呆滞库存。",
+        "span": "wide"
+      },
+      {
+        "icon": "Zap",
+        "accentColor": "orange",
+        "title": "TOC 瓶颈侦测",
+        "description": "基于约束理论寻找并标识产线真实瓶颈工位。算法自动将非瓶颈工序缓冲对其看齐，使得整体产出最大化。"
+      },
+      {
+        "icon": "Activity",
+        "accentColor": "orange",
+        "title": "无限滚动甘特图",
+        "description": "丝滑的 WebGL 驱动甘特图组件。支持百万级工单的缩放拖拽、合并拆批与直接锁定期限操作。"
+      },
+      {
+        "icon": "Target",
+        "accentColor": "orange",
+        "title": "自定义优化权重",
+        "description": "自定义优化权重"
+      },
+      {
+        "icon": "CalendarDays",
+        "accentColor": "orange",
+        "title": "CTP 可承诺交期",
+        "description": "CTP 可承诺交期"
+      },
+      {
+        "icon": "Database",
+        "accentColor": "orange",
+        "title": "分布式并行计算矩阵",
+        "description": "运筹优化是算力密集型任务。MSRU APS 提供云端按需伸缩的弹性的 GPU/CPU 异构加速集群矩阵，让包含千万级变量的大型离散制造排产在单杯咖啡的时间内算出全局闭解。",
+        "span": "wide"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "从混沌计划到精确节拍。",
+    "description": "停止救火式的车间调度。我们将安排资深运筹学实施专家为您进行工厂逻辑建模咨询。",
+    "cta": {
+      "label": "预约 APS 功能演示",
+      "href": "/contact"
+    },
+    "accentColor": "orange"
+  }
+]

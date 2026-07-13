@@ -1,0 +1,118 @@
+[
+  {
+    "type": "hero",
+    "variant": "dark",
+    "badge": {
+      "icon": "Sparkles",
+      "text": "MSRU EAM 资产管理引擎"
+    },
+    "title": "让设备停机，成为历史名词。",
+    "subtitle": "资产不是折旧账本，而是创造价值的核心引擎。将传统救火式维修升级为 AI 驱动的“预测性维保”。深探设备微观工况，释放千万级固定资产隐形产能。",
+    "accentColor": "teal",
+    "ctas": [
+      {
+        "label": "获取企业版报价",
+        "href": "/contact"
+      },
+      {
+        "label": "阅读架构白皮书",
+        "href": "/docs"
+      }
+    ],
+    "bgImage": "https://plus.unsplash.com/premium_photo-1682147307418-07ad7e897bc9?w=2000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW5kdXN0cmlhbCUyMGVxdWlwbWVudHxlbnwwfHwwfHx8MA%3D%3D"
+  },
+  {
+    "type": "statBand",
+    "heading": "不是折旧摊销。是生命周期续航。",
+    "accentColor": "teal",
+    "stats": [
+      {
+        "value": "80",
+        "unit": "%",
+        "label": "意外停机事故削减"
+      },
+      {
+        "value": "25",
+        "unit": "%",
+        "label": "备件冗余资金释放"
+      },
+      {
+        "value": "15",
+        "unit": "%",
+        "label": "设备平均生命周期延长"
+      },
+      {
+        "value": "+30",
+        "unit": "%",
+        "label": "维修技师响应效率"
+      }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "给机器挂上听诊器，倾听金属的疲劳。",
+    "body": "我们拒绝将资产管理单纯视作财务概念上的“台账”。结合最前沿的工业物联网高频振动与温度采样分析，我们的模型能够抓取轴承破裂前两周的轻微异响，在灾难发生前将维修单精准推送到技师的PDA上。",
+    "accentColor": "teal"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Activity",
+        "accentColor": "teal",
+        "title": "智能预防与预测性维保 (PdM)",
+        "description": "突破被动式的设备故障报修。您可以基于稼动时长、循环次数建立灵活规则周期保养 (PM)，更可挂载 PHM 预测模型对电流偏离及主轴温升实时在线诊断。",
+        "span": "wide"
+      },
+      {
+        "icon": "FileText",
+        "accentColor": "teal",
+        "title": "全息设备档案与BOM",
+        "description": "一键扫码开启设备的完整“简历”。结构树式管理设备本体、核心部件与备用配件（E-BOM）。绑定历史维修耗费、点检履历图纸说明书。",
+        "span": "wide"
+      },
+      {
+        "icon": "Settings",
+        "accentColor": "teal",
+        "title": "备品备件动态水位线",
+        "description": "防积压也防缺料。依据历史消耗与未完成工单，自动发出安全库存补货预警机制。"
+      },
+      {
+        "icon": "Settings",
+        "accentColor": "teal",
+        "title": "抢单与派单混合流转",
+        "description": "车间安灯报警后，手机APP即可抢单或基于维修技师专长矩阵定向指派，实时打卡记录响应时效参数。"
+      },
+      {
+        "icon": "TrendingUp",
+        "accentColor": "teal",
+        "title": "MTBF/MTTR 黄金分析",
+        "description": "MTBF/MTTR 黄金分析"
+      },
+      {
+        "icon": "CheckCircle",
+        "accentColor": "teal",
+        "title": "移动端防作弊巡检",
+        "description": "移动端防作弊巡检"
+      },
+      {
+        "icon": "Database",
+        "accentColor": "teal",
+        "title": "底层 IoT 设备网关联动",
+        "description": "脱离隔离墙，本系统自然挂载平台底座的 MSRU IoT 基建设施。全息汇集高精度的数控中心状态日志、各类西门子三菱 PLC 寄存器地址中的深度磨损信号数据。",
+        "span": "wide"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "护航您的核心印钞机。",
+    "description": "让设备始终保持出厂级的巅峰状态。立刻接入由 AI 与大数据驱动的新一代资管系统。",
+    "cta": {
+      "label": "预约 EAM 功能演示",
+      "href": "/contact"
+    },
+    "accentColor": "teal"
+  }
+]
