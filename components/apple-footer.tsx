@@ -297,6 +297,7 @@ export function AppleFooter() {
                         alt="MSRU Logo"
                         width={24}
                         height={24}
+                        style={{ width: "auto" }}
                         className="h-3.5 w-auto dark:brightness-0 dark:invert"
                       />
                       MSRU
@@ -309,6 +310,7 @@ export function AppleFooter() {
                       alt="MSRU Logo"
                       width={24}
                       height={24}
+                      style={{ width: "auto" }}
                       className="h-3.5 w-auto dark:brightness-0 dark:invert"
                     />
                     MSRU

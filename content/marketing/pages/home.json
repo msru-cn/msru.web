@@ -1,16 +1,29 @@
-
 [
   {
-    "type": "hero",
-    "variant": "dark",
+    "type": "topHero",
     "badge": { "icon": "Sparkles", "text": "描述驱动 · 工业软件内核" },
-    "title": "可被描述的，皆可生长。",
-    "subtitle": "你能把一件事描述得多清楚，就能把它管得多好。描述一次——有哪些东西、哪些规矩、会经历哪些环节——存储、接口、权限、流程、记录，系统照着描述自己接着长。",
+    "title": "美仁智数         DT-Core",
+    "subtitle": "—— 人工与      智能协同工作的的数智化工作台 ——",
     "accentColor": "blue",
-    "ctas": [
-      { "label": "看看它怎么长出来", "href": "/products" },
-      { "label": "预约一次聊聊", "href": "/contact" }
-    ]
+    "bgImage": "/uploads/home.hero.1.mp4",
+    "channels": [
+      { "icon": "Github", "label": "GitHub", "href": "https://github.com/msru-cn/msru.web" },
+      { "icon": "Twitter", "label": "@ciromsk", "href": "https://x.com/ciromsk" }
+    ],
+    "videos": [
+      { "src": "/uploads/homeHero.mp4" },
+      { "src": "/uploads/home2.mp4" },
+      { "src": "/uploads/home.hero.mp4" }
+    ],
+    "intro": {
+      "heading": "打造一个可以自举的数字化工作台",
+      "paragraphs": [
+        "你描述业务规则，",
+        "MSRU 自动生成数据结构、API、权限和流程，让你聚焦核心业务，不再重复搭建基础框架。",
+        "于是变化不再昂贵。改一处描述，整条链路一致地跟着长；停用一个业务，它干净地从内核上卸下。这就是为什么我们说：可被描述的，皆可生长。"
+      ],
+      "ctas": [{ "label": "看看它怎么长出来", "href": "/products" }, { "label": "预约一次聊聊", "href": "/contact" }]
+    }
   },
   {
     "type": "logoWall",
@@ -45,24 +58,92 @@
     "type": "featureGrid",
     "columns": 3,
     "cards": [
-      { "icon": "Puzzle", "title": "流程编排", "desc": "把业务规则拖成一张流程图，条件分支、并行、事件触发都能连；画好就能跑。" },
-      { "icon": "Box", "title": "WASM 扩展", "desc": "把你自己写的函数（Go / Rust / C++）编译成插件，像内置功能一样被流程和 AI 调用。" },
-      { "icon": "Activity", "title": "状态机", "desc": "工单、审批、维保这些有状态的事，用同一套状态机管，什么能转、什么不能，配置说了算。" },
-      { "icon": "Sparkles", "title": "AI 协作", "desc": "接入语音、检索和多个大模型；AI 照着同一套规矩帮你操作界面，而不是绕过流程。" },
-      { "icon": "Shield", "title": "关系型授权", "desc": "基于关系的权限控制（SpiceDB，Google Zanzibar 那套），谁能看、谁能改，精确到每一条数据。" },
-      { "icon": "FileText", "title": "描述即标准", "desc": "一份描述就是唯一标准，前后端照着同一份对齐，接口不会再对不上。" }
+      {
+        "icon": "Puzzle",
+        "title": "流程编排",
+        "desc": "把业务规则拖成一张流程图，条件分支、并行、事件触发都能连；画好就能跑。"
+      },
+      {
+        "icon": "Box",
+        "title": "WASM 扩展",
+        "desc": "把你自己写的函数（Go / Rust / C++）编译成插件，像内置功能一样被流程和 AI 调用。"
+      },
+      {
+        "icon": "Activity",
+        "title": "状态机",
+        "desc": "工单、审批、维保这些有状态的事，用同一套状态机管，什么能转、什么不能，配置说了算。"
+      },
+      {
+        "icon": "Sparkles",
+        "title": "AI 协作",
+        "desc": "接入语音、检索和多个大模型；AI 照着同一套规矩帮你操作界面，而不是绕过流程。"
+      },
+      {
+        "icon": "Shield",
+        "title": "关系型授权",
+        "desc": "基于关系的权限控制（SpiceDB，Google Zanzibar 那套），谁能看、谁能改，精确到每一条数据。"
+      },
+      {
+        "icon": "FileText",
+        "title": "描述即标准",
+        "desc": "一份描述就是唯一标准，前后端照着同一份对齐，接口不会再对不上。"
+      }
     ]
   },
   {
     "type": "bento",
     "items": [
-      { "icon": "Cpu", "accentColor": "blue", "title": "MES 生产执行", "tagline": "工序记清楚", "description": "每一道工序、每一次报工都记下来，出了问题回头查得到。", "span": "wide" },
-      { "icon": "Package", "accentColor": "emerald", "title": "WMS 仓储", "tagline": "账实对得上", "description": "货在哪、动过谁、还剩多少，账和实物对得上。" },
-      { "icon": "CalendarDays", "accentColor": "amber", "title": "APS 排程", "tagline": "排得开", "description": "什么时候做什么、谁先谁后，按约束排得开，交期能提前推演。" },
-      { "icon": "ShieldCheck", "accentColor": "rose", "title": "QMS 品质", "tagline": "查得到", "description": "标准贯穿全流程，异常能定位，用 SPC 把错挡在发生之前。" },
-      { "icon": "Settings", "accentColor": "slate", "title": "EAM 设备", "tagline": "提前知道", "description": "根据设备运行数据提前提示保养，备件台账不乱。" },
-      { "icon": "Network", "accentColor": "purple", "title": "IoT 设备接入", "tagline": "接得进来", "description": "把大量设备接进来，数据先在边缘算一遍再上传。" },
-      { "icon": "Zap", "accentColor": "fuchsia", "title": "AI 能力", "tagline": "照规矩帮你干", "description": "智能排产、视觉质检、工艺分析——让 AI 照着业务规矩干活。", "span": "wide" }
+      {
+        "icon": "Cpu",
+        "accentColor": "blue",
+        "title": "MES 生产执行",
+        "tagline": "工序记清楚",
+        "description": "每一道工序、每一次报工都记下来，出了问题回头查得到。",
+        "span": "wide"
+      },
+      {
+        "icon": "Package",
+        "accentColor": "emerald",
+        "title": "WMS 仓储",
+        "tagline": "账实对得上",
+        "description": "货在哪、动过谁、还剩多少，账和实物对得上。"
+      },
+      {
+        "icon": "CalendarDays",
+        "accentColor": "amber",
+        "title": "APS 排程",
+        "tagline": "排得开",
+        "description": "什么时候做什么、谁先谁后，按约束排得开，交期能提前推演。"
+      },
+      {
+        "icon": "ShieldCheck",
+        "accentColor": "rose",
+        "title": "QMS 品质",
+        "tagline": "查得到",
+        "description": "标准贯穿全流程，异常能定位，用 SPC 把错挡在发生之前。"
+      },
+      {
+        "icon": "Settings",
+        "accentColor": "slate",
+        "title": "EAM 设备",
+        "tagline": "提前知道",
+        "description": "根据设备运行数据提前提示保养，备件台账不乱。"
+      },
+      {
+        "icon": "Network",
+        "accentColor": "purple",
+        "title": "IoT 设备接入",
+        "tagline": "接得进来",
+        "description": "把大量设备接进来，数据先在边缘算一遍再上传。"
+      },
+      {
+        "icon": "Zap",
+        "accentColor": "fuchsia",
+        "title": "AI 能力",
+        "tagline": "照规矩帮你干",
+        "description": "智能排产、视觉质检、工艺分析——让 AI 照着业务规矩干活。",
+        "span": "wide"
+      }
     ]
   },
   {
@@ -75,11 +156,7 @@
       { "icon": "Box", "label": "Core 内核" },
       { "icon": "Package", "label": "MES / WMS" }
     ],
-    "edges": [
-      { "from": 0, "to": 1 },
-      { "from": 1, "to": 2 },
-      { "from": 2, "to": 3 }
-    ]
+    "edges": [{ "from": 0, "to": 1 }, { "from": 1, "to": 2 }, { "from": 2, "to": 3 }]
   },
   {
     "type": "splitMedia",
@@ -180,10 +257,19 @@
   {
     "type": "faq",
     "items": [
-      { "q": "和传统 MES / ERP 有什么不一样？", "a": "传统方案是一个个孤立系统；这里是一个统一内核，各业务模块共享同一套身份、权限、事件和数据底层，天然互通。" },
+      {
+        "q": "和传统 MES / ERP 有什么不一样？",
+        "a": "传统方案是一个个孤立系统；这里是一个统一内核，各业务模块共享同一套身份、权限、事件和数据底层，天然互通。"
+      },
       { "q": "可以只用其中一个模块吗？", "a": "可以。所有模块按需开通、到期就停，独立部署，用多少付多少。" },
-      { "q": "能接我们现有的设备和系统吗？", "a": "支持直连主流工业协议；老系统也提供逐步迁移的方案，数据安全地一步步替换，不用一次推倒。" },
-      { "q": "自研的算法或函数能集成进来吗？", "a": "能。用 WASM 把 Go / C++ / Rust 函数打包成插件，供流程和 AI 统一调用。" }
+      {
+        "q": "能接我们现有的设备和系统吗？",
+        "a": "支持直连主流工业协议；老系统也提供逐步迁移的方案，数据安全地一步步替换，不用一次推倒。"
+      },
+      {
+        "q": "自研的算法或函数能集成进来吗？",
+        "a": "能。用 WASM 把 Go / C++ / Rust 函数打包成插件，供流程和 AI 统一调用。"
+      }
     ]
   },
   {

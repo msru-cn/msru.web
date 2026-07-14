@@ -19,7 +19,7 @@
         "href": "/docs"
       }
     ],
-    "bgImage": "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "/uploads/home2.mp4"
   },
   {
     "type": "statBand",
@@ -121,10 +121,7 @@
     "eyebrow": "监控塔",
     "title": "每一秒的吞吐，尽收眼底。",
     "body": "为仓储经理配备了犹如机场控制塔般的指挥中心大屏。进港卡车排队状态、月台拥堵情况、AGV电量及位置、各波次拣货完成百分比……数据无需等待第二天出表，全部以秒级刷新呈现在您眼前。",
-    "bullets": [
-      "库区预警与塞车熔断",
-      "月台进出场道闸联动"
-    ]
+    "bullets": ["库区预警与塞车熔断", "月台进出场道闸联动"]
   },
   {
     "type": "faq",

@@ -30,6 +30,7 @@ export function baseOptions(): BaseLayoutProps {
             alt="MSRU Logo"
             width={24}
             height={24}
+            style={{ width: "auto" }}
             className="h-6 w-auto dark:brightness-0 dark:invert"
           />
           <span className="font-medium">MSRU</span>

@@ -6,7 +6,7 @@
     "title": "从云端大脑到，真实的土壤。",
     "subtitle": "融合世界级 IoT 底座、前沿 AI 算法与 3D 数字孪生技术。为您提供涵盖高精度传感设备与全功能温室试验田的“端到端”交付，赋能产业升级与前沿农科实验。",
     "accentColor": "emerald",
-    "bgImage": "https://images.unsplash.com/photo-1586771107445-d3afeb0a382c?q=80&w=2070&auto=format&fit=crop",
+    "bgVideo": "/uploads/agriculture.hero.mp4",
     "ctas": [{ "label": "预约试验田考察", "href": "#demo" }, { "label": "查看解决方案手册", "href": "#docs" }]
   },
   {
@@ -78,7 +78,7 @@
   {
     "type": "splitMedia",
     "side": "right",
-    "image": "https://images.unsplash.com/photo-1589923188900-85dae523342b?q=80&w=2070&auto=format&fit=crop",
+    "image": "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&q=80&w=1000",
     "eyebrow": "场景一：驱动现代农业产业升级",
     "title": "将专家经验，转化为可复制的代码。",
     "body": "面向现代农业企业、合作社与产业园区，我们帮助您摆脱对传统人力和“老天爷”的重度依赖。依托 AI 与 IoT 平台，实现跨区域基地的标准化、规模化、自动化管理。",

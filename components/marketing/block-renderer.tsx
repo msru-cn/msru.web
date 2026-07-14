@@ -32,12 +32,14 @@ export function renderBlock(block: Block, index: number): ReactNode {
       return (
         <HeroBlock
           key={key}
+          isFirst={index === 0}
           badge={block.badge}
           title={block.title}
           titleAccent={block.titleAccent}
           subtitle={block.subtitle}
           accentColor={block.accentColor}
           bgImage={block.bgImage}
+          bgVideo={block.bgVideo}
           ctas={block.ctas}
         />
       );
@@ -46,12 +48,16 @@ export function renderBlock(block: Block, index: number): ReactNode {
       return (
         <TopHero
           key={key}
+          isFirst={index === 0}
           badge={block.badge}
           title={block.title}
           subtitle={block.subtitle}
           accentColor={block.accentColor}
+          bgImage={block.bgImage}
+          bgVideo={block.bgVideo}
           channels={block.channels}
           video={block.video}
+          videos={block.videos}
           intro={block.intro}
         />
       );
@@ -59,12 +65,14 @@ export function renderBlock(block: Block, index: number): ReactNode {
       return (
         <SubHero
           key={key}
+          isFirst={index === 0}
           badge={block.badge}
           title={block.title}
           titleAccent={block.titleAccent}
           subtitle={block.subtitle}
           accentColor={block.accentColor}
           bgImage={block.bgImage}
+          bgVideo={block.bgVideo}
         />
       );
     case "contactForm":

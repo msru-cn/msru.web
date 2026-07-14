@@ -24,11 +24,7 @@
         "name": "认证开发者",
         "price": "MCD",
         "description": "MSRU Certified Developer · 面向研发人员，掌握基于 MSRU 底层框架的二次开发、API 扩展与组件定制能力。",
-        "features": [
-          "核心框架 API 深度解析",
-          "前端组件与后端路由扩展",
-          "上机实操代码考核"
-        ],
+        "features": ["核心框架 API 深度解析", "前端组件与后端路由扩展", "上机实操代码考核"],
         "cta": {
           "label": "查看课程大纲",
           "href": "#"
@@ -39,11 +35,7 @@
         "price": "MCC",
         "description": "MSRU Certified Consultant · 面向业务与交付人员，精通标准系统模块配置、业务蓝图转化及工厂建模方法论。",
         "popular": true,
-        "features": [
-          "MES/WMS 标准功能全景",
-          "零代码工艺路线与表单配置",
-          "敏捷项目实施沙盘演练"
-        ],
+        "features": ["MES/WMS 标准功能全景", "零代码工艺路线与表单配置", "敏捷项目实施沙盘演练"],
         "cta": {
           "label": "查看课程大纲",
           "href": "#"
@@ -53,11 +45,7 @@
         "name": "认证架构师",
         "price": "MCA",
         "description": "MSRU Certified Architect · 面向卓越技术领袖，主导集团级多工厂分布式架构、高可用部署及微服务治理。",
-        "features": [
-          "需拥有 MCD 且具备 5 年经验",
-          "异构系统集群集成方案",
-          "数字孪生与 AI 底座架构设计"
-        ],
+        "features": ["需拥有 MCD 且具备 5 年经验", "异构系统集群集成方案", "数字孪生与 AI 底座架构设计"],
         "cta": {
           "label": "申请资质审核",
           "href": "#"

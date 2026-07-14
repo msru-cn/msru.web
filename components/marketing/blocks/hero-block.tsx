@@ -1,9 +1,9 @@
 import { ArrowRight } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 import { resolveIcon } from "@/lib/marketing/icon-registry";
 import { type AccentColor, getAccent } from "../accent";
+import { HeroBackground } from "./hero-background";
 
 export interface HeroCta {
   label: string;
@@ -16,6 +16,8 @@ export interface HeroBlockProps {
   subtitle?: string;
   accentColor?: AccentColor;
   bgImage?: string;
+  bgVideo?: string;
+  isFirst?: boolean;
   ctas?: HeroCta[];
 }
 
@@ -30,6 +32,8 @@ export function HeroBlock({
   subtitle,
   accentColor = "blue",
   bgImage,
+  bgVideo,
+  isFirst = true,
   ctas = [],
 }: HeroBlockProps) {
   const accent = getAccent(accentColor);
@@ -37,10 +41,15 @@ export function HeroBlock({
   const [primary, secondary] = ctas;
 
   return (
-    <section className="relative flex flex-col items-center justify-center min-h-[92vh] px-6 py-32 text-center overflow-hidden bg-white dark:bg-zinc-950">
+    <section
+      className={cn(
+        "relative flex flex-col items-center overflow-hidden bg-white px-6 pt-[22vh] pb-24 md:pt-[26vh] md:pb-32 text-center dark:bg-zinc-950",
+        isFirst && "min-h-[88vh] lg:min-h-screen",
+      )}
+    >
+      <HeroBackground bgImage={bgImage} bgVideo={bgVideo} />
       {/* 光投层叠背景：两团柔光 orb + 顶部渐隐 */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
-        {bgImage && <Image src={bgImage} alt="" fill className="object-cover opacity-30" priority={false} />}
         <div
           className={cn(
             "absolute -top-40 left-1/2 -translate-x-1/2 size-[720px] rounded-full blur-[120px] opacity-30 dark:opacity-25 bg-linear-to-br",
@@ -62,32 +71,35 @@ export function HeroBlock({
         />
       </div>
 
-      <div className="z-10 relative flex flex-col items-center max-w-5xl mx-auto">
-        {badge && (
+      {/* 徽标：左上角，与导航栏 logo 对齐 */}
+      {badge && (
+        <div className="z-10 absolute top-20 md:top-24 inset-x-0 mx-auto w-full max-w-fd-container px-6">
           <div
             className={cn(
-              "glass glass-hover inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold mb-8 tracking-wide",
+              "inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs md:text-sm font-medium backdrop-blur-md border border-white/40 dark:border-white/10 bg-white/70 dark:bg-zinc-900/60 shadow-sm",
               accent.text,
             )}
           >
-            {BadgeIcon && <BadgeIcon className="size-3.5" />}
+            {BadgeIcon && <BadgeIcon className="size-4" />}
             {badge.text}
           </div>
-        )}
+        </div>
+      )}
 
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-8 leading-[1.08] text-balance text-zinc-900 dark:text-white">
+      <div className="z-10 relative flex flex-col items-center max-w-4xl mx-auto">
+        <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-6 md:mb-8 leading-[1.12] whitespace-pre-wrap md:whitespace-nowrap text-zinc-900 dark:text-white">
           {title}
           {titleAccent && <span className={cn("italic", accent.text)}> {titleAccent}</span>}
         </h1>
 
         {subtitle && (
-          <p className="text-lg md:text-2xl text-zinc-500 dark:text-zinc-400 max-w-3xl mx-auto leading-relaxed mb-12 text-balance">
+          <p className="text-base sm:text-lg md:text-2xl font-normal text-zinc-600 dark:text-zinc-300 max-w-3xl mx-auto leading-relaxed mb-10 md:mb-14 text-balance whitespace-pre-wrap">
             {subtitle}
           </p>
         )}
 
         {ctas.length > 0 && (
-          <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-5 w-full sm:w-auto">
             {primary && (
               <Link
                 href={primary.href}

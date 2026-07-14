@@ -14,6 +14,7 @@ const hero = z.object({
   subtitle: z.string().optional(),
   accentColor: accent,
   bgImage: z.string().optional(),
+  bgVideo: z.string().optional(),
   ctas: z.array(cta).optional(),
 });
 
@@ -25,6 +26,7 @@ const subHero = z.object({
   subtitle: z.string().optional(),
   accentColor: accent,
   bgImage: z.string().optional(),
+  bgVideo: z.string().optional(),
 });
 
 const contactForm = z.object({
@@ -46,14 +48,19 @@ const contactForm = z.object({
   ),
 });
 
+const videoSpec = z.object({ src: z.string(), poster: z.string().optional() });
+
 const topHero = z.object({
   type: z.literal("topHero"),
   badge: z.object({ icon: z.string(), text: z.string() }).optional(),
   title: z.string(),
   subtitle: z.string().optional(),
   accentColor: accent,
+  bgImage: z.string().optional(),
+  bgVideo: z.string().optional(),
   channels: z.array(z.object({ icon: z.string(), label: z.string(), href: z.string() })).optional(),
-  video: z.object({ src: z.string(), poster: z.string().optional() }).optional(),
+  video: z.union([videoSpec, z.array(videoSpec)]).optional(),
+  videos: z.array(videoSpec).optional(),
   intro: z
     .object({
       heading: z.string().optional(),
