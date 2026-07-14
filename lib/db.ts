@@ -78,6 +78,21 @@ function init(db: Database.Database): void {
       icon TEXT NOT NULL,
       sort_order INTEGER NOT NULL DEFAULT 0
     );
+
+    CREATE TABLE IF NOT EXISTS cms_marketing_pages (
+      slug TEXT PRIMARY KEY,
+      blocks TEXT NOT NULL,
+      meta TEXT,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS cms_docs_pages (
+      slug TEXT PRIMARY KEY,
+      title TEXT NOT NULL,
+      description TEXT,
+      content TEXT NOT NULL,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
   `);
   const count = db.prepare("SELECT COUNT(*) AS n FROM marketing_products").get() as { n: number };
   if (count.n === 0) {

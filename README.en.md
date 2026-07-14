@@ -141,6 +141,47 @@ pnpm test             # Run unit tests (Vitest)
 
 ---
 
+## 📡 Distributed Headless CMS & Edge Node Sync Architecture
+
+The project features a built-in distributed Headless CMS endpoint, allowing a centralized management backend to push content updates to edge instances deployed across multiple regions in real time.
+
+### Core Mechanics
+1. **Secure Sync API (`/api/cms`)** Protected by strong Bearer Token authentication (`CMS_API_KEY`).
+2. **Hybrid Data Storage**: SQLite tables (`cms_marketing_pages` / `cms_docs_pages`) coexist with local static files.
+3. **On-Demand ISR Revalidation (Solution 2)**: When the central backend pushes updates to SQLite via the API, it automatically triggers `revalidatePath`. This regenerates target static pages on demand with zero client JS overhead and millisecond-level updates.
+4. **Dual-Track Fallback Rendering**:
+   - **Marketing Pages**: Queries SQLite JSON first -> falls back to local page registry -> renders with `BlockRenderer`.
+   - **Documentation Pages**: Queries SQLite MDX first -> compiles dynamically via `@fumadocs/mdx-remote` -> falls back to local `source.getPage`.
+
+### API Usage Example
+
+```bash
+# 1. Upsert a marketing page (Instant update)
+curl -X POST https://your-edge-instance.com/api/cms \
+  -H "Authorization: Bearer YOUR_CMS_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "action": "upsert_marketing",
+    "slug": "products/custom-sdui",
+    "blocks": [{ "type": "hero", "headline": "Smart Custom Product" }],
+    "meta": { "title": "Smart Custom Product Page" }
+  }'
+
+# 2. Upsert a Markdown docs page (Instant update)
+curl -X POST https://your-edge-instance.com/api/cms \
+  -H "Authorization: Bearer YOUR_CMS_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "action": "upsert_docs",
+    "slug": "guide/quickstart",
+    "title": "Quickstart Guide",
+    "description": "Guide for connecting edge nodes",
+    "content": "# Quickstart\n\nConfigure your edge node quickly with this guide."
+  }'
+```
+
+---
+
 ## 🔧 Code & Styling Guidelines
 
 1. **Styling & Aesthetics**

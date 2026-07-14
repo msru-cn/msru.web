@@ -2,6 +2,9 @@
   "name": "msru-web",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
     "build": "next build",
     "dev": "next dev -H :: --port 3007",

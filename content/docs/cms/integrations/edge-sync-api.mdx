@@ -1,0 +1,213 @@
+---
+icon: Radio
+title: 分布式边缘同步 API 参考 (`/api/cms`)
+description: 详细解析 Next.js 边缘节点接收中心化 CMS 推送、SQLite 存储与按需增量静态重构 (ISR) 的完整接口契约与路径映射逻辑。
+---
+
+# 分布式边缘同步 API 参考
+
+**MSRU Web & Docs** 边缘实例内置了 `/api/cms` 同步端点。通过此接口，中心化管理后台（Headless CMS/中心端）能够以 **Upsert（存在则更新，不存在则新增）** 的方式实时推送营销页面与技术文档。
+
+---
+
+## 1. 核心路径映射逻辑（如何绑定路径与文件）
+
+在边缘端与数据库架构中，**`slug` 是页面资源的唯一主键与 URL 路径绑定标示**。
+
+### 1.1 营销页 (Marketing Pages - JSON / SDUI)
+| `slug` 参数 | 对应 URL 路由 | 原本对应文件路径 (若降级读取) | 说明 |
+| :--- | :--- | :--- | :--- |
+| `""` *(空字符串)* | `/` | `content/marketing/pages/home.json` | 首页配置 |
+| `"products/mes"` | `/products/mes` | `content/marketing/pages/products/mes.json` | 具体产品页 |
+| `"pricing"` | `/pricing` | `content/marketing/pages/pricing.json` | 定价页 |
+| `"solutions/new-ai"` | `/solutions/new-ai` | *(无需本地文件)* | **纯数据库新增页面** |
+
+> [!NOTE]
+> **新增 vs 覆盖逻辑：**
+> SQL 底层采用 `ON CONFLICT(slug) DO UPDATE`。  
+> - 如果传入的 `slug` **已存在于数据库**，或者**原本在代码库中有 JSON 文件**，接口会**直接覆盖**并高优先级展示 SQLite 中更新后的内容。  
+> - 如果传入的是**全新 `slug`**（例如 `solutions/new-ai`），即便服务器本地没有对应的 `.json` 文件，由于配置了 `dynamicParams = true`，Next.js 会在触发 `revalidatePath("/solutions/new-ai")` 后自动为您**生成并展示全新的页面**！
+
+---
+
+### 1.2 技术文档页 (Docs Pages - Markdown / MDX)
+| `slug` 参数 | 对应 URL 路由 | 原本对应文件路径 (若降级读取) | 说明 |
+| :--- | :--- | :--- | :--- |
+| `"guide/quickstart"` | `/docs/guide/quickstart` | `content/docs/guide/quickstart.mdx` | 快速开始文档 |
+| `"cms/integrations/api"` | `/docs/cms/integrations/api` | `content/docs/cms/integrations/api.mdx` | API 参考文档 |
+| `"custom/help-center"` | `/docs/custom/help-center` | *(无需本地文件)* | **纯数据库新增文档** |
+
+---
+
+## 2. 鉴权说明
+
+所有的请求必须在 HTTP Header 中携带 Bearer Token：
+```http
+Authorization: Bearer <process.env.CMS_API_KEY>
+Content-Type: application/json
+```
+如果环境变量中没有设置 `CMS_API_KEY`，系统将降级使用 `DB_API_KEY`。
+
+---
+
+## 3. 支持的 5 大功能指令 (`action`) 详解与示例
+
+接口统一接受 `POST` 请求，通过 Request Body 中的 `action` 区分具体操作类型。
+
+---
+
+### 3.1 `upsert_marketing` —— 新增或更新营销页面 (SDUI)
+
+中心将 JSON Blocks 与 SEO TDK 传入，更新到 `cms_marketing_pages` 表，自动执行 `revalidatePath` 重写静态页。
+
+#### 请求 Payload Schema
+```json
+{
+  "action": "upsert_marketing",
+  "slug": "products/custom-robotics",
+  "blocks": [
+    { "type": "hero", "headline": "智能机器人协作平台", "subline": "全自研黑灯工厂大脑" },
+    { "type": "statBand", "stats": [{ "value": "99.9%", "label": "生产良率" }] }
+  ],
+  "meta": {
+    "title": "智能机器人协作平台 | MSRU",
+    "description": "专为高端智能制造打造的工业机器人协同系统。"
+  }
+}
+```
+
+#### Curl 调用示例
+```bash
+curl -X POST https://your-edge-instance.com/api/cms \
+  -H "Authorization: Bearer YOUR_CMS_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "action": "upsert_marketing",
+    "slug": "products/custom-robotics",
+    "blocks": [{ "type": "hero", "headline": "智能机器人协作平台" }],
+    "meta": { "title": "智能机器人平台" }
+  }'
+```
+
+#### 响应结构 (200 OK)
+```json
+{
+  "success": true,
+  "message": "Marketing page '/products/custom-robotics' upserted and revalidated"
+}
+```
+
+---
+
+### 3.2 `delete_marketing` —— 删除营销页面记录
+
+从 SQLite `cms_marketing_pages` 表中清理指定的营销页记录，并触发 ISR 刷新（若有代码库默认 JSON 则恢复展示默认配置，否则显示 404）。
+
+#### 请求 Payload Schema
+```json
+{
+  "action": "delete_marketing",
+  "slug": "products/custom-robotics"
+}
+```
+
+#### Curl 调用示例
+```bash
+curl -X POST https://your-edge-instance.com/api/cms \
+  -H "Authorization: Bearer YOUR_CMS_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "action": "delete_marketing",
+    "slug": "products/custom-robotics"
+  }'
+```
+
+---
+
+### 3.3 `upsert_docs` —— 新增或更新 Markdown/MDX 技术文档
+
+传入标题和 Markdown/MDX 正文，存入 `cms_docs_pages` 表。下一位用户访问时，系统将通过 `@fumadocs/mdx-remote` 实时编译呈现。
+
+#### 请求 Payload Schema
+```json
+{
+  "action": "upsert_docs",
+  "slug": "guide/edge-setup",
+  "title": "边缘计算接入规范",
+  "description": "面向工厂网关的标准化接入手册",
+  "content": "# 边缘计算接入规范\n\n本指南适用于 Linux ARM64 工控机及 Docker 容器环境接入...\n\n<Callout type=\"warn\">\n务必确保设备已开通 NTP 时间同步设置。\n</Callout>"
+}
+```
+
+#### Curl 调用示例
+```bash
+curl -X POST https://your-edge-instance.com/api/cms \
+  -H "Authorization: Bearer YOUR_CMS_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "action": "upsert_docs",
+    "slug": "guide/edge-setup",
+    "title": "边缘计算接入规范",
+    "description": "标准化手册",
+    "content": "# 规范总览\n\n请参照具体章节执行操作。"
+  }'
+```
+
+#### 响应结构 (200 OK)
+```json
+{
+  "success": true,
+  "message": "Docs page '/docs/guide/edge-setup' upserted and revalidated"
+}
+```
+
+---
+
+### 3.4 `delete_docs` —— 删除文档页面
+
+清理指定文档表记录并触发刷新。
+
+#### 请求 Payload Schema
+```json
+{
+  "action": "delete_docs",
+  "slug": "guide/edge-setup"
+}
+```
+
+---
+
+### 3.5 `execute_sql` —— 万能 SQL 安全通道
+
+供中心端执行高级查询（如统计当前页面总数、运行复杂联表过滤等）。
+
+#### 请求 Payload Schema
+```json
+{
+  "action": "execute_sql",
+  "sql": "SELECT slug, updated_at FROM cms_marketing_pages WHERE slug LIKE ?",
+  "params": ["products/%"],
+  "type": "all"
+}
+```
+*说明：`type` 支持 `"run"` (写/改)、`"get"` (读单行)、`"all"` (读多行)。*
+
+#### Curl 调用示例
+```bash
+curl -X POST https://your-edge-instance.com/api/cms \
+  -H "Authorization: Bearer YOUR_CMS_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "action": "execute_sql",
+    "sql": "SELECT COUNT(*) as total FROM cms_marketing_pages",
+    "type": "get"
+  }'
+```
+
+#### 响应结构 (200 OK)
+```json
+{
+  "success": true,
+  "data": { "total": 12 }
+}
+```

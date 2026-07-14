@@ -147,6 +147,47 @@ pnpm test             # 运行 Unit 单元测试 (Vitest)
 
 ---
 
+## 📡 分布式 Headless CMS 与边缘多节点同步架构
+
+项目内置分布式 Headless CMS 终端能力，支持中心化管理后台向多地域部署的边缘实例实时推送内容变动。
+
+### 核心机制
+1. **安全同步接口 (`/api/cms`)**：采用强鉴权 Token (`CMS_API_KEY`) 保护接口。
+2. **混合数据存储**：SQLite (`cms_marketing_pages` / `cms_docs_pages`) 与本地静态文件共存。
+3. **按需实时刷新 (ISR - 方案 2)**：中心推送更新入库后，立刻触发 `revalidatePath`，按需重新生成页面缓存，高并发场景下零 JS 开销且毫秒级更新。
+4. **双轨优先渲染**：
+   - **营销页**：优先读 SQLite JSON -> 降级读本地配置注册表 -> `BlockRenderer` 渲染。
+   - **文档页**：优先读 SQLite MDX -> `@fumadocs/mdx-remote` 动态编译渲染 -> 降级读本地 `source.getPage`。
+
+### 中心端同步接口调用示例
+
+```bash
+# 1. 写入/更新营销页 (立即生效)
+curl -X POST https://your-edge-instance.com/api/cms \
+  -H "Authorization: Bearer YOUR_CMS_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "action": "upsert_marketing",
+    "slug": "products/custom-sdui",
+    "blocks": [{ "type": "hero", "headline": "智能定制产品" }],
+    "meta": { "title": "智能定制产品页面" }
+  }'
+
+# 2. 写入/更新 Markdown 文档页 (立即生效)
+curl -X POST https://your-edge-instance.com/api/cms \
+  -H "Authorization: Bearer YOUR_CMS_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "action": "upsert_docs",
+    "slug": "guide/quickstart",
+    "title": "快速配置指南",
+    "description": "边缘节点接入指南",
+    "content": "# 快速开始\n\n通过此指南快速配置边缘节点。"
+  }'
+```
+
+---
+
 ## 🔧 代码与样式规范
 
 1. **样式与设计美学**

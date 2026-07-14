@@ -3,6 +3,7 @@ import { createRelativeLink } from "fumadocs-ui/mdx";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LLMCopyButton, ViewOptions } from "@/components/ai/page-actions";
+import { getDocsPageFromDB } from "@/lib/cms-service";
 import { createMetadata } from "@/lib/metadata";
 import { getPageImage, source } from "@/lib/source";
 import { getMDXComponents } from "@/mdx-components";
@@ -13,6 +14,32 @@ export const dynamicParams = true;
 
 export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
   const params = await props.params;
+  const slugStr = (params.slug ?? []).join("/");
+  const dbRecord = getDocsPageFromDB(slugStr);
+
+  if (dbRecord) {
+    const { createCompiler } = await import("@fumadocs/mdx-remote");
+    const compiler = createCompiler({});
+    const { toc, body: RemoteMdx } = await compiler.compile({
+      source: dbRecord.content,
+    });
+
+    return (
+      <DocsPage toc={toc}>
+        <DocsTitle>{dbRecord.title}</DocsTitle>
+        {dbRecord.description && <DocsDescription className="mb-0">{dbRecord.description}</DocsDescription>}
+        <div className="flex flex-row gap-2 items-center border-b pb-6">
+          <LLMCopyButton markdownUrl={`/docs/${slugStr}.mdx`} />
+        </div>
+        <DocsBody>
+          <div className="fumadocs-static-mdx">
+            <RemoteMdx components={getMDXComponents()} />
+          </div>
+        </DocsBody>
+      </DocsPage>
+    );
+  }
+
   const page = source.getPage(params.slug);
   if (!page) notFound();
 
@@ -57,6 +84,18 @@ export async function generateStaticParams() {
 
 export async function generateMetadata(props: { params: Promise<{ slug?: string[] }> }): Promise<Metadata> {
   const params = await props.params;
+  const slugStr = (params.slug ?? []).join("/");
+  const dbRecord = getDocsPageFromDB(slugStr);
+
+  if (dbRecord) {
+    return createMetadata({
+      title: dbRecord.title,
+      description: dbRecord.description,
+      path: `/docs/${slugStr}`,
+      type: "article",
+    });
+  }
+
   const page = source.getPage(params.slug);
 
   if (!page) notFound();
