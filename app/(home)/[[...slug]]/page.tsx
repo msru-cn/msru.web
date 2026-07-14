@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BlockRenderer } from "@/components/marketing";
+import { PageEditorOverlay } from "@/components/marketing/editor/page-editor-overlay";
 import { getMarketingPageFromDB } from "@/lib/cms-service";
 import { getMarketingMetadata, getMarketingPage, marketingPageParams } from "@/lib/marketing/pages-registry";
 import { createMetadata } from "@/lib/metadata";
@@ -28,10 +29,15 @@ export default async function MarketingPage({ params }: { params: Promise<{ slug
   const slugStr = (slug ?? []).join("/");
   const dbRecord = getMarketingPageFromDB(slugStr);
   const data = dbRecord?.blocks ?? getMarketingPage(slug);
+  const rawMeta = dbRecord?.meta ?? (await getMarketingMetadata(slug)) ?? {};
+  const plainMeta = JSON.parse(JSON.stringify(rawMeta));
+  const plainBlocks = JSON.parse(JSON.stringify(data));
   if (!data) notFound();
   return (
     <main className="relative flex flex-col w-full min-h-screen text-foreground overflow-x-hidden">
-      <BlockRenderer blocks={data} />
+      <PageEditorOverlay slug={slugStr} initialBlocks={plainBlocks} initialMeta={plainMeta}>
+        <BlockRenderer blocks={data} />
+      </PageEditorOverlay>
     </main>
   );
 }

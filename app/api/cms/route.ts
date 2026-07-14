@@ -25,6 +25,10 @@ export async function POST(req: Request) {
     }
 
     switch (action) {
+      case "verify_key": {
+        return NextResponse.json({ success: true, message: "API Key verified" });
+      }
+
       case "upsert_marketing": {
         const { slug = "", blocks, meta } = body;
         if (blocks === undefined) {

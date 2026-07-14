@@ -15,7 +15,7 @@ export default function Layout({ children }: { children: ReactNode }) {
     <ThemeProvider>
       <DocsLayout
         tree={source.pageTree}
-        {...baseOptions}
+        {...base}
         nav={{
           ...base.nav,
           title: (

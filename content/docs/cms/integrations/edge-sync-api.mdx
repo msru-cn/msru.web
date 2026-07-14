@@ -17,14 +17,14 @@ Token（接口鉴权密钥）是由您自己在部署时**自定义设置的环�
 
 ### 2. 在 Coolify 中配置环境变量
 在 Coolify 后台进入您的 Next.js 边缘应用配置，找到 **Environment Variables（环境变量）**，添加以下一行：
-```env
+```bash
 CMS_API_KEY=your_secure_random_token_64_chars
 ```
 *(注：如果不设置 `CMS_API_KEY`，系统也会兼容读取 `DB_API_KEY` 环境变量)*
 
 ### 3. 请求鉴权格式
 所有调用此 API 的请求，都必须在 HTTP Request Header 中携带上述密钥：
-```http
+```bash
 Authorization: Bearer your_secure_random_token_64_chars
 Content-Type: application/json
 ```

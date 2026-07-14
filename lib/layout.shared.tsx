@@ -2,11 +2,17 @@ import type { BaseLayoutProps, LinkItemType } from "fumadocs-ui/layouts/shared";
 import { Github } from "lucide-react";
 import Image from "next/image";
 import { MsruDocsIcon } from "@/app/layou.client";
+import { NavbarEditButton } from "@/components/marketing/editor/navbar-edit-button";
 
 export const linkItems: LinkItemType[] = [
   {
+    type: "custom",
+    secondary: true,
+    children: <NavbarEditButton />,
+  },
+  {
     type: "icon",
-    url: "https://github.com/fuma-nama/fumadocs",
+    url: "https://github.com/msru-cn/msru.web",
     label: "Github",
     text: "Github",
     icon: <Github />,
@@ -37,5 +43,6 @@ export function baseOptions(): BaseLayoutProps {
         </div>
       ),
     },
+    links: linkItems,
   };
 }
