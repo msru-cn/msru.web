@@ -18,6 +18,8 @@
 
 ---
 
+![MSRU DT-Core Preview](./public/uploads/preview.png)
+
 ## Overview
 
 MSRU Web & Docs is the official portal, industry solutions showcase center, and technical documentation station for the **MSRU Platform**. Built on a modern tech stack of **Next.js 16 (App Router) + React 19 + Fumadocs**, it integrates AI Copilot smart Q&A, real-time 3D rendering, and the declarative Liquid Glass marketing component system.

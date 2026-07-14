@@ -18,6 +18,8 @@
 
 ---
 
+![MSRU DT-Core Preview](./public/uploads/preview.png)
+
 ## 概述
 
 MSRU Web & Docs 是 **MSRU Platform** 的官方门户、行业解决方案展示中心及技术文档站。基于 **Next.js 16 (App Router) + React 19 + Fumadocs** 现代化技术栈构建，集成了 AI Copilot 智能问答、实时 3D 渲染和声明式 Liquid Glass 营销组件系统。
