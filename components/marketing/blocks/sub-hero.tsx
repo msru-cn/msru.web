@@ -55,7 +55,7 @@ export function SubHero({
         </div>
       )}
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
-        <h1 className="whitespace-pre-wrap md:whitespace-nowrap text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.12] text-zinc-900 dark:text-white">
+        <h1 className="whitespace-pre-wrap text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.12] text-zinc-900 dark:text-white">
           {title}
           {titleAccent && <span className={cn("italic", accent.text)}> {titleAccent}</span>}
         </h1>

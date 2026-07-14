@@ -28,7 +28,7 @@ export function Statement({ title, body }: StatementProps) {
   return (
     <section className="glass-stage relative overflow-hidden py-32 md:py-40">
       <div className="relative mx-auto max-w-5xl space-y-8 px-6 text-center md:px-12">
-        <h2 className="text-balance text-4xl font-bold tracking-tighter text-zinc-900 md:text-6xl dark:text-white">
+        <h2 className="whitespace-pre-wrap text-balance text-4xl font-bold tracking-tighter text-zinc-900 md:text-6xl dark:text-white">
           {title}
         </h2>
         {body && (

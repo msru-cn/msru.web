@@ -87,7 +87,7 @@ export function HeroBlock({
       )}
 
       <div className="z-10 relative flex flex-col items-center max-w-4xl mx-auto">
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-6 md:mb-8 leading-[1.12] whitespace-pre-wrap md:whitespace-nowrap text-zinc-900 dark:text-white">
+        <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-6 md:mb-8 leading-[1.12] whitespace-pre-wrap text-zinc-900 dark:text-white">
           {title}
           {titleAccent && <span className={cn("italic", accent.text)}> {titleAccent}</span>}
         </h1>

@@ -96,7 +96,7 @@ export function TabbedHero({ heading, subtitle, tabs, defaultIndex = 0 }: Tabbed
                   {current.eyebrow}
                 </span>
               )}
-              <h3 className="text-balance text-3xl font-bold leading-tight tracking-tight text-white md:text-5xl">
+              <h3 className="whitespace-pre-wrap text-balance text-3xl font-bold leading-tight tracking-tight text-white md:text-5xl">
                 {current.title}
               </h3>
               {current.description && (

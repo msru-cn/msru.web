@@ -29,7 +29,7 @@ export function CtaBlock({ variant = "small", title, description, cta, accentCol
         <div className="glass glass-strong flex flex-col items-center gap-6 rounded-[2.5rem] px-8 py-14 text-center md:px-14">
           <h2
             className={cn(
-              "text-balance font-bold tracking-tight text-zinc-900 dark:text-white",
+              "whitespace-pre-wrap text-balance font-bold tracking-tight text-zinc-900 dark:text-white",
               large ? "text-4xl md:text-5xl" : "text-3xl md:text-4xl",
             )}
           >

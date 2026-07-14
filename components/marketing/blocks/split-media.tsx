@@ -26,7 +26,9 @@ export function SplitMedia({ image, side = "left", eyebrow, title, body, bullets
   const textBlock = (
     <div className={cn("w-full space-y-5", image ? "lg:w-1/2" : "max-w-3xl text-center")}>
       {eyebrow && <span className="text-[11px] font-bold uppercase tracking-widest text-blue-500">{eyebrow}</span>}
-      <h2 className="text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-white">{title}</h2>
+      <h2 className="whitespace-pre-wrap text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl dark:text-white">
+        {title}
+      </h2>
       <p className="text-lg leading-relaxed text-zinc-500 dark:text-zinc-400">{body}</p>
       {bullets && (
         <ul className={cn("space-y-3", image ? "" : "inline-block text-left")}>

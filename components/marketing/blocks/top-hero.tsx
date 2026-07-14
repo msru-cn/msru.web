@@ -94,7 +94,7 @@ export function TopHero({
       )}
       {/* 顶部：slogan + 双联系渠道，居中 */}
       <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center text-center">
-        <h1 className="whitespace-pre-wrap md:whitespace-nowrap text-4xl sm:text-6xl md:text-7xl font-bold leading-[1.12] tracking-tight text-zinc-900 dark:text-white">
+        <h1 className="whitespace-pre-wrap text-4xl sm:text-6xl md:text-7xl font-bold leading-[1.12] tracking-tight text-zinc-900 dark:text-white">
           {title}
         </h1>
 
