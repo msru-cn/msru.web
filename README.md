@@ -1,6 +1,6 @@
 <p align="center">
-  <strong>🌐 Language / 语言</strong><br>
-  <strong>简体中文</strong> · <a href="./README.en.md">English</a>
+  <strong>🌐 Language / 语言 / སྐད་ཡིག</strong><br>
+  <strong>简体中文</strong> · <a href="./README.en.md">English</a> · <a href="./README.bo.md">བོད་ཡིག</a>
 </p>
 
 <p align="center">
@@ -64,29 +64,27 @@ msru.web/
 ├── public/                        # 静态资源文件
 │   └── uploads/                   #   高清背景视频 (mp4)、SVG Logo 与插图
 │
-├── biome.json                     # Biome 代码规范定义
-├── source.config.ts               # Fumadocs MDX 编译器配置
-└── next.config.mjs                # Next.js 配置器 (含 MDX 编译插件)
-```
+├── biome.json                     # ## 🌐 项目特色逻辑
 
----
+### 1. SDUI 沙箱与动态渲染引擎
+基于 `@msru/2ui-engine` 动态 UI 引擎与 `apps/glass` 实验沙箱，前端界面结构与展示完全由后端 JSON 协议驱动，支持高频组件动态映射渲染。
 
-## 📦 组件与配置
+### 2. 强类型文档编辑与 Zod 校验
+结合 Fumadocs MDX 编译器与 `lib/marketing/blocks-schema.ts`，所有页面配置 JSON 在编译期均接受 Zod 强类型约束校验，自动拦截属性缺失或不合规组件，保证生产环境零崩溃。
 
-本站所有的产品介绍与解决方案页面均基于 **声明式营销积木 (Liquid Glass System)** 构建。无需编写前端代码，只需编辑 `content/marketing/pages/` 下的 JSON 文件即可生成高品质页面。
+### 3. 三语本地化架构
+门户及文档站原生内置 `简体中文`、`English` 与 `བོད་ཡིག (藏语)` 三语包，通过 `@msru/i18n` 实现统一的语料翻译、动态字典映射与全球化部署。
+�ི་ལྡན་པའི་གདོང་པའི་བྱེད་ལས་དང་ `apps/glass` ཚོད་ལྟའི་བྱེ་མའི་གཞོང་པས་ཞབས་ཞུ་ཆས་དེད་པའི་གདོང་པ་ (SDUI) མངོན་འགྱུར་བྱེད། སྔོན་ཐོན་གདོང་པའི་སྒྲིག་གཞི་ཡོངས་སུ་རྒྱབ་སྐྱོར་བྱེད་པའི་ JSON གནས་སྡུད་ཀྱིས་དེད་པ་ཡིན།
 
-### 支持的营销积木组件
+### 2. 强类型文档编辑与 Zod 校验 (Strongly-Typed Docs & Zod Schema Validation)
+* **简体中文**：结合 Fumadocs MDX 编译器与 `lib/marketing/blocks-schema.ts`，所有页面配置 JSON 在编译期均接受 Zod 强类型约束校验，自动拦截属性缺失或不合规组件，保证生产环境零崩溃。
+* **English**: Integrating the Fumadocs MDX compiler and `lib/marketing/blocks-schema.ts`. All page JSON configurations undergo strict Zod schema validation during build time, intercepting missing attributes or invalid blocks to guarantee zero runtime crashes.
+* **བོད་ཡིག**: Fumadocs MDX འདུས་གྲུབ་དང་ `lib/marketing/blocks-schema.ts` ཟུང་འབྲེལ་བྱེད། ཚོང་རྭའི་ JSON ཤོག་ངོས་ཀྱི་བཀོད་སྒྲིག་ཡོངས་རྫོགས་ལས་གཞིའི་སྐབས་སུ་ Zod ཤུགས་དྲག་རིགས་ཀྱིས་ཞིབ་བཤེར་བྱེད་ཅིང་། འཁོར་སྐྱོད་སྐབས་སུ་སྐྱོན་མི་ཤོར་བར་འགན་ལེན་བྱེད།
 
-| 类型 | 说明 | 核心属性 |
-|------|------|------|
-| `topHero` / `hero` | 沉浸式首屏背景 | 支持 `bgVideo` / `bgImage` / 左上角 `badge` / 玻璃 `ctas` |
-| `statBand` | 行业量化指标展示条 | 支持 3~6 个带有单位、值 and 标签的统计数值 |
-| `statement` | 核心产品宣言与行业痛点说明 | 支持大字标题 + 描述正文 |
-| `bento` | 4 栅格技术底座矩阵 | 支持 `span: "wide"` 混合布局与图标配置 |
-| `splitMedia` | 图文左右对冲业务场景展示 | 支持 Bullet points 列表与跳转 CTA 链接 |
-| `list` | 步骤、卡片或时间线列表 | 支持 `variant: "timeline" / "cards" / "steps" / "rows"` |
-| `faq` | 常见问题解答风琴折叠栏 | 支持 QA 数据问答数组 |
-| `cta` | 底部全局行动召集区 | 引导客户预约演示或获取白皮书 |
+### 3. 三语本地化架构 (Tri-lingual Localization Framework)
+* **简体中文**：门户及文档站原生内置 `简体中文`、`English` 与 `བོད་ཡིག (藏语)` 三语包，通过 `@msru/i18n` 实现统一的语料翻译、动态字典映射与全球化部署。
+* **English**: The marketing portal and documentation center natively support `Simplified Chinese`, `English`, and `བོད་ཡིག (Tibetan)`. Global translation and dynamic dictionary mapping are managed through the `@msru/i18n` package.
+* **བོད་ཡིག**: སྟེགས་བུ་འདིས་སྐད་ཡིག་གསུམ་ (`རྒྱ་ཡིག` · `དབྱིན་ཡིག` · `བོད་ཡིག`) རང་བཞིན་གྱིས་རྒྱབ་སྐྱོར་བྱེད། གཅིག་གྱུར་གྱི་སྐད་སྒྱུར་དང་གློག་རྡུལ་ཚིག་མཛོད་ནི་ `@msru/i18n` གྱིས་སྒྲུབ་པ་ཡིན།
 
 ---
 
