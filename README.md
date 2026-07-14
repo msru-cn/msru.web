@@ -6,13 +6,17 @@
 <p align="center">
   <h1 align="center">MSRU Web & Docs</h1>
   <p align="center">
-    <strong>企业级官方门户与技术文档中心 · AI-Native 驱动</strong>
+    <strong>企业级官方门户 · 技术文档中心 · 分布式 Headless CMS 边缘节点 (AI-Native)</strong>
   </p>
   <p align="center">
-    <strong>开源协议：MIT License (允许免费商用、任意修改及分发)</strong>
+    <strong>开源协议：MIT License (允许免费商用、私有化部署、任意二次开发与分发)</strong>
   </p>
   <p align="center">
-    <a href="#-快速开始">快速开始</a> · <a href="#-项目结构">项目结构</a> · <a href="#-组件与配置">组件与配置</a> · <a href="#-项目特色逻辑">项目特色逻辑</a>
+    <strong>👉 示例项目地址 [MSRU 官网]：<a href="https://new.msru.cn/">https://new.msru.cn/</a></strong><br>
+    <sub>💡 备注（IPv6 访问提示）：在线示例部署于边缘纯 IPv6 节点，访问前请确保您的路由器开启了 IPv6 或使用手机热点访问。</sub>
+  </p>
+  <p align="center">
+    <a href="#-概述">项目概述</a> · <a href="#-快速开始与定制化">快速开始与换肤</a> · <a href="#-分布式-headless-cms-与边缘同步-api">CMS 与 API 文档</a> · <a href="#-项目结构与营销组件">组件与结构</a>
   </p>
 </p>
 
@@ -20,185 +24,130 @@
 
 ![MSRU DT-Core Preview](public/uploads/preview.png)
 
-## 概述
+## 🌟 概述
 
-MSRU Web & Docs 是 **MSRU Platform** 的官方门户、行业解决方案展示中心及技术文档站。基于 **Next.js 16 (App Router) + React 19 + Fumadocs** 现代化技术栈构建，集成了 AI Copilot 智能问答、实时 3D 渲染和声明式 Liquid Glass 营销组件系统。
+**MSRU Web & Docs** 是一套现代化、高并发、基于 **Next.js 16 (App Router) + React 19 + Fumadocs** 构建的企业级双引擎门户系统。
 
-**核心理念：配置即页面，文档即代码。**
-
-### 技术栈
-
-| 层级 | 技术 |
-|------|------|
-| **基础框架** | Next.js 16 (App Router) · React 19 · TypeScript 5.9 |
-| **文档引擎** | Fumadocs (MDX loader) · Markdown · Remark/Rehype |
-| **样式与动画** | Tailwind CSS 4 · Framer Motion · Lucide Icons |
-| **数据与校验** | Zod (Schema validation) · Better-SQLite3 |
-| **AI 问答** | Vercel AI SDK · OpenAI Compatible API |
-| **代码规范** | Biome (Lint & Format) · Vitest (测试) |
+除了作为高品质的产品官网与技术手册呈现平台外，本项目自身也是一个**完全解耦的分布式 Headless CMS 边缘节点**：
+- **营销页引擎 (SDUI Engine)**：前后端分离，界面结构完全由 JSON 协议驱动，支持 Liquid Glass 磨砂玻璃声明式组件积木。
+- **技术文档引擎 (Fumadocs MDX)**：原生集成 Markdown / MDX 编译器，支持代码高亮、数学公式、Mermaid 架构图与三语翻译。
+- **边缘同步引擎 (ISR - 方案 2)**：内置 SQLite 与安全 API 接口 (`/api/cms`)，中心端可随时向多区域边缘实例推送页面更新，**零 JS 开销且毫秒级按需即时生效**。
 
 ---
 
-## 🏗 项目结构
+## 🚀 快速开始与定制化
 
-```
-msru.web/
-├── app/                           # Next.js App 路由层
-│   ├── (home)/                    #   官方门户与产品/解决方案子页面 (:3007)
-│   ├── docs/                      #   Fumadocs 文档中心路由层
-│   └── api/                       #   AI 搜索与 OpenAI 代理接口
-│
-├── content/                       # 内容资产源
-│   ├── docs/                      #   技术文档 Markdown (MDX)
-│   └── marketing/                 #   配置化营销页面 (JSON 块)
-│       └── pages/                 #     包含 solutions、products、company 等
-│
-├── components/                    # 前端 UI 组件群
-│   ├── marketing/                 #   Liquid Glass 营销块组件 (hero, bento, splitMedia 等)
-│   ├── ui/                        #   基础 UI 按钮与表单组件
-│   └── apple-footer.tsx           #   Apple 风格沉浸页脚
-│
-├── lib/                           # 共享核心逻辑库
-│   ├── marketing/                 #   营销页面 Zod 校验 Schema
-│   ├── source.ts                  #   Fumadocs 静态数据源加载器
-│   └── layout.shared.tsx          #   导航栏与页脚统一菜单配置
-│
-├── public/                        # 静态资源文件
-│   └── uploads/                   #   高清背景视频 (mp4)、SVG Logo 与插图
-│
-├── biome.json                     # Biome 代码规范定义
-├── source.config.ts               # Fumadocs MDX 编译器配置
-└── next.config.mjs                # Next.js 配置器 (含 MDX 编译插件)
-```
-
----
-
-## 📦 组件与配置
-
-本站所有的产品介绍与解决方案页面均基于 **声明式营销积木 (Liquid Glass System)** 构建。无需编写前端代码，只需编辑 `content/marketing/pages/` 下的 JSON 文件即可生成高品质页面。
-
-### 支持的营销积木组件
-
-| 类型 | 说明 | 核心属性 |
-|------|------|------|
-| `topHero` / `hero` | 沉浸式首屏背景 | 支持 `bgVideo` / `bgImage` / 左上角 `badge` / 玻璃 `ctas` |
-| `statBand` | 行业量化指标展示条 | 支持 3~6 个带有单位、值 and 标签的统计数值 |
-| `statement` | 核心产品宣言与行业痛点说明 | 支持大字标题 + 描述正文 |
-| `bento` | 4 栅格技术底座矩阵 | 支持 `span: "wide"` 混合布局与图标配置 |
-| `splitMedia` | 图文左右对冲业务场景展示 | 支持 Bullet points 列表与跳转 CTA 链接 |
-| `list` | 步骤、卡片或时间线列表 | 支持 `variant: "timeline" / "cards" / "steps" / "rows"` |
-| `faq` | 常见问题解答风琴折叠栏 | 支持 QA 数据问答数组 |
-| `cta` | 底部全局行动召集区 | 引导客户预约演示或获取白皮书 |
-
----
-
-## 🌐 项目特色逻辑
-
-### 1. SDUI 沙箱与动态渲染引擎 (SDUI Sandbox & Engine)
-* **简体中文**：基于 `@msru/2ui-engine` 动态 UI 引擎与 `apps/glass` 实验沙箱，前端界面结构与展示完全由后端 JSON 协议驱动，支持高频组件动态映射渲染。
-* **English**: Powered by the `@msru/2ui-engine` dynamic UI engine and `apps/glass` experimental sandbox. The frontend layout and display are completely driven by backend JSON payloads, enabling high-frequency dynamic component rendering.
-* **བོད་ཡིག**: `@msru/2ui-engine` སྒྲིག་གཞི་ལྡན་པའི་གདོང་པའི་བྱེད་ལས་དང་ `apps/glass` ཚོད་ལྟའི་བྱེ་མའི་གཞོང་པས་ཞབས་ཞུ་ཆས་དེད་པའི་གདོང་པ་ (SDUI) མངོན་འགྱུར་བྱེད། སྔོན་ཐོན་གདོང་པའི་སྒྲིག་གཞི་ཡོངས་སུ་རྒྱབ་སྐྱོར་བྱེད་པའི་ JSON གནས་སྡུད་ཀྱིས་དེད་པ་ཡིན།
-
-### 2. 强类型文档编辑与 Zod 校验 (Strongly-Typed Docs & Zod Schema Validation)
-* **简体中文**：结合 Fumadocs MDX 编译器与 `lib/marketing/blocks-schema.ts`，所有页面配置 JSON 在编译期均接受 Zod 强类型约束校验，自动拦截属性缺失或不合规组件，保证生产环境零崩溃。
-* **English**: Integrating the Fumadocs MDX compiler and `lib/marketing/blocks-schema.ts`. All page JSON configurations undergo strict Zod schema validation during build time, intercepting missing attributes or invalid blocks to guarantee zero runtime crashes.
-* **བོད་ཡིག**: Fumadocs MDX འདུས་གྲུབ་དང་ `lib/marketing/blocks-schema.ts` ཟུང་འབྲེལ་བྱེད། ཚོང་རྭའི་ JSON ཤོག་ངོས་ཀྱི་བཀོད་སྒྲིག་ཡོངས་རྫོགས་ལས་གཞིའི་སྐབས་སུ་ Zod ཤུགས་དྲག་རིགས་ཀྱིས་ཞིབ་བཤེར་བྱེད་ཅིང་། འཁོར་སྐྱོད་སྐབས་སུ་སྐྱོན་མི་ཤོར་བར་འགན་ལེན་བྱེད།
-
-### 3. 三语本地化架构 (Tri-lingual Localization Framework)
-* **简体中文**：门户及文档站原生内置 `简体中文`、`English` 与 `བོད་ཡིག (藏语)` 三语包，通过 `@msru/i18n` 实现统一的语料翻译、动态字典映射与全球化部署。
-* **English**: The marketing portal and documentation center natively support `Simplified Chinese`, `English`, and `བོད་ཡིག (Tibetan)`. Global translation and dynamic dictionary mapping are managed through the `@msru/i18n` package.
-* **བོད་ཡིག**: སྟེགས་བུ་འདིས་སྐད་ཡིག་གསུམ་ (`རྒྱ་ཡིག` · `དབྱིན་ཡིག` · `བོད་ཡིག`) རང་བཞིན་གྱིས་རྒྱབ་སྐྱོར་བྱེད། གཅིག་གྱུར་གྱི་སྐད་སྒྱུར་དང་གློག་རྡུལ་ཚིག་མཛོད་ནི་ `@msru/i18n` གྱིས་སྒྲུབ་པ་ཡིན།
-
----
-
-## 🚀 快速开始
-
-### 前置要求
-
-- Node.js ≥ 20
-- pnpm ≥ 10
-
-### 启动开发服务器
+### 1. 本地极速开发
 
 ```bash
-# 1. 克隆并进入目录
+# 1. 克隆代码并进入目录
 git clone https://github.com/msru-cn/msru.web.git
 cd msru.web
 
-# 2. 安装前端依赖
+# 2. 安装依赖 (需 Node.js >= 20.9.0, pnpm >= 10)
 pnpm install
 
-# 3. 启动开发服务器 (端口为 3007)
+# 3. 启动开发服务器 (监听端口 3007)
 pnpm dev
 ```
+打开 [http://localhost:3007](http://localhost:3007) 即可查看门户页面效果。
 
-打开 [http://localhost:3007](http://localhost:3007) 查看渲染效果。
+### 2. 客户定制化与信息清理指南 (基于本仓库开发专属项目)
 
-### 常用指令
+如果您希望利用本项目为**您的企业或客户搭建自己的官方门户与 CMS 边缘节点**（清理掉原有 MSRU 官网品牌信息），请查看我们的全套定制化手册：
+
+👉 **[查看《客户定制化与信息清理 6 步快速指南》 (`docs/quickstart-customization.md`)](./docs/quickstart-customization.md)**
+
+简要提示：
+1. 修改全局 SEO 与品牌名：`lib/metadata.ts` 与 `public/` 目录下的 Logo/图标。
+2. 更改导航与页脚：`lib/content/nav-model.ts` 和 `components/apple-footer.tsx`。
+3. 清理内置默认页面与文稿：`content/marketing/pages/` 与 `content/docs/`。
+4. 配置自己的密钥：在 `.env` 或 Coolify 后台设置 `CMS_API_KEY`。
+
+### 3. 常用开发与校验指令
 
 ```bash
-pnpm dev              # 启动开发服务器
+pnpm dev              # 启动本地开发服务器 (:3007)
 pnpm build            # 生产环境打包构建
-pnpm lint             # 静态代码检查 (Biome)
-pnpm format           # 格式化所有代码文件 (Biome)
-pnpm check-types      # TS 类型安全性校验 (含 MDX 路由构建)
-pnpm test             # 运行 Unit 单元测试 (Vitest)
+pnpm lint             # Biome 严格静态代码检查
+pnpm format           # Biome 一键自动格式化
+pnpm check-types      # TS 类型安全性与 Fumadocs MDX 路由校验
+pnpm test             # 运行 Vitest 全量单元测试
 ```
 
 ---
 
-## 📡 分布式 Headless CMS 与边缘多节点同步架构
+## 📡 分布式 Headless CMS 与边缘同步 API (`/api/cms`)
 
-项目内置分布式 Headless CMS 终端能力，支持中心化管理后台向多地域部署的边缘实例实时推送内容变动。
+本项目作为分布式 Headless CMS 的边缘渲染终端，支持中心化后台通过 `/api/cms` 接口推送或更新页面，并自动触发 Next.js 的按需增量静态重构 (ISR `revalidatePath`)。
 
-### 核心机制
-1. **安全同步接口 (`/api/cms`)**：采用强鉴权 Token (`CMS_API_KEY`) 保护接口。
-2. **混合数据存储**：SQLite (`cms_marketing_pages` / `cms_docs_pages`) 与本地静态文件共存。
-3. **按需实时刷新 (ISR - 方案 2)**：中心推送更新入库后，立刻触发 `revalidatePath`，按需重新生成页面缓存，高并发场景下零 JS 开销且毫秒级更新。
-4. **双轨优先渲染**：
-   - **营销页**：优先读 SQLite JSON -> 降级读本地配置注册表 -> `BlockRenderer` 渲染。
-   - **文档页**：优先读 SQLite MDX -> `@fumadocs/mdx-remote` 动态编译渲染 -> 降级读本地 `source.getPage`。
+### 🔗 完整 API 参考文档
+我们已为您准备了详细的鉴权指南、`slug` 路径绑定逻辑、覆盖 vs 动态生成新页面说明，以及 5 大指令的完整 Request JSON 与 `curl` 调用示例：
+- 👉 **[本地速查文档：`docs/headless-cms-api.md`](./docs/headless-cms-api.md)**
+- 👉 **[在线 FumaDocs 页面源文件：`content/docs/cms/integrations/edge-sync-api.mdx`](./content/docs/cms/integrations/edge-sync-api.mdx)**
 
-### 中心端同步接口调用示例
+### 支持的指令 (`action`) 概览
+| 指令 | 目标对象 | 触发动作 | 核心参数 |
+| :--- | :--- | :--- | :--- |
+| **`upsert_marketing`** | 营销页面 (`cms_marketing_pages`) | 存在则更新/覆盖，不存在则凭空构建新页面 + 重写静态缓存 | `slug`, `blocks`, `meta` |
+| **`delete_marketing`** | 营销页面 (`cms_marketing_pages`) | 清理数据库记录 + 重写缓存 (降级显示本地文件或 404) | `slug` |
+| **`upsert_docs`** | 技术文档 (`cms_docs_pages`) | 写入 Markdown/MDX，实时编译为 RSC 呈现 + 重写静态缓存 | `slug`, `title`, `content` |
+| **`delete_docs`** | 技术文档 (`cms_docs_pages`) | 清理文档记录 + 重写缓存 | `slug` |
+| **`execute_sql`** | 边缘 SQLite 数据库 | 供中心后台安全查询聚合统计或排查管理 | `sql`, `params`, `type` |
 
+### 快速接口调试示例 (curl)
 ```bash
-# 1. 写入/更新营销页 (立即生效)
-curl -X POST https://your-edge-instance.com/api/cms \
-  -H "Authorization: Bearer YOUR_CMS_API_KEY" \
+# 往边缘节点同步或新增一个定制营销页 (立即生效)
+curl -X POST https://your-edge-domain.com/api/cms \
+  -H "Authorization: Bearer your_secure_random_token_64_chars" \
   -H "Content-Type: application/json" \
   -d '{
     "action": "upsert_marketing",
-    "slug": "products/custom-sdui",
-    "blocks": [{ "type": "hero", "headline": "智能定制产品" }],
-    "meta": { "title": "智能定制产品页面" }
-  }'
-
-# 2. 写入/更新 Markdown 文档页 (立即生效)
-curl -X POST https://your-edge-instance.com/api/cms \
-  -H "Authorization: Bearer YOUR_CMS_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "action": "upsert_docs",
-    "slug": "guide/quickstart",
-    "title": "快速配置指南",
-    "description": "边缘节点接入指南",
-    "content": "# 快速开始\n\n通过此指南快速配置边缘节点。"
+    "slug": "products/custom-robot",
+    "blocks": [{ "type": "hero", "headline": "智能定制产品平台" }],
+    "meta": { "title": "定制产品 | 官网" }
   }'
 ```
 
 ---
 
-## 🔧 代码与样式规范
+## 📦 项目结构与声明式营销组件
 
-1. **样式与设计美学**
-   - 采用 **Tailwind CSS 4** 渐进式样式系统。
-   - 追求 **Liquid Glass 磨砂玻璃流动美学**，明暗主题原生自适应。
-2. **代码规范**
-   - 严禁提交未通过 Biome 校验的代码，每次提交前请务必运行 `pnpm format` 和 `pnpm lint`。
-   - 修改 JSON 配置后，请运行 `pnpm check-types` 以防破坏 Zod 校验规则。
+```
+msru.web/
+├── app/                           # Next.js App 路由层 (含 / 和 /docs 路由及 /api/cms 接口)
+├── content/                       # 静态预设内容源 (marketing JSON / docs MDX)
+├── components/                    # 前端 UI 与营销块组件
+├── lib/                           # 核心逻辑与数据库服务 (db.ts, cms-service.ts)
+└── docs/                          # 开发者项目级文档与规格手册
+```
+
+### 声明式 Liquid Glass 营销组件群
+
+无需编写 HTML/CSS，只需在 JSON (`blocks` 数组) 中传入对应配置，引擎即会自动完成沉浸式玻璃磨砂渲染：
+
+| 积木类型 | 名称 | 核心支持属性 |
+| :--- | :--- | :--- |
+| **`hero` / `topHero`** | 沉浸式首屏 | `bgVideo` 背景视频、`badge` 角标、`ctas` 玻璃按钮组 |
+| **`statBand`** | 数据指标条 | 支持 3~6 个带有单位和标签的高亮量化数值 |
+| **`statement`** | 宣言说明块 | 产品核心价值痛点阐述与主打引言 |
+| **`bento`** | 4 栅格矩阵卡片 | 支持宽卡布局 `span: "wide"` 及图标特性挂载 |
+| **`splitMedia`** | 图文场景展现 | 支持左右对冲展示视频、图片、特征列表 |
+| **`list`** | 多形态列表矩阵 | `variant: "timeline" / "cards" / "steps" / "rows"` |
+| **`faq`** | 手风琴问答 | 常见问题 QA 数组动态折叠展开 |
+| **`cta`** | 全局召集底栏 | 引导客户预约演示或咨询联系 |
+
+---
+
+## 🔧 代码规范与设计美学
+
+1. **样式与美学系统**：使用 **Tailwind CSS 4** 与 **Liquid Glass** 磨砂玻璃流动美学，完美自适应明暗主题。
+2. **严格质量保证**：
+   - 提交前请执行 `pnpm format && pnpm lint` 保证符合 Biome 标准。
+   - JSON 架构由 Zod 强类型严格约束，运行 `pnpm check-types` 可提前验证。
 
 ---
 
 ## 📄 授权协议
 
-MIT License (允许免费商业使用、私有化部署、任意二次开发、修改与分发)。
+**MIT License** (允许免费商用、私有化部署、任意二次开发、修改与分发)。

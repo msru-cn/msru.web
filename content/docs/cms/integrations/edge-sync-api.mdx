@@ -1,95 +1,108 @@
 ---
 icon: Radio
 title: 分布式边缘同步 API 参考 (`/api/cms`)
-description: 详细解析 Next.js 边缘节点接收中心化 CMS 推送、SQLite 存储与按需增量静态重构 (ISR) 的完整接口契约与路径映射逻辑。
+description: 全量接口参考文档，详细说明 Token 鉴权来源、Coolify 环境变量配置、路径与 slug 映射规则，以及 5 大操作指令的完整 JSON 与 curl 调用示例。
 ---
 
-# 分布式边缘同步 API 参考
+# 分布式边缘同步 API (`/api/cms`) 全量接口文档与使用指南
 
 **MSRU Web & Docs** 边缘实例内置了 `/api/cms` 同步端点。通过此接口，中心化管理后台（Headless CMS/中心端）能够以 **Upsert（存在则更新，不存在则新增）** 的方式实时推送营销页面与技术文档。
 
 ---
 
-## 1. 核心路径映射逻辑（如何绑定路径与文件）
+## 一、Token 的来源与环境变量配置
 
-在边缘端与数据库架构中，**`slug` 是页面资源的唯一主键与 URL 路径绑定标示**。
+### 1. Token 是从哪来的？
+Token（接口鉴权密钥）是由您自己在部署时**自定义设置的环境变量**。它不需要生成脚本，只要在边缘实例服务器与中心后台配置同一个密钥即可。
 
-### 1.1 营销页 (Marketing Pages - JSON / SDUI)
-| `slug` 参数 | 对应 URL 路由 | 原本对应文件路径 (若降级读取) | 说明 |
-| :--- | :--- | :--- | :--- |
-| `""` *(空字符串)* | `/` | `content/marketing/pages/home.json` | 首页配置 |
-| `"products/mes"` | `/products/mes` | `content/marketing/pages/products/mes.json` | 具体产品页 |
-| `"pricing"` | `/pricing` | `content/marketing/pages/pricing.json` | 定价页 |
-| `"solutions/new-ai"` | `/solutions/new-ai` | *(无需本地文件)* | **纯数据库新增页面** |
+### 2. 在 Coolify 中配置环境变量
+在 Coolify 后台进入您的 Next.js 边缘应用配置，找到 **Environment Variables（环境变量）**，添加以下一行：
+```env
+CMS_API_KEY=your_secure_random_token_64_chars
+```
+*(注：如果不设置 `CMS_API_KEY`，系统也会兼容读取 `DB_API_KEY` 环境变量)*
 
-> [!NOTE]
-> **新增 vs 覆盖逻辑：**
-> SQL 底层采用 `ON CONFLICT(slug) DO UPDATE`。  
-> - 如果传入的 `slug` **已存在于数据库**，或者**原本在代码库中有 JSON 文件**，接口会**直接覆盖**并高优先级展示 SQLite 中更新后的内容。  
-> - 如果传入的是**全新 `slug`**（例如 `solutions/new-ai`），即便服务器本地没有对应的 `.json` 文件，由于配置了 `dynamicParams = true`，Next.js 会在触发 `revalidatePath("/solutions/new-ai")` 后自动为您**生成并展示全新的页面**！
-
----
-
-### 1.2 技术文档页 (Docs Pages - Markdown / MDX)
-| `slug` 参数 | 对应 URL 路由 | 原本对应文件路径 (若降级读取) | 说明 |
-| :--- | :--- | :--- | :--- |
-| `"guide/quickstart"` | `/docs/guide/quickstart` | `content/docs/guide/quickstart.mdx` | 快速开始文档 |
-| `"cms/integrations/api"` | `/docs/cms/integrations/api` | `content/docs/cms/integrations/api.mdx` | API 参考文档 |
-| `"custom/help-center"` | `/docs/custom/help-center` | *(无需本地文件)* | **纯数据库新增文档** |
-
----
-
-## 2. 鉴权说明
-
-所有的请求必须在 HTTP Header 中携带 Bearer Token：
+### 3. 请求鉴权格式
+所有调用此 API 的请求，都必须在 HTTP Request Header 中携带上述密钥：
 ```http
-Authorization: Bearer <process.env.CMS_API_KEY>
+Authorization: Bearer your_secure_random_token_64_chars
 Content-Type: application/json
 ```
-如果环境变量中没有设置 `CMS_API_KEY`，系统将降级使用 `DB_API_KEY`。
 
 ---
 
-## 3. 支持的 5 大功能指令 (`action`) 详解与示例
+## 二、功能逻辑与运作流程
 
-接口统一接受 `POST` 请求，通过 Request Body 中的 `action` 区分具体操作类型。
+### 1. 核心映射规则 (`slug` = 路径 & 唯一键)
+* **主页**：传入 `slug: ""`，对应实际 URL `/`。
+* **营销子页**：传入 `slug: "products/mes"`，对应实际 URL `/products/mes`。
+* **技术文档**：传入 `slug: "guide/quickstart"`，对应实际 URL `/docs/guide/quickstart`。
+
+### 2. 覆盖与动态生成机制
+* **覆盖已有页面**：如果 `slug` 已存在（无论是数据库曾写入过，还是项目本地文件存在 `mes.json` / `quickstart.mdx`），API 写入 SQLite 后，Next.js 会**优先从 SQLite 渲染更新后的内容**。
+* **无物理文件新增（纯动态创建）**：哪怕代码库本地没有 `content/marketing/pages/solutions/robot.json` 这个文件，只要您通过 API 传入 `slug: "solutions/robot"`，由于系统启用了 `revalidatePath` 与 `dynamicParams = true`，Next.js 会在触发重构后，**自动为您凭空构建出全新的 `/solutions/robot` 访问路径并马上呈现新页面**！
 
 ---
 
-### 3.1 `upsert_marketing` —— 新增或更新营销页面 (SDUI)
+## 三、全量 5 大操作指令 (`action`) 接口详解
 
-中心将 JSON Blocks 与 SEO TDK 传入，更新到 `cms_marketing_pages` 表，自动执行 `revalidatePath` 重写静态页。
+所有操作统一调用 `POST https://你的边缘实例域名/api/cms`，通过 Body JSON 中的 `action` 区分业务。
 
-#### 请求 Payload Schema
+---
+
+### 指令 1：`upsert_marketing`（新增 / 更新营销页面 SDUI）
+
+向边缘节点的 SQLite 写入营销页配置。操作完成后立刻调用 `revalidatePath`，用户下一次访问秒级呈现最新界面。
+
+#### 1. Request Body (JSON)
 ```json
 {
   "action": "upsert_marketing",
   "slug": "products/custom-robotics",
   "blocks": [
-    { "type": "hero", "headline": "智能机器人协作平台", "subline": "全自研黑灯工厂大脑" },
-    { "type": "statBand", "stats": [{ "value": "99.9%", "label": "生产良率" }] }
+    {
+      "type": "hero",
+      "headline": "AI 工业协作机器人大脑",
+      "subline": "全自研黑灯工厂多智能体协同基座",
+      "primaryCta": { "label": "预约演示", "href": "/contact" }
+    },
+    {
+      "type": "statBand",
+      "stats": [
+        { "value": "99.99%", "label": "视觉识别准确率" },
+        { "value": "24/7", "label": "无人值守连续运行" }
+      ]
+    }
   ],
   "meta": {
-    "title": "智能机器人协作平台 | MSRU",
-    "description": "专为高端智能制造打造的工业机器人协同系统。"
+    "title": "AI 协作机器人平台 | MSRU",
+    "description": "专为高端装备与半导体车间研发的工业机器人系统。"
   }
 }
 ```
 
-#### Curl 调用示例
+#### 2. curl 调用示例
 ```bash
-curl -X POST https://your-edge-instance.com/api/cms \
-  -H "Authorization: Bearer YOUR_CMS_API_KEY" \
+curl -X POST https://your-edge-domain.com/api/cms \
+  -H "Authorization: Bearer your_secure_random_token_64_chars" \
   -H "Content-Type: application/json" \
   -d '{
     "action": "upsert_marketing",
     "slug": "products/custom-robotics",
-    "blocks": [{ "type": "hero", "headline": "智能机器人协作平台" }],
-    "meta": { "title": "智能机器人平台" }
+    "blocks": [
+      {
+        "type": "hero",
+        "headline": "AI 工业协作机器人大脑",
+        "subline": "全自研黑灯工厂协同基座"
+      }
+    ],
+    "meta": {
+      "title": "AI 协作机器人平台 | MSRU"
+    }
   }'
 ```
 
-#### 响应结构 (200 OK)
+#### 3. Response (200 OK)
 ```json
 {
   "success": true,
@@ -99,11 +112,11 @@ curl -X POST https://your-edge-instance.com/api/cms \
 
 ---
 
-### 3.2 `delete_marketing` —— 删除营销页面记录
+### 指令 2：`delete_marketing`（删除营销页面记录）
 
-从 SQLite `cms_marketing_pages` 表中清理指定的营销页记录，并触发 ISR 刷新（若有代码库默认 JSON 则恢复展示默认配置，否则显示 404）。
+删除 SQLite 表中指定的营销页面数据并触发缓存更新。若有仓库内置 JSON 则恢复展示默认页面，若无本地文件则该 URL 变为 404。
 
-#### 请求 Payload Schema
+#### 1. Request Body (JSON)
 ```json
 {
   "action": "delete_marketing",
@@ -111,10 +124,10 @@ curl -X POST https://your-edge-instance.com/api/cms \
 }
 ```
 
-#### Curl 调用示例
+#### 2. curl 调用示例
 ```bash
-curl -X POST https://your-edge-instance.com/api/cms \
-  -H "Authorization: Bearer YOUR_CMS_API_KEY" \
+curl -X POST https://your-edge-domain.com/api/cms \
+  -H "Authorization: Bearer your_secure_random_token_64_chars" \
   -H "Content-Type: application/json" \
   -d '{
     "action": "delete_marketing",
@@ -122,38 +135,47 @@ curl -X POST https://your-edge-instance.com/api/cms \
   }'
 ```
 
+#### 3. Response (200 OK)
+```json
+{
+  "success": true,
+  "deleted": true,
+  "path": "/products/custom-robotics"
+}
+```
+
 ---
 
-### 3.3 `upsert_docs` —— 新增或更新 Markdown/MDX 技术文档
+### 指令 3：`upsert_docs`（新增 / 更新技术文档 MDX）
 
-传入标题和 Markdown/MDX 正文，存入 `cms_docs_pages` 表。下一位用户访问时，系统将通过 `@fumadocs/mdx-remote` 实时编译呈现。
+向 SQLite 写入 Markdown 或 MDX 技术文稿。访问该路径（如 `/docs/guide/edge-setup`）时，服务器会通过 `@fumadocs/mdx-remote` 实时把正文编译成 React Server Components 展现，并由 ISR 保证极速访问。
 
-#### 请求 Payload Schema
+#### 1. Request Body (JSON)
 ```json
 {
   "action": "upsert_docs",
   "slug": "guide/edge-setup",
-  "title": "边缘计算接入规范",
-  "description": "面向工厂网关的标准化接入手册",
-  "content": "# 边缘计算接入规范\n\n本指南适用于 Linux ARM64 工控机及 Docker 容器环境接入...\n\n<Callout type=\"warn\">\n务必确保设备已开通 NTP 时间同步设置。\n</Callout>"
+  "title": "边缘计算节点接入规范",
+  "description": "车间 Linux/ARM64 工业网关配置指南",
+  "content": "# 边缘计算节点接入规范\n\n本手册适用于自动化设备数据采集节点的初始化安装。\n\n## 系统要求\n- Ubuntu 22.04 / Debian 12\n- 内存 ≥ 2GB\n\n<Callout type=\"warn\" title=\"重要警告\">\n安装前必须确认与核心 MES 服务器的 NTP 时间同步，误差须保持在 50ms 以内。\n</Callout>"
 }
 ```
 
-#### Curl 调用示例
+#### 2. curl 调用示例
 ```bash
-curl -X POST https://your-edge-instance.com/api/cms \
-  -H "Authorization: Bearer YOUR_CMS_API_KEY" \
+curl -X POST https://your-edge-domain.com/api/cms \
+  -H "Authorization: Bearer your_secure_random_token_64_chars" \
   -H "Content-Type: application/json" \
   -d '{
     "action": "upsert_docs",
     "slug": "guide/edge-setup",
-    "title": "边缘计算接入规范",
-    "description": "标准化手册",
-    "content": "# 规范总览\n\n请参照具体章节执行操作。"
+    "title": "边缘计算节点接入规范",
+    "description": "工业网关指南",
+    "content": "# 边缘接入规范\n\n请严格按照标准执行配置。"
   }'
 ```
 
-#### 响应结构 (200 OK)
+#### 3. Response (200 OK)
 ```json
 {
   "success": true,
@@ -163,11 +185,11 @@ curl -X POST https://your-edge-instance.com/api/cms \
 
 ---
 
-### 3.4 `delete_docs` —— 删除文档页面
+### 指令 4：`delete_docs`（删除文档页面记录）
 
-清理指定文档表记录并触发刷新。
+删除指定的文档记录并自动同步清理静态缓存。
 
-#### 请求 Payload Schema
+#### 1. Request Body (JSON)
 ```json
 {
   "action": "delete_docs",
@@ -175,27 +197,43 @@ curl -X POST https://your-edge-instance.com/api/cms \
 }
 ```
 
----
+#### 2. curl 调用示例
+```bash
+curl -X POST https://your-edge-domain.com/api/cms \
+  -H "Authorization: Bearer your_secure_random_token_64_chars" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "action": "delete_docs",
+    "slug": "guide/edge-setup"
+  }'
+```
 
-### 3.5 `execute_sql` —— 万能 SQL 安全通道
-
-供中心端执行高级查询（如统计当前页面总数、运行复杂联表过滤等）。
-
-#### 请求 Payload Schema
+#### 3. Response (200 OK)
 ```json
 {
-  "action": "execute_sql",
-  "sql": "SELECT slug, updated_at FROM cms_marketing_pages WHERE slug LIKE ?",
-  "params": ["products/%"],
-  "type": "all"
+  "success": true,
+  "deleted": true,
+  "path": "/docs/guide/edge-setup"
 }
 ```
-*说明：`type` 支持 `"run"` (写/改)、`"get"` (读单行)、`"all"` (读多行)。*
 
-#### Curl 调用示例
+---
+
+### 指令 5：`execute_sql`（安全万能 SQL 通道）
+
+供中心端进行自定义复杂数据分析（例如查询全站有多少个自定义营销页面、排查更新时间戳或高级连表筛选等）。支持参数化预编译绑定，防止 SQL 注入。
+
+#### 1. Request Body (JSON)
+| 参数 | 类型 | 必选 | 描述 |
+| :--- | :--- | :---: | :--- |
+| `sql` | `string` | 是 | SQL 语句 |
+| `params` | `Array` | 否 | 参数绑定数组，如 `["products/%"]` |
+| `type` | `string` | 否 | 执行模式：`"all"` (读多行列表) / `"get"` (读单条) / `"run"` (写/删，返回执行状态) |
+
+#### 2. curl 调用示例：查询已发布的营销页总量
 ```bash
-curl -X POST https://your-edge-instance.com/api/cms \
-  -H "Authorization: Bearer YOUR_CMS_API_KEY" \
+curl -X POST https://your-edge-domain.com/api/cms \
+  -H "Authorization: Bearer your_secure_random_token_64_chars" \
   -H "Content-Type: application/json" \
   -d '{
     "action": "execute_sql",
@@ -204,10 +242,36 @@ curl -X POST https://your-edge-instance.com/api/cms \
   }'
 ```
 
-#### 响应结构 (200 OK)
+#### 3. Response (200 OK)
 ```json
 {
   "success": true,
-  "data": { "total": 12 }
+  "data": {
+    "total": 5
+  }
+}
+```
+
+#### 4. curl 调用示例：模糊查询并读取指定列表
+```bash
+curl -X POST https://your-edge-domain.com/api/cms \
+  -H "Authorization: Bearer your_secure_random_token_64_chars" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "action": "execute_sql",
+    "sql": "SELECT slug, updated_at FROM cms_marketing_pages WHERE slug LIKE ?",
+    "params": ["products/%"],
+    "type": "all"
+  }'
+```
+
+#### 5. Response (200 OK)
+```json
+{
+  "success": true,
+  "data": [
+    { "slug": "products/mes", "updated_at": "2026-07-14 11:55:20" },
+    { "slug": "products/custom-robotics", "updated_at": "2026-07-14 11:58:12" }
+  ]
 }
 ```
