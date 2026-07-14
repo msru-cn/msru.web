@@ -2,34 +2,93 @@
   {
     "type": "hero",
     "variant": "dark",
-    "badge": { "icon": "Battery", "text": "新能源与电池" },
-    "title": "从电芯到 PACK，全链路数字化",
-    "subtitle": "高通量极片质检、电芯追溯与循环寿命建模。",
+    "badge": { "icon": "Battery", "text": "New Energy & Battery Manufacturing" },
+    "title": "从涂布极片到动力 PACK 的精细管控",
+    "subtitle": "打造高通量极片瑕疵检测、单颗电芯级全生命周期追溯及化成分容全域调度的超级生产平台，守护新能源电池的安全底线。",
     "accentColor": "amber",
-    "bgImage": "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [{ "label": "预约电池产线演示", "href": "/contact" }, { "label": "索取白皮书", "href": "/contact" }]
   },
   {
-    "type": "featureGrid",
-    "columns": 3,
-    "cards": [
-      { "icon": "Eye", "title": "极片高通量质检", "desc": "AI 视觉在线检测涂布缺陷，漏检率低于万一。" },
-      { "icon": "Network", "title": "电芯全程追溯", "desc": "从卷绕到化成的单体级数据链路。" },
-      { "icon": "Battery", "title": "循环寿命建模", "desc": "基于工况数据预测衰减曲线与失效风险。" }
+    "type": "statBand",
+    "heading": "高精数据驱动动力电芯一致性",
+    "accentColor": "amber",
+    "stats": [
+      { "value": "99", "unit": ".99%", "label": "极片涂布/辊压毛刺视觉在线漏检控制" },
+      { "value": "100", "unit": "%", "label": "电芯从前端匀浆到 PACK 装配谱系覆盖率" },
+      { "value": "15", "unit": "%", "label": "化成分容库房能量循环回馈与调度综合节能" },
+      { "value": "3000", "unit": "+", "label": "单条动力电池高速产线毫秒级并发测点" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "电池的一致性与安全性，决定企业的生命线。",
+    "body": "动力电池制造具备流程极长、高并发海量数据采集和极度严厉的安全隐患零容忍三大特性。MSRU 从最细微的涂布面密度实时监控开始，将每颗电芯的数千个关键变量编织入统一的安全数据网。",
+    "accentColor": "amber"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Eye",
+        "title": "极片高通量视觉与面密度闭环",
+        "description": "结合超高速线阵相机与面密度测厚数据，精准捕捉极片漏涂、划痕、气泡与毛刺，形成毫秒级在线剔除指令。",
+        "span": "wide",
+        "accentColor": "amber"
+      },
+      {
+        "icon": "Database",
+        "title": "化成分容全域自动化与安全调度",
+        "description": "打通立库 stacker、堆垛机、化成充放电柜通道数据，实时监测温升与短路电压趋势，自动熔断隔离隐患火源。",
+        "span": "wide",
+        "accentColor": "orange"
+      },
+      {
+        "icon": "Network",
+        "title": "单体电芯终身谱系档案",
+        "description": "自动整合极片编码、卷绕叠片张力、注液重量、化成曲线到 PACK 模组二维码，完整闭环。",
+        "accentColor": "amber"
+      },
+      {
+        "icon": "Activity",
+        "title": "出厂循环衰减预测与建模",
+        "description": "通过深度学习算法对电芯早期充放电数据分析，预测未来 1000 次循环容量保持率。",
+        "accentColor": "orange"
+      }
     ]
   },
   {
     "type": "splitMedia",
     "side": "right",
-    "image": "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=800",
-    "eyebrow": "量产验证",
-    "title": "化成分容全域管控",
-    "body": "打通化成、分容、老化工序数据，异常实时拦截。",
-    "bullets": ["工序级数据看板", "异常自动闭环", "OEE 实时追踪"]
+    "image": "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "应用重点",
+    "title": "PACK 模组全自动装配与绝缘安规",
+    "body": "在 PACK 段对汇流排激光焊接熔深、BMS 固件烧录及安规耐压绝缘进行一键自动数据绑定与防错，确保每包出运均合规。",
+    "bullets": [
+      "模组电芯内阻与电压一致性自动化精细匹配",
+      "激光焊缝实时在线监测记录与质检归档",
+      "出厂合格证与电池数字护照快速上链备案"
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "动力电池车间数据产生频率极高，MSRU 的数据库架构能否支撑产线海量时序存储？",
+        "a": "能。MSRU 内核内置分布式高性能时序引擎，单节点读写吞吐可达千万条/秒，并具备自动化冷热数据分层归档机制。"
+      },
+      {
+        "q": "针对化成车房的高风险特性，系统具备哪些主被动安全防护？",
+        "a": "系统集成多级异常电压跳变识别（微短路检测）与热成像联动机制，一旦发现异常温升曲线立刻触发独立断电和气体灭火联动。"
+      }
+    ]
   },
   {
     "type": "cta",
-    "variant": "small",
-    "title": "获取电池行业方案",
-    "cta": { "label": "预约行业演示", "href": "/contact" }
+    "variant": "large",
+    "title": "打造下一代高一致性动力电池制造体系",
+    "description": "咨询新能源行业技术团队，探索电芯全链路品质监控与智能产线实践方案。",
+    "cta": { "label": "沟通电池行业专家", "href": "/contact" },
+    "accentColor": "amber"
   }
 ]

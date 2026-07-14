@@ -2,32 +2,105 @@
   {
     "type": "hero",
     "variant": "dark",
-    "badge": { "icon": "Settings", "text": "Automotive & Equipment" },
-    "title": "驱动每一台精密装备",
-    "subtitle": "为汽车零部件与高端装备制造企业提供 JIT 精准排产、IATF 16949 全面质量管理与多级供应链协同的一体化数字方案。",
+    "badge": { "icon": "Settings", "text": "Automotive & Precision Equipment" },
+    "title": "驱动每一台精密装备与车规级产线",
+    "subtitle": "针对汽车零部件与高端装备企业，打通 IATF 16949 全面质量体系、JIT/JIS 精准柔性排产与整车级反向追溯，让整条供应链稳定协同。",
     "accentColor": "rose",
-    "bgImage": "/uploads/solutions.automotive.hero.mp4"
+    "bgVideo": "/uploads/solutions.automotive.hero.mp4",
+    "ctas": [
+      { "label": "预约汽车行业演示", "href": "/contact" },
+      { "label": "下载 IATF 16949 数字化实践", "href": "/contact" }
+    ]
   },
   {
-    "type": "subHero",
-    "title": "专为汽车工业锻造的核心能力",
+    "type": "statBand",
+    "heading": "赋能车规级零缺陷与精益交付",
+    "accentColor": "rose",
+    "stats": [
+      { "value": "100", "unit": "%", "label": "VIN 码与单品序列号正反向双向溯源" },
+      { "value": "28", "unit": "%+", "label": "JIT/JIS 柔性拉动带来的线边库存降低" },
+      { "value": "0", "unit": "容忍", "label": "严守 IATF 16949 五大核心工具合规执行" },
+      { "value": "99", "unit": ".95%", "label": "关键拧紧力矩与压装工艺曲线归档保留率" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "车规级供应链不需要黑盒，需要毫秒级透明。",
+    "body": "主机厂对零部件企业的审核苛刻度逐年递增，任何一处关键扭矩遗漏或批次混淆都会引发重大的召回赔偿。MSRU 构建了贯穿来料、加工、热处理、总装与出库的高分辨率工艺档案，全面消除信息死角。",
     "accentColor": "rose"
   },
   {
-    "type": "featureGrid",
-    "columns": 2,
-    "cards": [
-      { "icon": "CheckCircle", "title": "JIT/JIS 准时制排产", "desc": "精准匹配主机厂节拍，消除线边库积压" },
-      { "icon": "CheckCircle", "title": "IATF 16949 质量闭环", "desc": "从 APQP 到 PPAP 全流程数字化管控" },
-      { "icon": "CheckCircle", "title": "供应链多级协同", "desc": "Tier 1/2/3 实时产能可视与风险预警" },
-      { "icon": "CheckCircle", "title": "零缺陷追溯体系", "desc": "从原材料批次到整车 VIN 正反向穿透" }
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Settings",
+        "title": "IATF 16949 质量五大工具闭环",
+        "description": "深度集成 APQP、FMEA、MSA、SPC 与 PPAP 管理闭环，实现各工序控制图自动绘制与偏离规则预警。",
+        "span": "wide",
+        "accentColor": "rose"
+      },
+      {
+        "icon": "Activity",
+        "title": "JIT/JIS 准时顺位排序排产",
+        "description": "实时同步主机厂广播报文与下线节拍，动态计算生产批次与包装齐套，降低呆滞库存。",
+        "span": "wide",
+        "accentColor": "orange"
+      },
+      {
+        "icon": "RefreshCw",
+        "title": "关键工序曲线归档（扭矩/压装）",
+        "description": "实时对接过流阿特拉斯·科普柯、马头等拧紧轴与伺服压机，1:1 沉淀每颗螺栓力矩曲线。",
+        "accentColor": "rose"
+      },
+      {
+        "icon": "Network",
+        "title": "正反向批次谱系溯源",
+        "description": "只需输入整车 VIN 或批次条码，3 秒内穿透展示所有原辅料供应商批号及关键操作员记录。",
+        "accentColor": "orange"
+      }
+    ]
+  },
+  {
+    "type": "list",
+    "variant": "steps",
+    "items": [
+      {
+        "title": "来料质量检验（IQA）与防伪绑定",
+        "desc": "基于汽车行业标准条码对原辅料进行批次建档，阻断非合格或过期材料进入产线。"
+      },
+      {
+        "title": "过程控制（IPQA）与防呆拦截",
+        "desc": "机加工、热处理与装配工序通过电子作业指引与联锁检查，发现异常立即停止拉流。"
+      },
+      {
+        "title": "出厂检测（OQA）与一物一码",
+        "desc": "终检数据与标签自动打印绑定，生成满足主机厂 VDA/PPAP 要求的标准化电子质量履历。"
+      },
+      {
+        "title": "售后回溯与连续工艺改良",
+        "desc": "通过售后返修数据反推上游批次和工况异常，持续闭环优化 FMEA 风险参数。"
+      }
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "如何实现与主机厂 EDI 数据交换和顺位排产的联动？",
+        "a": "MSRU 内置工业级 EDI 报文转换引擎，可自动解析主流整车制造厂的 DELFOR / DELJIT 标准格式并转化为车间作业任务。"
+      },
+      {
+        "q": "系统对工厂历史既有的旧生产设备兼容性如何？",
+        "a": "针对老旧机床与非网管型设备，我们提供轻量级边缘采集套件与电气改造标准包，实现低成本低风险接入。"
+      }
     ]
   },
   {
     "type": "cta",
     "variant": "large",
-    "title": "让每一条产线，都精准如瑞士钟表",
-    "cta": { "label": "预约行业演示", "href": "/contact" },
+    "title": "建立高标准的车规级制造数字化底座",
+    "description": "预约技术顾问一对一沟通，获取量身打造的汽车行业数字化转型路标。",
+    "cta": { "label": "联系汽车专家团队", "href": "/contact" },
     "accentColor": "rose"
   }
 ]

@@ -1,11 +1,53 @@
 [
   {
     "type": "hero",
+    "variant": "dark",
     "badge": { "icon": "Bug", "text": "Bug Bounty Program" },
     "title": "漏洞披露政策",
     "subtitle": "我们欢迎负责任的安全研究者帮助我们发现并修复潜在漏洞。提交有效报告将获得丰厚的现金奖励。",
     "accentColor": "purple",
     "bgImage": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    "type": "statBand",
+    "heading": "计划概览",
+    "accentColor": "purple",
+    "stats": [
+      { "value": "24", "unit": "小时", "label": "首次响应时限" },
+      { "value": "200", "unit": "K¥", "label": "关键漏洞最高奖励" },
+      { "value": "500", "unit": "+", "label": "已处置有效报告" },
+      { "value": "7", "unit": "天", "label": "有效性评估周期" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "安全承诺",
+    "body": "MSRU 承诺对遵循本政策进行安全研究的研究者不追究法律责任 (Safe Harbor)。只要您善意行事、避免侵犯隐私、不破坏数据、不中断服务，并在漏洞修复前保密，我们将视您为合作伙伴而非攻击者。",
+    "accentColor": "purple"
+  },
+  {
+    "type": "featureGrid",
+    "columns": 3,
+    "cards": [
+      {
+        "icon": "Handshake",
+        "accentColor": "purple",
+        "title": "协作而非对抗",
+        "desc": "我们将安全研究者视为防线的一部分，提供清晰的沟通渠道、透明的定级依据与及时的进度反馈。"
+      },
+      {
+        "icon": "Award",
+        "accentColor": "amber",
+        "title": "公平的奖励",
+        "desc": "奖励依据 CVSS 3.1 评分与真实业务影响综合评定，报告质量与可复现性会直接影响最终金额。"
+      },
+      {
+        "icon": "ShieldCheck",
+        "accentColor": "emerald",
+        "title": "负责任的披露",
+        "desc": "我们采用协调披露原则，在修复完成并与研究者商定时间后再公开，共同保护受影响的客户。"
+      }
+    ]
   },
   {
     "type": "statement",
@@ -19,11 +61,223 @@
       { "title": "关键级 (Critical)", "tag": "¥50,000 - ¥200,000", "desc": "远程代码执行、认证绕过、数据库注入" },
       { "title": "高危级 (High)", "tag": "¥15,000 - ¥50,000", "desc": "权限提升、敏感信息泄露、SSRF" },
       { "title": "中危级 (Medium)", "tag": "¥3,000 - ¥15,000", "desc": "存储型 XSS、CSRF、逻辑缺陷" },
-      { "title": "低危级 (Low)", "tag": "¥500 - ¥3,000", "desc": "反射型 XSS、信息披露、配置缺陷" }
+      { "title": "低危级 (Low)", "tag": "¥500 - ¥3,000", "desc": "反射型 XSS、信息披露、配置缺陷" },
+      { "title": "情报级 (Informational)", "tag": "荣誉致谢", "desc": "最佳实践建议、加固建议、无直接影响的问题" }
     ]
   },
   {
+    "type": "statement",
+    "title": "奖励加成与调整",
+    "body": "针对影响核心工业控制链路、可跨租户利用或链式组合形成更高危害的漏洞，我们可能上浮最高 30% 的奖励。对于范围外资产的重大发现，我们保留自由裁量给予酌情奖励的权利。最终金额以安全团队评定为准。",
+    "accentColor": "purple"
+  },
+  {
+    "type": "statement",
+    "title": "研究范围 (Scope)",
+    "body": "以下资产在本计划范围内，我们鼓励针对这些目标开展安全研究。",
+    "accentColor": "purple"
+  },
+  {
+    "type": "featureGrid",
+    "columns": 2,
+    "cards": [
+      {
+        "icon": "Globe",
+        "accentColor": "emerald",
+        "title": "范围内 · 生产 Web 应用",
+        "desc": "app.msru.ai 及其子域、公开 API 网关 api.msru.ai、开发者门户与文档站点。"
+      },
+      {
+        "icon": "Package",
+        "accentColor": "emerald",
+        "title": "范围内 · 客户端与 SDK",
+        "desc": "官方发布的桌面客户端、移动 App、边缘采集 Agent 与开源 SDK。"
+      },
+      {
+        "icon": "Lock",
+        "accentColor": "rose",
+        "title": "范围外 · 第三方服务",
+        "desc": "由次级处理者托管的第三方系统、非 MSRU 拥有的域名与外部集成服务。"
+      },
+      {
+        "icon": "Zap",
+        "accentColor": "rose",
+        "title": "范围外 · 禁止行为",
+        "desc": "DDoS/压力测试、社会工程、物理入侵、自动化扫描造成的服务降级均不在范围内。"
+      }
+    ]
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Cpu",
+        "title": "核心平台与内核",
+        "description": "describe-once 内核、模型编排引擎、多租户隔离层与权限策略引擎是我们最关注的攻击面，相关高质量报告优先处置。",
+        "tagline": "最高优先级",
+        "span": "wide",
+        "accentColor": "purple"
+      },
+      {
+        "icon": "Network",
+        "title": "API 与集成",
+        "description": "REST、流式与 Webhook 接口的鉴权、越权、注入与业务逻辑缺陷均在范围内。",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "Server",
+        "title": "边缘与采集 Agent",
+        "description": "工业现场部署的边缘采集组件、离线同步与固件更新通道欢迎深入研究。",
+        "accentColor": "teal"
+      },
+      {
+        "icon": "Eye",
+        "title": "已知与低价值问题",
+        "description": "缺乏可利用性证明的自扫描结果、缺失安全响应头、无影响的版本泄露等通常不予奖励。",
+        "tagline": "谨慎提交",
+        "accentColor": "slate"
+      }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "披露流程",
+    "body": "从发现漏洞到协调披露，我们与研究者共同遵循一套清晰、可预期的流程。",
+    "accentColor": "purple"
+  },
+  {
+    "type": "list",
+    "variant": "steps",
+    "items": [
+      {
+        "title": "发现与验证",
+        "meta": "步骤 1",
+        "desc": "在授权范围内验证漏洞，仅使用满足概念验证 (PoC) 所需的最小操作，避免访问或泄露真实客户数据。"
+      },
+      {
+        "title": "提交报告",
+        "meta": "步骤 2",
+        "desc": "将复现步骤、影响评估、PoC 与环境信息发送至专用安全邮箱，鼓励使用我们的 PGP 公钥加密。"
+      },
+      {
+        "title": "评估与定级",
+        "meta": "步骤 3",
+        "desc": "安全团队依据 CVSS 3.1 评分与实际业务影响进行定级，并与您沟通确认。"
+      },
+      {
+        "title": "修复与奖励",
+        "meta": "步骤 4",
+        "desc": "漏洞修复后发放奖励并（在您同意的前提下）纳入名人堂致谢，随后进行协调披露。"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "left",
+    "eyebrow": "报告质量",
+    "title": "什么样的报告能获得更高奖励",
+    "body": "高质量的报告能显著加快处置流程并影响最终定级。请提供清晰、可复现的证据，帮助我们快速理解漏洞的真实业务影响。",
+    "bullets": [
+      "完整、可复现的分步操作与截图或录屏",
+      "明确的受影响端点、参数与前置条件",
+      "对真实业务影响的评估（数据、权限、资产范围）",
+      "可行的修复或缓解建议"
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "eyebrow": "重复与冲突",
+    "title": "去重、时间戳与协调披露",
+    "body": "奖励以首个有效报告为准。若多份报告指向同一根因，以最早提交的有效报告为准。我们采用协调披露原则，在修复完成并与您商定时间后再进行公开。",
+    "bullets": [
+      "以服务器接收时间戳判定首报",
+      "同一根因的多个入口视为同一问题",
+      "披露时间由双方协商，默认修复后 90 天"
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "left",
+    "eyebrow": "安全港",
+    "title": "安全港条款的边界",
+    "body": "只要您在本政策授权范围内善意开展研究，我们承诺不会依据反计算机滥用相关法律对您发起或支持诉讼。但安全港不适用于超出范围的攻击、数据窃取、勒索或对客户业务造成实际损害的行为。",
+    "bullets": [
+      "仅访问自建测试账号或经授权的演示租户",
+      "不下载、保留或传播真实客户数据",
+      "发现敏感数据应立即停止并在报告中说明",
+      "如受第三方法律主张影响，请及时告知我们"
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "名人堂",
+    "body": "我们以名人堂致谢为负责任披露作出贡献的安全研究者。经您同意，我们将公开您的署名、可选的社交主页与所报告问题的类别。",
+    "accentColor": "purple"
+  },
+  {
+    "type": "list",
+    "variant": "cards",
+    "items": [
+      { "title": "白帽研究者 · L.Chen", "meta": "2025 Q4", "desc": "报告了 API 网关的越权访问链，帮助我们加固多租户隔离。", "tag": "Critical" },
+      { "title": "安全团队 · Blue Owl Labs", "meta": "2025 Q3", "desc": "发现边缘采集 Agent 的固件更新校验缺陷。", "tag": "High" },
+      { "title": "独立研究者 · m0nsoon", "meta": "2025 Q2", "desc": "提交多个存储型 XSS 与逻辑越权问题。", "tag": "Medium" },
+      { "title": "研究者 · anon-0x7f", "meta": "2025 Q1", "desc": "针对文档站点的敏感配置泄露给出加固建议。", "tag": "Low" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "参与规则",
+    "body": "参与本计划即表示您同意遵守以下规则，违反规则可能导致取消奖励资格并追究相应责任。",
+    "accentColor": "purple"
+  },
+  {
+    "type": "list",
+    "variant": "rows",
+    "items": [
+      { "title": "最小化影响", "tag": "必须遵守", "desc": "仅执行验证漏洞所必需的操作，避免影响服务可用性与其他用户。" },
+      { "title": "保护数据", "tag": "必须遵守", "desc": "不得访问、下载、修改或删除非您自有的真实数据。" },
+      { "title": "保密披露", "tag": "必须遵守", "desc": "在修复完成并商定披露时间前，不得对外公开漏洞细节。" },
+      { "title": "禁止勒索", "tag": "严禁", "desc": "以公开或不修复相威胁索取更高奖励将立即取消资格。" },
+      { "title": "合法合规", "tag": "严禁", "desc": "禁止社会工程、物理入侵、供应链攻击及任何违反当地法律的行为。" }
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "提交报告后多久会收到回复？",
+        "a": "我们承诺在收到报告后 24 小时内首次响应，并在 7 个工作日内完成有效性评估与初步定级。"
+      },
+      {
+        "q": "奖励如何发放？",
+        "a": "漏洞修复验证通过后，我们通过银行转账或约定方式发放现金奖励。跨境发放可能需要额外的合规资料。"
+      },
+      {
+        "q": "我可以公开我发现的漏洞吗？",
+        "a": "我们采用协调披露原则。请在漏洞修复完成并与安全团队商定披露时间后再进行公开，默认时间为修复后 90 天。"
+      },
+      {
+        "q": "使用自动化扫描器提交的报告会被接受吗？",
+        "a": "我们接受人工验证过的、附带真实影响分析的报告。仅由扫描器生成、缺乏影响验证的批量报告通常不予奖励。"
+      },
+      {
+        "q": "MSRU 员工或承包商可以参与吗？",
+        "a": "现任员工、承包商及其直系亲属不符合奖励资格，但仍鼓励通过内部渠道报告安全问题。"
+      },
+      {
+        "q": "如何加密我的报告？",
+        "a": "我们在安全页面发布了 PGP 公钥，您可以使用它加密报告与 PoC 附件，我们同样支持通过加密邮件回复。"
+      }
+    ]
+  },
+  {
+    "type": "statement",
+    "body": "本政策可能随时更新 · 参与本计划即表示您同意遵守最新版本条款 · 最近更新：2026 年 1 月"
+  },
+  {
     "type": "cta",
+    "variant": "large",
     "title": "准备提交报告？",
     "description": "请将漏洞详情发送至专用安全邮箱，我们承诺 24 小时内响应。",
     "cta": { "label": "security@msru.ai", "href": "mailto:security@msru.ai" },

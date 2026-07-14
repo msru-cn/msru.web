@@ -1,6 +1,7 @@
 [
   {
     "type": "hero",
+    "variant": "dark",
     "badge": {
       "icon": "Eye",
       "text": "Digital Accessibility"
@@ -11,36 +12,185 @@
     "bgImage": "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=2000"
   },
   {
+    "type": "statBand",
+    "heading": "我们的无障碍承诺",
+    "accentColor": "rose",
+    "stats": [
+      { "value": "AA", "unit": "级", "label": "WCAG 2.1 一致性目标" },
+      { "value": "100", "unit": "%", "label": "核心业务流程键盘可达" },
+      { "value": "4.5", "unit": ":1", "label": "最低文本对比度" },
+      { "value": "90", "unit": "天", "label": "无障碍缺陷修复周期" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "包容性设计理念",
+    "body": "无障碍不是事后的补丁，而是 MSRU 产品设计的起点。工业场景中，操作者可能佩戴手套、身处强光或高噪环境、或存在视力与听力差异。我们将无障碍视为对所有用户体验的整体提升，而非面向特定群体的单独功能。",
+    "accentColor": "rose"
+  },
+  {
+    "type": "featureGrid",
+    "columns": 2,
+    "cards": [
+      {
+        "icon": "Eye",
+        "accentColor": "rose",
+        "title": "可感知 (Perceivable)",
+        "desc": "为所有非文本内容提供替代文本，为音视频提供字幕与文字稿，确保信息不仅依赖颜色传达，文本与背景对比度不低于 4.5:1。"
+      },
+      {
+        "icon": "Terminal",
+        "accentColor": "blue",
+        "title": "可操作 (Operable)",
+        "desc": "全部交互元素支持纯键盘操作，提供清晰的焦点可见指示，避免闪烁内容，为限时操作提供延长与暂停机制。"
+      },
+      {
+        "icon": "FileText",
+        "accentColor": "emerald",
+        "title": "可理解 (Understandable)",
+        "desc": "界面语言清晰一致，表单错误提供明确的文字提示与修复建议，导航结构在全站保持可预测。"
+      },
+      {
+        "icon": "Code",
+        "accentColor": "amber",
+        "title": "健壮性 (Robust)",
+        "desc": "遵循 ARIA 规范构建语义化标记，兼容主流屏幕阅读器（NVDA、JAWS、VoiceOver）与放大镜等辅助技术。"
+      }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "遵从的标准与规范",
+    "body": "MSRU 以国际公认的无障碍标准为基准持续测量与改进，并向采购方提供正式的一致性证明文档。",
+    "accentColor": "rose"
+  },
+  {
     "type": "list",
     "variant": "rows",
     "items": [
       {
         "title": "WCAG 2.1 Level AA",
         "meta": "所有 Web 界面",
+        "desc": "国际万维网联盟 (W3C) 无障碍指南，覆盖可感知、可操作、可理解、健壮四大原则",
         "tag": "全面遵从"
       },
       {
         "title": "Section 508",
         "meta": "美国联邦采购",
+        "desc": "美国《康复法案》第 508 条对电子与信息技术无障碍的要求",
         "tag": "全面遵从"
       },
       {
         "title": "EN 301 549",
         "meta": "欧盟公共采购",
+        "desc": "欧盟 ICT 产品与服务无障碍统一标准",
         "tag": "全面遵从"
       },
       {
         "title": "VPAT 2.4",
         "meta": "采购证明文档",
+        "desc": "自愿产品无障碍模板 (Voluntary Product Accessibility Template)，用于采购合规证明",
         "tag": "已发布"
+      },
+      {
+        "title": "GB/T 37668-2019",
+        "meta": "中国信息无障碍",
+        "desc": "《信息技术 互联网内容无障碍可访问性技术要求与测试方法》",
+        "tag": "对齐中"
+      },
+      {
+        "title": "ARIA 1.2",
+        "meta": "语义化标记",
+        "desc": "无障碍富互联网应用规范，为动态组件提供角色、状态与属性",
+        "tag": "全面遵从"
       }
     ]
   },
   {
+    "type": "list",
+    "variant": "steps",
+    "items": [
+      {
+        "title": "设计阶段无障碍评审",
+        "meta": "步骤 1",
+        "desc": "在设计稿交付前，依据无障碍检查清单评审对比度、焦点顺序、触控目标尺寸与替代文本方案。"
+      },
+      {
+        "title": "开发阶段自动化检测",
+        "meta": "步骤 2",
+        "desc": "CI 流水线集成 axe-core 与 Lighthouse 自动化扫描，阻断引入新的一致性问题。"
+      },
+      {
+        "title": "辅助技术人工测试",
+        "meta": "步骤 3",
+        "desc": "关键流程由测试人员使用屏幕阅读器与纯键盘完成端到端验证，记录并跟踪缺陷。"
+      },
+      {
+        "title": "真实用户反馈闭环",
+        "meta": "步骤 4",
+        "desc": "邀请具备不同能力特征的用户参与可用性测试，将反馈纳入产品迭代。"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "left",
+    "eyebrow": "已知限制",
+    "title": "透明披露与持续改进",
+    "body": "我们坦诚地公开当前仍在改进中的领域。部分第三方嵌入组件与历史图表可视化尚未完全达到 AA 级，我们已列入路线图并按季度推进。透明是信任的基础。",
+    "bullets": [
+      "复杂数据图表的替代文本描述正在逐步完善",
+      "部分第三方支付与地图组件受供应商能力约束",
+      "旧版报表导出模板正迁移至无障碍模板"
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "eyebrow": "反馈机制",
+    "title": "遇到障碍？请告诉我们",
+    "body": "如果您在使用 MSRU 时遇到任何无障碍障碍，欢迎随时联系我们的无障碍团队。我们承诺在 5 个工作日内确认您的反馈，并在 90 天内对已确认的缺陷提供修复或可行的替代方案。",
+    "bullets": [
+      "支持邮件、工单与电话多渠道反馈",
+      "严重障碍问题优先纳入紧急修复流程",
+      "为反馈者提供进展跟踪与修复通知"
+    ],
+    "cta": { "label": "提交无障碍反馈", "href": "/contact" }
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "MSRU 遵循哪个版本的无障碍标准？",
+        "a": "我们以 WCAG 2.1 Level AA 为主要一致性目标，同时对齐 Section 508、EN 301 549，并持续跟踪 WCAG 2.2 的新增成功准则。"
+      },
+      {
+        "q": "如何获取 VPAT 采购证明文档？",
+        "a": "请通过页面下方的联系入口向我们索取。我们会提供针对您所采购模块的最新 VPAT 2.4 文档。"
+      },
+      {
+        "q": "MSRU 支持哪些屏幕阅读器？",
+        "a": "我们针对 NVDA、JAWS（Windows）与 VoiceOver（macOS/iOS）进行测试与优化，并兼容主流浏览器的最新两个版本。"
+      },
+      {
+        "q": "工业现场的触摸屏终端也遵循无障碍标准吗？",
+        "a": "是的。现场终端遵循触控目标最小尺寸、高对比度模式与大字号选项，并支持手套操作与防误触设计。"
+      },
+      {
+        "q": "发现无障碍问题后多久能修复？",
+        "a": "我们会在 5 个工作日内确认反馈，严重问题优先处理，一般在 90 天修复周期内完成修复或提供替代方案。"
+      }
+    ]
+  },
+  {
+    "type": "statement",
+    "body": "本无障碍声明将随产品迭代与标准更新持续修订 · 最近评估日期：2026 年 1 月"
+  },
+  {
     "type": "cta",
-    "variant": "small",
+    "variant": "large",
     "title": "需要 VPAT 文档？",
-    "description": "联系我们获取最新的自愿产品无障碍模板 (VPAT) 采购证明。",
+    "description": "联系我们获取最新的自愿产品无障碍模板 (VPAT) 采购证明，或反馈您遇到的无障碍问题。",
     "cta": {
       "label": "索取 VPAT",
       "href": "/contact"

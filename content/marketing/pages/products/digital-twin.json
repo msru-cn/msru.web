@@ -2,38 +2,96 @@
   {
     "type": "hero",
     "variant": "dark",
-    "badge": { "icon": "Box", "text": "3D Digital Twin" },
-    "title": "3D 实时数字孪生",
-    "subtitle": "基于 WebGPU 的下一代实时 3D 渲染引擎，将您的物理工厂 1:1 映射为可交互、可推演的数字化镜像。",
+    "badge": { "icon": "Box", "text": "Next-Gen WebGPU Digital Twin" },
+    "title": "3D 实时数字孪生与工业元空间",
+    "subtitle": "自研基于 WebGPU/WebGL 的高性能制造物理引擎，将千万级数模产线、设备传感器数据与工单节拍 1:1 映射入高帧率三维镜像世界。",
     "accentColor": "cyan",
-    "bgImage": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [
+      { "label": "进入数字孪生在线演示", "href": "/contact" },
+      { "label": "索取 3D 接入指南", "href": "/contact" }
+    ]
   },
   {
-    "type": "featureGrid",
-    "columns": 3,
-    "cards": [
+    "type": "statBand",
+    "heading": "超越普通大屏的真正三维交互性能",
+    "accentColor": "cyan",
+    "stats": [
+      { "value": "60", "unit": "FPS+", "label": "十万级复杂装配构件在浏览器端全实时渲染帧率" },
+      { "value": "10", "unit": "ms", "label": "物联网采集节点与 3D 设备模型状态属性绑定延迟" },
+      { "value": "85", "unit": "%", "label": "CAD/BIM 原始大文件自动化轻量化与几何压缩比" },
+      { "value": "0", "unit": "插件", "label": "全平台纯浏览器运行，支持平板与手持设备触控" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "看见的不再是静态模型，而是产线心跳与物理真实。",
+    "body": "传统数字孪生只能充当“给领导汇报的装饰动画”。MSRU 3D 数字孪生底座深度集成了 MES 节拍与 IoT 遥测数据，能实时反映设备的真实运转变速、工位异常堆垛报警以及能耗热力分布，让运维与指挥无懈可击。",
+    "accentColor": "cyan"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Box",
+        "title": "自研 WebGPU 工业三维渲染引擎",
+        "description": "专为超大规模工业装配与厂房结构优化，支持物理基础渲染（PBR）、环境光遮蔽及流体管道模拟，极度丝滑。",
+        "span": "wide",
+        "accentColor": "cyan"
+      },
       {
         "icon": "Layers",
-        "title": "全厂 3D 建模",
-        "desc": "自动生成工厂布局的三维可视化场景，支持设备、产线、仓库的精准空间映射。"
+        "title": "CAD/BIM 无缝导入与轻量化",
+        "description": "原生解析 STEP、IGES、Revit 及 IFC 等主流工业工程格式，全自动执行三角面片简化与材质拓扑保留。",
+        "span": "wide",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "Activity",
+        "title": "设备传感器与热力图反向驱动",
+        "description": "点击 3D 产线任意机械臂或数控加工中心，即刻唤起实时转速、温升曲线以及故障诊断面板。",
+        "accentColor": "cyan"
       },
       {
         "icon": "Eye",
-        "title": "实时数据联动",
-        "desc": "IoT 传感器数据驱动 3D 模型实时响应，设备状态、温度、振动一目了然。"
+        "title": "虚拟漫游与产线改扩建推演",
+        "description": "以第一人称或全景俯瞰在数字空间规划新产线布局，结合节拍仿真测算瓶颈工位效率。",
+        "accentColor": "blue"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "全景指挥",
+    "title": "环境态势、消防安保与能耗全息管控",
+    "body": "在单厂及全球多厂级孪生大盘中，联动呈现温湿度流场动态、气体监测高危区域及智能用电负载高峰预警。",
+    "bullets": [
+      "微环境温湿度流场 3D 实时渐变可视化",
+      "AGV/AMR 厂内搬运车队全时段三维轨迹跟踪",
+      "一键拉起跨区域应急指挥面板与视讯监控"
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "如果工位设备的 3D 模型包含几十 G 的细小零件，浏览器打开会不会卡死？",
+        "a": "不会。平台支持多分辨率细节层次（LOD）与动态剔除着色算法，当相机远离时自动合并小面片，保障 60FPS 流畅展示。"
       },
       {
-        "icon": "Box",
-        "title": "仿真推演",
-        "desc": "在数字世界中预演产线改造、布局调整与异常场景，零成本验证方案可行性。"
+        "q": "如何绑定实时 IoT 传感器和 MES 生产状态？",
+        "a": "孪生系统支持低代码数据映射面板，只需选择三维零部件的节点 ID，即可与设备主题标签绑定进行双向联动。"
       }
     ]
   },
   {
     "type": "cta",
     "variant": "large",
-    "title": "体验下一代工厂可视化",
-    "cta": { "label": "预约 3D 演示", "href": "/contact" },
+    "title": "立即拥有身临其境的工厂 3D 数字孪生底座",
+    "description": "联系 3D 引擎工程师团队，探讨您的数模轻量化与实时交互可视化诉求。",
+    "cta": { "label": "申请线上 3D 体验授权", "href": "/contact" },
     "accentColor": "cyan"
   }
 ]

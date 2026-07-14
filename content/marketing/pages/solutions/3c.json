@@ -2,30 +2,92 @@
   {
     "type": "hero",
     "variant": "dark",
-    "badge": { "icon": "Phone", "text": "3C Electronics" },
-    "title": "3C 消费电子组装",
-    "subtitle": "为手机、平板与智能硬件产线提供 SMT 全流程追溯、高速 AOI 集成与装配防呆的一体化方案。",
+    "badge": { "icon": "Phone", "text": "3C Electronics & Smart Devices" },
+    "title": "3C 消费电子组装与精益追溯",
+    "subtitle": "针对频繁换线、高节拍装配与超精细组装，提供 SMT 贴片全过程追溯、高速 AOI 缺陷归档与智能工位防呆防错的一体化制造平台。",
     "accentColor": "blue",
-    "bgImage": "https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [{ "label": "预约 3C 产线演示", "href": "/contact" }, { "label": "索取行业解决方案", "href": "/contact" }]
   },
   {
-    "type": "featureGrid",
-    "columns": 2,
-    "cards": [
+    "type": "statBand",
+    "heading": "专为高频高并发装配产线打造",
+    "accentColor": "blue",
+    "stats": [
+      { "value": "99", "unit": ".98%", "label": "SMT 元器件正向与逆向追溯覆盖率" },
+      { "value": "0", "unit": "错装", "label": "视觉与防呆校验对漏装错装的拦截率" },
+      { "value": "15", "unit": "分钟", "label": "多品种快速换线（SMED）产线配方下发时长" },
+      { "value": "30", "unit": "ms", "label": "工位级 PLC 扫码与联锁反馈超低延迟" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "应对小批量、多品种与日新月异的消费周期。",
+    "body": "3C 行业对节拍和良率有极致要求，靠传统纸质清单或迟滞的 ERP 报工早已无法支撑。MSRU 以“高吞吐实时数据总线”与“智能工位看板”为核心，让每个贴片、每个螺丝拧紧力矩、每一次 AOI 图像校验都自动记录在数字产品护照（DPP）中。",
+    "accentColor": "blue"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Database",
+        "title": "SMT 贴片与回流焊深度追溯",
+        "description": "实时采集锡膏印刷厚度、SPI 检测数据、贴片机抛料率以及回流焊各温区实际温度曲线，生成高精度单板数字台账。",
+        "span": "wide",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "Eye",
+        "title": "AOI/AXI 自动光学检测集成",
+        "description": "无缝对接各主流品牌的 AOI/AXI 设备，自动分类缺陷图像并推送至返修工位，沉淀质量根因样本库。",
+        "span": "wide",
+        "accentColor": "cyan"
+      },
       {
         "icon": "CheckCircle",
-        "title": "SMT 贴片追溯",
-        "desc": "锡膏印刷、贴片精度与回流焊温度曲线的全流程数据采集与追溯"
+        "title": "工位级防呆防错",
+        "description": "通过物料上料校验、电批力矩反馈与视觉指引，把人为组装错误的发生率降至极限。",
+        "accentColor": "blue"
       },
-      { "icon": "CheckCircle", "title": "组装防呆防错", "desc": "基于视觉引导与条码校验的装配工序防错，杜绝漏装错装" },
-      { "icon": "CheckCircle", "title": "高速 AOI 集成", "desc": "无缝对接主流 AOI 设备，缺陷图像自动归档与统计分析" },
-      { "icon": "CheckCircle", "title": "整机测试闭环", "desc": "功能测试、老化测试与包装出货的一站式数字化管控" }
+      {
+        "icon": "RefreshCw",
+        "title": "快速换线（SMED）管控",
+        "description": "一键统一部署工位作业指导书（SOP）、设备参数及工艺卡片，大幅缩短换线等待期。",
+        "accentColor": "cyan"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "应用场景",
+    "title": "全自动测试与打包发运闭环",
+    "body": "从主板 FCT 功能测试、音画自动化调试到最终整机称重与防伪标签贴合，MSRU 实现软硬件实时联动与装箱校验。",
+    "bullets": [
+      "FCT/ICT 自动化测试报告即时绑定 SN 序列号",
+      "出货装箱重量自动复核，拦截少件缺件",
+      "生产批次数据无缝对接上游品牌客户质检标准"
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "我们的产线机型更换极其频繁，导入系统会不会拖慢换线速度？",
+        "a": "绝不会。MSRU 支持声明式的产品工艺路线定义，每次换线仅需切换一个产品方案，SOP 图纸、测试脚本与质量门槛将在一秒内推送到各工位终端。"
+      },
+      {
+        "q": "如何对接不同厂商的贴片机和 AOI 设备？",
+        "a": "系统内置对主流协议（如 SMEMA、SECS/GEM、OPC UA 及设备 SDK API）的原生适配层，即插即用采集设备遥测与日志。"
+      }
     ]
   },
   {
     "type": "cta",
     "variant": "large",
-    "title": "让每一台设备都有完整的数字档案",
+    "title": "让每一台 3C 产品都有完整的品质护照",
+    "description": "联系我们的行业解决方案专家，索取 3C 精益组装与全域追溯实践案例实录。",
     "cta": { "label": "预约 3C 产线演示", "href": "/contact" },
     "accentColor": "blue"
   }

@@ -2,43 +2,96 @@
   {
     "type": "hero",
     "variant": "dark",
-    "badge": { "icon": "Cpu", "text": "Semiconductor" },
-    "title": "半导体 智造方案",
-    "subtitle": "为晶圆制造、封装测试产线提供 SECS/GEM 无缝集成与良率追踪的端到端数字化方案。",
+    "badge": { "icon": "Cpu", "text": "Semiconductor & Advanced Packaging" },
+    "title": "半导体前道与先进封测制造内核",
+    "subtitle": "为晶圆制造（Fab）、集成电路测试与封测（OSAT）产线提供原生 SECS/GEM 互联、精细 Wafer Map 良率谱系与全自动 Recipe 配方闭环受控方案。",
     "accentColor": "purple",
-    "bgImage": "/uploads/semiconductor.hero.mp4"
+    "bgVideo": "/uploads/semiconductor.hero.mp4",
+    "ctas": [
+      { "label": "预约半导体产线演示", "href": "/contact" },
+      { "label": "索取 SEMI 协议集成资料", "href": "/contact" }
+    ]
   },
   {
-    "type": "featureGrid",
-    "columns": 2,
-    "cards": [
+    "type": "statBand",
+    "heading": "纳米级制造需要亚秒级数据控制力",
+    "accentColor": "purple",
+    "stats": [
+      { "value": "100", "unit": "%", "label": "SEMI E30/E37/E40 半导体通信协议原生态支持" },
+      { "value": "99", "unit": ".99%", "label": "多层级 Recipe 配方下发正确率与防错闭环" },
+      { "value": "200", "unit": "ms", "label": "Wafer Map 晶圆缺陷图谱聚合渲染与热区定位" },
+      { "value": "0", "unit": "漂移", "label": "基于 FDC 实时机台参数漂移检测的自动停机" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "从每一滴光刻胶到每一颗 Die，皆在算力掌握之中。",
+    "body": "半导体制造是人类工业制造精度的皇冠。面对动辄数百道高精密光刻、刻蚀、薄膜与检测工序，任何极其微小的腔体温度异常都会导致整片十二寸晶圆报废。MSRU 以全双工半导体专用通信内核为支撑，构筑纳米级制造的安全城墙。",
+    "accentColor": "purple"
+  },
+  {
+    "type": "bento",
+    "items": [
       {
-        "icon": "CheckCircle",
-        "title": "SECS/GEM 设备集成",
-        "desc": "原生支持 SEMI E30/E37/E40 标准协议，实现设备自动化与主机通信的即插即用"
+        "icon": "Cpu",
+        "title": "原生 SECS/GEM & GEM300 通信底座",
+        "description": "零适配开发直连光刻、刻蚀、离子注入与探针测试台，全面支持 Carrier/Lot 管理以及 FOUP 智能传载通信。",
+        "span": "wide",
+        "accentColor": "purple"
       },
       {
-        "icon": "CheckCircle",
-        "title": "无尘车间管控",
-        "desc": "实时监控微粒计数、温湿度与压差，自动联动 FOUP/SMIF 调度系统"
+        "icon": "Database",
+        "title": "Wafer Map 晶圆良率图谱分析",
+        "description": "自动对齐 CP（晶圆测试）与 FT（成品测试）测试 bin 代码，实时呈现堆叠图与边缘缺陷聚集特征，加速工艺归因。",
+        "span": "wide",
+        "accentColor": "fuchsia"
       },
       {
-        "icon": "CheckCircle",
-        "title": "良率追踪与分析",
-        "desc": "Wafer Map 全流程追溯，集成 SPC/FDC 实现工艺偏移的亚秒级预警"
+        "icon": "ShieldCheck",
+        "title": "多级 Recipe 配方受控防篡改",
+        "description": "建立严格的配方审核、版本锁闭、机台签名对比流，防止错误工艺配置导致晶圆批次性损失。",
+        "accentColor": "purple"
       },
       {
-        "icon": "CheckCircle",
-        "title": "配方与工艺管理",
-        "desc": "多层级 Recipe 版本受控分发，支持 Golden Run 对标与参数漂移检测"
+        "icon": "Activity",
+        "title": "FDC 腔体级工程参数诊断",
+        "description": "高频秒级监控射频功率、气流压力与温度传感器，建立 Golden Run 参考曲线，拦截早期衰退。",
+        "accentColor": "fuchsia"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "应用场景",
+    "title": "先进封装与 Chiplet 追溯闭环",
+    "body": "在 CoWoS、中介层与 2.5D/3D 高密度封测工艺中，全面建立从晶圆切割芯片颗粒（Die）到堆叠焊接单元的微米级位置档案。",
+    "bullets": [
+      "微米级 Die-level 单颗芯片坐标溯源定位",
+      "自动拦截 Bad Die 进入封测与晶粒倒装流程",
+      "全流程无尘洁净室微粒与压差联动调控"
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "我们的设备来自欧美、日本各厂商且老旧不一，系统是否完全支持 SEMI 标准规范？",
+        "a": "支持。MSRU 完全符合 SEMI E5 (SECS-II)、E30 (GEM)、E37 (HSMS) 标准，针对部分无接口老旧机台支持专有视讯与 OCR 抓取。"
+      },
+      {
+        "q": "如何实现大体量 Wafer Map 数据与现场高频测试结果的毫秒级查询？",
+        "a": "系统采用列式压缩与空间索引聚合算法，数百万片晶圆的缺陷点位图谱支持秒级在线切片与多维度过滤。"
       }
     ]
   },
   {
     "type": "cta",
     "variant": "large",
-    "title": "用 MSRU 驱动每一片晶圆的良率跃迁",
-    "cta": { "label": "预约半导体方案演示", "href": "/contact" },
+    "title": "为半导体智造部署企业级核心底座",
+    "description": "预约半导体与微电子行业专家团队，探讨晶圆级数字化管控与高精良率提升方案。",
+    "cta": { "label": "对接半导体专家组", "href": "/contact" },
     "accentColor": "purple"
   }
 ]
