@@ -2,40 +2,119 @@
   {
     "type": "hero",
     "variant": "dark",
-    "badge": { "icon": "Briefcase", "text": "Customer Stories" },
-    "title": "全球标杆案例库",
-    "subtitle": "来自千亿级集团的真实数字化转型成果与 ROI 分析。",
-    "bgImage": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=2000"
+    "badge": {
+      "icon": "Briefcase",
+      "text": "Client Success & ROI Case Studies"
+    },
+    "title": "全球工业标杆案例与数字化实践",
+    "subtitle": "见证数据的实际生产力。从千亿级动力电池超级工厂到纳米级半导体无尘车间，MSRU 助力全球制造巨头完成复杂的系统重构，用真实的数据兑现每一份投资回报。",
+    "accentColor": "blue",
+    "bgImage": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [{ "label": "预约标杆工厂考察", "href": "/contact" }, { "label": "索取行业客户实录", "href": "/contact" }]
+  },
+  {
+    "type": "statBand",
+    "heading": "用实力为工业数字化提供信用背书",
+    "accentColor": "blue",
+    "stats": [
+      { "value": "100", "unit": "家+", "label": "全球行业头部制造企业与上市公司客户" },
+      { "value": "22", "unit": "%", "label": "标杆客户产线 OEE 平均综合提升率" },
+      { "value": "67", "unit": "%", "label": "平均来料与装配过程缺陷率下降幅度" },
+      { "value": "8", "unit": "个月", "label": "中大型项目平均收回首期投资成本周期" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "工业转型的成败，不看 PPT 上写了什么，只看车间工人的操作终端和财务报表。",
+    "body": "传统软件往往在验收通过后就“束之高阁”，因为它们难改、难维护。MSRU 平台化设计理念支持随工艺变化敏捷变更，让软件与真实的车间产线同频共生，真正发挥长效生产力价值。",
+    "accentColor": "blue"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Battery",
+        "title": "新能源与超级电池工厂",
+        "description": "支撑极片高速视觉检测、涂布厚度微米级闭环、电芯从化成到 PACK 模组的全生命周期谱系追溯。",
+        "span": "wide",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "Cpu",
+        "title": "半导体前道晶圆与封测 (OSAT)",
+        "description": "原生 SECS/GEM 设备集成，自动对齐晶圆 CP/FT 测试图谱，实现多级 Recipe 工艺参数漂移预警与防错。",
+        "span": "wide",
+        "accentColor": "cyan"
+      },
+      {
+        "icon": "Settings",
+        "title": "汽车零部件 Tier-1 与高端装备",
+        "description": "匹配主机厂 Deljit 顺位广播拉动排产，零故障执行 IATF 16949 质量五大工具与阿特拉斯拧紧轴扭矩管理。",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "Phone",
+        "title": "3C 消费电子高频换线装配",
+        "description": "SOP 工艺看板自动下发，SMT 贴片机高频回流焊工艺参数采集，拦截组装漏装错装。",
+        "accentColor": "cyan"
+      }
+    ]
   },
   {
     "type": "caseList",
     "cases": [
       {
-        "company": "某全球 Top 3 动力电池集团",
-        "industry": "新能源",
-        "result": "产线 OEE 提升 22%，不良品率下降 67%",
+        "company": "全球 Top 3 新能源动力电池集团",
+        "industry": "动力电池与储能",
+        "result": "产线整体 OEE 提升 22%，废料抛料率降低 67%，电芯单体追溯率 100%",
         "image": "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=800",
-        "quote": "MSRU 的 AI 视觉质检系统在量产第三个月就收回了全部投资。"
+        "quote": "MSRU 的微内核架构支撑起我们单条产线数万测点的高并发时序数据写入，且从未因系统故障导致停产，确实是坚如磐石的工业级底座。"
       },
       {
-        "company": "某头部汽车零部件 Tier 1",
-        "industry": "汽车",
-        "result": "排产效率提升 40%，交付准时率 99.2%",
+        "company": "国内头部汽车电驱动系统 Tier-1",
+        "industry": "汽车零部件制造",
+        "result": "排产效率提升 40%，交付准时率 99.2%，单拧紧枪力矩追溯耗时缩短至 2 秒",
         "image": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&q=80&w=800",
-        "quote": "JIT 排产模块让我们彻底告别了手工 Excel 排程的混乱时代。"
+        "quote": "在过去，为了应对整车厂对关键螺栓扭矩的审计，我们需要派专人整理 Excel。现在系统自动打包成 VIN 档案，随时可在浏览器导出。"
+      },
+      {
+        "company": "某 12 英寸半导体封测及测试大厂",
+        "industry": "半导体先进封测",
+        "result": "SECS 协议机台自动接线率 98%，CP-FT 良率分析周期从 2 天缩短至 1 分钟",
+        "image": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=800",
+        "quote": "半导体的 SPC 监控需要极高精度，MSRU 时序处理能力让我们能在工艺刚发生微小漂移的瞬间就下达防错熔断指令，挽回了数十万晶圆报废损失。"
       }
     ]
   },
   {
     "type": "testimonial",
-    "quote": "无尘车间的全域数字化管控，MSRU 是我们评估过的唯一能做到的平台。",
-    "author": "李总",
-    "role": "某 12 英寸晶圆 Fab · 智能制造负责人"
+    "quote": "我们在长三角和珠三角的六个分厂全部部署了 MSRU 的 3D 数字孪生与 IoT 采集网关，全集团的能源管理与设备 OEE 状态一目了然。这才是真正的‘集团级数据中枢’。",
+    "author": "张伟",
+    "role": "某千亿级消费电子代工集团 · 首席信息官 (CIO)"
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "我们可以现场参观上述标杆客户的工厂吗？",
+        "a": "可以。对于意向度高的集团客户，我们可以协助联系并征得标杆企业同意后，安排小范围实地参观与数字化看板现场讲解。如有需要请联系您的客户技术经理。"
+      },
+      {
+        "q": "如何保证在案例研究和数据收集过程中的数据安全与商业机密？",
+        "a": "我们始终遵守严苛的保密协议。所有公开案例中呈现的数据均已通过脱敏、百分比化或指数化处理，且案例本身均获得客户法务与管理层的官方书面授权授权。"
+      },
+      {
+        "q": "小型制造企业是否有成功的落地标杆？",
+        "a": "有。MSRU 平台不仅服务于大厂，其轻量级的云混合部署包也非常适合拥有 10-50 台设备的成长型制造车间，我们有大量的机加工及五金配件客户使用标准功能成功实现了低成本排产改造。"
+      }
+    ]
   },
   {
     "type": "cta",
-    "variant": "small",
-    "title": "想成为下一个标杆？",
-    "cta": { "label": "预约战略演示", "href": "/contact" }
+    "variant": "large",
+    "title": "让您的工厂成为下一个智能制造行业的灯塔标杆",
+    "description": "预约我们的数字化架构师为您做产线评估，提供符合您的细分行业特征的 ROI 测算模型。",
+    "cta": { "label": "申请定制数字化蓝图", "href": "/contact" },
+    "accentColor": "blue"
   }
 ]

@@ -1,48 +1,134 @@
 [
   {
     "type": "hero",
+    "variant": "dark",
     "badge": {
-      "icon": "Code",
-      "text": "Release Notes"
+      "icon": "Calendar",
+      "text": "MSRU Release Notes & Roadmap"
     },
-    "title": "发行说明",
-    "titleAccent": "与路线图",
-    "subtitle": "追踪 MSRU 平台每一次重大迭代、安全补丁与功能演进。",
+    "title": "系统版本发行说明与发展路线图",
+    "subtitle": "持续迭代，稳健运转。在这里追踪 MSRU 平台核心微内核、工业协议网关、3D 数字孪生引擎及 AI 智能体的每一次版本更迭、安全修复与性能跃升。",
     "accentColor": "blue",
-    "bgImage": "https://images.unsplash.com/photo-1611224923853-80b023f02d71?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1611224923853-80b023f02d71?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [
+      { "label": "查看 Github 更新日志", "href": "https://github.com" },
+      { "label": "申请升级技术指导", "href": "/contact" }
+    ]
+  },
+  {
+    "type": "statBand",
+    "heading": "高频平稳的迭代发布节奏",
+    "accentColor": "blue",
+    "stats": [
+      { "value": "12", "unit": "次+", "label": "年度稳定维护发布包及安全热补丁数量" },
+      { "value": "300", "unit": "项+", "label": "过去一年新增的功能点、性能改进与驱动适配" },
+      { "value": "35", "unit": "%", "label": "最新 v5.4.0 版本相比旧版的核心时序吞吐量提升" },
+      { "value": "0", "unit": "次", "label": "升级过程中由于内核设计缺陷导致的意外生产中断" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "我们不仅追求功能的丰富性，更追求工业级可用性的极致底线。",
+    "body": "每一次小版本发布，都需经过 72 小时的持续高并发压力测试、异构设备断网重连测试及极端条件下的灾备容灾防错演练。每一次发布，都是对现场生产安全的庄严承诺。",
+    "accentColor": "blue"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Cpu",
+        "title": "MSRU 平台微内核与规则引擎 (Core Kernel)",
+        "description": "持续优化 Describe-Once 编译器，降低运行时内存占用，提升 WASM 代码执行沙箱与时序数据库的吞吐极限。",
+        "span": "wide",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "Network",
+        "title": "工业连通性与边缘计算 (IoT & Connectivity)",
+        "description": "新增各知名厂商冷门 PLC 协议原生支持，优化 SECS/GEM 断线缓存机制，增强网关离线自治能力。",
+        "span": "wide",
+        "accentColor": "cyan"
+      },
+      {
+        "icon": "Activity",
+        "title": "高级计划排产与精益调度 (APS & WMS)",
+        "description": "引入多约束混合整数规划启发式算法，大幅提高高并发排产计算速度，优化 AGV/AMR 路径避障分配。",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "Box",
+        "title": "3D 数字孪生与工业大屏 (Visualization)",
+        "description": "基于 WebGPU 重构渲染引擎，实现超大规模三维厂房多细节层次 (LOD) 轻量化，增加流体及温升动态流渲染。",
+        "accentColor": "cyan"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "当前推荐",
+    "title": "MSRU v5.4.0 (LTS) 核心功能发布",
+    "body": "v5.4.0 引入了全新的 AI 智能体工艺调优模块，并对 CP-FT 良率 Map 进行了毫秒级渲染优化，是集团化部署的首选版本。",
+    "bullets": [
+      "AI 质检模型预测精度综合提升 18%",
+      "多维度物料追踪防错性能提升 40%",
+      "底层时序数据库冷热自动归档功能就绪"
+    ]
   },
   {
     "type": "list",
     "variant": "timeline",
     "items": [
       {
-        "title": "v5.4.0",
+        "title": "v5.4.0 (LTS 稳定版)",
         "meta": "2026-02-15",
-        "desc": "AI 视觉质检模型 v3.2 发布，精度提升 18%；APS 排程引擎支持多约束并行求解；WMS 新增 AGV 路径优化算法；性能优化：GraphQL 响应时间降低 35%",
-        "tag": "Latest"
+        "desc": "【新增】AI 智能体 Recipe 自动调优扩展；【优化】WebGPU 渲染引擎大数模几何合并算法；【修复】修补了在特定极端网络抖动下 OPC UA 驱动的重连超时死锁 Bug；【性能】GraphQL 聚合查询速度提升 35%。",
+        "tag": "最新推荐"
       },
       {
-        "title": "v5.3.2",
+        "title": "v5.3.2 (常规维护版)",
         "meta": "2026-01-20",
-        "desc": "修复多租户环境下的权限穿透漏洞；IoT 边缘节点断网续传稳定性改进；QMS SPC 控制图支持自定义规则；安全补丁：升级 OpenSSL 至 3.2.1",
-        "tag": "Stable"
+        "desc": "【安全】修补了特定接口在多租户环境下的元数据越权泄露隐患；【优化】QMS SPC 异常规则增加对西方电工（WECO）八大判定法则的完整支持；【安全】升级基础依赖 OpenSSL 至 v3.2.1，防御外部扫描。",
+        "tag": "维护中"
       },
       {
-        "title": "v5.3.0",
+        "title": "v5.3.0 (主要特性发布)",
         "meta": "2025-12-01",
-        "desc": "全新数字孪生 3D 渲染引擎 (WebGPU)；EAM 预测维护模型支持 LSTM 时序分析；MES 工单流支持审批工作流可视化编排；新增日语与韩语界面语言包",
-        "tag": "Stable"
+        "desc": "【新增】发布基于 WebGPU 引擎的 3D 数字孪生可视化底座；【新增】EAM 模块设备健康度诊断引入 LSTM 时序预测模型；【新增】MES 全新可视化拖拽式工作流编辑器；【优化】新增日语及韩语国际化语言包包。",
+        "tag": "已归档"
+      },
+      {
+        "title": "v5.2.0 (LTS 长期维护版)",
+        "meta": "2025-06-15",
+        "desc": "【新增】首个支持 WASM 执行沙箱的工业规则引擎上线；【新增】SECS/GEM 300 晶圆传载管理规范支持；【性能】数据总线高并发消息队列延迟减半，达到亚毫秒级水平。",
+        "tag": "维护中"
+      }
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "如果决定从旧版升级到最新的 v5.4.0 LTS 版本，一般需要多久？",
+        "a": "对于采用标准配置的系统，我们的升级迁移脚本可在 10 分钟内完成元数据与关系型数据库结构的自动平移升级。对于深度开发了 WASM 插件和自定义接口的项目，我们建议在测试环境双轨并行运行 1-2 周后再行切换。"
+      },
+      {
+        "q": "如何及时收到产品新版本发布和安全漏洞补丁的通知？",
+        "a": "我们建议所有企业 IT 管理员订阅我们的安全邮件列表，或在 MSRU 控制中心系统设置面板中勾选“接收版本更新通知”。"
+      },
+      {
+        "q": "如果升级后发现某些第三方非标设备通信出现异常，是否支持一键回滚？",
+        "a": "支持。MSRU 拥有完善的升级前自动快照机制。若在新版运行中发现难以定位的机台兼容性问题，管理员可启动灾备工具，在 5 分钟内将整个数据库及容器环境回滚至升级前状态。"
       }
     ]
   },
   {
     "type": "cta",
-    "variant": "small",
-    "title": "查看版本生命周期",
-    "cta": {
-      "label": "版本 EOL 时间表",
-      "href": "/eol"
-    },
+    "variant": "large",
+    "title": "即刻了解最符合您的车间的升级改造路径",
+    "description": "阅读详尽的升级兼容性指南，或预约架构师进行在线版本匹配度与平滑迁移路线评估。",
+    "cta": { "label": "评估我的升级路径", "href": "/contact" },
     "accentColor": "blue"
   }
 ]

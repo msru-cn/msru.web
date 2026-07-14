@@ -4,70 +4,120 @@
     "variant": "dark",
     "badge": {
       "icon": "Code",
-      "text": "MSRU 高阶定制研发"
+      "text": "MSRU Bespoke Development & Extension Services"
     },
-    "title": "超越标准，重塑边界。",
-    "subtitle": "应对最苛刻的非标业务场景。依托 MSRU 平台强大的底座支撑与微服务架构，我们的研发团队为您打造独一无二的专属数字利器。",
+    "title": "超越标准产品，重塑您的工业业务边界",
+    "subtitle": "应对最苛刻的非标制造场景。依托 MSRU 强大的描述驱动微内核与 WASM 沙箱扩展机制，我们可在保证核心产品平滑升级的前提下，为您量身打造独一无二的专属数字化利器。",
     "accentColor": "purple",
-    "bgImage": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [
+      { "label": "评估我的定制需求", "href": "/contact" },
+      { "label": "查看人天包资费说明", "href": "/services/custom/man-day" }
+    ]
   },
   {
-    "type": "subHero",
-    "title": "定制服务范畴",
-    "subtitle": "不破坏标准产品的升级兼容性。所有的定制开发均以微服务或插件的形式动态注入，保障骨干架构的极简与健壮。",
+    "type": "statBand",
+    "heading": "工业级定制履约指标",
+    "accentColor": "purple",
+    "stats": [
+      { "value": "200", "unit": "个+", "label": "已上线的非标驱动、个性化 Andon 报表与定制应用模块" },
+      { "value": "100", "unit": "%", "label": "定制模块与 MSRU 主要版本 LTS 平滑升级的向下兼容率" },
+      { "value": "4", "unit": "周", "label": "中等复杂度非标协议驱动开发至现场联合联调交付周期" },
+      { "value": "98", "unit": ".5%", "label": "客户在交钥匙项目上线评估中的功能契合度评分" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "定制开发不是乱写乱画。如果定制破坏了未来的升级能力，那就是饮鸩止渴。",
+    "body": "传统 MES 实施的恶梦在于，一旦为某个特殊机台手写了定制代码，系统就永远被锁死在旧版本中，无法获得官方性能优化和安全热补丁。MSRU 提倡可组合架构，定制代码 100% 隔离在沙箱或独立微服务中运行，确保内核随时热升级升级。",
     "accentColor": "purple"
   },
   {
-    "type": "featureGrid",
-    "columns": 2,
-    "cards": [
+    "type": "bento",
+    "items": [
       {
         "icon": "Puzzle",
-        "title": "深度业务应用开发",
-        "desc": "针对细分行业的特殊要求（如半导体 Defect 追踪、医药类合规电子签名增强），开发完全融合于 MSRU UI 与权限体系内的新功能模块。"
+        "title": "深细分行业专属应用模块 (Bespoke Apps)",
+        "description": "如半导体 Defect 良率图谱追踪、制药行业高保密电子签名、精细化零部件批次溯源谱系等专属大屏应用开发。",
+        "span": "wide",
+        "accentColor": "purple"
       },
       {
         "icon": "Network",
-        "title": "非标异构系统集成",
-        "desc": "面对企业内部陈旧的自研 ERP 或者难以开放 API 的历史系统，提供基于中间库、RPA 甚至软硬件结合的定制级集成通路。"
+        "title": "老旧异构系统集成通路 (Legacy Integration)",
+        "description": "面对没有开放 API 的陈旧 ERP、自研财务软件或复杂的 PLC 网闸，提供定制的中间库数据迁移及 RPA 级自动化数据同步。",
+        "span": "wide",
+        "accentColor": "blue"
       },
       {
-        "icon": "LayoutTemplate",
-        "title": "专属工业终端适配",
-        "desc": "为特定的工厂硬件（超小屏手持 PDA、三防特种平板、车载叉车终端等）重新设计并编译极致精简的前端交互 UI，提升一线工效。"
+        "icon": "Smartphone",
+        "title": "三防平板与 PDA 移动端 UI 适配 (Mobile UI)",
+        "description": "为特定的一线作业场景（如车载叉车工位、超小屏工业 PDA、手持三防防爆平板）定制极致紧凑、防呆效果好的交互页面。",
+        "accentColor": "purple"
       },
       {
-        "icon": "Settings",
-        "title": "私有化设备协议解析",
-        "desc": "当标准 IoT 网关无法覆盖极其偏门的闭源机床协议时，原厂研发团队下钻至底层链路进行反向工程与专属驱动开发。"
+        "icon": "Cpu",
+        "title": "非标专有设备协议驱动定制 (Custom Drivers)",
+        "description": "当您的车间包含非国标、极其冷门的进口机床、真空计、温控仪通信接口时，研发团队进行反向通信包编译解析开发。",
+        "accentColor": "blue"
       }
     ]
   },
   {
-    "type": "cta",
-    "variant": "large",
-    "title": "提出定制需求",
-    "description": "购买交钥匙功能包，或购买专家人天包。",
-    "cta": {
-      "label": "提出定制需求",
-      "href": "/contact"
-    },
-    "accentColor": "purple"
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "服务模式",
+    "title": "交钥匙功能包 (Turnkey) vs 专家人天包 (Man-Day)",
+    "body": "我们提供两种极具弹性的定制开发服务模式，契合您不同的预算和敏捷管理风格。",
+    "bullets": [
+      "交钥匙功能包：根据固定的功能规格书进行总价合同交付，适合需求明确、注重预算锁定的项目",
+      "专家人天包：购买资深架构师或高级开发工程师的工作人天，随需求变化敏捷迭代开发，适合探索性强、变更频繁的项目"
+    ]
   },
   {
     "type": "list",
     "variant": "cards",
     "items": [
       {
-        "title": "购买交钥匙功能包",
-        "tag": "Turnkey",
+        "title": "购买交钥匙功能包 (Turnkey Projects)",
+        "meta": "固定预算 · 保证结果",
+        "desc": "需求调研、原型确认、编码测试、上线陪产的一揽子整包交付，合同总额一次定妥。",
+        "tag": "交钥匙模式",
         "href": "/services/custom/turnkey"
       },
       {
-        "title": "购买专家人天包",
-        "tag": "Man-Day",
+        "title": "购买专家人天包 (Man-Day Staffing)",
+        "meta": "按需付费 · 敏捷变更",
+        "desc": "按月或按天预订 MSRU 原厂高级架构师、WASM 研发和 UI 设计师人力，弹性调整开发优先级。",
+        "tag": "人天模式",
         "href": "/services/custom/man-day"
       }
     ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "定制开发的模块如果随着 MSRU 平台升级而失效了，谁负责维护？",
+        "a": "我们与客户签订的定制合同中，包含明确的向下兼容性保证。MSRU 平台升级拥有严格的 API 兼容测试套件，如由于官方底层接口重构导致经过我们验证过的定制模块失效，我们将负责免费提供适配升级补丁。"
+      },
+      {
+        "q": "定制开发出的插件与代码的知识产权（IP）如何归属？",
+        "a": "对于完全根据贵司特定生产线特征、使用贵司提供的算法数学模型开发的专有插件，其 IP 通常归属于贵司所有；对于通用的底层物理协议驱动及标准 UI 库扩展，我们实行共享或免费许可模式，具体以具体项目合同附录为准。"
+      },
+      {
+        "q": "定制开发的响应速度如何？一般多久可以交付？",
+        "a": "常规的非标设备驱动和 Andon 报表一般在 2-4 周内即可完成实验室开发并进场联调；涉及复杂业务模块（如 3D 孪生管线定制或大型接口打通）的项目，首个 Alpha 版本通常在 6-8 周内交付 UAT 确认。"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "立即与我们的架构师评估您的非标定制化诉求",
+    "description": "准备好您的设备规格说明书、既有系统接口白皮书或业务流程草图，我们将快速为您出具一份精细的工作量评估。",
+    "cta": { "label": "提交定制评估", "href": "/contact" },
+    "accentColor": "purple"
   }
 ]

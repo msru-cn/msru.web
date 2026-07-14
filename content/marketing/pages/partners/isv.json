@@ -1,48 +1,131 @@
 [
   {
     "type": "hero",
-    "badge": { "icon": "Handshake", "text": "ISV Partner Program" },
-    "title": "ISV",
-    "titleAccent": "联合方案",
-    "subtitle": "携手独立软件供应商，共建工业数字化的联合解决方案生态。",
+    "variant": "dark",
+    "badge": {
+      "icon": "Handshake",
+      "text": "MSRU ISV Partner Program"
+    },
+    "title": "独立软件供应商 (ISV) 联合方案生态",
+    "subtitle": "合作共赢，定义未来。我们邀请全球垂直行业应用开发商、AI 算法实验室与工业软件服务商加入 MSRU 生态，基于统一的描述驱动微内核，联合打造高附加值的行业标杆解决方案。",
     "accentColor": "purple",
-    "bgImage": "https://images.unsplash.com/photo-1551033406-611cf9a28f67?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1551033406-611cf9a28f67?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [{ "label": "申请加入 ISV 生态", "href": "/contact" }, { "label": "下载 ISV 合作手册", "href": "/contact" }]
   },
   {
-    "type": "featureGrid",
-    "columns": 2,
-    "cards": [
-      {
-        "icon": "Puzzle",
-        "accentColor": "purple",
-        "title": "联合解决方案开发",
-        "desc": "与 MSRU 核心团队协作，将您的垂直行业专长深度集成到统一平台中。"
-      },
+    "type": "statBand",
+    "heading": "与商业伙伴共享数字化红利",
+    "accentColor": "purple",
+    "stats": [
+      { "value": "150", "unit": "家+", "label": "全球已签约并成功上架插件的 ISV 合作伙伴" },
+      { "value": "70", "unit": "%", "label": "生态插件市场透明交易分成比例（ISV 占大头）" },
+      { "value": "30", "unit": "万+", "label": "联合解决方案在客户端达成的 ARR 商业交易额" },
+      { "value": "1", "unit": "对1", "label": "金牌/白金级伙伴专享的资深架构师联合研发支持" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "工业领域的长尾需求极其庞大。唯有生态，才能真正解决烟囱系统林立的终极死局。",
+    "body": "制造企业的业务流程千差万别。MSRU 提供底层的时序数据库、WASM 沙箱、WebGPU 孪生引擎等高品质积木，而 ISV 伙伴负责注入其最擅长的行业 Know-How。我们优势互补，为客户提供一站式、无缝的工业应用包。",
+    "accentColor": "purple"
+  },
+  {
+    "type": "bento",
+    "items": [
       {
         "icon": "Code",
-        "accentColor": "blue",
-        "title": "技术沙箱与 API",
-        "desc": "获取完整的开发者沙箱环境、技术文档与优先 API 支持通道。"
+        "title": "硬核开发者技术沙箱 (Developer Sandbox)",
+        "description": "专享无限制开发者测试租户、详尽的 API 文档及 WASM/UI 开发套件。支持本地 CLI 命令行离线沙箱调试。",
+        "span": "wide",
+        "accentColor": "purple"
       },
       {
-        "icon": "Sparkles",
-        "accentColor": "amber",
-        "title": "联合市场推广",
-        "desc": "共享全球客户资源池，参与联合品牌活动、案例包装与渠道分销。"
+        "icon": "Megaphone",
+        "title": "联合营销与 GTM 赋能 (Co-selling)",
+        "description": "进入 MSRU 官方推荐插件名录。与我们的直销团队联合出单，参与全球顶级工业展会和闭门研讨会。",
+        "span": "wide",
+        "accentColor": "fuchsia"
       },
       {
-        "icon": "Handshake",
-        "accentColor": "emerald",
-        "title": "商业激励计划",
-        "desc": "基于营收共享的透明分成模式，以及年度最佳合作伙伴评选。"
+        "icon": "DollarSign",
+        "title": "透明高效的营收分享 (Revenue Sharing)",
+        "description": "支持包月订阅、一次性买断或按流量测点浮动计费。系统自动拆账结算，免去繁琐的人工核对流程。",
+        "accentColor": "purple"
+      },
+      {
+        "icon": "Headphones",
+        "title": "白金级联合技术保障 (TAM Support)",
+        "description": "针对高级 ISV 伙伴，指定专属客户经理（TAM）并提供最高优先级的内核定制与重大 Bug 修复支持。",
+        "accentColor": "fuchsia"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "成功案例",
+    "title": "某 AI 算法实验室与 MSRU 的深度合作",
+    "body": "该伙伴擅长预测性维护模型。加入 MSRU 之后，他们将其算法打包为 WASM 插件并在市场上线。目前已成功交付 10 余家大型钢铁及电机大厂，商业 ARR 实现翻倍。",
+    "bullets": [
+      "2个月内完成模型在 MSRU 边缘沙箱的验证上线",
+      "通过 MSRU 渠道获得首个百万级重工客户订单",
+      "获得 MSRU 年度最佳 AI 创新伙伴大奖"
+    ]
+  },
+  {
+    "type": "list",
+    "variant": "rows",
+    "items": [
+      {
+        "title": "注册合作伙伴 (Registered Partner)",
+        "meta": "门槛：通过基本身份实名资质审核",
+        "desc": "享有基础开发者文档、社区版工单支持、在线插件提交入口及标准 70% 营收分成。",
+        "tag": "入门级"
+      },
+      {
+        "title": "银牌合作伙伴 (Silver Partner)",
+        "meta": "门槛：至少有 1 款插件通过安全性与稳定性实验室认证",
+        "desc": "专享 8% 渠道代销返佣、官网合作伙伴页面列名、优先 API 需求排期及白班电话技术支持。",
+        "tag": "推荐级"
+      },
+      {
+        "title": "金牌合作伙伴 (Gold Partner)",
+        "meta": "门槛：累积联合销售 ARR 达 50 万元或有 3 款认证插件",
+        "desc": "专享 15% 渠道代销返佣、联合品牌白皮书发布、季度产品规划闭门会门票及 12 小时紧急 Bug 修复承诺。",
+        "tag": "高级"
+      },
+      {
+        "title": "白金级战略合作伙伴 (Platinum Partner)",
+        "meta": "门槛：集团大客户联合研发或年 ARR 达 200 万元",
+        "desc": "专享 20% 渠道代销返佣、1对1 专属 TAM 技术经理、重大功能 RFC 架构投票权及源码合规审计资格。",
+        "tag": "顶级战略"
+      }
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "加入 ISV 计划需要交纳年费吗？",
+        "a": "对于注册和银牌级别合作伙伴，我们不收取任何年费，只在插件成交时扣除 30% 作为平台技术服务与托管费。金牌和白金级伙伴由于占用大量专属 TAM 研发人力，需按年缴纳少量合作基金包。"
+      },
+      {
+        "q": "我们开发的联合解决方案，知识产权（IP）归谁所有？",
+        "a": "我们充分尊重伙伴的劳动成果。您开发的专有业务逻辑、AI 算法代码及自定义 UI 的知识产权 100% 归属您的企业。MSRU 仅拥有您授权在平台上分发和运行的许可授权。"
+      },
+      {
+        "q": "插件上架审核流程是怎样的？如何确保代码安全？",
+        "a": "提交插件后，MSRU 实验室将启动自动化静态分析（SAST）和沙盒沙箱运行期漏损测试，重点排查是否存在越权漏洞、无限内存泄露和恶意发包等不合规行为。一般在 5-10 工作日内完成。"
       }
     ]
   },
   {
     "type": "cta",
     "variant": "large",
-    "title": "成为 MSRU ISV 合作伙伴",
-    "cta": { "label": "申请加入", "href": "/contact" },
+    "title": "立即与 MSRU 共同开启您的工业应用变现引擎",
+    "description": "联系生态合作部门经理，获取 ISV 接入 SDK、开发模板及合作伙伴认证大纲规范。",
+    "cta": { "label": "开始申请 ISV 认证", "href": "/contact" },
     "accentColor": "purple"
   }
 ]

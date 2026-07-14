@@ -2,51 +2,76 @@
   {
     "type": "hero",
     "variant": "dark",
-    "badge": { "icon": "Building2", "text": "创立于 2012" },
-    "title": "极客精神驱动的工业进化",
-    "subtitle": "MSRU (Matrix Smart Resource Union) 是全球领先的工业数字化基座提供商。我们通过统一的数据主线与自研核心引擎，重新定义人类高效制造的方式。",
+    "badge": {
+      "icon": "Building2",
+      "text": "Matrix Smart Resource Union"
+    },
+    "title": "极客精神驱动的全球工业软件革命",
+    "subtitle": "用优雅的计算逻辑重构物理世界。MSRU 是全球领先的声明式微内核工业软件与数字孪生底座供应商。我们深信，未来的现代车间不仅需要坚固的钢筋和轰鸣的机器，更需要干净、统一、高性能的代码主线。",
     "accentColor": "slate",
-    "bgImage": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [{ "label": "关于我们", "href": "/company/about" }, { "label": "加入我们的极客团队", "href": "/careers" }]
   },
   {
     "type": "statBand",
-    "heading": "全球影响力",
+    "heading": "科技实力与全球规模",
     "accentColor": "blue",
     "stats": [
-      { "value": "8,500", "unit": "+", "label": "全球员工 · 分布于 12 个国家" },
-      { "value": "65", "unit": "%", "label": "研发占比 · 极客驱动的文化" },
-      { "value": "1,200", "unit": "+", "label": "持有专利 · 核心底层技术积累" },
-      { "value": "24", "unit": "", "label": "灯塔工厂 · 深度参与数字化转型" }
+      { "value": "8500", "unit": "名+", "label": "分布于全球 12 个国家和研发分支的员工" },
+      { "value": "65", "unit": "%", "label": "核心平台与图形图像算法研发人员占比" },
+      { "value": "1200", "unit": "项+", "label": "在时序数据库、WASM 沙箱及三维渲染领域的发明专利" },
+      { "value": "24", "unit": "家", "label": "由 MSRU 深度提供底层数字化支撑的“全球灯塔工厂”" }
     ]
   },
   {
-    "type": "featureGrid",
-    "columns": 2,
-    "cards": [
+    "type": "statement",
+    "title": "让软件回归平台化，让数据回归主线。用逻辑的确定性，应对物理世界的不确定性。",
+    "body": "长久以来，工业系统被无数分散、封闭、互不相通的专有软件分割成信息孤岛。MSRU 提倡 Describe-Once（一次描述，全平台自适应），旨在打造一个跨越行业、物理位置和软硬件边界的全球工业数字共同体。",
+    "accentColor": "slate"
+  },
+  {
+    "type": "bento",
+    "items": [
       {
-        "icon": "MapPin",
-        "accentColor": "blue",
-        "title": "珠海",
-        "desc": "全球总部 / 基础平台研发"
+        "icon": "Info",
+        "title": "关于 MSRU 发展历程 (About Us)",
+        "description": "深入了解我们如何从一个底层的编译器实验室成长为服务全球电池厂、晶圆Fab及主流车厂的平台巨头。",
+        "span": "wide",
+        "accentColor": "slate"
       },
       {
-        "icon": "MapPin",
-        "accentColor": "emerald",
-        "title": "新加坡",
-        "desc": "国际业务 / 云原生安全中心"
+        "icon": "Users",
+        "title": "极客招募与职业生涯 (Careers)",
+        "description": "如果你热爱 Rust/Go、喜欢折腾图形学与大模型，且讨厌低效的传统职场，欢迎申请我们的全球远程开发岗位。",
+        "span": "wide",
+        "accentColor": "blue"
       },
       {
-        "icon": "MapPin",
-        "accentColor": "amber",
-        "title": "慕尼黑",
-        "desc": "工业物联网与自动化实验室"
+        "icon": "TrendingUp",
+        "title": "投资者关系与财报披露 (Investors)",
+        "description": "获取 MSRU 的 ARR 增长数据、五年 TCO 降本实践、季度财报摘要以及分析师电话会议日程。",
+        "accentColor": "slate"
       },
       {
-        "icon": "MapPin",
-        "accentColor": "purple",
-        "title": "硅谷",
-        "desc": "AI 算法与大模型研究"
+        "icon": "Leaf",
+        "title": "环境责任与可持续发展 (ESG)",
+        "description": "查阅我们如何通过算法重构和冷热时序分区数据存储，帮助全球制造业削减累积数百万度电的用电消耗。",
+        "accentColor": "blue"
       }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "全球协同",
+    "title": "四大全球联合研发与安全中心",
+    "body": "我们通过扁平的异步协作体系，让位于珠海、新加坡、慕尼黑与硅谷的顶尖工程师能同频共振，快速响应客户的底层升级和安全隐患。",
+    "bullets": [
+      "珠海总部：负责底层声明式微内核与关系数据库编译引擎研发",
+      "新加坡中心：负责云原生零信任架构、数据隐私及跨国法务安全",
+      "慕尼黑实验室：联合欧洲主流机床及PLC厂商攻关高频高并发连通性驱动",
+      "硅谷实验室：深耕基于工况控制图与参数曲线的工艺优化 LLM 大模型"
     ]
   },
   {
@@ -54,23 +79,58 @@
     "variant": "cards",
     "items": [
       {
-        "title": "投资者关系",
-        "desc": "查阅最新财报、董事会报告及治理架构。",
-        "tag": "查看详情",
+        "title": "投资者关系门户 (Investor Relations)",
+        "meta": "财报与治理",
+        "desc": "查阅最新的董事会报告、股东大会决议及符合德勤审计的可持续发展综合报告。",
+        "tag": "浏览 IR 页面",
         "href": "/investors"
       },
       {
-        "title": "环境、社会与治理",
-        "desc": "我们对可持续供应链与碳中和路线的承诺。",
-        "tag": "报告下载",
-        "href": "/esg"
+        "title": "商业道德与合规行为守则 (Code of Conduct)",
+        "meta": "企业治理",
+        "desc": "明确我们在防止数据泄露、反垄断、廉洁采购与劳动保护等核心维度的原则和申诉入口。",
+        "tag": "阅读守则",
+        "href": "/company/code-of-conduct"
       },
       {
-        "title": "供应链准则",
-        "desc": "建立透明、廉洁且高效的全球供应商伙伴关系。",
-        "tag": "了解合规",
+        "title": "供应链社会责任白皮书 (Supply Chain)",
+        "meta": "责任共建",
+        "desc": "对所有参与 MSRU 硬件采购和交付服务的外协供应商制定的环保、廉洁与社会合规强制性规范要求。",
+        "tag": "查阅白皮书",
         "href": "/company/supply-chain"
+      },
+      {
+        "title": "加入我们的天才工程师阵营 (Join Us)",
+        "meta": "人才招募",
+        "desc": "Rust引擎开发、WebGPU图形架构师、电池及半导体实施架构师等高水平高薪酬岗位持续热招中。",
+        "tag": "查看开放职位",
+        "href": "/careers"
       }
     ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "MSRU 这个缩写代表什么意思？",
+        "a": "MSRU 代表 Matrix Smart Resource Union（矩阵式智能资源联盟）。其设计初衷是通过网格化的声明式元数据描述，将工厂内的人员、物料、设备及工单路线编织成一张自适应的智能资源网络。"
+      },
+      {
+        "q": "公司未来的战略发展方向主要集中在哪里？",
+        "a": "我们正专注于两大核心技术跃升：一是通过 WebGPU 将数字孪生的渲染负荷彻底由服务器转移至客户端，实现更流畅、低成本的三维大屏；二是通过垂直小模型（制造大模型）将时序数据转化为生产线的实时自适应调优策略。"
+      },
+      {
+        "q": "作为软件提供商，如何保证对传统工业PLC与异构设备的支持？",
+        "a": "我们在德国慕尼黑设立了专门的互操作性测试中心，与全球主流工业自动化设备商保持紧密的技术共享和接口预授权，保障产品在长服役周期内的向下兼容性。"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "与 MSRU 一同探索制造自动化的新纪元",
+    "description": "预约我们的技术顾问或访问我们的全球办公室，共同商讨定制化智能工厂落地方案。",
+    "cta": { "label": "联系企业代表", "href": "/contact" },
+    "accentColor": "slate"
   }
 ]

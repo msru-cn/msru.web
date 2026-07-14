@@ -1,37 +1,137 @@
 [
   {
     "type": "hero",
-    "badge": { "icon": "TrendingUp", "text": "Total Cost of Ownership" },
-    "title": "总体拥有成本",
-    "subtitle": "MSRU 统一平台 vs 传统多系统拼凑方案的 5 年 TCO 对比分析。",
+    "variant": "dark",
+    "badge": {
+      "icon": "TrendingUp",
+      "text": "Total Cost of Ownership Analysis"
+    },
+    "title": "制造数字化总体拥有成本 (TCO) 深度解构",
+    "subtitle": "打破系统割裂的收费陷阱。MSRU 描述驱动微内核平台与传统“烟囱式”多软件拼凑方案的 5 年总体拥有成本对比评估，帮助企业厘清隐含的集成与维护黑洞。",
     "accentColor": "emerald",
-    "bgImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [{ "label": "评估我的 TCO", "href": "/contact" }, { "label": "下载 TCO 精细核算模板", "href": "/contact" }]
+  },
+  {
+    "type": "statBand",
+    "heading": "数据见证平台化带来的商业价值",
+    "accentColor": "emerald",
+    "stats": [
+      { "value": "52", "unit": "%", "label": "中大型工业企业 5 年期平均综合成本节省" },
+      { "value": "60", "unit": "%+", "label": "硬件及云计算资源消耗量降低（微服务极简部署）" },
+      { "value": "75", "unit": "%", "label": "二次开发与业务变更时的实施周期缩短" },
+      { "value": "0", "unit": "元", "label": "各模块接口升级联调费用（全域数据底座互通）" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "购买软件许可仅仅是水面上的冰山，真正的吞金兽是水面下的集成与变更成本。",
+    "body": "很多企业采购了便宜的 MES、WMS、EAM 等系统，却在接口联调、数据同步和后续版本升级中付出了数倍于首期软件费用的资金。MSRU 平台在一套描述语言下实现跨领域覆盖，从根本上消除了“烟囱系统”林立的弊端。",
+    "accentColor": "emerald"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Layers",
+        "title": "软件订阅模式 vs 终身许可买断",
+        "description": "提供极具弹性的包年订阅与随业务扩张的浮动席位计费，首期资金占用率降低 60% 以上，支持随退随订。",
+        "span": "wide",
+        "accentColor": "emerald"
+      },
+      {
+        "icon": "Cpu",
+        "title": "边缘网关与计算资源整合",
+        "description": "极轻量化微服务底座可在通用工控机上稳定运行，无需为每个子系统堆叠独立的数据库及高性能服务器物理群。",
+        "span": "wide",
+        "accentColor": "cyan"
+      },
+      {
+        "icon": "Briefcase",
+        "title": "自主定制维护与低代码自举",
+        "description": "业务逻辑可视化拖拽即可跑通，工厂 IT 和工艺工程师可独立维护，降低对系统集成商的终身代码依赖。",
+        "accentColor": "emerald"
+      },
+      {
+        "icon": "TrendingDown",
+        "title": "老旧设备接入与改造成本",
+        "description": "提供即插即用采集方案，相比逐台重写通信协议，可节省多达 70% 的现场改造人力和配件支出。",
+        "accentColor": "cyan"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "典型案例",
+    "title": "某汽车零部件头部企业 5 年期 TCO 降幅达 48%",
+    "body": "该客户拥有 4 家分厂，原计划购买 3 套异构 MES 和 ERP。通过引入 MSRU 统一工业内核，在实施、集成和后期维护上节约了数百万费用。",
+    "bullets": [
+      "接口改造与异构数据打通费用降为零",
+      "硬件基建投资节省 40 万元",
+      "后期维护团队从 6 人缩减为 2 人，转型为工艺赋能专家"
+    ]
   },
   {
     "type": "list",
     "variant": "rows",
     "items": [
-      { "title": "软件许可", "meta": "传统方案：¥800,000/年", "desc": "MSRU 平台：¥398,000/年", "tag": "节省 50%" },
-      { "title": "硬件基础设施", "meta": "传统方案：¥500,000", "desc": "MSRU 平台：¥200,000", "tag": "节省 60%" },
-      { "title": "实施与定制", "meta": "传统方案：¥1,200,000", "desc": "MSRU 平台：¥600,000", "tag": "节省 50%" },
       {
-        "title": "年度运维维护",
-        "meta": "传统方案：¥300,000/年",
-        "desc": "MSRU 平台：¥0 (含于订阅)",
-        "tag": "节省 100%"
+        "title": "多系统异构平台集成 (Integration Cost)",
+        "meta": "传统方案：¥600,000 / 多次迭代",
+        "desc": "MSRU 统一平台：¥0 (内核原生互通，无数据孤岛)",
+        "tag": "降低 100%"
       },
-      { "title": "培训与赋能", "meta": "传统方案：¥150,000", "desc": "MSRU 平台：¥50,000", "tag": "节省 67%" }
+      {
+        "title": "五年软件许可与升级服务 (Licensing & Upgrades)",
+        "meta": "传统方案：¥1,200,000 (升级需付联调费)",
+        "desc": "MSRU 统一平台：¥580,000 (订阅内包含全部核心包持续升级)",
+        "tag": "降低 51%"
+      },
+      {
+        "title": "服务器与数据库部署 (Infrastructure Setup)",
+        "meta": "传统方案：¥400,000 (需要高配云资源/多台物理服务器)",
+        "desc": "MSRU 统一平台：¥150,000 (微内核极高并发，低耗轻巧部署)",
+        "tag": "降低 62%"
+      },
+      {
+        "title": "定制业务变更与实施人力 (Customization Labor)",
+        "meta": "传统方案：¥500,000 (更改流程需原厂二次开发，耗时长)",
+        "desc": "MSRU 统一平台：¥120,000 (拖拽流程图快速更新，支持 WASM)",
+        "tag": "降低 76%"
+      },
+      {
+        "title": "现场员工培训与操作熟悉 (Training Costs)",
+        "meta": "传统方案：¥120,000 (学习多个异构系统的复杂 UI 面板)",
+        "desc": "MSRU 统一平台：¥30,000 (一体化 UI 面板，学习曲线极佳)",
+        "tag": "降低 75%"
+      }
     ]
   },
   {
-    "type": "statement",
-    "body": "* 以上数据基于 500 人规模中型制造企业的典型部署场景。实际成本因企业规模、定制需求与部署架构而异。"
+    "type": "faq",
+    "items": [
+      {
+        "q": "为什么 MSRU 的实施定制费用比传统软件低这么多？",
+        "a": "传统软件在变更业务（例如增加工艺参数或改动质检标准）时，必须由研发人员手写代码、修改表结构、重构 API 并重新发布。MSRU 采用描述驱动（Describe-Once），用户在可视化界面修改描述后，系统自动生成相应的数据结构和权限，无需二次手写开发。"
+      },
+      {
+        "q": "我们的设备在 5 年间会有很大变化，这是否会增加后期订阅费用？",
+        "a": "MSRU 的订阅主要基于租户和注册的物理站点规模，而非基于设备接入数量。增加传感器和普通采集点无需额外购买独立许可，极度适合高频改造的数字产线。"
+      },
+      {
+        "q": "本地部署（On-Premise）的 TCO 结构是怎样的？",
+        "a": "对于选择本地部署的客户，我们收取一次性平台授权与年度支持费用。虽然首年硬件成本较高，但无需支付持续的公有云订阅，五年累积 TCO 相比租用同等性能的异构软件仍有巨大优势。"
+      }
+    ]
   },
   {
     "type": "cta",
-    "variant": "small",
-    "title": "获取定制化 TCO 评估",
-    "cta": { "label": "联系方案架构师", "href": "/contact" },
+    "variant": "large",
+    "title": "即刻定制您的企业数字化 TCO 精细化评估报告",
+    "description": "向 MSRU 精益架构师提供您当前的系统拓扑与业务规模，我们将为您出具详尽的五年持有成本比对及节流建议。",
+    "cta": { "label": "免费定制 TCO 报告", "href": "/contact" },
     "accentColor": "emerald"
   }
 ]

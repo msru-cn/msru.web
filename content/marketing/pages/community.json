@@ -3,45 +3,132 @@
     "type": "hero",
     "variant": "dark",
     "badge": {
-      "icon": "Handshake",
-      "text": "Open Source Community"
+      "icon": "Users",
+      "text": "MSRU Global Developer Ecosystem"
     },
     "title": "开发者社区与开源矩阵",
-    "subtitle": "加入全球工业级开源工具生态的共建行列。代码、知识与经验——在这里自由流动。",
+    "subtitle": "打破传统封闭工业软件的垄断。加入全球工业级开源工具生态的共建行列——在这里，代码、协议适配与制造实践经验自由流动，共同定义下一代工业智造底座。",
     "accentColor": "cyan",
-    "bgImage": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [
+      { "label": "访问 GitHub 组织", "href": "https://github.com" },
+      { "label": "加入 Discord 技术群", "href": "/contact" }
+    ]
   },
   {
-    "type": "featureGrid",
-    "columns": 3,
-    "cards": [
+    "type": "statBand",
+    "heading": "与全球开发者共同成长",
+    "accentColor": "cyan",
+    "stats": [
+      { "value": "12", "unit": "K+", "label": "GitHub 组织累计获得的 Star 关注数" },
+      { "value": "350", "unit": "位+", "label": "为开源驱动、SDK 和 CLI 提交代码的外部贡献者" },
+      { "value": "8", "unit": "K+", "label": "Discord 与开发者社群中的技术交流活跃会员" },
+      { "value": "24", "unit": "小时", "label": "社区版 Issue 平均首应与跟进反馈时间" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "封闭意味着僵死，开放才是工业数字化逃离‘烟囱系统’的唯一出路。",
+    "body": "过去，任何协议对接、仪表驱动都要支付给集成商数万元开发费。MSRU 发起开源共享协议驱动计划，目前已将超过 80% 的常用 PLC 适配器和数据过滤规则完全开源，让企业不再因接口绑定而寸步难行。",
+    "accentColor": "cyan"
+  },
+  {
+    "type": "bento",
+    "items": [
       {
-        "icon": "Github",
-        "title": "GitHub 开源组织",
-        "desc": "参与核心工具库、CLI 与协议适配器的开源共建"
+        "icon": "GitBranch",
+        "title": "驱动共建计划 (Driver Co-building)",
+        "description": "提供开源驱动底座，支持开发者贡献小众PLC、非标仪表、安防摄像头的 SECS/GEM/Modbus 通信扩展。",
+        "span": "wide",
+        "accentColor": "cyan"
       },
       {
-        "icon": "MessageSquare",
-        "accentColor": "blue",
-        "title": "Discord 技术社区",
-        "desc": "与全球开发者实时交流、获取技术支持与分享最佳实践"
+        "icon": "MessageCircle",
+        "title": "RFC 架构公开提案与技术沙龙",
+        "description": "平台内核的重大功能更迭及数据引擎变更，均以 RFC 形式向社区公示，听取各线工艺专家的架构建议。",
+        "span": "wide",
+        "accentColor": "blue"
       },
       {
-        "icon": "Globe",
-        "accentColor": "emerald",
-        "title": "技术博客与演讲",
-        "desc": "来自核心架构团队的开源技术解析与行业峰会分享"
+        "icon": "Zap",
+        "title": "年度 Hackathon 极限开发大赛",
+        "description": "每年夏天汇聚全球优秀的工业软件黑客，针对能耗调优、AI排产等场景，使用 WASM 开发创意插件。",
+        "accentColor": "cyan"
+      },
+      {
+        "icon": "Coffee",
+        "title": "城市线下开发者沙龙 (Meetup)",
+        "description": "在深圳、上海、苏州、成都等地举办线下闭门会，面对面交流现场硬件接入与大数据压测避坑实践。",
+        "accentColor": "blue"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "明星工具",
+    "title": "MSRU CLI 边端沙箱命令行调试套件",
+    "body": "我们在 GitHub 开源了完整的本地开发命令行工具，让开发者可以在个人电脑上轻松模拟异构 PLC 并一键检验 WASM 逻辑错误。",
+    "bullets": [
+      "内置轻量级 Modbus/OPC UA 协议发包模拟器",
+      "支持本地断点调试 WASM 执行堆栈",
+      "一键打包出符合市场标准的插件格式"
+    ]
+  },
+  {
+    "type": "list",
+    "variant": "rows",
+    "items": [
+      {
+        "title": "msru-cli (开发者脚手架与边端模拟器)",
+        "meta": "Stars: 3.4k · Golang/TypeScript",
+        "desc": "支持快速创建插件项目、启动本地 PLC 报文注入测试及一键安全部署至生产网关。",
+        "tag": "核心工具"
+      },
+      {
+        "title": "msru-drivers (开源工业协议驱动矩阵)",
+        "meta": "Stars: 4.8k · Rust/C++",
+        "desc": "包含西门子、三菱、欧姆龙及主流智能电表在内的 80 余种开源驱动合集。",
+        "tag": "协议驱动"
+      },
+      {
+        "title": "msru-wasm-sdk (WASM 函数式插件开发包)",
+        "meta": "Stars: 2.1k · Go/Rust",
+        "desc": "为业务规则定制者提供标准的上下文访问函数与时序库写入 API 映射底座。",
+        "tag": "SDK"
+      },
+      {
+        "title": "msru-ui-components (工业级低代码前端框架)",
+        "meta": "Stars: 1.8k · React/Tailwind",
+        "desc": "包含工业大屏仪表盘、 Andon 报警面板、 Wafer Map 渲染卡片等经典业务 UI 封装。",
+        "tag": "UI生态"
+      }
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "社区版和企业商业版在内核性能上有什么区别吗？",
+        "a": "没有。MSRU 平台对声明式微内核的核心执行性能一视同仁。企业版额外提供高可用灾备支持、多层级安全防火墙规则及 7x24 小时的 SLA 现场响应技术支持。"
+      },
+      {
+        "q": "如何获取个人免费的研究和开发专用许可证？",
+        "a": "您只需在社区门户进行开发者身份登记，即可免费获取不限时但限制单机测点数（100 个测点）的个人开发测试许可证，用于搭建实验沙箱。"
+      },
+      {
+        "q": "我们给开源组织贡献代码时，需要签署什么协议吗？",
+        "a": "所有外部代码贡献者均需在线签署标准的贡献者许可协议（CLA），以确保代码可以在宽松的 Apache 2.0 开源许可下分发使用。"
       }
     ]
   },
   {
     "type": "cta",
-    "variant": "small",
-    "title": "与 5,000+ 工业开发者同行",
-    "cta": {
-      "label": "加入社区",
-      "href": "/contact"
-    },
+    "variant": "large",
+    "title": "贡献你的第一行代码，共同定义数字工厂的内核",
+    "description": "立即下载 MSRU 开源工具链，访问 Github Issue 板块认领你的第一个开发者任务包。",
+    "cta": { "label": "查看贡献指南", "href": "https://github.com" },
     "accentColor": "cyan"
   }
 ]

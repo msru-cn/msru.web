@@ -4,33 +4,73 @@
     "variant": "dark",
     "badge": {
       "icon": "Terminal",
-      "text": "Engineering Blog"
+      "text": "MSRU Engineering Blog"
     },
-    "title": "代码、架构与工业未来",
-    "subtitle": "来自 MSRU 核心研发团队，分享我们在分布式系统、实时数据处理与工业渲染领域的深度实践。",
+    "title": "代码、架构与明日工业的技术回响",
+    "subtitle": "用编译器思维解决车间难题。在这里，MSRU 核心开发团队与架构师为您带来在分布式实时系统、WASM 规则执行、WebGPU 高保真图形渲染及制造 AI 智能体调优等维度的硬核技术干货与踩坑实践录。",
     "accentColor": "emerald",
-    "bgImage": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [{ "label": "订阅技术月报", "href": "/contact" }, { "label": "访问开源组织", "href": "https://github.com" }]
   },
   {
     "type": "statBand",
-    "heading": "Open Source First",
+    "heading": "硬核极客社区的一面镜子",
     "accentColor": "emerald",
     "stats": [
+      { "value": "12", "unit": "K+", "label": "Github 上获得生态项目 Star 关注总和" },
+      { "value": "50", "unit": "个+", "label": "开源在社区的工业连接器、驱动及 SDK 项目" },
+      { "value": "300", "unit": "篇+", "label": "关于时序数据库、WASM 沙箱及工业渲染的原创文章" },
+      { "value": "8", "unit": "万+", "label": "全球月度活跃阅读的制造 IT 与系统架构师" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "工业软件不应该是一堆凌乱代码的拼凑，它需要极致的编译器美学和架构自律。",
+    "body": "传统制造系统难以升级，因为它们在底层代码中掺杂了太多临时的手工 Hardcode（硬编码）。我们提倡声明式（Declarative）编程，通过微内核与沙箱隔离技术，将业务易变性与底层平台稳定性解耦，让工业软件重焕新生。",
+    "accentColor": "emerald"
+  },
+  {
+    "type": "bento",
+    "items": [
       {
-        "value": "10k+",
-        "unit": "PRs",
-        "label": "PRs merged"
+        "icon": "Code",
+        "title": "Describe-Once 编译器设计 (Compiler DSL)",
+        "description": "探讨我们如何通过词法分析和中间表示（IR）将高级业务描述自动映射为内存关系表和强类型 API 接口。",
+        "span": "wide",
+        "accentColor": "emerald"
       },
       {
-        "value": "50+",
-        "unit": "",
-        "label": "开源项目"
+        "icon": "Cpu",
+        "title": "边端 WASM 沙箱内存优化 (IoT & WASM)",
+        "description": "分析在高频 PLC 消息流灌入时，如何在 256MB 内存的边缘工控盒中稳定进行无泄露的规则计算。",
+        "span": "wide",
+        "accentColor": "cyan"
       },
       {
-        "value": "300+",
-        "unit": "",
-        "label": "技术文章"
+        "icon": "Box",
+        "title": "基于 WebGPU 的大数模合并渲染 (Graphics)",
+        "description": "介绍遮挡剔除（Occlusion Culling）、GPU 几何实例实例化（Instancing）在海量厂房渲染中的应用细节。",
+        "accentColor": "emerald"
+      },
+      {
+        "icon": "TrendingUp",
+        "title": "时序数据多维压缩与时序分区 (Database)",
+        "description": "解密自研时序存储引擎如何在高吞吐写入下实现 1:7 的高压缩比，大幅削减云存储成本开销。",
+        "accentColor": "cyan"
       }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "本期推荐",
+    "title": "MSRU 存储底座演进：从 B+ 树到 LSM 树的实践实录",
+    "body": "深入解析在超大规模工业高频测点写入写入场景下，传统 B+ 树带来的随机磁盘 I/O 写入瓶颈瓶颈。我们是如何通过定制 LSM 结构实现写入吞吐量 3 倍跃迁的。",
+    "bullets": [
+      "内存 MemTable 与 WAL 预写日志的配合优化",
+      "基于时间戳的 SSTable 自动合并（Compaction）策略",
+      "布隆过滤器（Bloom Filter）在点查询中的降噪实践"
     ]
   },
   {
@@ -38,71 +78,73 @@
     "variant": "cards",
     "items": [
       {
-        "title": "MSRU 存储引擎底层优化：从 B+ 树到 LSM 树的演进",
-        "desc": "深入分析在超大规模工业数据吞吐场景下，我们如何通过重构存储引擎将写入性能提升 3x。（Chen Yao · 2024-05-15 · 12 min）",
-        "tag": "Architecture"
-      },
-      {
         "title": "WebGPU 在工业数字孪生中的实时渲染实践",
-        "desc": "探讨如何利用次世代 Web 渲染技术在浏览器中实现百万级三角面片的丝滑流畅交互。（Liu Ming · 2024-05-02 · 8 min）",
-        "tag": "Frontend"
+        "meta": "作者: Liu Ming · 阅读时间: 8 min",
+        "desc": "抛弃 WebGL 的历史包袱，利用 WebGPU 的并行计算着色器（Compute Shader）实现秒级百万面复杂管线模型的流畅光影渲染。",
+        "tag": "前端与图形学",
+        "href": "/docs"
       },
       {
-        "title": "工业网关零拷贝内存管理策略",
-        "desc": "如何在资源受限的边缘节点实现高效的数据包处理？解析我们的零拷贝 (Zero-Copy) 实现细节。（Zhang Wei · 2024-04-20 · 15 min）",
-        "tag": "IoT / C++"
+        "title": "工业网关零拷贝 (Zero-Copy) 内存管理策略",
+        "meta": "作者: Zhang Wei · 阅读时间: 15 min",
+        "desc": "在百兆高频发包的网口通信中，如何避免多次用户态到内核态的内存拷贝？详细解析 Golang 与 Rust 的 Buffer 绑定实践。",
+        "tag": "IoT / 协议",
+        "href": "/docs"
+      },
+      {
+        "title": "零信任架构下的工业网闸双向穿透实践指南",
+        "meta": "作者: Security Team · 阅读时间: 10 min",
+        "desc": "如何在物理隔离的 OT 网与 IT 网之间建立高安全的 mTLS 代理？包含主流网闸厂商的反向代理路由配置脚本当包。",
+        "tag": "安全合规",
+        "href": "/docs"
+      },
+      {
+        "title": "基于 LSTM 与控制图的轴承寿命预测模型落地",
+        "meta": "作者: AI Lab · 阅读时间: 12 min",
+        "desc": "利用高频加速度计的振动数据进行傅里叶变换，输入轻量化循环网络预测设备 MTBF 的算法模型重构经历。",
+        "tag": "AI 算法",
+        "href": "/docs"
       }
     ]
-  },
-  {
-    "type": "splitMedia",
-    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800",
-    "side": "left",
-    "eyebrow": "Open Source",
-    "title": "我们拥抱开源工业生态",
-    "body": "从核心通信驱动到高性能图表组件，MSRU 坚信开源是推动工业进步的最短路径。探索我们维护的 50+ 个开源项目。",
-    "cta": {
-      "label": "View on GitHub",
-      "href": "https://github.com/msru-platform"
-    }
   },
   {
     "type": "logoWall",
-    "eyebrow": "Tech Stack Roadmap",
+    "eyebrow": "我们所热爱的技术栈与工具链",
+    "items": [
+      { "name": "Rust" },
+      { "name": "Go" },
+      { "name": "TypeScript" },
+      { "name": "WebGPU" },
+      { "name": "Three.js" },
+      { "name": "Docker" },
+      { "name": "Kubernetes" },
+      { "name": "WASM" },
+      { "name": "ClickHouse" }
+    ]
+  },
+  {
+    "type": "faq",
     "items": [
       {
-        "name": "Rust"
+        "q": "我可以给 MSRU 工程博客投稿吗？投稿有什么奖励？",
+        "a": "我们非常欢迎生态内的工程师和合作伙伴投稿。文章经技术委员会审核采纳后，将全网同步署名发表，并可获得 MSRU 学院高级认证代金券及极客周边纪念品奖励。"
       },
       {
-        "name": "TypeScript"
+        "q": "博客中的代码段和配置脚本是否可以直接在生产环境中商业使用？",
+        "a": "可以。所有在工程博客中披露的示例代码和配置文件均在 Apache 2.0 许可证下开源授权，您可以免费在您的商业系统中使用，但不对其产生的实际工况故障承担担保责任。"
       },
       {
-        "name": "SurrealDB"
-      },
-      {
-        "name": "Three.js"
-      },
-      {
-        "name": "WebGPU"
-      },
-      {
-        "name": "Kubernetes"
-      },
-      {
-        "name": "Erlang"
-      },
-      {
-        "name": "Go"
-      },
-      {
-        "name": "TensorFlow"
+        "q": "为什么 MSRU 的核心引擎选择 Rust 语言而非纯 Go？",
+        "a": "虽然 Go 在开发网络微服务上效率极高，但在边缘计算网关侧，GC（垃圾回收）带来的偶发停顿和不确定内存分配对于亚毫秒级工位联锁来说是不可接受的。Rust 零成本抽象和无 GC 的内存管理，使得我们能够把采集延迟降到物理极致。"
       }
     ]
   },
   {
-    "type": "testimonial",
-    "quote": "在这里，每一行提交的代码都有可能成为支撑全球数千台机械臂稳定运行的基石。",
-    "author": "MSRU 核心研发团队",
-    "role": "JOIN THE DEV TEAM"
+    "type": "cta",
+    "variant": "large",
+    "title": "寻找有代码洁癖、向往硬核挑战的你",
+    "description": "如果你喜欢用技术解决真实世界的问题，欢迎把你的简历或得意之作（PR链接）发送到我们的邮箱。",
+    "cta": { "label": "加入核心开发团队", "href": "/careers" },
+    "accentColor": "emerald"
   }
 ]

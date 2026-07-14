@@ -4,80 +4,137 @@
     "variant": "dark",
     "badge": {
       "icon": "Headphones",
-      "text": "MSRU 全天候原厂响应中心"
+      "text": "MSRU Active Technical Support (L1-L3)"
     },
-    "title": "永远在线的技术后盾。",
-    "subtitle": "产线一秒的停滞都是巨大的成本。我们提供 L1 到 L3 的全栈技术支持与 7x24 小时监控，防患未然，秒级响应。",
+    "title": "三级级联动原厂技术支持与全天候响应中心",
+    "subtitle": "工业容错，毫秒级就位。我们提供从一线操作答疑、中台技术排雷到源码级研发兜底的三级联动支持体系。7x24 小时 NOC 中心主动监测，把隐患消灭在停机警报响起之前。",
     "accentColor": "blue",
-    "ctas": [
-      {
-        "label": "获取支持方案",
-        "href": "/contact"
-      }
-    ],
-    "bgImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [{ "label": "进入客户工单大厅", "href": "/contact" }, { "label": "评估我的保障级别", "href": "/contact" }]
   },
   {
     "type": "statBand",
-    "heading": "响应指标",
+    "heading": "高可用契约，全时段重保重保",
     "accentColor": "blue",
     "stats": [
-      {
-        "value": "99.99",
-        "unit": "%",
-        "label": "UPTIME SLA"
-      },
-      {
-        "value": "< 5",
-        "unit": "mins",
-        "label": "Mean Time to Acknowledge"
-      },
-      {
-        "value": "1.2",
-        "unit": "hrs",
-        "label": "P1 Mean Time to Resolve"
-      }
+      { "value": "99", "unit": ".99%", "label": "核心云平台与集群可用性 UPTIME SLA 承诺" },
+      { "value": "5", "unit": "分钟", "label": "P1级生产中断事件平均首次确认（Acknowledge）耗时" },
+      { "value": "1", "unit": ".2小时", "label": "P1级严重事件平均远程修复或临时规避（Resolve）时长" },
+      { "value": "200", "unit": "名+", "label": "随时待命的售后技术架构师与内核研发工程师" }
     ]
   },
   {
     "type": "statement",
-    "title": "三级支持响应体系",
+    "title": "工业级售后绝不是念话术的客服，我们需要的是懂编译器、懂硬件的实战派架构师。",
+    "body": "很多传统 ERP/MES 售后服务，反馈一个 Bug 需要层层流转数周，导致现场只能人工绕行。MSRU 提倡专家直达，二线技术支持直接对接现场环境，三线原厂研发可在数小时内下发专有热补丁，保障生产连续性。",
     "accentColor": "blue"
   },
   {
     "type": "pricingTable",
     "plans": [
       {
-        "name": "L1 客户支持",
-        "price": "",
-        "description": "7x24 原厂专属热线与工单系统接入。",
-        "features": ["基础账号/权限疑难解答", "前端操作指导与文档提供", "工单分发与进度追踪"],
-        "cta": {
-          "label": "获取支持方案",
-          "href": "/contact"
-        }
+        "name": "L1 客户支持 (Operational Support)",
+        "price": "基础运维",
+        "description": "7x24 原厂专属热线与工单系统接入。快速响应一线工人的配置和操作疑问，梳理基础权限阻碍。",
+        "features": [
+          "用户账号与基础角色 RBAC 配置向导",
+          "前端 Andon 画布及报表基本指标说明",
+          "工单归集、等级分类与进度追踪透明化"
+        ],
+        "cta": { "label": "索取服务详情", "href": "/contact" }
       },
       {
-        "name": "L2 技术专家",
-        "price": "",
-        "description": "深入系统后端的远程故障排查与恢复。",
+        "name": "L2 技术专家支持 (Systems Engineer)",
+        "price": "系统专家",
+        "description": "深度诊断平台运行期异常。由资深系统工程师通过安全堡垒机远程联调，诊断异构设备连线及数据库异常。",
         "popular": true,
-        "features": ["数据库/日志深度分析", "BUG 重现与临时规避方案 (Workaround) 开发", "核心业务流程卡点紧急解除"],
-        "cta": {
-          "label": "获取支持方案",
-          "href": "/contact"
-        }
+        "features": [
+          "关系型/时序数据库高并发死锁排查",
+          "设备连线通信报文（Modbus/SECS）深度抓包",
+          "WASM 插件逻辑故障定位与规避方案 (Workaround)"
+        ],
+        "cta": { "label": "索取服务详情", "href": "/contact" }
       },
       {
-        "name": "L3 原厂研发",
-        "price": "",
-        "description": "源码级缺陷修复与底层架构兜底。",
-        "features": ["紧急 Hotfix 补丁打包与推送", "操作系统/网络层高阶性能调优", "全栈崩溃级灾难恢复支持"],
-        "cta": {
-          "label": "获取支持方案",
-          "href": "/contact"
-        }
+        "name": "L3 原厂研发支持 (Core R&D Group)",
+        "price": "研发兜底",
+        "description": "源码级故障定位与极危漏洞热修复。由 MSRU 基础平台研究院核心研发人员亲自挂帅，彻底扫除底层黑盒隐患。",
+        "features": [
+          "微内核底层物理编译缺陷紧急修复",
+          "高吞吐大数据压测下 GC 及内存溢出深度调优",
+          "专有安全热补丁（Hotfix）敏捷打包与推送"
+        ],
+        "cta": { "label": "索取服务详情", "href": "/contact" }
       }
     ]
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Activity",
+        "title": "主动监测与健康巡检 (Active Monitoring)",
+        "description": "白金和黄金级客户专享。NOC 中心实时监控您网关的 CPU 波动、时序吞吐与网络包重传率，在物理异常发生前提示您排查。",
+        "span": "wide",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "ShieldAlert",
+        "title": "重大漏洞热补丁闪电分发",
+        "description": "当国际发生重大 0-Day 安全事件（如 OpenSSL 漏洞）时，保驾团队将在 24 小时内向活跃订阅客户自动推送升级热补丁。",
+        "span": "wide",
+        "accentColor": "cyan"
+      },
+      {
+        "icon": "RefreshCw",
+        "title": "双轨并行演练与灰度验证",
+        "description": "在进行任何大版本升级前，支持在预发布沙箱环境中 1:1 复制生产流量进行验证，规避上线升级事故。",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "Lock",
+        "title": "BYOK 独立密钥托管与审计",
+        "description": "支持客户技术团队自行掌控数据库加密解密私钥，原厂服务过程全程受堡垒机不可篡改审计，规避泄密。",
+        "accentColor": "cyan"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "NOC 中心",
+    "title": "MSRU 全球网络运行中心 (NOC) 概貌",
+    "body": "我们分别在珠海、新加坡和慕尼黑部署了协同的值班 NOC 大屏，24 小时监控全球各托管租户的遥测态势，建立多备份链路保障。",
+    "bullets": [
+      "基于 AI 态势预测的服务器死机早期识别",
+      "三路互联网服务商物理链路热灾备切换",
+      "一键安全隔离高危受渗透攻击的单体节点"
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "我们的设备在现场偶尔会由于车间电磁干扰而掉线，这在技术支持服务范围内吗？",
+        "a": "常规情况下，电磁干扰属于物理硬件与布线范畴，由设备商负责。但在黄金和白金级别服务中，MSRU 工程师会利用网关的数据抓包工具，协助您的电气人员分析 PLC 接收缓冲区的数据损坏程度，共同定位电磁波段并提供软件层面的自动重试滤波参数配置建议。"
+      },
+      {
+        "q": "如果我们在系统上部署了自己编写的第三方 WASM 规则插件，运行报错怎么支持？",
+        "a": "MSRU 技术支持对您的自研代码提供 ABI 兼容性诊断。如发现插件崩溃，我们将协助检查是否属于 WASM API 调用传参错误，但具体的业务逻辑除虫（Debug）和业务逻辑修改由您的 MCD 认证开发者自行维护。"
+      },
+      {
+        "q": "服务计划的升级与合同起签时间有何限制？",
+        "a": "服务计划通常与您的站点订阅合同同步，按年签署。在项目开始实施的攻坚阶段，客户通常会选配高等级的白金级 TAM 支持；上线平稳运行 1 年后，可根据内部 IT 人才梯队的成长情况申请变更为黄金或标准级服务。"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "让您的数字化车间高枕无忧，平稳前行",
+    "description": "立即向我们的技术客服团队申请一份免费的现有系统可用性与容灾健康度在线评估报告。",
+    "cta": { "label": "开始健康审计评估", "href": "/contact" },
+    "accentColor": "blue"
   }
 ]

@@ -1,58 +1,131 @@
 [
   {
     "type": "hero",
+    "variant": "dark",
     "badge": {
       "icon": "Box",
       "text": "MSRU Marketplace"
     },
-    "title": "插件市场",
-    "subtitle": "由全球 ISV 合作伙伴联合开发的低代码应用与扩展模块集，一键安装即刻增强平台能力。",
+    "title": "工业软件插件与扩展生态市场",
+    "subtitle": "一键激活平台无限潜力。MSRU 插件市场汇聚了全球独立软件开发商（ISV）与硬件厂商贡献的低代码应用、专有设备通信驱动、精益排产算法及 3D 工厂组件，即插即用，安全可靠。",
     "accentColor": "purple",
-    "bgImage": "https://images.unsplash.com/photo-1551033406-611cf9a28f67?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1551033406-611cf9a28f67?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [{ "label": "浏览插件目录", "href": "/contact" }, { "label": "开发者提交中心", "href": "/contact" }]
+  },
+  {
+    "type": "statBand",
+    "heading": "繁荣生态赋能敏捷智造",
+    "accentColor": "purple",
+    "stats": [
+      { "value": "150", "unit": "个+", "label": "经官方安全合规审核上架的工业插件" },
+      { "value": "500", "unit": "家+", "label": "活跃的独立软件供应商（ISV）与技术伙伴" },
+      { "value": "20", "unit": "万次+", "label": "全球企业客户累计安装与部署量" },
+      { "value": "100", "unit": "%", "label": "沙箱隔离运行，不影响系统底层稳定性" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "不需要重新造轮子。用现成的积木，搭出最适合你的数字化产线。",
+    "body": "每个工厂的机台类型、物料批次与质量算法都是独特的，没有任何一家通用软件商能包揽全部细节。MSRU 市场搭建起桥梁，让小众的垂直行业技术专家能把他们的经验包装为插件，精准对接需要他们的客户。",
+    "accentColor": "purple"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Settings",
+        "title": "专有设备协议驱动 (Drivers)",
+        "description": "提供法那科、三菱、发那科、欧姆龙特殊型号 PLC 及各类冷门温控仪、条码打印机专用通信适配器。",
+        "span": "wide",
+        "accentColor": "purple"
+      },
+      {
+        "icon": "Eye",
+        "title": "AI 视觉质检与缺陷提取 (AI Model)",
+        "description": "集成了针对钣金表面划痕、注塑溢料及印刷电路板（PCB）漏焊的预训练计算机视觉模型包。",
+        "span": "wide",
+        "accentColor": "fuchsia"
+      },
+      {
+        "icon": "Layers",
+        "title": "看板与生产报表模板 (Templates)",
+        "description": "一键套用符合丰田精益准则的安东（Andon）看板、OEE 综合损耗多维图表和财务成本追溯分析面板。",
+        "accentColor": "purple"
+      },
+      {
+        "icon": "Zap",
+        "title": "WASM 规则引擎包 (Extensions)",
+        "description": "预包装的高频物料预警阈值判定逻辑、分库仓储配方自动寻优算法等，支持边缘侧零延迟执行。",
+        "accentColor": "fuchsia"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1535303311164-664fc9ec6532?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "本周精选",
+    "title": "Smart Energy Dashboard 智能能源调度中心 v3.2",
+    "body": "由 GreenTech Co. 开发的明星级插件，可通过接入空压机、冷机及车间总电表的 IoT 测点，自动预测能源负荷并下发节能指令。",
+    "bullets": [
+      "基于历史工况的一键能耗异常诊断",
+      "支持错峰避峰生产智能排产决策联动",
+      "自动生成国标格式的企业年度碳足迹审计表"
+    ]
   },
   {
     "type": "list",
     "variant": "rows",
     "items": [
       {
-        "title": "Smart Energy Dashboard",
-        "tag": "★ 4.8",
-        "meta": "GreenTech Co.",
-        "desc": "能源管理"
+        "title": "Predictive QA Toolkit (AI 质检预测包)",
+        "meta": "开发者: QualityAI · 免费体验",
+        "desc": "基于历史质量时序数据自动构建趋势控制图，智能预测未来 2 小时内的良率偏离趋势。",
+        "tag": "★ 4.9 · 1.2k次下载"
       },
       {
-        "title": "Predictive QA Toolkit",
-        "tag": "★ 4.9",
-        "meta": "QualityAI",
-        "desc": "AI 质检"
+        "title": "Advanced Kanban Board (高级精益拉动看板)",
+        "meta": "开发者: LeanFlow · 订阅制",
+        "desc": "支持跨车间物理区域的虚拟电子卡片多级调度，兼容 Andon 异常拉起和物料紧急叫料。",
+        "tag": "★ 4.7 · 890次下载"
       },
       {
-        "title": "Advanced Kanban Board",
-        "tag": "★ 4.7",
-        "meta": "LeanFlow",
-        "desc": "精益生产"
+        "title": "MRO Inventory Optimizer (备件库存寻优)",
+        "meta": "开发者: SpareMax · 许可制",
+        "desc": "基于设备平均无故障时间（MTBF）和出库频率，自动重算最高与最低安全备品库存线。",
+        "tag": "★ 4.6 · 620次下载"
       },
       {
-        "title": "MRO Inventory Optimizer",
-        "tag": "★ 4.6",
-        "meta": "SpareMax",
-        "desc": "备件管理"
+        "title": "Supplier Portal Pro (多级供应商高效门户)",
+        "meta": "开发者: ChainSync · 平台标配",
+        "desc": "为主机厂的 Tier-1 与 Tier-2 供应商提供在线订单确认、交期答复及质量条码预绑定入口。",
+        "tag": "★ 4.5 · 2.1k次下载"
+      }
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "插件安装后会不会窃取我的核心生产数据？",
+        "a": "不会。MSRU 平台实行了严苛的沙箱隔离机制。所有第三方扩展必须声明其所需的网络与数据库访问权限，且无法访问未授权的邻近数据表。所有上架插件均需通过静态代码安全审计和沙盒验证。"
       },
       {
-        "title": "Supplier Portal Pro",
-        "tag": "★ 4.5",
-        "meta": "ChainSync",
-        "desc": "供应链协同"
+        "q": "如何发布我们自研的业务插件并进行商业化收费？",
+        "a": "您可以注册成为 MSRU 合作伙伴，下载官方发布 SDK 将您的代码编译为 WASM 格式并编写元数据说明。提交给 MSRU 审核委员会后，您可以选择免费共享或设置买断/按月订阅费率。"
+      },
+      {
+        "q": "购买付费插件后的售后支持由谁来提供？",
+        "a": "付费插件的第一线支持由开发该插件的 ISV 合作伙伴提供。MSRU 承诺对严重影响系统运行的内核兼容问题提供全程协查和联合保驾服务。"
       }
     ]
   },
   {
     "type": "cta",
-    "title": "想发布您的应用？",
-    "cta": {
-      "label": "加入 ISV 计划",
-      "href": "/partners/isv"
-    },
+    "variant": "large",
+    "title": "寻找适合您车间的“数字化积木”",
+    "description": "立即下载生态蓝皮书，或在您的 MSRU 管理控制台插件管理面板中直接检索并一键启用。",
+    "cta": { "label": "探索全部插件", "href": "/contact" },
     "accentColor": "purple"
   }
 ]

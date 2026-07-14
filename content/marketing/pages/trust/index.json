@@ -4,70 +4,135 @@
     "variant": "dark",
     "badge": {
       "icon": "Shield",
-      "text": "Trust & Security Center"
+      "text": "MSRU Trust & Security Portal"
     },
-    "title": "信任，是我们的底层架构",
-    "subtitle": "工业数据的敏感性不容妥协。探索 MSRU 如何通过硬核安全架构、全球合规矩阵与数据治理构筑不可穿透的防线。",
+    "title": "安全、合规与透明的数字信任中枢",
+    "subtitle": "工业级数据的机密性不容任何妥协。在这里查阅 MSRU 最新的系统运行状态、零信任安全架构白皮书、全球法律合规证书（ISO/SOC 2）及漏洞披露赏金计划。",
     "accentColor": "purple",
-    "bgImage": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [
+      { "label": "访问合规证书库", "href": "/trust/compliance-matrix" },
+      { "label": "阅读零信任安全架构", "href": "/docs" }
+    ]
   },
   {
-    "type": "featureGrid",
-    "columns": 3,
-    "cards": [
+    "type": "statBand",
+    "heading": "高密级工业数据防线保障",
+    "accentColor": "purple",
+    "stats": [
+      { "value": "99", "unit": ".99%", "label": "集团云托管平台可用性服务等级（SLA）表现" },
+      { "value": "0", "unit": "次", "label": "自公司创立以来核心多租户系统数据侵入与泄漏泄漏事件" },
+      { "value": "12", "unit": "项+", "label": "通过的全球核心安全与数据隐私隐私权威认证" },
+      { "value": "256", "unit": "bit", "label": "静态数据存储与传输链路的高强度 AES 加密机制" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "安全不是事后贴上去的补丁，而是从第一行代码编写时就默认执行的绝对约束。",
+    "body": "传统制造系统常年在隔离局域网运行，网络安全薄弱，在并网后面临极高的黑客和勒索软件侵入风险。MSRU 平台微内核底座原生集成数据沙箱与证书自动签发轮转，提供车间级网络防御防御城墙。",
+    "accentColor": "purple"
+  },
+  {
+    "type": "bento",
+    "items": [
       {
-        "icon": "Shield",
-        "accentColor": "purple",
-        "title": "多租户安全架构",
-        "desc": "数据物理隔离、零信任网络与端到端加密"
+        "icon": "Lock",
+        "title": "物理隔离多租户架构",
+        "description": "每个客户的数据存储在完全独立的加密数据库实例中，并配有独立的硬件密钥管理器管理加密解密密匙。",
+        "span": "wide",
+        "accentColor": "purple"
       },
       {
         "icon": "Globe",
-        "accentColor": "blue",
-        "title": "全球合规矩阵",
-        "desc": "ISO 27001 / SOC 2 / GDPR / 等保三级全覆盖"
+        "title": "全球合规资质与数据驻留",
+        "description": "全面支持 GDPR、CCPA、等保三级及 ISO 27001 要求。支持数据本国驻留，拒绝数据无序无序跨境传输。",
+        "span": "wide",
+        "accentColor": "blue"
       },
       {
-        "icon": "Network",
-        "accentColor": "emerald",
-        "title": "数据驻留与跨境",
-        "desc": "策略化物理隔离与合规退网指南"
+        "icon": "Cpu",
+        "title": "制造大模型 AI 伦理规范",
+        "description": "承诺在任何制造大模型调优中，不对客户未授权的原始工艺曲线进行跨租户跨越训练，严守秘密隐私。",
+        "accentColor": "purple"
       },
       {
-        "icon": "Zap",
-        "accentColor": "amber",
-        "title": "AI 伦理与管辖",
-        "desc": "大模型训练边界与数据脱敏策略"
+        "icon": "BadgeAlert",
+        "title": "安全漏洞披露政策 (Bounty)",
+        "description": "我们欢迎并鼓励全球白帽子安全研究人员向我们提报安全缺陷，为严重漏洞提供丰厚的商业赏金。",
+        "accentColor": "blue"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "主动防御",
+    "title": "零信任边缘接入 (Zero Trust Edge Access)",
+    "body": "我们的工业采集网关与云端控制器建立双向 TLS (mTLS) 加密隧道，且边缘网关“仅发起出站连接”，不开放任何入站监听端口，彻底阻断端口扫描。",
+    "bullets": [
+      "基于硬件 TPM 的不可伪造网关身份密钥",
+      "出站单向 mTLS 加密控制链路，抵御中间人攻击",
+      "自动拦截异常网络包并联动 Andon 看板告警"
+    ]
+  },
+  {
+    "type": "list",
+    "variant": "cards",
+    "items": [
+      {
+        "title": "合规证书与审计报告矩阵 (Compliance)",
+        "meta": "ISO/SOC 报告",
+        "desc": "查阅并索取最新的 SOC 2 Type II 审计报告、等保三级评测结论及 ISO 27018 隐私保护认证。",
+        "tag": "去查看",
+        "href": "/trust/compliance-matrix"
       },
       {
-        "icon": "Eye",
-        "accentColor": "rose",
-        "title": "数字包容性 (VPAT)",
-        "desc": "WCAG 2.1 AA 无障碍标准遵从"
+        "title": "数据驻留与跨国传输安全策略",
+        "meta": "数据治理",
+        "desc": "了解我们在欧盟、北美及东亚提供的数据中心分布，以及如何配置就地存储与异地备份合规要求。",
+        "tag": "去查看",
+        "href": "/trust/data-residency"
       },
       {
-        "icon": "Lock",
-        "accentColor": "purple",
-        "title": "漏洞披露政策",
-        "desc": "负责任的安全研究者奖励计划"
+        "title": "安全漏洞与负责任漏洞赏金计划",
+        "meta": "白帽子专区",
+        "desc": "阅读最新的安全研究准则、报告提报格式规范和不同漏洞严重等级对应的商业现金赏金激励标准。",
+        "tag": "去查看",
+        "href": "/trust/bounty"
       },
       {
-        "icon": "ShieldCheck",
-        "accentColor": "teal",
-        "title": "次级处理者列表",
-        "desc": "所有参与数据处理的第三方服务商披露"
+        "title": "次级数据处理者名单披露列表 (Sub-processors)",
+        "meta": "透明治理",
+        "desc": "完整披露参与 MSRU 系统托管、邮件下发、客户服务及数据统计的第三方云与技术供应商白名单。",
+        "tag": "去查看",
+        "href": "/trust/sub-processors"
+      }
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "我们的数据托管在 MSRU 云上，你们的运维工程师是否可以随意查看我们的核心工艺参数？",
+        "a": "不可以。我们实行了严苛的“堡垒机”准入和端到端加密机制。任何运维操作必须获得客户在线工单的临时授权，且全部操作过程拥有不可篡改的安全审计视频日志记录。对于极端敏感的客户，我们提供完全的私有密钥托管方案（BYOK），使我们即便是拥有物理服务器也无法读取解密数据。"
+      },
+      {
+        "q": "等保三级（中国）和 SOC 2 审计更新周期是多久？",
+        "a": "我们的 SOC 2 Type II 年度审计由国际四大审计事务所每年定期出具；中国国家信息安全等级保护三级测评也是每年由有资质的测评机构进行一次全面攻防及合规测试并更新认证。"
+      },
+      {
+        "q": "如果遇到安全事件，MSRU 的应急通知响应机制是怎样的？",
+        "a": "我们承诺在发现任何疑似危及客户数据隐私或系统完整性的高危安全事件后，在 15 分钟内通过控制中心、邮件及短信对受影响租户的管理员发送首响应通知，并在 72 小时内发布公开的事件成因与补救分析报告。"
       }
     ]
   },
   {
     "type": "cta",
     "variant": "large",
-    "title": "需要安全合规白皮书？",
-    "description": "联系我们的合规团队获取针对您所在区域的定制化安全评估报告。",
-    "cta": {
-      "label": "联系安全团队",
-      "href": "/contact"
-    },
+    "title": "打造值得托付一生工业命脉的数字信任中枢",
+    "description": "如果您有任何关于数据合规、GDPR 审计或网络攻防测试的特定技术需求，请及时联系安全部门。",
+    "cta": { "label": "联系安全合规委员会", "href": "/contact" },
     "accentColor": "purple"
   }
 ]

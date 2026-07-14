@@ -4,28 +4,32 @@
     "variant": "dark",
     "badge": {
       "icon": "ShieldCheck",
-      "text": "MSRU 客户成功保障体系"
+      "text": "MSRU Professional Services & Success Program"
     },
-    "title": "端到端交付，赋能全生命周期。",
-    "subtitle": "不只是提供坚实的软件底座。我们通过标准化的实施方法论、高响应的安全护航与深度的定制开发，伴随企业走完数字化转型的每一公里。",
+    "title": "端到端交付与客户成功保障体系",
+    "subtitle": "用专业的交付力兑现数字化价值。MSRU 不仅提供高性能的软件内核，更通过标准化的实施方法论、高响应的白金级技术支持与定制化开发，伴随企业走完数字化转型的每一公里。",
     "accentColor": "teal",
+    "bgImage": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=2000",
     "ctas": [
-      {
-        "label": "获取交付方案",
-        "href": "/contact"
-      },
-      {
-        "label": "了解技术支持",
-        "href": "/services/support"
-      }
-    ],
-    "bgImage": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=2000"
+      { "label": "评估我的交付方案", "href": "/contact" },
+      { "label": "索取实施方法论白皮书", "href": "/contact" }
+    ]
   },
   {
-    "type": "subHero",
-    "title": "覆盖全链路的",
-    "titleAccent": "服务矩阵",
-    "subtitle": "无论是首个灯塔工厂的标杆树立，还是跨国集团的全面铺开，我们皆有对应的标准服务组块。",
+    "type": "statBand",
+    "heading": "卓越的服务履约指标",
+    "accentColor": "teal",
+    "stats": [
+      { "value": "100", "unit": "%", "label": "签约项目的按预算及交付里程碑履约率" },
+      { "value": "3", "unit": "个月", "label": "首个示范产线从业务调研到成功并网运行的平均周期" },
+      { "value": "300", "unit": "名+", "label": "经官方认证的高水准实施顾问与现场保障专家" },
+      { "value": "99", "unit": ".9%", "label": "黄金与白金级客户支持中可用性 SLA 的达成度" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "购买软件只是数字化的开始，真正决定成败的是如何将业务蓝图落地到车间细节中。",
+    "body": "传统软件交付需要漫长的手写开发周期，并且在上线后极难应对生产线改造等日常变更。MSRU 以‘描述驱动、快速原型、持续自举’为实施准则，通过拖拽式配置快速兑现业务价值，实现高水准交付。",
     "accentColor": "teal"
   },
   {
@@ -33,30 +37,102 @@
     "items": [
       {
         "icon": "Activity",
-        "title": "实施交付与蓝图落地",
-        "description": "从业务调研、蓝图设计到系统配置与最终上线，MSRU 敏捷交付法确保项目严格按期高质量兑现。",
+        "title": "项目实施交付 (Project Delivery)",
+        "description": "提供涵盖业务调研、差距分析、系统配置调试、双轨并行演练及上线护航的标准化敏捷实施流程。",
         "span": "wide",
         "accentColor": "teal"
       },
       {
         "icon": "ShieldCheck",
-        "title": "技术支持 7x24",
-        "description": "原厂 L3 级别直通支持。提供主动式健康巡检、紧急故障排查机动响应网络保障产线不停摆。",
+        "title": "全天候企业技术支持 (Premium Support)",
+        "description": "专设 L3 级别原厂直连架构师专线，提供主动式网络及数据库健康巡检、紧急故障排查机动响应网络，保障产线不停摆。",
         "span": "wide",
         "accentColor": "blue"
       },
       {
-        "icon": "Users",
-        "title": "培训与认证",
-        "description": "赋能企业内部团队。涵盖操作员、关键用户至系统架构师的官方权威认证体系与实训工场。",
-        "accentColor": "emerald"
+        "icon": "GraduationCap",
+        "title": "官方学院培训与认证 (Academy)",
+        "description": "赋能企业内部团队。涵盖操作员、关键用户、IT 维护工程师至系统架构师的官方权威认证体系与实操沙箱工场。",
+        "accentColor": "teal"
       },
       {
         "icon": "Code",
-        "title": "定制研发",
-        "description": "特定行业协议解析与非标场景的专属平台扩展开发。",
-        "accentColor": "purple"
+        "title": "定制开发与协议适配 (Custom Dev)",
+        "description": "针对老旧设备、非标串口、冷门工业网络提供驱动级底层定制，及复杂算法（如能耗AI）的专属插件开发包。",
+        "accentColor": "blue"
       }
     ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "方法论",
+    "title": "MSRU 敏捷交付方法论 (MSRU Agile Blueprint)",
+    "body": "我们将复杂的工业转型项目拆解为循序渐进的阶段，通过“快速见效、迭代扩容”的模式，降低大型项目的上线失败隐患。",
+    "bullets": [
+      "第1阶段：1对1蓝图架构审计，确立时序测点与核心流程走向",
+      "第2阶段：快速启动本地开发沙箱，进行 WASM 插件及 PLC 通信连线验证",
+      "第3阶段：单线双轨运行测试，保障在真实物料进入前完成数据闭环"
+    ]
+  },
+  {
+    "type": "list",
+    "variant": "cards",
+    "items": [
+      {
+        "title": "实施交付服务 (Project Delivery)",
+        "meta": "标准化咨询与落地",
+        "desc": "由资深交付团队为您的工厂设计 MES/WMS/QMS 业务蓝图并完成从机台连线到工单报工的全套配置部署。",
+        "tag": "了解详情",
+        "href": "/services/delivery"
+      },
+      {
+        "title": "企业级 premium 技术支持计划 (Premium Support)",
+        "meta": "7x24 NOC 守护保障",
+        "desc": "包含不同响应等级的 SLA 契约、专属客户技术经理（TAM）会诊、系统升级指导与紧急漏洞修复分发。",
+        "tag": "了解详情",
+        "href": "/services/support"
+      },
+      {
+        "title": "官方学院培训体系 (Training & Enablement)",
+        "meta": "人才赋能与实训",
+        "desc": "查看官方最新的课程大纲、上机实操沙箱使用方法以及实施顾问/开发者的证书认证报考指南。",
+        "tag": "了解详情",
+        "href": "/services/training"
+      },
+      {
+        "title": "定制研发与平台扩展服务 (Custom Development)",
+        "meta": "非标驱动与定制插件",
+        "desc": "为特定的冷门非标机台、协议网闸提供底层定制接入，或按需编写垂直算法模型提供商业化定制。",
+        "tag": "了解详情",
+        "href": "/services/custom"
+      }
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "MSRU 的实施交付通常是自己团队做，还是通过合作伙伴（系统集成商）做？",
+        "a": "我们采用“原厂架构把关+认证伙伴联袂交付”的复合模式。项目的顶层蓝图设计和底层微内核编译防错由 MSRU 原厂架构师直接把关，而现场线缆铺设、PLC 点位对接及日常用户培训则由我们当地经过严格认证的银牌/金牌系统集成商（SI）伙伴落地，确保本地化响应效率。"
+      },
+      {
+        "q": "定制开发费用是如何计算的？如何避免项目后期的“追加款项”黑洞？",
+        "a": "我们的定制开发采用严格的人天（Man-Day）工作量评估体系，所有定制需求必须在项目启动前以功能矩阵表的形式固化到订单附录中。对于变更部分，我们实行标准的“需求分析-工作量确认-签字授权”闭环管理流程，坚决反对模糊报价。"
+      },
+      {
+        "q": "现场实施时，你们的工程师是常驻现场，还是远程交付？",
+        "a": "在蓝图调研、设备连线调试（CP/FT并网）以及系统上线重保的三个关键节点，我们的现场实施团队会常驻客户车间一线；在常规的数据配置、看板 UI 调整及培训阶段，我们通过远程安全隧道进行协同，以帮助客户节省差旅成本。"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "为您车间的数字化生命周期配置一流的保障团队",
+    "description": "立即向我们的交付专家预约一次在线沟通，我们将结合您的设备图纸和车间规模定制服务测算单。",
+    "cta": { "label": "沟通交付代表", "href": "/contact" },
+    "accentColor": "teal"
   }
 ]

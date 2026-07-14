@@ -2,83 +2,124 @@
   {
     "type": "hero",
     "variant": "dark",
-    "badge": { "icon": "Network", "text": "IoT Platform" },
-    "title": "IoT 数据采集系统",
-    "subtitle": "海量异构设备接入与边缘数据清洗，秒级边缘计算。",
+    "badge": {
+      "icon": "Network",
+      "text": "MSRU High-Performance IoT Gateway Platform"
+    },
+    "title": "工业级边缘物联与海量数据采集系统",
+    "subtitle": "消灭设备孤岛。自研毫秒级高并发数据采集内核，原生适配 300 余种工业协议，支持边缘端数据滤波、清洗与 WASM 规则计算，将异构设备秒级接入统一数据主线。",
     "accentColor": "purple",
-    "bgImage": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [{ "label": "开始接入测试", "href": "/contact" }, { "label": "索取协议适配器列表", "href": "/contact" }]
   },
   {
     "type": "statBand",
-    "heading": "吞吐量，定义了一切。",
+    "heading": "吞吐量与稳定性定义一切",
     "accentColor": "purple",
     "stats": [
-      { "value": "300", "unit": "+", "label": "免驱直连工业协议" },
-      { "value": "10", "unit": "M", "label": "QoS 分发高频峰值量" },
-      { "value": "1", "unit": "ms", "label": "网关极端调度延迟" },
-      { "value": "30", "unit": "d", "label": "断网时序数据本地离线缓存" }
+      { "value": "300", "unit": "种+", "label": "免驱直连的 PLC、机床、传感器及半导体通信标准协议" },
+      { "value": "10", "unit": "M+", "label": "平台单节点秒级并发数据测点写入吞吐极限" },
+      { "value": "1", "unit": "毫秒", "label": "边缘网关数据采集、转换与状态过滤极端延迟" },
+      { "value": "30", "unit": "天", "label": "断网情况下边缘本地时序数据离线高保真存盘天数" }
     ]
   },
   {
     "type": "animatedBeams",
-    "heading": "从采集到执行，数据一路流动。",
-    "subtitle": "IoT 边缘节点将现场数据清洗后注入平台，驱动上层业务。",
+    "heading": "端到端高速数据流动通路",
+    "subtitle": "从传感器物理电信号到云端决策大脑。数据在边缘侧自动完成噪声过滤和归一化，直接注入统一的数据底座。",
     "nodes": [
-      { "icon": "Network", "label": "IoT 采集" },
-      { "icon": "Cpu", "label": "边缘清洗" },
-      { "icon": "Box", "label": "平台底座" },
-      { "icon": "Package", "label": "MES/WMS" }
+      { "icon": "Network", "label": "工位 PLC/仪表" },
+      { "icon": "Cpu", "label": "MSRU 边缘清洗" },
+      { "icon": "Box", "label": "时序数据中枢" },
+      { "icon": "Package", "label": "MES/WMS 决策" }
     ],
     "edges": [{ "from": 0, "to": 1 }, { "from": 1, "to": 2 }, { "from": 2, "to": 3 }]
   },
   {
     "type": "statement",
-    "title": "只传有用的，",
-    "body": "边缘侧完成滤波、聚合与异常判定，把带宽和算力留给真正的决策。"
+    "title": "把带宽留给真正的异常，只把有决策价值的数据传上云端端。",
+    "body": "传统 IoT 系统将机器产生的所有冗余噪音数据全部上传，导致高昂的带宽和存储开销。MSRU 边缘计算网关支持就近滤波和变化触发（Deadband）机制，仅在数据发生有效阶跃或异常时才向上投递，大幅降低网络开销。",
+    "accentColor": "purple"
   },
   {
     "type": "bento",
     "items": [
       {
         "icon": "Network",
-        "accentColor": "purple",
-        "title": "全协议接入",
-        "tagline": "即插即接",
-        "description": "Modbus/OPC-UA/MQTT 等 300+ 协议免驱直连。",
-        "span": "wide"
+        "title": "全协议即插即接驱动库 (Drivers)",
+        "description": "原生集成西门子 S7、三菱 MC、欧姆龙 FINS、Modbus TCP/RTU 以及半导体行业标准 SECS/GEM 协议适配器。",
+        "span": "wide",
+        "accentColor": "purple"
       },
       {
         "icon": "Database",
-        "accentColor": "blue",
-        "title": "时序存储",
-        "tagline": "海量高频",
-        "description": "百万级测点秒级写入与断网续传。"
+        "title": "高并发本地时序断网续传",
+        "description": "采用工业级轻量时序存储机制，即便车间网络意外中断，网关也会自动将测点缓存在本地，待复网后毫秒级无损对齐回传。",
+        "span": "wide",
+        "accentColor": "blue"
       },
       {
         "icon": "Cpu",
-        "accentColor": "teal",
-        "title": "边缘计算",
-        "tagline": "就近决策",
-        "description": "规则引擎与轻量模型在网关侧实时执行。"
+        "title": "边缘 WASM 规则计算",
+        "description": "支持用 Go/Rust 编写业务过滤函数，并在网关沙箱中就近执行，避免网络往返延迟。",
+        "accentColor": "purple"
+      },
+      {
+        "icon": "Lock",
+        "title": "单向 mTLS 加密防扫描",
+        "description": "边缘端发起单向加密安全通道，无需在防火墙映射任何入站端口，彻底杜绝外网扫描扫描渗透。",
+        "accentColor": "blue"
       }
     ]
   },
   {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1581092162384-8987c1d64926?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "应用场景",
+    "title": "超高速 SMT 贴片产线实时遥测采集",
+    "body": "在 3C 贴片现场，MSRU 边缘计算盒子以 50ms 频率同步读取吸嘴真空值、抛料率及吸嘴行程数据，快速诊断异常抛料并进行 Andon 告警。",
+    "bullets": [
+      "微秒级高精度时间戳对齐，精确到单个吸嘴",
+      "自动过滤无规则抖动噪声，减少 70% 时序存储垃圾",
+      "支持本地 Andon 报警灯和蜂鸣器 PLC 快速联动"
+    ]
+  },
+  {
     "type": "connectivityGlobe",
-    "heading": "全球工业节点，实时互联。",
-    "subtitle": "跨区域工厂设备统一接入同一张数据网络。",
+    "heading": "跨国多厂区物联节点统一接入大盘",
+    "subtitle": "无论您的设备位于长三角、珠三角还是欧洲分厂，均可通过加密通道无缝接入全球数据流大屏大屏。",
     "autoRotate": true,
     "markers": [
-      { "lat": 22.27, "lng": 113.57, "label": "珠海" },
-      { "lat": 31.23, "lng": 121.47, "label": "上海" },
-      { "lat": 50.11, "lng": 8.68, "label": "法兰克福" },
-      { "lat": 37.77, "lng": -122.42, "label": "旧金山" }
+      { "lat": 22.27, "lng": 113.57, "label": "珠海研发中心" },
+      { "lat": 31.23, "lng": 121.47, "label": "上海运营中心" },
+      { "lat": 50.11, "lng": 8.68, "label": "法兰克福实验室" },
+      { "lat": 37.77, "lng": -122.42, "label": "硅谷分中心" }
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "我们的设备大多没有网口，只有老旧 RS-485 串口，系统怎么连？",
+        "a": "我们的 MSRU Edge Box M1 边缘网关配有多路光电隔离 RS-485 串口。您只需将串口引线接入网关，在系统管理控制台配置好对应的 Modbus 寄存器地址，即可实现向以太网 TCP 报文的转换接入。"
+      },
+      {
+        "q": "高频数据采集对局域网带宽占用大吗？怎么控制？",
+        "a": "我们设计了主动式和订阅式两种模式，并支持 Deadband（死区）过滤。例如，当空压机温度在 60°C 上下波动不超过 0.5°C 时，网关会自动过滤该点，不产生网络数据包；一旦发生超出死区的突变或达到定时周期，才发起传输，将带宽占用降低了 90% 以上。"
+      },
+      {
+        "q": "如果设备连接失败，是否有自动告警和离线诊断机制？",
+        "a": "有。平台支持对每个连线通信通道进行“心跳包（Keep-alive）”健康检查。一旦发现 PLC 响应超时，会自动在控制面板将设备标红，并下发 Andon 异常事件，同时网关本地将启动持续的自动重连尝试。"
+      }
     ]
   },
   {
     "type": "cta",
-    "variant": "small",
-    "title": "接入您的第一台设备",
-    "cta": { "label": "预约 IoT 演示", "href": "/contact" }
+    "variant": "large",
+    "title": "立即激活您的工厂边缘大脑，实现万物互联",
+    "description": "向我们的物联网工程师索取最新版网关镜像，或预订 MSRU 边缘采集测试开发套件包。",
+    "cta": { "label": "沟通 IoT 专家组", "href": "/contact" },
+    "accentColor": "purple"
   }
 ]

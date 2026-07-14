@@ -4,22 +4,74 @@
     "variant": "dark",
     "badge": {
       "icon": "Briefcase",
-      "text": "Industry Solutions"
+      "text": "Enterprise Industry Solutions"
     },
-    "title": "每个行业都有专属蓝图",
-    "subtitle": "我们深耕高端制造的垂直沃土。不是泛用型工具的简单拼凑，而是为每一条产线量身锻造的数字化破局武器。",
+    "title": "深耕高端制造的垂直工业行业方案",
+    "subtitle": "拒绝泛用性工具的简单拼凑。MSRU 结合制造现场的一线实践，为每一个高端细分制造赛道量身锻造高分辨率的数据底座与业务闭环，用专业打破系统孤岛。",
     "accentColor": "blue",
-    "bgVideo": "/uploads/solutions.hero.mp4"
+    "bgVideo": "/uploads/solutions.hero.mp4",
+    "ctas": [
+      { "label": "与行业架构师规划蓝图", "href": "/contact" },
+      { "label": "下载全线行业白皮书", "href": "/contact" }
+    ]
+  },
+  {
+    "type": "statBand",
+    "heading": "已在多行业核心产线落地验证的实力",
+    "accentColor": "blue",
+    "stats": [
+      { "value": "5", "unit": "大", "label": "深耕的垂直核心工业制造细分板块" },
+      { "value": "40", "unit": "%+", "label": "平均减少的定制化系统集成调试时长" },
+      { "value": "99", "unit": ".8%", "label": "各行业客户系统可用性与生产连续性表现" },
+      { "value": "10", "unit": "万+", "label": "现场平稳连线运行的高频工业设备节点" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "每个行业都有自己的工艺语言，通用套件最终沦为“信息废纸”。",
+    "body": "如果一个软件声称既能管芯片光刻，又能管农业大棚，那它一定什么都管不好——除非它拥有可高度自定义扩展的微内核。MSRU 平台化微内核支持行业专属插件包，让每一套方案都如同定制开发般契合您的工艺流程。",
+    "accentColor": "blue"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Cpu",
+        "title": "Describe-Once 微内核底座",
+        "description": "所有行业方案共享的平台内核。通过一份业务描述自动生成数据结构、API及交互界面，彻底免去二次代码开发之苦。",
+        "span": "wide",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "Network",
+        "title": "全协议兼容工业接入网关",
+        "description": "支持从传统的 Modbus、OPC UA 到半导体 SECS/GEM 及各类非标仪表的免驱高速数据读取与下发控制。",
+        "span": "wide",
+        "accentColor": "cyan"
+      },
+      {
+        "icon": "Activity",
+        "title": "WASM 毫秒级规则计算引擎",
+        "description": "允许将各行业的核心工艺参数、质检规则及连锁控制逻辑打包在边缘端计算执行，确保网络抖动时不掉链子。",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "Box",
+        "title": "WebGPU 实时 3D 数字孪生",
+        "description": "支持全系列行业大屏。无需任何插件，在纯浏览器端流畅流畅渲染数十万面复杂装配体模型与实时态势图图。",
+        "accentColor": "cyan"
+      }
+    ]
   },
   {
     "type": "splitMedia",
     "side": "left",
     "image": "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=800",
-    "eyebrow": "Industry #1",
-    "title": "新能源与电池",
-    "body": "从电芯化成到模组 PACK，覆盖高通量极片质检、电芯追溯与循环寿命建模的全链路数字化方案。",
+    "eyebrow": "新能源与电池 (EV Battery)",
+    "title": "从涂布极片到模组 PACK 的精细数据链",
+    "body": "覆盖极片高通量视觉质检、电芯全程条码追溯、化成分容立库安全调度以及循环寿命早期预测建模，守护电池质量红线。",
     "cta": {
-      "label": "探索行业方案",
+      "label": "探索新能源方案",
       "href": "/solutions/ev-battery"
     }
   },
@@ -27,11 +79,11 @@
     "type": "splitMedia",
     "side": "right",
     "image": "https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&q=80&w=800",
-    "eyebrow": "Industry #2",
-    "title": "半导体与泛半导体",
-    "body": "无尘车间全域管控、SECS/GEM 设备集成与晶圆级良率追踪，满足顶级 Fab 的极致要求。",
+    "eyebrow": "半导体与先进封测 (Semiconductor)",
+    "title": "无尘车间管控与 CP-FT 良率 Map 分析",
+    "body": "原生支持 SEMI E30/E37/E40 协议接入，提供 Golden Recipe 配方锁防错、FDC/SPC 腔体级参数监控以及 Wafer Map 快速分析。",
     "cta": {
-      "label": "探索行业方案",
+      "label": "探索半导体方案",
       "href": "/solutions/semiconductor"
     }
   },
@@ -39,35 +91,61 @@
     "type": "splitMedia",
     "side": "left",
     "image": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&q=80&w=800",
-    "eyebrow": "Industry #3",
-    "title": "汽车与高端装备",
-    "body": "JIT/JIS 准时制排产、供应链协同与全流程 IATF 16949 质量管理体系深度集成。",
+    "eyebrow": "汽车与高端装备 (Automotive)",
+    "title": "JIT/JIS 顺位排产与 IATF 16949 质量闭环",
+    "body": "直连阿特拉斯拧紧枪扭矩及压装曲线，同步主机厂广播计划，消除线边库呆滞，提供 VIN 码全流程双向正反穿透追溯。",
     "cta": {
-      "label": "探索行业方案",
+      "label": "探索汽车方案",
       "href": "/solutions/automotive"
     }
   },
   {
     "type": "splitMedia",
     "side": "right",
-    "image": "https://images.unsplash.com/photo-1524486361537-8ad15938e1a3?q=80&w=2070&auto=format&fit=crop",
-    "eyebrow": "Industry #4",
-    "title": "智慧农业全栈底座",
-    "body": "融合 IoT 实时感控、AI 农业大脑与 3D 数字孪生，为现代农业产业升级与科研转化提供端到端闭环。由真实土壤孕育，由数字逻辑重构。",
+    "image": "https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&q=80&w=800",
+    "eyebrow": "3C消费电子与组装 (3C Electronics)",
+    "title": "高频换线（SMED）与工位级视觉防呆",
+    "body": "一键快速下发工位 SOP 与设备测试配方，深度整合 SPI/AOI 图像自动归档，有效拦截漏拧、装配错位等认为失误。",
     "cta": {
-      "label": "探索行业方案",
+      "label": "探索 3C 方案",
+      "href": "/solutions/3c"
+    }
+  },
+  {
+    "type": "splitMedia",
+    "side": "left",
+    "image": "https://images.unsplash.com/photo-1524486361537-8ad15938e1a3?auto=format&fit=crop&q=80&w=800",
+    "eyebrow": "智慧农业与科研大棚 (Smart Agriculture)",
+    "title": "端到端 IoT 环控与 3D 农业孪生沙箱",
+    "body": "高精度土壤与气象遥测接入，3D 孪生大盘全息监控大棚态势，联动边缘灌溉策略，把云端智慧带入真实土地。",
+    "cta": {
+      "label": "探索农业方案",
       "href": "/solutions/agriculture"
     }
   },
   {
+    "type": "faq",
+    "items": [
+      {
+        "q": "这些行业方案是否需要单独采购不同的软件底座？",
+        "a": "不需要。所有行业方案都基于 MSRU 统一内核平台（MSRU Core）。不同行业方案的区别在于其加载的专有协议驱动包、工艺路线模板、Andon 看板布局及特定的 WASM 规则集插件。这大大降低了多业务混合工厂的系统冗余度。"
+      },
+      {
+        "q": "我们的工厂有跨行业的混合业务（如既有3C组装也有汽车零部件加工），系统怎么支持？",
+        "a": "这正是 MSRU 组合式工业平台的强项。您可以在平台内为不同的车间或生产线独立配置不同的业务规则包，而底层数据依然保存在同一个关系型/时序数据库实例中，轻松实现跨业务的数据贯通。"
+      },
+      {
+        "q": "如果我们的细分行业不在上述列表中，是否可以支持定制？",
+        "a": "可以。我们有许多食品饮料、制药及现代包装客户，基于 MSRU 的低代码 Describe-Once 工具在 2-4 周内自行搭建了专属行业的业务流。您也可联系我们的合作伙伴获取深度定制支持。"
+      }
+    ]
+  },
+  {
     "type": "cta",
     "variant": "large",
-    "title": "没有找到您的行业？",
-    "description": "我们的底层微服务架构天生具备跨行业适配能力。联系我们的解决方案架构师，获取定制化蓝图。",
-    "cta": {
-      "label": "联系解决方案专家",
-      "href": "/contact"
-    },
-    "accentColor": "amber"
+    "title": "开始规划符合您的产线特征的数字化蓝图",
+    "description": "立即向我们的行业解决方案顾问预约一对一在线演示，我们将结合您的实际图纸和工艺进行场景解答。",
+    "cta": { "label": "预约行业架构会诊", "href": "/contact" },
+    "accentColor": "blue"
   }
 ]

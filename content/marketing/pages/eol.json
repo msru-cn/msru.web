@@ -1,26 +1,143 @@
 [
   {
     "type": "hero",
-    "badge": { "icon": "CalendarDays", "text": "End of Life" },
-    "title": "版本生命周期表 (EOL)",
-    "subtitle": "了解每个版本的支持状态、维护窗口与最终终止日期。",
+    "variant": "dark",
+    "badge": {
+      "icon": "CalendarDays",
+      "text": "Product Lifecycle & Support Policy"
+    },
+    "title": "产品生命周期与维护政策 (EOL)",
+    "subtitle": "规范升级，稳健前行。为确保制造现场的生产连续性与信息安全，我们为每一个 MSRU 平台版本制定了清晰的维护时间表与最终维护终止 (EOL) 日期，协助企业进行合理的升级规划。",
     "accentColor": "blue",
-    "bgImage": "https://images.unsplash.com/photo-1611224923853-80b023f02d71?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1611224923853-80b023f02d71?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [{ "label": "评估升级需求", "href": "/contact" }, { "label": "阅读升级文档", "href": "/docs" }]
+  },
+  {
+    "type": "statBand",
+    "heading": "持续护航您的生产安全",
+    "accentColor": "blue",
+    "stats": [
+      { "value": "36", "unit": "个月", "label": "LTS 长期支持版本标准维护期限" },
+      { "value": "2", "unit": "个", "label": "当前处于活跃开发与全面支持中的主要版本" },
+      { "value": "24", "unit": "小时", "label": "针对活跃版本严重安全漏洞的热补丁响应承诺" },
+      { "value": "100", "unit": "%", "label": "LTS 升级跨版本元数据自动迁移兼容性" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "工业级软件的生命周期，绝不能以‘快速迭代、随时宕机’为代价。",
+    "body": "制造系统不同于互联网软件，一次升级故障可能导致全厂停工。MSRU 严守 LTS (Long Term Support) 承诺，明确区分功能演进与安全补丁，确保即便在 Extended Support（延长维护）期内，安全屏障依旧牢不可破。",
+    "accentColor": "blue"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "ShieldCheck",
+        "title": "全面支持期 (General Support)",
+        "description": "提供新特性迭代、Bug 修复、时序引擎优化及全部协议适配更新。建议作为新项目首选部署版本。",
+        "span": "wide",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "Activity",
+        "title": "仅安全维护期 (Extended Support)",
+        "description": "不再引入任何破坏性或大型功能变更，仅提供安全漏洞热补丁和高危险 Bug 紧急阻断修复。",
+        "span": "wide",
+        "accentColor": "cyan"
+      },
+      {
+        "icon": "AlertTriangle",
+        "title": "已终止维护 (End of Life)",
+        "description": "停止一切更新与技术支持服务。设备驱动无法保证在新系统运行，建议立即迁移至活跃版本。",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "RefreshCw",
+        "title": "平滑升级保障 (Smooth Upgrade)",
+        "description": "通过声明式配置，升级时旧配置可自动平移，无需重写 API，并支持测试环境双轨并行运行。",
+        "accentColor": "cyan"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "升级策略",
+    "title": "LTS 长期支持版本规划",
+    "body": "我们承诺每隔 18 个月发布一个 LTS 长期支持版，为制造企业提供长达 3 年的安心服役周期，避免高频升级打乱排产节拍。",
+    "bullets": [
+      "LTS 保证版本内 API 的向下兼容性",
+      "提供专用的一键数据结构平滑移植向导",
+      "专享全球现场工程师远程联调排雷保障"
+    ]
   },
   {
     "type": "list",
     "variant": "rows",
     "items": [
-      { "title": "v5.4.x", "meta": "全面支持", "desc": "EOL 日期：—", "tag": "活跃" },
-      { "title": "v5.3.x", "meta": "安全补丁", "desc": "EOL 日期：2027-06-30", "tag": "活跃" },
-      { "title": "v5.2.x", "meta": "仅安全补丁", "desc": "EOL 日期：2026-12-31", "tag": "维护期" },
-      { "title": "v5.1.x", "meta": "已终止", "desc": "EOL 日期：2026-03-31", "tag": "已终止" },
-      { "title": "v5.0.x", "meta": "已终止", "desc": "EOL 日期：2025-09-30", "tag": "已终止" },
-      { "title": "v4.x", "meta": "已终止", "desc": "EOL 日期：2025-03-31", "tag": "已终止" }
+      {
+        "title": "v5.4.x (LTS)",
+        "meta": "发布日期：2025-10 · 活跃开发中",
+        "desc": "全面支持期至：2027-10-31 · 最终 EOL 日期：2028-10-31",
+        "tag": "全面支持"
+      },
+      {
+        "title": "v5.3.x",
+        "meta": "发布日期：2025-04 · 功能冻结",
+        "desc": "全面支持期至：2026-10-31 · 最终 EOL 日期：2027-06-30",
+        "tag": "仅安全维护"
+      },
+      {
+        "title": "v5.2.x (LTS)",
+        "meta": "发布日期：2024-06 · 维护期",
+        "desc": "全面支持期已过 · 最终 EOL 日期：2026-12-31",
+        "tag": "仅安全维护"
+      },
+      {
+        "title": "v5.1.x",
+        "meta": "发布日期：2023-12 · 已终止",
+        "desc": "全面支持期已过 · 最终 EOL 日期：2026-03-31",
+        "tag": "已终止维护"
+      },
+      {
+        "title": "v5.0.x (LTS)",
+        "meta": "发布日期：2023-06 · 已终止",
+        "desc": "全面支持期已过 · 最终 EOL 日期：2025-09-30",
+        "tag": "已终止维护"
+      },
+      {
+        "title": "v4.x 家族",
+        "meta": "发布日期：2021-12 · 已终止",
+        "desc": "全面支持期已过 · 最终 EOL 日期：2025-03-31",
+        "tag": "已终止维护"
+      }
     ]
   },
   {
-    "type": "statement",
-    "body": "* 已终止 (EOL) 的版本除应对极危 0-Day 漏洞的特批热补丁外，不再提供任何更新支持。建议尽快升级至最新版本。"
+    "type": "faq",
+    "items": [
+      {
+        "q": "如果我们的生产系统已过期且短期内无法停机升级，会有什么风险？",
+        "a": "已 EOL 的系统不再接收任何安全更新。若被内网渗透或发现高危漏洞，系统将处于无保护状态。此外，新型 PLC 和工业相机的最新驱动程序可能不再适配已 EOL 版本。"
+      },
+      {
+        "q": "跨版本升级时，我们自己编写的 WASM 自定义插件是否需要重新编写？",
+        "a": "MSRU 的 WASM API 规范对 LTS 版本提供良好的 ABI 兼容性保证。通常情况下，您的自定义插件在升级后无需重新编译即可直接导入使用。特殊变动我们会在版本迁移指南中做详尽声明。"
+      },
+      {
+        "q": "升级服务是否收费？",
+        "a": "拥有 MSRU 活跃订阅或企业白金支持协议的客户，可获得免费的升级软件授权及在线技术专家支持。如需现场工程师进场做双轨迁移部署，我们提供额外的实施评估报价。"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "立即预约一次免费的版本健康度与安全审计",
+    "description": "由我们的实施专家为您诊断当前部署架构，提供符合您的排产周期的零停机升级蓝图。",
+    "cta": { "label": "预约健康审计", "href": "/contact" },
+    "accentColor": "blue"
   }
 ]

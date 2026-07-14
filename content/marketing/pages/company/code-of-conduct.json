@@ -2,55 +2,127 @@
   {
     "type": "hero",
     "variant": "dark",
-    "badge": { "icon": "Scale", "text": "Code of Conduct" },
-    "title": "商业行为准则",
-    "subtitle": "MSRU 全球员工、管理层与合作伙伴必须共同遵循的商业道德底线。",
+    "badge": {
+      "icon": "Scale",
+      "text": "Ethics, Trust & Compliance"
+    },
+    "title": "商业行为与职业道德准则",
+    "subtitle": "守正创新，底线不容逾越。本准则适用于 MSRU 全球所有实体实体、分公司员工、管理层董事以及生态合作伙伴，是我们共同必须遵循的最高道德与法治标准。",
     "accentColor": "blue",
-    "bgImage": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [
+      { "label": "下载准则全文 (PDF)", "href": "/contact" },
+      { "label": "联系合规委员会", "href": "mailto:ethics@msru.ai" }
+    ]
   },
   {
-    "type": "featureGrid",
-    "columns": 2,
-    "cards": [
-      {
-        "icon": "ShieldCheck",
-        "accentColor": "blue",
-        "title": "诚信与透明",
-        "desc": "在所有商业活动中保持最高标准的诚信，拒绝任何形式的贿赂、腐败或利益冲突。"
-      },
-      {
-        "icon": "Scale",
-        "accentColor": "emerald",
-        "title": "公平竞争",
-        "desc": "严格遵守各司法管辖区的反垄断与反不正当竞争法规，通过产品实力赢得市场。"
-      },
-      {
-        "icon": "Users",
-        "accentColor": "amber",
-        "title": "多元包容",
-        "desc": "尊重每一位员工、合作伙伴与客户，构建零歧视、无骚扰的工作与合作环境。"
-      },
-      {
-        "icon": "Heart",
-        "accentColor": "rose",
-        "title": "社会责任",
-        "desc": "积极回馈社区，支持工业教育与可持续发展事业，做负责任的企业公民。"
-      }
+    "type": "statBand",
+    "heading": "高标准的道德与合规执行力力",
+    "accentColor": "blue",
+    "stats": [
+      { "value": "100", "unit": "%", "label": "全员（含高管）年度合规与道德在线培训完成率率" },
+      { "value": "1", "unit": "个", "label": "设立在集团董事会下的独立审计与合规委员会" },
+      { "value": "0", "unit": "容忍", "label": "针对任何形式的贿赂、利益输送与不正当竞争红线" },
+      { "value": "24", "unit": "小时", "label": "合规举报热线覆盖时间，提供匿名举报保护" }
     ]
   },
   {
     "type": "statement",
-    "title": "举报渠道",
-    "body": "如您发现任何违反本准则的行为，可通过以下渠道匿名举报：匿名举报邮箱 ethics@msru.ai；公司内部举报热线 400-800-1904 转 9；独立第三方举报平台（即将上线）。MSRU 严禁对善意举报者进行任何形式的报复，违反者将受到严厉纪律处分直至解除劳动关系。",
+    "title": "诚实与信任不是企业的装饰品，而是工业系统的基石。",
+    "body": "当我们在编写用于汽车制动、半导体良率控制或电池消防安全的软件时，任何一行虚假的代码或不正当的商业利益往来，都会转化为物理世界的安全隐患。我们把职业诚实奉为技术可靠性的第一前提条件。",
     "accentColor": "blue"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "ShieldCheck",
+        "title": "诚信透明与反贿赂反腐败",
+        "description": "严格遵守《反海外腐败法》(FCPA) 及各司法管辖区的廉洁法规。禁止任何形式的商业贿赂、暗扣、奢侈款待及不正当利益输送。",
+        "span": "wide",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "Scale",
+        "title": "反垄断与反不正当竞争",
+        "description": "禁止与竞争对手达成串通投标、价格垄断、瓜分市场的协议。我们坚信通过技术创新和产品实力赢得市场的阳光竞争机制。",
+        "span": "wide",
+        "accentColor": "emerald"
+      },
+      {
+        "icon": "Users",
+        "title": "多元、公平与反工作场所骚扰",
+        "description": "为所有种族、性别、性取向及宗教背景员工提供公平机会，对职场欺凌、性别骚扰及不当言论采取零容忍姿态。",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "Lock",
+        "title": "数据隐私保护与知识产权尊重",
+        "description": "严格保护客户数据不被滥用。绝不窃取竞争对手商业秘密，并对所有自研技术建立高标准的专利和源码保护机制。",
+        "accentColor": "emerald"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "举报保护",
+    "title": "匿名 whistleblowing（举报）与严格的非报复承诺",
+    "body": "任何员工或合作伙伴如发现疑似利益冲突、舞弊或泄密行为，均可启动匿名举报通道。我们严令任何管理人员对善意举报人进行阻碍或报复。",
+    "bullets": [
+      "设立独立于业务线的外部第三方举报热线及托管邮箱",
+      "合规委员会收到举报后 24 小时内启动案卷评估",
+      "严惩阻挠调查或伪造证据的行为，情节严重者直接解除劳动关系"
+    ]
   },
   {
     "type": "list",
     "variant": "rows",
     "items": [
-      { "title": "匿名举报邮箱", "desc": "ethics@msru.ai", "href": "mailto:ethics@msru.ai" },
-      { "title": "公司内部举报热线", "desc": "400-800-1904 转 9" },
-      { "title": "独立第三方举报平台", "desc": "即将上线" }
+      {
+        "title": "集团合规与商业道德匿名受理邮箱",
+        "meta": " ethics@msru.ai",
+        "desc": "由独立合规官查收，任何业务管理层无权读取。",
+        "tag": "匿名通道"
+      },
+      {
+        "title": "内部廉政合规热线 (仅工作时间)",
+        "meta": "400-800-1904 转 9",
+        "desc": "可选择语音匿名或留言处理，自动进行录音归档备案。",
+        "tag": "内部电话"
+      },
+      {
+        "title": "外部独立合规审计委员会 (董事会直属)",
+        "meta": "board-audit@msru.ai",
+        "desc": "如果您的举报涉及高管成员，可直接抄送此董事会直连邮箱。",
+        "tag": "董事会直连"
+      }
     ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "如果供应商或者生态合作伙伴违反了本准则，MSRU 会怎么处理？",
+        "a": "对于严重违反廉洁采购、商业受贿或侵犯数据隐私的供应商或渠道合作伙伴，MSRU 将立即挂起其合作准入资格并冻结应付款项，情节特别严重的将终止全部业务合同并移送司法机关处理。"
+      },
+      {
+        "q": "员工在接受外部招待或者赠送小额礼品时，有什么标准？",
+        "a": "我们有精细的《礼品与款待管理规范》。员工通常禁止接受任何超出当地日常社交礼仪价值的款待及礼品。对于无法退回的小额商务纪念品，必须主动向合规部门如实申报登记。"
+      },
+      {
+        "q": "公司如何保证新入职员工知晓并遵守此项行为守则？",
+        "a": "所有新入职员工均需在入职首周通过“合规一号”在线学习系统并完成守则签署。后续每年年底全员都需要重新进行一次案例测试并重新对守则进行签字承诺。"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "共建阳光、合规、诚信的工业软件生态",
+    "description": "如果您在与我们的商业谈判、项目实施或日常服务中发现任何违规隐患，请及时联系合规团队。",
+    "cta": { "label": "发起合规问询", "href": "mailto:ethics@msru.ai" },
+    "accentColor": "blue"
   }
 ]

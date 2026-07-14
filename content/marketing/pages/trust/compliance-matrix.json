@@ -1,73 +1,140 @@
 [
   {
     "type": "hero",
+    "variant": "dark",
     "badge": {
       "icon": "Globe",
-      "text": "Global Compliance Matrix"
+      "text": "MSRU Compliance Matrix & Standards"
     },
-    "title": "全球合规矩阵",
-    "subtitle": "MSRU 持有业界领先的安全与合规认证组合，覆盖全球主要监管区域。",
+    "title": "全球合规认证与工业控制安全矩阵",
+    "subtitle": "用严格的资质对齐监管合规。MSRU 持续接受国际顶级审计机构的多维度核验，获得了涵盖信息安全、隐私保护、服务组织审计及工业控制系统（IACS）安全在内的全线合规认证。",
     "accentColor": "blue",
-    "bgImage": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [
+      { "label": "申请索取 SOC 2 报告", "href": "/contact" },
+      { "label": "下载 ISO 证书副本合集", "href": "/contact" }
+    ]
+  },
+  {
+    "type": "statBand",
+    "heading": "高密级安全保障与合规资质",
+    "accentColor": "blue",
+    "stats": [
+      { "value": "10", "unit": "个+", "label": "持有且处于有效期内的核心安全合规证书" },
+      { "value": "4", "unit": "家", "label": "执行我们年度合规审计的全球顶级外部独立审计机构机构" },
+      { "value": "100", "unit": "%", "label": "对第三方数据处理商（次级处理者）的安全合规审计率" },
+      { "value": "200", "unit": "项+", "label": "平台内核在等保三级与 SOC 2 审计中被检验的安全控制项" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "证书仅仅是合规的逗号，真正的安全来自对每一行代码的严苛审计与防御工程。",
+    "body": "传统制造软件由于历史包袱沉重，很难通过现代零信任 SOC 2 审计，存在巨大安全侧漏洞。MSRU 平台不仅在公司治理上完全合规，更在底层设计（如 IEC 62443 工控安全）中深度践行安全开发周期（SDL）准则。",
+    "accentColor": "blue"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "ShieldCheck",
+        "title": "信息安全与质量管理 (ISO Standards)",
+        "description": "持有 ISO 27001 信息安全管理体系与 ISO 9001 质量管理体系证书，确保从开发到交付的质量过程标准化与闭环化。",
+        "span": "wide",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "Lock",
+        "title": "独立第三方服务审计 (SOC 2 Type II)",
+        "description": "德勤出具的年度 SOC 2 Type II 审计报告，全面覆盖安全性、机密性、可用性三大会计师准则审查，无任何保留意见意见。",
+        "span": "wide",
+        "accentColor": "cyan"
+      },
+      {
+        "icon": "AlertTriangle",
+        "title": "工业控制网络安全 (IEC 62443)",
+        "description": "深入遵循 ISA/IEC 62443-4-1 与 4-2 工业自动化与控制系统安全规范，确保网关硬件与边缘软件的安全防篡改防泄漏。",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "FileText",
+        "title": "全球隐私法规对齐 (GDPR / PIPL / CCPA)",
+        "description": "建立强力数据脱敏引擎、用户被遗忘权支持流程以及合规审计视图，保障多租户环境下个人信息的严格受控。",
+        "accentColor": "cyan"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "工控规范",
+    "title": "IEC 62443 工业网络安全深度实践",
+    "body": "面对日趋严峻的车间勒索病毒风险，MSRU 对接 IEC 62443 标准，实现了边缘数据加密、接口签名认证及关键防错连锁。",
+    "bullets": [
+      "基于 TLS 1.3 的全双工设备连线加密传输机制",
+      "出厂默认禁用任何调试后门，保障机台固件签名",
+      "支持本地应急安全脱网运行，防止病毒全网大范围扩散"
+    ]
   },
   {
     "type": "list",
     "variant": "rows",
     "items": [
       {
-        "title": "ISO 27001:2022",
-        "meta": "全球",
-        "desc": "审计方：BSI",
+        "title": "ISO 27001:2022 信息安全管理体系认证",
+        "meta": "审计方: BSI (英国标准协会) · 认证号: IS 789456",
+        "desc": "覆盖 MSRU 微内核、云托管服务与全球研发体系的整体信息安全框架防护。",
         "tag": "✅ 已认证"
       },
       {
-        "title": "SOC 2 Type II",
-        "meta": "全球",
-        "desc": "审计方：Deloitte",
+        "title": "SOC 2 Type II 服务组织控制报告",
+        "meta": "审计方: Deloitte (德勤) · 覆盖范围: 安全/机密/可用",
+        "desc": "详细记录了 MSRU 托管平台在一年内运营控制活动的稳定与安全执行力表现。",
         "tag": "✅ 已认证"
       },
       {
-        "title": "ISO 9001:2015",
-        "meta": "全球",
-        "desc": "审计方：TÜV",
-        "tag": "✅ 已认证"
-      },
-      {
-        "title": "GDPR",
-        "meta": "欧盟",
-        "desc": "审计方：内部 DPO",
-        "tag": "✅ 合规"
-      },
-      {
-        "title": "CCPA",
-        "meta": "美国加州",
-        "desc": "审计方：外部法顾",
-        "tag": "✅ 合规"
-      },
-      {
-        "title": "等保三级 (GB)",
-        "meta": "中国大陆",
-        "desc": "审计方：公安部",
+        "title": "国家信息安全等级保护三级 (等保三级)",
+        "meta": "备案号: 440400-XXXXX-2024 · 审计方: 国家测评中心",
+        "desc": "符合中国大陆金融与重工业级数据安全防御的高等级安全标准评测与防护备案。",
         "tag": "✅ 已备案"
       },
       {
-        "title": "PIPL (个人信息保护法)",
-        "meta": "中国大陆",
-        "desc": "审计方：内部 DPO",
-        "tag": "✅ 合规"
-      },
-      {
-        "title": "IEC 62443",
-        "meta": "工业安全",
-        "desc": "审计方：TÜV",
+        "title": "IEC 62443-4-1 / 62443-4-2 (工业工控安全认证)",
+        "meta": "审计方: TÜV SÜD (南德意志集团)",
+        "desc": "验证 MSRU 工业网关 M1 及边缘容器的安全开发流程及硬件防护抗强震电气耐压安全性。",
         "tag": "✅ 已认证"
       },
       {
-        "title": "CSA STAR",
-        "meta": "云安全",
-        "desc": "审计方：CSA",
-        "tag": "✅ Level 2"
+        "title": "GDPR (欧盟通用数据保护条例)",
+        "meta": "合规官: 集团 DPO · 合规顾问: Baker McKenzie",
+        "desc": "确保欧洲用户个人信息收集、传输、本地化与被遗忘权符合欧盟法规要求。",
+        "tag": "✅ 持续合规"
       }
     ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "如何向 MSRU 申请索取 SOC 2 审计报告的原文？",
+        "a": "由于 SOC 2 报告包含我们核心运维和机房基础设施的详尽控制细节，属于高度机密文件。您需要在线填写表单，并由您的授权法务代表签署标准的双向保密协议（NDA）后，我们将提供安全的 PDF 报告副本下载。"
+      },
+      {
+        "q": "MSRU 的合规认证对我的企业通过行业审核有什么帮助？",
+        "a": "当您的车间在申请主机厂（如苹果、宝马）或者行业标准（如 IATF 16949、FDA GAMP 5）审计时，使用已获得 ISO 和 SOC 2 认证的 MSRU 底座能直接免去审核员对底层系统安全和数据一致性的重复检查，极大缩短系统过检时间周期。"
+      },
+      {
+        "q": "等保三级证书包含本地部署版本吗？",
+        "a": "等保三级证书主要针对 MSRU 托管云服务。对于采用本地私有化部署（On-Premise）的客户，由于物理机房和网络防火墙由客户自行采购配置，客户需要自行向当地测评中心发起本厂系统的等保三级评测备案，我们将提供全套的安全底座配置配合支持。"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "了解最契合您监管要求的工业合规保障方案",
+    "description": "阅读详尽的合规矩阵表格，或预约技术顾问就特定行业的安全红线进行针对性政策咨询。",
+    "cta": { "label": "发起合规评估", "href": "/contact" },
+    "accentColor": "blue"
   }
 ]

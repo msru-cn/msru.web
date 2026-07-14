@@ -2,64 +2,127 @@
   {
     "type": "hero",
     "variant": "dark",
-    "badge": { "icon": "ShieldCheck", "text": "Safe & Scalable Supply Chain" },
-    "title": "构建韧性、透明的全球制造基座",
-    "subtitle": "在 MSRU，供应链是实现工业进化的神经末梢。我们通过数字化协议与合规准则，与全球合作伙伴共同建设一个高效、廉洁且具备高度韧性的供应网络。",
+    "badge": {
+      "icon": "ShieldCheck",
+      "text": "Resilient, Green & Ethical Supply Chain"
+    },
+    "title": "构建高韧性与阳光绿色的全球供应网",
+    "subtitle": "用透明度为供应链筑底。MSRU 供应链生态是支撑硬核工业微网关与 3D 孪生硬件准入的关键神经末梢。我们通过数字化流程和严格合规体系，与全球合作伙伴共同建设一个零瑕疵、低碳排、高韧性的供应矩阵体系。",
     "accentColor": "blue",
-    "bgImage": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [
+      { "label": "进入供应商采购门户", "href": "/contact" },
+      { "label": "下载供应商行为准则", "href": "/contact" }
+    ]
   },
   {
-    "type": "featureGrid",
-    "columns": 3,
-    "cards": [
-      {
-        "icon": "Globe",
-        "accentColor": "blue",
-        "title": "透明采购流程",
-        "desc": "所有供应商必须通过 MSRU 统一采购平台进行数字化准入，确保每一个订单流程可追溯、防篡改。"
-      },
-      {
-        "icon": "Users",
-        "accentColor": "emerald",
-        "title": "公平准入原则",
-        "desc": "我们打破地域限制，为具备创新能力的初创企业与中小型供应商提供平等的竞争红利与接入机会。"
-      },
-      {
-        "icon": "Handshake",
-        "accentColor": "amber",
-        "title": "联合技术进化",
-        "desc": "不仅是买卖关系，我们与供应商共享数字化基座模型，共同推进行业级高性能硬件与软件的协同演进。"
-      }
+    "type": "statBand",
+    "heading": "数字化供应链运营指标一览",
+    "accentColor": "blue",
+    "stats": [
+      { "value": "180", "unit": "家+", "label": "纳入 MSRU 统一准入与季度绩效评估的合格供应商" },
+      { "value": "99", "unit": ".6%", "label": "关键元器件与硬件网关安全备库月度达成率率" },
+      { "value": "100", "unit": "%", "label": "核心一级硬件供应商已签署环境与劳动人权守则占比" },
+      { "value": "24", "unit": "小时", "label": "供应链突发异常（如物流阻塞、缺料）紧急响应机制" }
     ]
   },
   {
     "type": "statement",
-    "title": "供应商合规手册 2.0",
-    "body": "这份文档详细规定了 MSRU 合作伙伴在环境、人权、反腐败及信息安全等方面的核心准则。我们要求所有一级供应商及其分支机构严格遵守。",
-    "accentColor": "emerald"
+    "title": "供应链不是压榨链，而是联合创新的命运共同体。",
+    "body": "很多厂商依靠无限压低供应商利润和账期来获取自身利益，这终将损害交付质量。MSRU 提倡阳光采购，为供应商提供快速结算通道与聯合技術研發沙箱，共享数字化带来的提效红利红利。",
+    "accentColor": "blue"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Users",
+        "title": "公平且完全数字化的阳光招投标",
+        "description": "所有硬件网关代工、芯片采购与系统集成实施合同均在统一的电子采购平台线上竞标，过程公开、全程审计审计。",
+        "span": "wide",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "Leaf",
+        "title": "绿色低碳与 Scope 3 审计审计",
+        "description": "要求所有一级硬件代工厂定期提交碳排放报告，并在选型时对采用可回收材料及绿电组装的设备给与优先权重。",
+        "span": "wide",
+        "accentColor": "emerald"
+      },
+      {
+        "icon": "ShieldAlert",
+        "title": "严格的劳动者权益与反强迫劳动",
+        "description": "对代工厂工时、工资待遇及安全防护进行定期不定期现场审查，坚决抵制任何形式非法雇用和侵犯人权行为。",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "Lock",
+        "title": "端到端网络与数据安全协议",
+        "description": "供应商在接触 MSRU 设计图纸和设备 SDK 时，必须在其内部实施严格的信息安全管控，防止代码泄露泄露。",
+        "accentColor": "emerald"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "多级协同",
+    "title": "多级供应链可视化 (Supplier Portal Pro)",
+    "body": "我们通过自研的供应链协同模块，不仅打通了一级供应商的库存与排产，更能动态穿透到二级、三级关键配件的交期与良率，实现真正的全链路防错。",
+    "bullets": [
+      "物料条码预绑定，入库扫码耗时缩短 80%",
+      "异常质量批次自动向上游供应链发起拦截",
+      "基于产能负荷模型的多源备件方案自动切换"
+    ]
   },
   {
     "type": "list",
     "variant": "rows",
     "items": [
-      { "title": "禁止强迫劳动与非法用工" },
-      { "title": "碳排放披露要求" },
-      { "title": "零容忍的反商业贿赂政策" },
-      { "title": "数据安全协议" }
+      {
+        "title": "供应商合规准则 V2.4 全文 (Supplier Code of Conduct)",
+        "meta": "合规文档 · 14.8 MB",
+        "desc": "详细规定了反商业贿赂、环保达标、知识产权和非公开信息安全保护的强制要求。",
+        "tag": "必须签署"
+      },
+      {
+        "title": "绿色产品选型与包装回收规范手册",
+        "meta": "采购指引 · 3.5 MB",
+        "desc": "指导硬件厂商使用环保降解无铅无冲突金属材料，并就包装盒回收制定了清晰流程。",
+        "tag": "技术指标"
+      },
+      {
+        "title": "外协实施服务交付与合规白皮书",
+        "meta": "外协规范 · 2.1 MB",
+        "desc": "适用于协助 MSRU 进场进行 MES 安装、现场调试的系统集成商（SI）资质与现场安全纪律。",
+        "tag": "交付准则"
+      }
     ]
   },
   {
-    "type": "statement",
-    "title": "举报通道 (Reporting Channel)",
-    "body": "如果您发现任何违反供应链准则的行为，可通过加密通道进行匿名举报（compliance@msru.ai）。我们严格保护举报人信息。供应商合规手册 V2.4 (15MB) 可下载 PDF 版本。",
-    "accentColor": "slate"
+    "type": "faq",
+    "items": [
+      {
+        "q": "如何加入 MSRU 合格供应商名录？准入审核一般需要多长时间？",
+        "a": "新伙伴需先在供应商门户提交资质自评（包含 ISO 9001、ISO 14001、ESG 报告等），然后我们的采购和质检部门会安排远程或现场审核。整套流程一般在 3-4 周内完成。"
+      },
+      {
+        "q": "MSRU 对于冲突矿产（Conflict Minerals）有什么政策？",
+        "a": "我们严格执行无冲突矿产政策。我们要求所有硬件和网关主板代工厂必须追溯其钽、锡、钨、金（3TG）等关键矿产的来源，证明其不来自于冲突和侵犯人权的矿区矿产。"
+      },
+      {
+        "q": "供应商如果发现我们的员工存在索贿或利益冲突行为，应该如何举报？",
+        "a": "我们鼓励并且强力保护供应商对任何违规索贿行为进行匿名举报。您可以直接发送加密邮件至 compliance@msru.ai，我们的审计委员会直属董事会直辖，任何业务管理层都无法染指和干预调查。"
+      }
+    ]
   },
   {
     "type": "cta",
     "variant": "large",
-    "title": "寻找卓越的物流伙伴",
-    "description": "随着 MSRU 全球研发中心的补全，我们正在寻找具备高数字化程度、能提供端到端可视化追踪能力的区域性及全球性物流供应商。",
-    "cta": { "label": "申请成为供应商", "href": "mailto:compliance@msru.ai" },
+    "title": "与 MSRU 共同打造更透明、绿色的工业供应链",
+    "description": "即刻登录采购平台注册或联系我们的供应链部门获取采购招标目录清单。",
+    "cta": { "label": "进入采购平台", "href": "/contact" },
     "accentColor": "blue"
   }
 ]

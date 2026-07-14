@@ -2,62 +2,127 @@
   {
     "type": "hero",
     "variant": "dark",
-    "badge": { "icon": "Sprout", "text": "Sustainability & Governance" },
-    "title": "绿色算法筑就永续工业",
-    "subtitle": "我们不只在优化生产效率，更在通过数字化手段大幅削减全球工业排放。MSRU 的每一行代码都在为地球的未来贡献绿色动能。",
+    "badge": {
+      "icon": "Leaf",
+      "text": "Sustainability, Ethics & ESG"
+    },
+    "title": "绿色算法与可持续发展的数字契约",
+    "subtitle": "用每一行代码为地球降温。我们不只在优化车间的运行效率，更通过高效节能的时序计算引擎、动态碳足迹核算及公平透明的管理机制，为现代工业铸就低碳永续的未来底座。",
     "accentColor": "emerald",
-    "bgImage": "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=2000"
-  },
-  {
-    "type": "statBand",
-    "heading": "ESG 关键指标",
-    "accentColor": "emerald",
-    "stats": [
-      { "value": "35", "unit": "% (vs 2020)", "label": "碳足迹减少 · 100% 工业级精准追踪" },
-      { "value": "85", "unit": "% (Global)", "label": "可再生能源使用 · 目标 2030 实现 100%" },
-      { "value": "92", "unit": "% (Efficient)", "label": "水资源循环率 · 领先的工业节水方案" },
-      { "value": "42", "unit": "% (Inclusive)", "label": "多样性员工占比 · 构建无边界的人才环境" }
+    "bgImage": "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [
+      { "label": "下载年度 ESG 报告", "href": "/contact" },
+      { "label": "了解我们的绿色算法", "href": "/contact" }
     ]
   },
   {
-    "type": "featureGrid",
-    "columns": 3,
-    "cards": [
+    "type": "statBand",
+    "heading": "ESG 可持续发展关键指标",
+    "accentColor": "emerald",
+    "stats": [
+      { "value": "35", "unit": "%", "label": "集团自用云计算及边缘硬件碳足迹较 2022 年下降幅度" },
+      { "value": "100", "unit": "%", "label": "云端数据中心使用经过认证的绿色可再生能源占比占比" },
+      { "value": "45", "unit": "%", "label": "研发与管理层团队中女性及多元背景高管的占比" },
+      { "value": "50", "unit": "万度+", "label": "通过能源管理插件为全球客户累积节省的工业用电量" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "数字化的本质是减少物理浪费。如果系统本身消耗大量算力，那就违背了数字化的初衷。",
+    "body": "传统软件平台动辄在机房堆叠数十台高功耗服务器，产生惊人的碳排放。MSRU 平台微内核设计对硬件资源占用降到了传统方案的 1/4 左右，在边缘侧运行仅需几瓦功耗，从根源践行了“绿色低碳计算”的理念。",
+    "accentColor": "emerald"
+  },
+  {
+    "type": "bento",
+    "items": [
       {
         "icon": "Sprout",
-        "accentColor": "emerald",
-        "title": "环境责任 (E)",
-        "desc": "我们通过工业大模型优化能源调度，在不牺牲产出的情况下帮助工厂削减了平均 25% 的碳足迹。我们承诺到 2030 年实现 MSRU 全球运营网点的零碳排。"
+        "title": "环境责任 (Environmental)",
+        "description": "推广边缘端极简算力模型，结合 Smart Energy 插件，帮助制造厂依据电网峰谷电价和绿电比例自动下发错峰用电指令。",
+        "span": "wide",
+        "accentColor": "emerald"
       },
       {
         "icon": "Heart",
-        "accentColor": "rose",
-        "title": "社会包容 (S)",
-        "desc": "我们支持全球 20+ 个非营利技术社区，并为发展中国家的工业教育提供免费的数字化教学资产，让每个人都能触及最先进的制造文明。"
+        "title": "社会责任 (Social)",
+        "description": "设立“MSRU 工业之光”奖学金，为中西部高职及高校的智能制造专业免费捐赠价值数百万的教学版沙箱许可证与培训教程。",
+        "span": "wide",
+        "accentColor": "rose"
       },
       {
         "icon": "ShieldCheck",
-        "accentColor": "blue",
-        "title": "治理标准 (G)",
-        "desc": "公开透明的治理流程。我们的年度报告通过国际严苛审计，确保任何关联交易与重大决策都受到充分的监督与披露。"
+        "title": "合规与治理 (Governance)",
+        "description": "奉行零容忍的合规与反腐败原则。重大决策与关联交易通过独立董事委员会层层穿透审计，并向所有投资者完全透明披露。",
+        "accentColor": "emerald"
+      },
+      {
+        "icon": "UserCheck",
+        "title": "供应商社会责任审计 (Supply Chain)",
+        "description": "将劳动标准、冲突矿产审查及环保合规列为 MSRU 硬件认证与生态合作伙伴准入的硬性红线指标。",
+        "accentColor": "rose"
       }
     ]
   },
   {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "环境行动",
+    "title": "算法降碳：绿色时序数据库存储压缩机制",
+    "body": "我们首创了面向工业海量测点的高效列式压缩算法，使数据物理占用降低了 85%，这意味着运行同等吞吐量的数据库所需的磁盘阵列与冷却功耗也同等降低了 85%。",
+    "bullets": [
+      "微瓦级边缘采集滤波算法，滤除 90% 无意义噪声数据传输",
+      "自动冷数据归档下沉，减少高功耗高速介质运行寿命",
+      "完全适配基于 ARM 架构的低能耗边缘网关"
+    ]
+  },
+  {
     "type": "list",
-    "variant": "cards",
+    "variant": "rows",
     "items": [
-      { "title": "可持续发展综合报告", "meta": "2023 年度报告", "desc": "PDF / 8.5MB", "href": "#" },
-      { "title": "可持续发展综合报告", "meta": "2022 年度报告", "desc": "PDF / 8.5MB", "href": "#" },
-      { "title": "可持续发展综合报告", "meta": "2021 年度报告", "desc": "PDF / 8.5MB", "href": "#" }
+      {
+        "title": "MSRU 2025 年度环境、社会与治理 (ESG) 综合报告 (PDF)",
+        "meta": "发布日期：2026-03 · 审计机构：德勤",
+        "desc": "包含详尽的 Scope 1、Scope 2、Scope 3 碳足迹审计细节、员工多元化结构及董事会治理决议说明。",
+        "tag": "Deloitte 审计"
+      },
+      {
+        "title": "MSRU 2024 可持续发展实践与碳减排案例白皮书 (PDF)",
+        "meta": "案例实录 · 8.4 MB",
+        "desc": "收录了 5 家大型重工与电池厂如何通过 MSRU 能源系统节约累计 1200 万度电的真实脱敏数据。",
+        "tag": "绿电实践"
+      },
+      {
+        "title": "商业道德规范与廉洁采购共建倡议书 (PDF)",
+        "meta": "供应商行为守则 · 1.2 MB",
+        "desc": "适用于所有参与 MSRU 平台分包交付、渠道销售及硬件网关供应的企业必须履行的社会责任白皮书。",
+        "tag": "合规红线"
+      }
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "MSRU 自身的碳中和路线图是怎样的？",
+        "a": "我们承诺在 2028 年实现 MSRU 全球所有办公室与研发中心运营层面（Scope 1 & 2）的 100% 净零碳排放，并在 2035 年实现贯穿上下游供应链（Scope 3）的全面碳中和。"
+      },
+      {
+        "q": "ESG 报告的审计标准是什么？是否符合国际披露规范？",
+        "a": "我们的年度 ESG 报告严格遵循全球报告倡议组织（GRI Standards）的核心方案进行编制，并聘请国际第三方审计机构进行独立有限保证审计，保证报告披露的真实可信度。"
+      },
+      {
+        "q": "对于中小制造客户，MSRU 的绿色功能如何帮助他们满足出海的碳关税（如欧盟 CBAM）要求？",
+        "a": "系统内置了与产品批次绑定的能耗核算模型。当每一批货物出厂时，系统可根据其实际消耗的水电数据，自动生成符合 CBAM 或数字产品护照（DPP）要求的单位碳足迹凭证，助力顺利出海。"
+      }
     ]
   },
   {
     "type": "cta",
-    "variant": "small",
-    "title": "ESG 报告板",
-    "description": "查阅并下载 MSRU 每一年度的可持续发展与治理报告。",
-    "cta": { "label": "联系我们的 ESG 委员会", "href": "mailto:esg@msru.ai" },
+    "variant": "large",
+    "title": "与我们共同构建绿色可持续的明日车间",
+    "description": "索取最新的 ESG 报告全文，或联系我们的可持续发展委员会探讨绿色工厂算法方案。",
+    "cta": { "label": "沟通 ESG 合作", "href": "mailto:esg@msru.ai" },
     "accentColor": "emerald"
   }
 ]

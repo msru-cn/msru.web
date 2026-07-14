@@ -3,55 +3,30 @@
     "type": "hero",
     "variant": "dark",
     "badge": {
-      "icon": "Sparkles",
-      "text": "MSRU QMS 全面质量基座"
+      "icon": "ShieldCheck",
+      "text": "MSRU QMS Quality Management Platform"
     },
-    "title": "让品质缺陷，无所遁形。",
-    "subtitle": "超越检验的数字化质量管家。将单纯的事后检测升级为事态预测，把 IQA、PQA、OQA 与供应商评级打通。基于实时数据建立全面标准化质量防线，捍卫企业声誉。",
+    "title": "让品质缺陷无所遁形，筑就零缺陷质量生态",
+    "subtitle": "超越单纯的事后检验。MSRU 全面质量管理系统将传统的纸质质量记录升级为覆盖来料、制程、出货及供应商质量（SQM）的主动式预测防线，结合 SPC 控制图，捍卫企业质量信誉。",
     "accentColor": "rose",
-    "ctas": [
-      {
-        "label": "获取企业版报价",
-        "href": "/contact"
-      },
-      {
-        "label": "阅读架构白皮书",
-        "href": "/docs"
-      }
-    ],
-    "bgImage": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [{ "label": "获取 QMS 演示授权", "href": "/contact" }, { "label": "阅读质量架构白皮书", "href": "/docs" }]
   },
   {
     "type": "statBand",
-    "heading": "不是检验。是根本的预防。",
+    "heading": "质量预防胜于事后返工",
     "accentColor": "rose",
     "stats": [
-      {
-        "value": "60",
-        "unit": "%",
-        "label": "客诉拦截率提升"
-      },
-      {
-        "value": "85",
-        "unit": "%",
-        "label": "检验人工成本削减"
-      },
-      {
-        "value": "100",
-        "unit": "%",
-        "label": "异常问题闭环率"
-      },
-      {
-        "value": "0",
-        "unit": "容忍",
-        "label": "合规审查数据篡改"
-      }
+      { "value": "60", "unit": "%+", "label": "部署后客户服务投诉与出厂缺陷缺陷拦截率提升" },
+      { "value": "85", "unit": "%", "label": "采用无线蓝牙量具与自动扫码录入替代人工录单的工时削减" },
+      { "value": "100", "unit": "%", "label": "严重异常（CAPA）的根本原因定位与闭环追踪率" },
+      { "value": "0", "unit": "容忍", "label": "严格拒绝数据篡改与不合规操作电子记录" }
     ]
   },
   {
     "type": "statement",
-    "title": "每一次抽检，都将驱动流程进化。",
-    "body": "QMS 不仅是一个质检记录电子化工具。其背后依托的 CAPA (纠正与预防措施) 与 8D 闭环跟踪系统使得每一次异常上报都会自动驱动上游供应链的改善或制造工程的标准修订。不解决根因，流程永不关停。",
+    "title": "每一次不合格项的录入，都应成为工艺和流程进化的催化剂。",
+    "body": "质量管理软件绝对不是一个简单的“电子表单”。MSRU QMS 原生集成了 8D 根本原因分析与纠正防范机制（CAPA），一旦检测出不良率偏离，系统会自动在工艺路线挂起工单，倒逼上游供应商或工程团队进行变更。",
     "accentColor": "rose"
   },
   {
@@ -59,60 +34,108 @@
     "items": [
       {
         "icon": "Eye",
-        "accentColor": "rose",
-        "title": "全面检验管控引擎",
-        "description": "涵盖来料检验 (IQC)、首检巡检 (IPQC)、制程检验 (PQC) 到最终出货检验 (OQC)。支持按 AQL 表实现动态放宽与加严抽样转换逻辑。全面适配无线测量仪器自动数据透传。",
-        "span": "wide"
+        "title": "全流程检验管控 (IQC / IPQC / OQC)",
+        "description": "涵盖来料检验、首检、巡检、终检及出货检测。内置国标 AQL 抽样方案表，支持动态放宽与加严抽样方案自动转换。",
+        "span": "wide",
+        "accentColor": "rose"
       },
       {
         "icon": "Activity",
-        "accentColor": "rose",
-        "title": "CAPA 与 8D 闭环",
-        "description": "严格贯彻围堵、排查、根因分析、长效预防四大阶段。强制流转多部门会签，并自动归档形成集团知识库 FMEA 的原始参考。",
-        "span": "wide"
+        "title": "CAPA 异常纠正与 8D 闭环跟踪",
+        "description": "流程化引导围堵行动、临时对策、根因分析（5 Whys）与永久预防。强制各责任部门在线会签流转。",
+        "span": "wide",
+        "accentColor": "orange"
       },
       {
-        "icon": "Scale",
-        "accentColor": "rose",
-        "title": "供应商质量绩效 (SQM)",
-        "description": "按批次退货率、让步接收率自动绘制多维供应商画像，实现黑白名单准入直连拦截。"
+        "icon": "Users",
+        "title": "供应商质量管理 (SQM)",
+        "description": "根据批次退货率、交期达成率自动绘制供应商质量画像，并在采购与来料环节进行黑白名单自动拦截。",
+        "accentColor": "rose"
       },
       {
-        "icon": "TrendingUp",
-        "accentColor": "rose",
-        "title": "多维 SPC 及直通车",
-        "description": "对关键特性参数自动生成 CPK 控制图并执行西电八项判异准则，自动抛出异常预警事件。"
+        "icon": "LineChart",
+        "title": "高频 SPC 统计过程控制",
+        "description": "自动绘制均值极差（Xbar-R）、单值移动极差（X-MR）等控制图，严格对齐西电八大判异法则抛出告警。",
+        "accentColor": "orange"
       },
       {
         "icon": "FileText",
-        "accentColor": "rose",
-        "title": "受控文档版本审批",
-        "description": "受控文档版本审批"
+        "title": "受控文档版本与变更审批",
+        "description": "图纸、SOP 作业指导书、控制计划（Control Plan）的版本控制与自动变更通知，防止现场错用过期图纸。",
+        "accentColor": "rose"
       },
       {
-        "icon": "Eye",
-        "accentColor": "rose",
-        "title": "MSA 与量具校准体系",
-        "description": "MSA 与量具校准体系"
+        "icon": "CheckCircle",
+        "title": "量具量仪校准与 MSA 管理",
+        "description": "动态记录卡尺、千分尺、粗糙度仪的校准周期，自动进行重复性与再现性（Gage R&R）分析，保障数据有效性。",
+        "accentColor": "orange"
       },
       {
         "icon": "Lock",
-        "accentColor": "rose",
-        "title": "FDA 21 CFR Part 11 合规内审级",
-        "description": "为高端制造业提供最高等阶的数字防串改电子签名（E-Signature）与全链路不可篡改审计日志流水（Audit Trail），轻松应对最严苛的跨国采购审查框架。",
-        "span": "wide"
+        "title": "FDA 21 CFR Part 11 合规审计流水",
+        "description": "专为制药及车规级制造提供最高安全等级的不可篡改电子记录、独立电子签名（E-Signature）及全链路操作审计流水（Audit Trail），轻松应对最严厉的跨国审查。",
+        "span": "wide",
+        "accentColor": "rose"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "统计过程",
+    "title": "实时 SPC CPK 过程能力分析引擎",
+    "body": "无需人工在 Excel 中套用公式。MSRU 时序采集网关直接将卡尺或厚度规的物理测量数值导入 SPC 引擎，秒级呈现过程能力指数 (Cpk)。",
+    "bullets": [
+      "过程失控（如连续 9 点落在均值同一侧）时自动在 MES 锁闭机台",
+      "自动生成直方图、正态分布图与趋势分析表",
+      "支持集团跨工厂质量水平横向对标"
+    ]
+  },
+  {
+    "type": "list",
+    "variant": "rows",
+    "items": [
+      {
+        "title": "IQC 来料质量保障流 (Incoming Quality)",
+        "meta": "来料扫码 -> 自动匹配检验规程 -> 生成 AQL 抽样单 -> 扫码录入 -> 自动合格入库/红牌挂起隔离。",
+        "tag": "来料端"
+      },
+      {
+        "title": "IPQA 过程品质防呆巡检 (In-process Quality)",
+        "meta": "首件检查确认 -> 班组长电子签名 -> 定时巡检 Andon 提醒 -> 异常防呆连锁停机。",
+        "tag": "制程端"
+      },
+      {
+        "title": "OQA 出厂成品安规检测 (Outgoing Quality)",
+        "meta": "电气绝缘耐压自动测试 -> 包装称重防漏防错 -> 自动匹配打印 COC 合格证与质量护照标签。",
+        "tag": "出货端"
+      }
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "系统支持连接蓝牙千分尺、电子天平等无线测量仪器吗？",
+        "a": "支持。MSRU 拥有专用的工业终端输入驱动，支持蓝牙、串口、Wi-Fi 量具的数据直连。质检员在测量时只需按下卡尺上的发送键，数据便会自动录入对应单元格，彻底避免人工手打录错的隐患。"
+      },
+      {
+        "q": "如何与已有的 WMS 仓储系统联动实现不合格品隔离？",
+        "a": "当 IQC 或 IPQC 录入不合格结果并将批次状态标记为“隔离（Blocked）”时，系统会向 WMS 发起即时 API 广播指令，自动在电子地图锁定该批次条码，防止货车司机在不知情下将其出库扫码装车。"
+      },
+      {
+        "q": "我们的行业要求符合医疗器械 FDA 合规，QMS 怎么配合？",
+        "a": "MSRU 平台完全符合 FDA 21 CFR Part 11 规范。每次敏感变更（如修改 SPC 预警值或发布新图纸）都会强制二次密码签名校验，产生一条附带操作员、时间戳和变更前/后值的 Audit Trail 日志，不可删除修改。"
       }
     ]
   },
   {
     "type": "cta",
     "variant": "large",
-    "title": "用质量信誉拓宽您的全球市场。",
-    "description": "质量不是检验出来的，是设计和管控出来的。立即部署零缺陷的高压质量生态墙。",
-    "cta": {
-      "label": "预约 QMS 功能演示",
-      "href": "/contact"
-    },
+    "title": "构建坚不可摧的零缺陷企业质量生态防线",
+    "description": "预约我们的质量数字化顾问，了解我们的 QMS 解决方案如何与您的硬件及既有 MES 系统配合工作。",
+    "cta": { "label": "联系 QMS 顾问", "href": "/contact" },
     "accentColor": "rose"
   }
 ]

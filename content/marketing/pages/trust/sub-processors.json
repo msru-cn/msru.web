@@ -44,9 +44,24 @@
         "desc": "数据区域：全球多区 · 用途：计算、存储与网络基础设施",
         "tag": "✅ DPA"
       },
-      { "title": "阿里云 (Alibaba Cloud)", "meta": "中国区基础设施", "desc": "数据区域：中国大陆（上海/深圳） · 用途：中国境内托管与合规", "tag": "✅ DPA" },
-      { "title": "Cloudflare", "meta": "CDN 与 DDoS 防御", "desc": "数据区域：全球边缘节点 · 用途：内容分发、WAF 与流量清洗", "tag": "✅ DPA" },
-      { "title": "Google Cloud Platform", "meta": "备份与灾备", "desc": "数据区域：亚太/欧盟 · 用途：跨区冷备份与灾难恢复", "tag": "✅ DPA" }
+      {
+        "title": "阿里云 (Alibaba Cloud)",
+        "meta": "中国区基础设施",
+        "desc": "数据区域：中国大陆（上海/深圳） · 用途：中国境内托管与合规",
+        "tag": "✅ DPA"
+      },
+      {
+        "title": "Cloudflare",
+        "meta": "CDN 与 DDoS 防御",
+        "desc": "数据区域：全球边缘节点 · 用途：内容分发、WAF 与流量清洗",
+        "tag": "✅ DPA"
+      },
+      {
+        "title": "Google Cloud Platform",
+        "meta": "备份与灾备",
+        "desc": "数据区域：亚太/欧盟 · 用途：跨区冷备份与灾难恢复",
+        "tag": "✅ DPA"
+      }
     ]
   },
   {
@@ -58,9 +73,24 @@
     "type": "list",
     "variant": "rows",
     "items": [
-      { "title": "SendGrid (Twilio)", "meta": "事务邮件发送", "desc": "数据区域：美国 · 用途：系统通知与验证码邮件", "tag": "✅ DPA" },
-      { "title": "Twilio", "meta": "短信与语音通知", "desc": "数据区域：全球 · 用途：多因素认证与告警短信", "tag": "✅ DPA" },
-      { "title": "Intercom", "meta": "客户在线沟通", "desc": "数据区域：美国/欧盟 · 用途：客服会话与产品内消息", "tag": "✅ DPA" },
+      {
+        "title": "SendGrid (Twilio)",
+        "meta": "事务邮件发送",
+        "desc": "数据区域：美国 · 用途：系统通知与验证码邮件",
+        "tag": "✅ DPA"
+      },
+      {
+        "title": "Twilio",
+        "meta": "短信与语音通知",
+        "desc": "数据区域：全球 · 用途：多因素认证与告警短信",
+        "tag": "✅ DPA"
+      },
+      {
+        "title": "Intercom",
+        "meta": "客户在线沟通",
+        "desc": "数据区域：美国/欧盟 · 用途：客服会话与产品内消息",
+        "tag": "✅ DPA"
+      },
       { "title": "Zendesk", "meta": "工单支持系统", "desc": "数据区域：欧盟 · 用途：技术支持工单管理", "tag": "✅ DPA" }
     ]
   },
@@ -73,10 +103,30 @@
     "type": "list",
     "variant": "rows",
     "items": [
-      { "title": "Sentry", "meta": "异常监控与追踪", "desc": "数据区域：美国/欧盟 · 用途：应用错误捕获与性能监控", "tag": "✅ DPA" },
-      { "title": "Datadog", "meta": "可观测性平台", "desc": "数据区域：美国/欧盟 · 用途：日志、指标与链路追踪", "tag": "✅ DPA" },
-      { "title": "Stripe", "meta": "在线支付处理", "desc": "数据区域：全球 · 用途：订阅计费与支付结算", "tag": "✅ DPA" },
-      { "title": "HashiCorp Cloud", "meta": "密钥与配置管理", "desc": "数据区域：多区 · 用途：密钥托管与基础设施编排", "tag": "✅ DPA" }
+      {
+        "title": "Sentry",
+        "meta": "异常监控与追踪",
+        "desc": "数据区域：美国/欧盟 · 用途：应用错误捕获与性能监控",
+        "tag": "✅ DPA"
+      },
+      {
+        "title": "Datadog",
+        "meta": "可观测性平台",
+        "desc": "数据区域：美国/欧盟 · 用途：日志、指标与链路追踪",
+        "tag": "✅ DPA"
+      },
+      {
+        "title": "Stripe",
+        "meta": "在线支付处理",
+        "desc": "数据区域：全球 · 用途：订阅计费与支付结算",
+        "tag": "✅ DPA"
+      },
+      {
+        "title": "HashiCorp Cloud",
+        "meta": "密钥与配置管理",
+        "desc": "数据区域：多区 · 用途：密钥托管与基础设施编排",
+        "tag": "✅ DPA"
+      }
     ]
   },
   {
@@ -122,11 +172,7 @@
     "eyebrow": "数据最小化",
     "title": "只共享必要的数据",
     "body": "我们遵循数据最小化原则，仅向每个次级处理者传递其提供服务所必需的数据字段，并通过字段级掩码与加密降低暴露面。客户的核心生产数据默认不出境、不外传。",
-    "bullets": [
-      "按最小必要原则限定字段范围",
-      "传输与存储全程加密",
-      "敏感字段执行掩码与脱敏"
-    ]
+    "bullets": ["按最小必要原则限定字段范围", "传输与存储全程加密", "敏感字段执行掩码与脱敏"]
   },
   {
     "type": "faq",

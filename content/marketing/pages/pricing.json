@@ -1,70 +1,148 @@
 [
   {
     "type": "hero",
-    "title": "简单透明的",
-    "titleAccent": "企业级定价",
-    "subtitle": "无隐藏费用，无阶梯陷阱。按站点订阅，开箱即用。",
-    "bgImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=2000"
+    "variant": "dark",
+    "badge": {
+      "icon": "DollarSign",
+      "text": "Transparent Enterprise Pricing"
+    },
+    "title": "简单透明的平台化定价体系",
+    "subtitle": "拒绝软件商的“坐席许可陷阱”。MSRU 坚守简单、透明、按生产站点订阅的透明计费策略，不限账户数量，让数字化转型费用清晰可预测。",
+    "accentColor": "blue",
+    "bgImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [{ "label": "索取详细报价单", "href": "/contact" }, { "label": "联系大客户销售", "href": "/contact" }]
+  },
+  {
+    "type": "statBand",
+    "heading": "更低门槛，更高回报",
+    "accentColor": "blue",
+    "stats": [
+      { "value": "0", "unit": "元", "label": "额外用户账户授权费（按站点不限坐席数）" },
+      { "value": "50", "unit": "%+", "label": "相比传统多套烟囱系统购买许可证的平均首期开销节省" },
+      { "value": "1", "unit": "年起", "label": "合同灵活起签期限，支持季度付款" },
+      { "value": "99", "unit": ".99%", "label": "最高等级 Sovereign 专属可用性 SLA 承诺" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "为什么制造系统要按坐席收费？把一线操作工关在数字化系统门外是愚蠢的。",
+    "body": "传统制造软件按 Seat（坐席）计费，导致许多企业为了省钱，只给车间主任开账号，普通操作工只能继续用纸质单据。MSRU 提倡全员数字化，我们的定价以‘站点与边缘节点’为计量单位，用户数永远不设上限。",
+    "accentColor": "blue"
   },
   {
     "type": "pricingTable",
     "plans": [
       {
-        "name": "Starter",
+        "name": "标准起步版 (Starter)",
         "price": "¥9,800",
         "unit": "/月/站点",
-        "description": "适合中小型单站工厂的快速起步",
-        "features": ["MES 基础模块", "最多 50 用户", "标准技术支持 (5x8)", "社区知识库访问", "季度版本更新"],
-        "cta": {
-          "label": "开始试用",
-          "href": "/contact"
-        }
+        "description": "适合中小型单站工厂或单车间快速试点",
+        "features": [
+          "MES 制造核心执行模块",
+          "不限用户账号数量",
+          "5x8 标准工单在线技术支持",
+          "共享学院官方基础知识库",
+          "季度定期版本功能升级",
+          "包含 1 个 IoT 采集网关授权"
+        ],
+        "cta": { "label": "申请免费试用", "href": "/contact" }
       },
       {
-        "name": "Enterprise",
+        "name": "企业全能版 (Enterprise)",
         "price": "¥39,800",
         "unit": "/月/站点",
-        "description": "适合中大型多站协同的全面部署",
+        "description": "适合中大型多站协同、高要求复杂产线全面部署",
         "popular": true,
         "features": [
-          "MES + WMS + QMS 全模块",
-          "不限用户数",
-          "7x24 NOC 响应",
-          "季度面对面架构评审",
-          "优先功能定制通道",
-          "IoT 边缘节点 (5 个)"
+          "MES + WMS + QMS + EAM 全套模块",
+          "不限用户账号数量",
+          "7x24 NOC 响应及专属技术通道",
+          "专属客户交付架构师季度会诊",
+          "包含 5 个高并发 IoT 采集网关授权",
+          "支持 WASM 自定义业务插件扩展"
         ],
-        "cta": {
-          "label": "开始试用",
-          "href": "/contact"
-        }
+        "cta": { "label": "预约架构评估", "href": "/contact" }
       },
       {
-        "name": "Sovereign",
+        "name": "主权集团版 (Sovereign)",
         "price": "定制报价",
-        "description": "适合超大型跨国集团的私有化部署",
+        "unit": "/年/集团",
+        "description": "适合超大型跨国集团、高度敏感及私有化高可用部署",
         "features": [
-          "全产品线 + AI 大模型",
-          "物理私有化交付",
-          "专属驻场架构师",
-          "独立安全审计报告",
-          "自定义 SLA (99.99%+)",
-          "源码级交付 (可选)"
+          "平台全线模块 + 制造 AI 智能体",
+          "100% 物理隔离私有化数据中心部署",
+          "专属首席架构师团队驻场护航",
+          "定制级可用性 SLA 担保 (99.99%+)",
+          "包含无限额 IoT 采集节点扩展",
+          "支持代码级合规审计及专有分支维护"
         ],
-        "cta": {
-          "label": "联系销售",
-          "href": "/contact"
-        }
+        "cta": { "label": "联系销售总监", "href": "/contact" }
+      }
+    ]
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Smartphone",
+        "title": "按需选购：增值扩展包 (Add-ons)",
+        "description": "如需使用 WebGPU 3D 数字孪生可视化引擎、多级供应链 EDI 自动顺位排序模块，可通过增值组件按年加购。",
+        "span": "wide",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "Users",
+        "title": "集团化多厂折扣计划 (Multi-site Volume)",
+        "description": "当您的集团内部部署的生产站点超过 3 个时，将自动激活阶梯折扣，第 4 个站点起订阅费用最高可优惠 40%。",
+        "span": "wide",
+        "accentColor": "cyan"
+      },
+      {
+        "icon": "Wrench",
+        "title": "零停机平滑测试沙箱 (Sandbox)",
+        "description": "企业版及以上订阅免费赠送 1 个 1:1 的预发布测试环境租户，用于在并网前先行校验工艺变更和插件逻辑。",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "Award",
+        "title": "官方学院课程包抵扣",
+        "description": "年度订阅金额的 5% 可直接转为 MSRU 学院的认证培训代金券，用于培养您的车间数字化尖兵团队。",
+        "accentColor": "cyan"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "灵活计费",
+    "title": "关于软件维护服务 (Maintanence) 与年费的说明",
+    "body": "传统软件在采购后，每年需强行缴纳 15%-20% 的软件维护费方可获得补丁。MSRU 平台订阅费内已包含所有维护、常规升级和基础支持包，拒绝隐形消费。",
+    "bullets": ["年度订阅续期费用保证不随通胀意外暴涨", "可按季度/年度灵活结算", "随时申请增退站点授权"]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "什么算作一个“生产站点”？如果一个厂区有多个车间怎么计算？",
+        "a": "在 MSRU 的计费定义中，凡是位于同一个物理地址、共享同一局域网的单体厂区即被算作一个站点。即便该厂区下设 SMT 车间、组装车间和包装车间，仍按单站点计费，无需重复购买订阅。"
+      },
+      {
+        "q": "如果我们因业务调整需要暂停某个厂区的生产，订阅可以退款或暂停吗？",
+        "a": "支持。按年订阅的客户可在提前 30 天通知的情况下，将该站点许可证挂起，挂起期间将退回未履约月份 50% 的服务费用，也可直接转为其他新建厂区的授权。"
+      },
+      {
+        "q": "除了订阅费，我们还需要向第三方支付数据库或服务器费用吗？",
+        "a": "如果您选择 MSRU 官方托管的云端混合部署模式，订阅费用中已包含时序数据库、元数据服务及对象存储的云端托管流量，无需支付第三方费用。私有化部署（On-Premise）的数据库和物理机由客户自行承担。"
       }
     ]
   },
   {
     "type": "cta",
-    "title": "需要定制化方案？",
-    "description": "我们的解决方案架构师将为您量身定制最优性价比的部署方案。",
-    "cta": {
-      "label": "预约 1v1 咨询",
-      "href": "/contact"
-    }
+    "variant": "large",
+    "title": "开始免费评估最契合您工厂的资费计划",
+    "description": "向我们的定价顾问提供您的车间设备类型、用户预估数与部署网络条件，我们将为您出具一份精细的总价测算方案。",
+    "cta": { "label": "沟通资费细节", "href": "/contact" },
+    "accentColor": "blue"
   }
 ]

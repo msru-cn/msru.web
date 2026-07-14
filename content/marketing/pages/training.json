@@ -1,41 +1,135 @@
 [
   {
     "type": "hero",
-    "badge": { "icon": "GraduationCap", "text": "MSRU Academy" },
-    "title": "官方学院",
-    "titleAccent": "与认证",
-    "subtitle": "系统化的开发者与实施人才赋能体系，从入门到专家的完整成长路径。",
+    "variant": "dark",
+    "badge": {
+      "icon": "GraduationCap",
+      "text": "MSRU Academy"
+    },
+    "title": "官方培训学院与认证体系",
+    "subtitle": "打造工业数字化精英人才。MSRU 学院为合作伙伴、企业 IT 部门及独立工程师提供系统化、实战导向的课程路径与权威认证，打通从入门到资深专家成长的每一步。",
     "accentColor": "emerald",
-    "bgImage": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [{ "label": "查看最新课程表", "href": "/contact" }, { "label": "申请官方企业内训", "href": "/contact" }]
+  },
+  {
+    "type": "statBand",
+    "heading": "赋能数字化人才可持续成长",
+    "accentColor": "emerald",
+    "stats": [
+      { "value": "15", "unit": "K+", "label": "全球累计培训学员及结业证书持有者" },
+      { "value": "85", "unit": "家", "label": "建立官方联合人才基地的示范工业企业" },
+      { "value": "95", "unit": "%", "label": "结业学员进入知名企业制造IT岗位的就业率" },
+      { "value": "3", "unit": "大", "label": "核心岗位技能官方认证（实施/开发/架构）" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "未来的制造业竞争，不仅仅是设备与算法的竞争，更是人才梯队的竞争。",
+    "body": "传统制造系统面临“买得起用不好，维护全靠外部厂家”的尴尬。MSRU 通过官方学院的完整课程赋能，让企业 IT 人员与工艺专家有能力利用描述性语言自主开发与敏捷变更，把数字化的主动权牢牢夺回自己手中。",
+    "accentColor": "emerald"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Code",
+        "title": "声明式内核开发实战课程",
+        "description": "深入解析 MSRU Describe-Once 内核架构、数据表引擎模型、WASM 插件编写和高并发 API 设计。",
+        "span": "wide",
+        "accentColor": "emerald"
+      },
+      {
+        "icon": "Database",
+        "title": "工业物联网（IoT）与边缘侧调试",
+        "description": "讲解常见 PLC 协议适配、HSMS/SECS 通信规约、边缘流式数据清洗算法以及工业网闸防穿透配置。",
+        "span": "wide",
+        "accentColor": "cyan"
+      },
+      {
+        "icon": "CheckCircle",
+        "title": "质量与精益数字化实施方法论",
+        "description": "系统传授 IATF 16949 数字化落地、看板设计、SPC 异常触发机制及 SPC 控制图判断标准。",
+        "accentColor": "emerald"
+      },
+      {
+        "icon": "Cpu",
+        "title": "数字孪生 3D 开发工作坊",
+        "description": "实践 CAD/BIM 模型轻量化几何算法、WebGPU 高保真光照环境配置及 IoT 遥测点位快速反向映射。",
+        "accentColor": "cyan"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "学员福利",
+    "title": "专属云端“工业沙盒”实操演练实验室",
+    "body": "MSRU 为每位学员分配独立租户下的全套工业微服务沙盒环境，虚拟仿真整条电池或机加工产线，支持编写自定义插件并观察实时节拍变化。",
+    "bullets": [
+      "24小时独立高配置云端调试机房",
+      "真实设备模拟器（支持 OPC UA / Modbus / HSMS 发包）",
+      "资深交付专家每周在线答疑与架构会诊"
+    ]
   },
   {
     "type": "list",
     "variant": "cards",
     "items": [
       {
-        "title": "MSRU 认证实施顾问",
-        "tag": "Professional",
-        "meta": "5 天集训",
-        "desc": "掌握全产品线部署方法论与项目交付最佳实践"
+        "title": "MSRU 认证实施顾问 (MSRU Certified Implementer)",
+        "meta": "面授/直播 · 5 天集训",
+        "desc": "掌握 MES/WMS/QMS 基础配置、工艺路线定义、工单流转与设备接入调试，具备中大型项目独立交付能力。",
+        "tag": "实施认证",
+        "href": "/contact"
       },
       {
-        "title": "MSRU 认证开发者",
-        "tag": "Developer",
-        "meta": "3 天集训",
-        "desc": "深入 API 集成、自定义扩展与微服务架构开发"
+        "title": "MSRU 认证开发者 (MSRU Certified Developer)",
+        "meta": "面授/实践 · 3 天集训",
+        "desc": "深入 API 集成、基于 Go/Rust 的 WASM 插件定制开发、异构系统接口开发以及边缘计算流处理规则编写。",
+        "tag": "开发认证",
+        "href": "/contact"
       },
       {
-        "title": "MSRU 认证架构师",
-        "tag": "Expert",
-        "meta": "10 天深造",
-        "desc": "企业级私有化部署、高可用架构设计与性能调优"
+        "title": "MSRU 认证架构师 (MSRU Certified Architect)",
+        "meta": "高阶研修 · 10 天深造",
+        "desc": "企业级私有化集群部署设计、主从高可用故障切换、超万级测点时序数据库压测性能调优与零信任架构设计。",
+        "tag": "架构认证",
+        "href": "/contact"
+      },
+      {
+        "title": "企业数字化转型总裁班 (Executive Digital Strategy)",
+        "meta": "研讨会 · 2 天沙龙",
+        "desc": "专为企业决策者设计的数字化 ROI 计算框架、平台化转型防避坑指南及最新制造 AI 智能体行业应用案例复盘。",
+        "tag": "高管研修",
+        "href": "/contact"
+      }
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "认证考试的流程是怎样的？如果没通过能否补考？",
+        "a": "每门认证课程均包含理论与上机实操考核。学员在结业后 30 天内可预约在线实操答辩。如未通过，可在 3 个月内免费获得一次重考机会。"
+      },
+      {
+        "q": "MSRU 证书在行业内的认可度如何？",
+        "a": "作为领先的微内核工业数字化底座提供商，MSRU 认证已被众多知名新能源电池、半导体封测及汽车零部件客户列为外部供应商交付团队及内部制造 IT 人员的必备资质准入条件。"
+      },
+      {
+        "q": "企业是否可以定制内训课程？",
+        "a": "可以。针对大规模部署的集团客户及白金合作伙伴，我们可以根据客户的实际产线特征和软件定制内容，量身修改课程大纲并派遣讲师团队提供闭门指导。"
       }
     ]
   },
   {
     "type": "cta",
-    "title": "立即报名下一期培训",
-    "cta": { "label": "联系培训团队", "href": "/contact" },
+    "variant": "large",
+    "title": "加入工业数字化人才成长专列",
+    "description": "即刻联系官方招生顾问，获取下一期培训班次计划与限时学费减免活动信息。",
+    "cta": { "label": "咨询官方课程规划", "href": "/contact" },
     "accentColor": "emerald"
   }
 ]

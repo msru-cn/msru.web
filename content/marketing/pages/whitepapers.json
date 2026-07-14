@@ -1,45 +1,135 @@
 [
   {
     "type": "hero",
+    "variant": "dark",
     "badge": {
-      "icon": "FileText",
-      "text": "Whitepapers & Insights"
+      "icon": "BookOpen",
+      "text": "Whitepapers & Industrial Insights"
     },
-    "title": "工业洞察",
-    "titleAccent": "白皮书",
-    "subtitle": "来自 MSRU 研究院与行业分析师的深度报告，洞察智能制造前沿趋势。",
+    "title": "工业前沿白皮书与洞察报告",
+    "subtitle": "来自 MSRU 研究院、核心架构师团队与行业资深分析师的权威报告。我们专注于工业软件架构演进、制造大模型落地实践、零信任工业网路及数字化投资回报比（ROI）等维度的深度剖析。",
     "accentColor": "blue",
-    "bgImage": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [{ "label": "订阅最新白皮书", "href": "/contact" }, { "label": "联系研究院专家", "href": "/contact" }]
+  },
+  {
+    "type": "statBand",
+    "heading": "知识资产与学术影响力",
+    "accentColor": "blue",
+    "stats": [
+      { "value": "150", "unit": "K+", "label": "全球制造业决策者累计下载量" },
+      { "value": "20", "unit": "名", "label": "行业资深分析师与特邀院士作者" },
+      { "value": "50", "unit": "篇+", "label": "涵盖五大垂直行业的原创白皮书" },
+      { "value": "98", "unit": "%", "label": "读者反馈对数字化规划有实质性启发" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "以深度研究为刃，剖开工业数字化底座的复杂迷雾。",
+    "body": "工业领域的软件系统建设一直备受高成本、重耦合、难扩展和安全性差的困扰。MSRU 研究院始终站在工程实践与科学研究的交叉点，提供不掺杂商业浮夸的硬核技术路径分析与商业化投资回报率核算。",
+    "accentColor": "blue"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Cpu",
+        "title": "制造大模型与工业智能体",
+        "description": "探讨 LLM 结合控制指令、时序异常诊断以及工程工艺 Recipe 自动调优的真实落地可行性与性能瓶颈。",
+        "span": "wide",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "工业网络零信任与物理隔离",
+        "description": "解构如何在不牺牲生产效率的前提下，建立贯穿 MES、SCADA 至传感器级的可控加密隧道与身份验证。",
+        "span": "wide",
+        "accentColor": "cyan"
+      },
+      {
+        "icon": "Activity",
+        "title": "精益看板与 OEE 诊断",
+        "description": "分享高频高节拍流水线的节拍损耗根因分析、设备综合效率算法纠偏及工单预测分析实践。",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "DollarSign",
+        "title": "ROI 与总体拥有成本核算",
+        "description": "剖析本地部署 vs 云端混合部署模式下，首期建设成本与五年维护周期的真实资金流向比对。",
+        "accentColor": "cyan"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "精选研究",
+    "title": "智能制造 2026：从 MES 到全域数字孪生的演进路径",
+    "body": "本篇 42 页深度报告阐述了第四代工业系统如何通过声明式统一内核将工厂物理空间与数字世界彻底绑定，解决异构协议的终极瓶颈。",
+    "bullets": [
+      "基于 WebGPU 渲染引擎的复杂厂房几何压缩",
+      "IoT 边端低延迟数据映射算法",
+      "如何实现面向未来的声明式控制闭环"
+    ]
   },
   {
     "type": "list",
     "variant": "cards",
     "items": [
       {
-        "title": "智能制造 2025：从MES到全域数字孪生的演进路径",
-        "desc": "2025-12 · 42 页",
-        "tag": "行业趋势"
-      },
-      {
         "title": "工业大模型落地实践：从 POC 到量产的三大关键",
-        "desc": "2025-10 · 36 页",
-        "tag": "AI 实践"
+        "meta": "2026-03 · 36 页",
+        "desc": "基于主流开源模型针对特定工况的微调实践指南，包含扭矩曲线异常诊断代码集。",
+        "tag": "AI 实践",
+        "href": "/contact"
       },
       {
         "title": "动力电池制造数字化转型 ROI 分析报告",
-        "desc": "2025-08 · 28 页",
-        "tag": "新能源"
+        "meta": "2026-01 · 28 页",
+        "desc": "涵盖涂布工艺面密度分析与化成分容立库调度节能效果的真实客户案例数据表。",
+        "tag": "新能源",
+        "href": "/contact"
       },
       {
         "title": "零信任架构在工业 OT 网络中的应用",
-        "desc": "2025-06 · 32 页",
-        "tag": "安全"
+        "meta": "2025-11 · 32 页",
+        "desc": "物理隔离网闸配置与反向代理防穿透防火墙在 3C 及半导体洁净厂房的应用设计规范。",
+        "tag": "工业安全",
+        "href": "/contact"
       },
       {
         "title": "Gartner MES 魔力象限解读与 MSRU 定位分析",
-        "desc": "2025-03 · 18 页",
-        "tag": "市场分析"
+        "meta": "2025-09 · 18 页",
+        "desc": "权威市场评级对下一代微内核工业框架的分析，深度解析组合式工业应用架构。",
+        "tag": "市场分析",
+        "href": "/contact"
       }
     ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "下载这些白皮书需要付费吗？",
+        "a": "所有 MSRU 研究院发布的行业白皮书均免费向工业界同仁开放。您只需通过联系表单进行简单的实名企业邮箱验证，即可获取完整版 PDF 发送至您的邮箱。"
+      },
+      {
+        "q": "白皮书中的架构设计与案例是否具备参考意义？",
+        "a": "报告中展示的系统拓扑图和数据均来自于 MSRU 在知名汽车半导体及电池客户现场的真实脱敏落地案例，具备极高可执行价值。"
+      },
+      {
+        "q": "是否支持引用 MSRU 研究院的数据？",
+        "a": "我们支持并在遵守学术规范的前提下鼓励大家引用报告数据。引用时请注明出处：MSRU 研究院《对应报告名称》。如有商业用途请提前联系获得授权。"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "获取最新智能制造与工业软件数字化报告",
+    "description": "即刻加入全球数十万制造行业领导者，与我们共同探究下一代工业平台演进新方向。",
+    "cta": { "label": "免费订阅最新报告", "href": "/contact" },
+    "accentColor": "blue"
   }
 ]

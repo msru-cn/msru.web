@@ -1,52 +1,131 @@
 [
   {
     "type": "hero",
+    "variant": "dark",
     "badge": {
-      "icon": "HardDrive",
-      "text": "Certified Hardware"
+      "icon": "Cpu",
+      "text": "MSRU Certified Hardware Partner Program"
     },
-    "title": "认证硬件生态",
-    "subtitle": "经过 MSRU 实验室严格测试认证的工业网关、PLC、视觉传感器与 RFID 硬件目录。",
+    "title": "认证硬件与边缘物联网设备生态",
+    "subtitle": "源自严苛测试的即插即用体验。MSRU 联合全球主流工业工控、PLC、视觉相机及识别传感器厂商，建立严格的软硬件互操作性认证标准，消除现场布线与数据采集连通性壁垒。",
     "accentColor": "amber",
-    "bgImage": "https://images.unsplash.com/photo-1620288627223-53302f4e8c74?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1620288627223-53302f4e8c74?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [{ "label": "浏览认证设备目录", "href": "/contact" }, { "label": "提交硬件认证申请", "href": "/contact" }]
   },
   {
-    "type": "featureGrid",
-    "columns": 2,
-    "cards": [
+    "type": "statBand",
+    "heading": "工业级硬件互连互通网络",
+    "accentColor": "amber",
+    "stats": [
+      { "value": "120", "unit": "款+", "label": "通过官方稳定性与吞吐量测试的工控及传感器硬件" },
+      { "value": "35", "unit": "家", "label": "全球顶级工业硬件制造巨头合作伙伴" },
+      { "value": "99", "unit": ".99%", "label": "认证设备在长周期高粉尘高温环境下的运行在线率" },
+      { "value": "3", "unit": "周", "label": "新设备进入 MSRU 实验室测试至证书颁发的平均周期" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "软件的尽头是物理世界。没有高度兼容的硬件，再先进的算法也是空中楼阁。",
+    "body": "传统工业网关经常因内存泄露或串口挂死而导致生产断流。MSRU 实验室针对合作硬件，进行 7x24 小时极限发包、高温高湿震动模拟及断电瞬间数据存盘抗损坏能力测试，只有通过严苛验证的设备才能获得 MSRU 认证标签。",
+    "accentColor": "amber"
+  },
+  {
+    "type": "bento",
+    "items": [
       {
         "icon": "Cpu",
-        "accentColor": "blue",
-        "title": "工业边缘网关",
-        "desc": "Advantech UNO-2484G · Siemens IOT2050 · MSRU Edge Box M1"
+        "title": "工业边缘网关 (Edge Gateways)",
+        "description": "经过认证的无风扇工控机，运行 MSRU 边缘微服务容器，支持多路网口及串口高并发并发读取。",
+        "span": "wide",
+        "accentColor": "amber"
       },
       {
         "icon": "Settings",
-        "accentColor": "purple",
-        "title": "PLC 与协议转换",
-        "desc": "Siemens S7-1500 · Allen-Bradley CompactLogix · Mitsubishi iQ-R"
+        "title": "PLC、控制器与伺服 (PLCs & Controllers)",
+        "description": "涵盖西门子、三菱、欧姆龙、施耐德等主流控制器，验证其在 OPC UA、Modbus 或专属背板通信的高速互操作性。",
+        "span": "wide",
+        "accentColor": "orange"
       },
       {
         "icon": "Camera",
-        "accentColor": "emerald",
-        "title": "工业视觉硬件",
-        "desc": "Basler ace 2 系列 · HIKROBOT MV-CS 系列 · MSRU AI Vision Cabinet"
+        "title": "工业视觉与 AI 相机 (Vision System)",
+        "description": "支持大恒图像、海康机器人、巴斯勒等线阵/面阵相机。确保千兆网或 Camera Link 图像传输无丢帧风险。",
+        "accentColor": "amber"
       },
       {
         "icon": "Network",
-        "accentColor": "amber",
-        "title": "RFID 与条码",
-        "desc": "Zebra FX9600 · Impinj R700 · Honeywell Granit 1920i"
+        "title": "RFID 标签读取与物联网传感器 (Sensors)",
+        "description": "超高频 RFID 读写器、智能温控仪、三轴加速度计及激光测距仪。支持数据秒级秒级直投过滤。",
+        "accentColor": "orange"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1581092162384-8987c1d64926?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "旗舰合作",
+    "title": "MSRU Edge Box M1 边缘物联参考架构",
+    "body": "我们与研华联合推出的标杆边缘计算盒子，内置 MSRU 开源驱动包和本地时序沙箱，支持双电源冗余和 DIN 导轨安装。",
+    "bullets": [
+      "基于超低功耗 ARM 架构设计，支持 -20°C 至 60°C 宽温运行",
+      "硬件级 TPM 2.0 安全芯片，阻断恶意固件注入",
+      "出厂预装 MSRU CLI 工具，即插即用调试"
+    ]
+  },
+  {
+    "type": "list",
+    "variant": "rows",
+    "items": [
+      {
+        "title": "Advantech UNO-2484G (高性能 x86 工业边缘网关)",
+        "meta": "伙伴: 研华科技 · 已认证",
+        "desc": "支持四核 CPU、8GB RAM、双千兆以太网及多达 8 路 RS-485 串口，适合半导体或汽车多设备大规模采集节点。",
+        "tag": "旗舰认证"
+      },
+      {
+        "title": "Siemens SIMATIC IOT2050 (入门级 ARM 网关)",
+        "meta": "伙伴: 西门子 · 已认证",
+        "desc": "基于 TI AM65x 处理器，支持标准 Debian 环境与 MSRU 极轻量边缘网关容器，适用于农业温室大棚和水质检测项目。",
+        "tag": "入门认证"
+      },
+      {
+        "title": "HIKROBOT MV-CS 系列 (万兆网口工业视觉相机)",
+        "meta": "伙伴: 海康机器人 · 已认证",
+        "desc": "提供高帧率全局快门图像采集，完美契合 MSRU 3C 贴片机高速 SPI/AOI 视觉缺陷分析包。",
+        "tag": "视觉认证"
+      },
+      {
+        "title": "Zebra FX9600 (超高频固定式 RFID 读写器)",
+        "meta": "伙伴: 斑马技术 · 已认证",
+        "desc": "支持 4 通道/8 通道天线部署，具有极强金属壁遮挡穿透力，用于 WMS 物流立库托盘自动扫码出入库。",
+        "tag": "传感器认证"
+      }
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "我们的设备是自研的非标硬件，能否申请 MSRU 硬件认证？",
+        "a": "可以。您只需填写硬件认证申请书，并提供该设备的物理样品与开发接口文档。我们的硬件测试专家会将其接入 MSRU 实验室沙箱进行全天候发包和电气测试，出具测试报告后即可发放认证。"
+      },
+      {
+        "q": "MSRU 认证硬件是否代表 MSRU 会代销我们的硬件产品？",
+        "a": "获得认证的硬件将直接进入 MSRU 官方推荐设备库，并在我们向全球大客户（如电池厂、车厂）交付方案时作为优先选型推荐，同时在我们的插件和产品市场列名展示。"
+      },
+      {
+        "q": "测试认证是否需要支付费用？费用结构是怎样的？",
+        "a": "我们对首款测试硬件收取基础的测试通道占用与人力评估费。对于白金级生态合作伙伴，我们免除年度测试费用，并协助联合举办线上/线下硬件选型发布会。"
       }
     ]
   },
   {
     "type": "cta",
-    "title": "提交硬件认证申请",
-    "cta": {
-      "label": "联系硬件生态团队",
-      "href": "/contact"
-    },
+    "variant": "large",
+    "title": "立即与 MSRU 实验室携手打造即插即用的工业硬件生态",
+    "description": "联系硬件生态部门经理，获取详尽的测试大纲与设备认证技术准入红线要求。",
+    "cta": { "label": "沟通硬件认证合作", "href": "/contact" },
     "accentColor": "amber"
   }
 ]

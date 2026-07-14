@@ -4,35 +4,73 @@
     "variant": "dark",
     "badge": {
       "icon": "Sparkles",
-      "text": "我们正在寻找改变工业的人才"
+      "text": "Join MSRU Global Talent Network"
     },
-    "title": "编写工业的未来",
-    "subtitle": "在 MSRU，我们不只是在提供软件。我们是在用代码重构物理世界的每一台机器。加入我们，与全球顶尖的极客一起攻克工业领域的硬核难题。",
+    "title": "用优雅的代码，重构物理世界的生产力",
+    "subtitle": "我们拒绝平庸的业务堆砌。在 MSRU，我们用编译器技术重写工业控制底座，用 WebGPU 引擎映射物理世界，用 AI 智能体寻找极致良率。加入我们，共同开启硬核工业互联网的微内核时代。",
     "accentColor": "blue",
-    "bgImage": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [{ "label": "浏览开放职位", "href": "/contact" }, { "label": "了解团队文化", "href": "/contact" }]
   },
   {
-    "type": "featureGrid",
-    "columns": 3,
-    "cards": [
+    "type": "statBand",
+    "heading": "在这里，我们崇尚技术信仰",
+    "accentColor": "blue",
+    "stats": [
+      { "value": "12", "unit": "个", "label": "团队成员分布的国家和地区" },
+      { "value": "75", "unit": "%", "label": "研发人员在整个集团组织中的占比" },
+      { "value": "20", "unit": "天+", "label": "每位成员年假与带薪休假的额度保障" },
+      { "value": "8", "unit": "次", "label": "获得国际开源社区重大贡献奖的人次" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "我们相信小团队的高杠杆力量，拒绝在平庸的无效会议中消耗生命。",
+    "body": "传统企业通过人海战术做外包定制，而 MSRU 致力于打造自举的底层框架。我们崇尚卓越的技术选型（Rust/Go/WASM/WebGPU/GraphQL），通过极高水平的工程规范和全面自动化测试，释放每个杰出极客的核心创造力。",
+    "accentColor": "blue"
+  },
+  {
+    "type": "bento",
+    "items": [
       {
         "icon": "Cpu",
-        "accentColor": "blue",
-        "title": "纯粹技术驱动",
-        "desc": "我们崇尚卓越的技术选型，不为业务折中。从内核到前端，我们追求极致的性能与优雅。"
-      },
-      {
-        "icon": "Zap",
-        "accentColor": "amber",
-        "title": "高频敏捷交付",
-        "desc": "这里没有冗长的会议，只有高效的协作。我们通过极致的自动化流程保障代码的高频、安全发布。"
+        "title": "硬核而现代的技术栈 (Tech Stack)",
+        "description": "拒绝历史包袱。我们的核心引擎采用 Rust 与 Go 编写，边缘侧插件支持 WASM，前端大屏全面拥抱 WebGPU 与 React 19。",
+        "span": "wide",
+        "accentColor": "blue"
       },
       {
         "icon": "Globe",
-        "accentColor": "emerald",
-        "title": "全球数字游民",
-        "desc": "我们支持灵活的办公模式。无论你身处何地，只要你有卓越的产出，地球就是你的办公室。"
+        "title": "真正的数字游民与 Remote-First",
+        "description": "只要拥有杰出的产出和自律性，我们全力支持您在任意地方远程办公，并提供工位家具与咖啡豆年度报销报销。",
+        "span": "wide",
+        "accentColor": "cyan"
+      },
+      {
+        "icon": "Award",
+        "title": "透明公开的薪酬与期权池",
+        "description": "打破传统的职场黑盒晋升。我们实行扁平的技术职级对齐制度，每位核心成员均可分享公司业务成长的长期权回报。",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "BookOpen",
+        "title": "终身学习与峰会代金券 (Learning)",
+        "description": "公司每年报销学员购买图书、参加各类国内外顶级技术峰会（如 GopherCon、RustConf）的全部门票及差旅。",
+        "accentColor": "cyan"
       }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "团队文化",
+    "title": "开源黑客马拉松与极客文化",
+    "body": "我们内部每季度会举办一次无约束的 Coding Day，任何人都可以组队实验关于智能工厂、3D 游戏化控制或能耗预测的创意想法。",
+    "bullets": [
+      "24小时无限制极限创意 Coding 演练",
+      "优秀创意将直接获得立项资金并纳入平台特性路线图",
+      "特邀业界顶尖工程师作为技术裁判和导师"
     ]
   },
   {
@@ -40,70 +78,54 @@
     "variant": "rows",
     "items": [
       {
-        "title": "高级分布式系统工程师 (Rust/Go)",
-        "meta": "核心引擎组 · 珠海/新加坡 · 40k - 75k + 期权",
-        "desc": "高性能计算 · 分布式协议 · 内核开发",
-        "tag": "立即申请",
-        "href": "#"
+        "title": "高级分布式引擎研发专家 (Rust/Go)",
+        "meta": "引擎组 · 珠海/新加坡/Remote · 40k - 75k + Option",
+        "desc": "【职责】负责 Describe-Once 编译器编译提效、边缘网关断网高并发时序存盘机制及 WASM 运行时性能调优；【要求】5年以上系统级开发经验，熟悉高并发并发网络编程，有开源贡献者优先。",
+        "tag": "立即申请"
       },
       {
-        "title": "工业大脑 AI 算法专家",
-        "meta": "AI 实验室 · 慕尼黑/硅谷 · 50k - 90k + Equity",
-        "desc": "强化学习 · 运筹优化 · LLM",
-        "tag": "立即申请",
-        "href": "#"
+        "title": "数字孪生 3D 渲染图形引擎开发工程师",
+        "meta": "孪生组 · 珠海/Remote · 35k - 65k",
+        "desc": "【职责】研发基于 WebGPU 的下一代三维工厂轻量化几何精简算法及流体、温场可视化动态材质；【要求】精通 WebGL/WebGPU/Three.js，扎实的计算机图形学与向量几何功底。",
+        "tag": "立即申请"
       },
       {
-        "title": "资深 3D 渲染引擎开发",
-        "meta": "数字孪生组 · 珠海 · 35k - 65k",
-        "desc": "WebGPU · Three.js · 图形学",
-        "tag": "立即申请",
-        "href": "#"
+        "title": "制造大模型 AI 算法科学家",
+        "meta": "AI 实验室 · 慕尼黑/硅谷/Remote · 50k - 90k + Equity",
+        "desc": "【职责】设计基于工艺控制图 SPC、力矩曲线和缺陷图像的细粒度制造工艺特征提取与工艺自调优 LLM 智能体；【要求】在运筹优化、强化学习或大型生成式模型领域有实际落地案例发表。",
+        "tag": "立即申请"
       },
       {
-        "title": "资深 混子 没啥能耐",
-        "meta": "混子组 · 佛山 · 35 - 65",
-        "desc": "混子 · 摸鱼 · 摆烂",
-        "tag": "立即申请",
-        "href": "#"
+        "title": "半导体/新能源数字化实施交付架构师",
+        "meta": "交付组 · 深圳/苏州/常州 · 25k - 45k",
+        "desc": "【职责】深入动力电池、半导体封测等现场，设计符合 IATF 16949 或 SECS 标准的系统蓝图，指导开发团队联调；【要求】3年以上重工业制造 IT 项目管理或 MES 实施部署经验。",
+        "tag": "立即申请"
       }
     ]
   },
   {
-    "type": "featureGrid",
-    "columns": 2,
-    "cards": [
+    "type": "faq",
+    "items": [
       {
-        "icon": "CheckCircle",
-        "title": "顶配 MacBook Pro + 高刷显示器",
-        "desc": "为极致生产力配备的硬件。"
+        "q": "MSRU 的面试流程一般是怎样的？需要做笔试题吗？",
+        "a": "我们的技术岗位通常包含 1 轮简历评估、1 轮在线硬核 Coding 面试（主要是考察实际架构设计和算法思维，拒绝刷死题目）、1 轮架构设计讨论以及最后一轮文化共鸣沟通。一般在 2 周内完成全部流程。"
       },
       {
-        "icon": "CheckCircle",
-        "title": "灵活的工作制度（支持远程）",
-        "desc": "地球就是你的办公室。"
+        "q": "我们支持海外员工的跨国工作安排和工作签支持吗？",
+        "a": "支持。对于核心技术人才，我们可在新加坡、德国及美国办公室协助办理工作签证，对于完全远程办公的数字游民，我们通过合规的第三方国际劳务机构完成当地的个税及社保合规代扣。"
       },
       {
-        "icon": "CheckCircle",
-        "title": "具有竞争力的底薪 + 厚实的股权",
-        "desc": "分享公司成长的价值。"
-      },
-      {
-        "icon": "CheckCircle",
-        "title": "完善的年度体检与高端医疗险",
-        "desc": "全方位守护你的健康。"
+        "q": "远程办公会不会导致团队沟通不畅？如何协同？",
+        "a": "我们奉行高度异步沟通文化。所有的技术提案（RFC）、API 定义及 Bug 修复过程都在 Github/GitLab 和内部知识库中留下详尽的书面审计路线。除了定期的极简日会外，我们把时间留给不被打扰的沉浸式 Coding。"
       }
     ]
   },
   {
     "type": "cta",
     "variant": "large",
-    "title": "还没准备好申请？",
-    "description": "即使你现在没有看到合适的职位，我们也随时欢迎天才的毛遂自荐。将你的简历或 GitHub/Portfolio 发送到简历库，我们会主动联系你。",
-    "cta": {
-      "label": "talent@msru.ai",
-      "href": "mailto:talent@msru.ai"
-    },
+    "title": "与改变世界的工业黑客同行，编写制造的未来",
+    "description": "如果上面的职位列表中没有发现完全匹配您方向的角色，也欢迎将您的简历及您引以为豪的开源代码库链接发送至我们的招聘邮箱。",
+    "cta": { "label": "发送简历至 careers@msru.ai", "href": "mailto:careers@msru.ai" },
     "accentColor": "blue"
   }
 ]

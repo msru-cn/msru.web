@@ -4,53 +4,140 @@
     "variant": "dark",
     "badge": {
       "icon": "GraduationCap",
-      "text": "MSRU 官方认证学院"
+      "text": "MSRU Official Certification Program"
     },
-    "title": "为智能制造，培养火种。",
-    "subtitle": "从初级开发者到企业级系统架构师。我们提供体系化的实战课程与高含金量的官方认证，构建企业自足的数字化团队。",
+    "title": "官方人才赋能与专业认证服务",
+    "subtitle": "打造智能制造时代的数字火种。我们提供体系化的理论课程、云端真实设备模拟沙箱及权威的行业执业认证，助力企业构建能够独立开发、运维与持续演进的制造 IT 铁军团队。",
     "accentColor": "emerald",
-    "bgImage": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [{ "label": "索取认证大纲规范", "href": "/contact" }, { "label": "联系企业内训顾问", "href": "/contact" }]
   },
   {
-    "type": "subHero",
-    "title": "三大官方认证路径",
-    "subtitle": "选择最适合您的职业进阶路线，获取行业认可的权威证书。",
+    "type": "statBand",
+    "heading": "高附加值的人才培养体系",
+    "accentColor": "emerald",
+    "stats": [
+      { "value": "15", "unit": "K+", "label": "获得 MCD/MCC/MCA 官方认证的工业开发与实施工程师" },
+      { "value": "48", "unit": "小时", "label": "每门课程安排的现场高频 PLC 与时序写入上机实操时长" },
+      { "value": "100", "unit": "%", "label": "金牌与白金级合作伙伴交付交付顾问认证通过率要求" },
+      { "value": "24", "unit": "个月", "label": "官方执业证书的有效期（到期后需进行常规更新核验）" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "传统的‘交钥匙’工程行不通了。授人以渔，才是数字化良性循环的唯一解法。",
+    "body": "很多工厂在系统上线后，连改个 Andon 看板的警报色都要给外部服务商付几万块钱。MSRU 学院的课程不仅讲如何操作菜单，更教底层的声明式 DSL 语法及 WASM 规则编写，让企业真正掌握数字化升级的掌控权。",
     "accentColor": "emerald"
   },
   {
     "type": "pricingTable",
     "plans": [
       {
-        "name": "认证开发者",
-        "price": "MCD",
-        "description": "MSRU Certified Developer · 面向研发人员，掌握基于 MSRU 底层框架的二次开发、API 扩展与组件定制能力。",
-        "features": ["核心框架 API 深度解析", "前端组件与后端路由扩展", "上机实操代码考核"],
-        "cta": {
-          "label": "查看课程大纲",
-          "href": "#"
-        }
+        "name": "MSRU 认证开发者 (MCD)",
+        "price": "MCD 认证",
+        "description": "MSRU Certified Developer · 面向研发人员。掌握基于 Go/Rust 编译 WASM 自定义业务逻辑插件、前端 UI 大屏组件定制以及高吞吐 API 调用机制。",
+        "features": [
+          "MSRU 微内核架构及元数据模型解析",
+          "WASM 开发包、边缘侧驱动开发调试",
+          "自定义 Andon 与大屏图表组件封装",
+          "实操考试：3小时内限时编写过滤插件"
+        ],
+        "cta": { "label": "申请 MCD 课程", "href": "/contact" }
       },
       {
-        "name": "认证实施顾问",
-        "price": "MCC",
-        "description": "MSRU Certified Consultant · 面向业务与交付人员，精通标准系统模块配置、业务蓝图转化及工厂建模方法论。",
+        "name": "MSRU 认证实施顾问 (MCC)",
+        "price": "MCC 认证",
+        "description": "MSRU Certified Consultant · 面向业务分析师与交付顾问。精通标准系统模块快速配置、Andon 报警路由定义、工厂物理建模及精益项目交付方法论。",
         "popular": true,
-        "features": ["MES/WMS 标准功能全景", "零代码工艺路线与表单配置", "敏捷项目实施沙盘演练"],
-        "cta": {
-          "label": "查看课程大纲",
-          "href": "#"
-        }
+        "features": [
+          "MES/WMS/QMS 全模块配置实操",
+          "声明式零代码工艺路线与数据表拓展",
+          "IATF 16949 质量控制图（SPC）判定配置",
+          "实操考试：设计一套车间排产与追溯方案"
+        ],
+        "cta": { "label": "申请 MCC 课程", "href": "/contact" }
       },
       {
-        "name": "认证架构师",
-        "price": "MCA",
-        "description": "MSRU Certified Architect · 面向卓越技术领袖，主导集团级多工厂分布式架构、高可用部署及微服务治理。",
-        "features": ["需拥有 MCD 且具备 5 年经验", "异构系统集群集成方案", "数字孪生与 AI 底座架构设计"],
-        "cta": {
-          "label": "申请资质审核",
-          "href": "#"
-        }
+        "name": "MSRU 认证架构师 (MCA)",
+        "price": "MCA 认证",
+        "description": "MSRU Certified Architect · 面向技术总监与首席架构师。主导跨国集团多工厂高可用灾备方案、超高频测点时序数据库压测性能调优及零信任 OT/IT 网络网关配置设计。",
+        "features": [
+          "需先持有 MCD 并提供 3 年以上项目经历",
+          "分布式多数据中心同步与双活容灾设计",
+          "列式时序数据库高负载索引与分区分片",
+          "MCA 专家评审委员会在线答辩会诊"
+        ],
+        "cta": { "label": "申请 MCA 评审", "href": "/contact" }
       }
     ]
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Video",
+        "title": "官方在线视频自学平台 (E-Learning)",
+        "description": "提供超过 200 个免费的短视频微课，覆盖基础名词、网关接线、常见 API 调用等，支持零碎时间快速学习。",
+        "span": "wide",
+        "accentColor": "emerald"
+      },
+      {
+        "icon": "Database",
+        "title": "云端联合模拟实验室 (Simulation Labs)",
+        "description": "每位学员专享独立的云上容器沙箱，预装 PLC、RFID 读写器及机器视觉模拟器，模拟真实工厂发包发包工况。",
+        "span": "wide",
+        "accentColor": "cyan"
+      },
+      {
+        "icon": "Award",
+        "title": "人才资质公开验证名录",
+        "description": "官网提供证书编号唯一性真伪验证入口，并为企业客户公开推荐合格的认证自由职业者及开发团队名单。",
+        "accentColor": "emerald"
+      },
+      {
+        "icon": "BookOpen",
+        "title": "年度白皮书与升级集训营",
+        "description": "每当大版本（如 v5.4.0 LTS）发布时，免费为持证持证人员提供升级知识解析与差异化测试短训包。",
+        "accentColor": "cyan"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "内训服务",
+    "title": "定制化企业内训与“数字尖刀班”计划",
+    "body": "针对大型集团部署项目，我们提供驻厂讲师顾问服务，结合贵司的真实设备图纸和自定义模块，开展封闭式集中攻关集训，实现“训战结合”。",
+    "bullets": [
+      "根据贵司生产线特征针对性定制实战题目",
+      "原厂交付总监现场亲自把关架构合理性",
+      "集训结束直接输出符合贵司业务规范的合格人才"
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "认证考试的费用是多少？如果一次没考过怎么收费？",
+        "a": "常规的开发者（MCD）和实施顾问（MCC）认证考试费用已包含在相应的面授课程学费中。若上机答辩未通过，您可在结业后 90 天内获得一次免费补考机会。后续补考每次收取少量试卷审核与系统沙箱资源费。"
+      },
+      {
+        "q": "MSRU 的认证是否可以通过自学后直接报名参加考试？",
+        "a": "可以。对于经验丰富的工业黑客和 MES 专家，我们提供直接报名考试通道。您只需在网上商城购买考试激活码、上传您的项目背景简介，即可预约在线实操答辩评审。"
+      },
+      {
+        "q": "白金和金牌合作伙伴的证书考核有什么硬性名额要求？",
+        "a": "为保障联合交付项目的品质，我们要求金牌集成商交付团队必须有至少 3 名持有 MCD 证书的开发人员和 2 名持有 MCC 证书的实施顾问；白金级战略伙伴的名额要求为双倍，且必须有至少 1 名通过 MCA 认证的首席架构师挂帅。"
+      }
+    ]
+  },
+  {
+    "type": "cta",
+    "variant": "large",
+    "title": "立即报名下一期官方赋能训练营，拥抱数字制造",
+    "description": "联系学院教务老师，获取详细的班次日程、学费优惠及官方代金券政策。",
+    "cta": { "label": "咨询教务老师", "href": "/contact" },
+    "accentColor": "emerald"
   }
 ]

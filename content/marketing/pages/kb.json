@@ -2,29 +2,130 @@
   {
     "type": "hero",
     "variant": "search",
-    "badge": { "icon": "FileText", "text": "Knowledge Base" },
-    "title": "技术知识库",
-    "subtitle": "搜索 300+ 篇经过工程师审核的技术文章，快速解决您在使用中遇到的一切问题。",
+    "badge": {
+      "icon": "FileText",
+      "text": "Technical Knowledge Base"
+    },
+    "title": "开发者与实施技术知识库",
+    "subtitle": "检索超过 500 篇经过核心研发团队与现场支持架构师审核的硬核技术指南、异常处理方案及代码示例，消除制造现场的信息死角。",
     "accentColor": "blue",
-    "bgImage": "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [{ "label": "浏览开发文档", "href": "/docs" }, { "label": "提交技术工单", "href": "/contact" }]
+  },
+  {
+    "type": "statBand",
+    "heading": "全时段支持现场部署与运维",
+    "accentColor": "blue",
+    "stats": [
+      { "value": "500", "unit": "篇+", "label": "覆盖边缘计算、时序库及工业协议的文章" },
+      { "value": "15", "unit": "min", "label": "工单首应时间承诺（黄金/白金级支持）" },
+      { "value": "99", "unit": ".6%", "label": "通过知识库指南自助解决常见问题的概率" },
+      { "value": "7", "unit": "×24", "label": "知识库更新频率（根据版本持续迭代）" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "让知识沉淀为工业底座，而非存在于个别专家的脑海中。",
+    "body": "现场部署的复杂度极高，常遇到如“OPC UA 重连机制参数失效”或“WASM 堆溢出”等偶发问题。MSRU 坚信透明与分享的原则，将开发过程中遇到的每一个填坑过程都记录成结构化的知识文章，供全生态共享。",
+    "accentColor": "blue"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Cpu",
+        "title": "工业协议与边缘接入",
+        "description": "提供 OPC UA 证书管理、西门子 S7 读写防阻塞参数设置、SECS 通信断线缓存机制等现场实操案例代码。",
+        "span": "wide",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "Database",
+        "title": "时序与关系库性能调优",
+        "description": "探讨在千万级采集测点下，底层时序数据库冷热分区策略、索引优化技巧及历史数据定期压缩方案。",
+        "span": "wide",
+        "accentColor": "cyan"
+      },
+      {
+        "icon": "Code",
+        "title": "WASM 自定义函数插件",
+        "description": "演示如何用 Go/Rust/C++ 编写轻量级过滤插件并将其打包导入 MSRU 流程内核中运行。",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "网络安全与权限隔离",
+        "description": "详解工业隔离网闸双向代理反向配置、多租户 RBAC 控制与 TLS 1.3 证书自动化下发轮转流程。",
+        "accentColor": "cyan"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "推荐阅读",
+    "title": "版本升级与零停机冷平移迁移指南",
+    "body": "详细说明在生产环境 24 小时连续运行状态下，如何执行 MSRU 微内核从 v2.4 平滑过度到 v2.5 的分步指引。",
+    "bullets": ["容器热拔插无损升级架构图解", "元数据架构升级的回滚脚本设计", "双轨测试与生产环境并网运行规范"]
   },
   {
     "type": "list",
     "variant": "cards",
     "items": [
-      { "title": "快速入门指南", "desc": "产品安装、首次配置与基础操作教程", "meta": "24 篇", "href": "/docs" },
-      { "title": "常见问题排查", "desc": "按模块分类的高频问题与解决方案", "meta": "156 篇", "href": "/docs" },
-      { "title": "API 集成参考", "desc": "接口调用示例、错误码与最佳实践", "meta": "89 篇", "href": "/docs" },
-      { "title": "版本升级指南", "desc": "跨版本迁移步骤与数据兼容性说明", "meta": "18 篇", "href": "/docs" },
-      { "title": "安全与合规", "desc": "权限配置、加密策略与审计日志教程", "meta": "32 篇", "href": "/docs" },
-      { "title": "性能调优手册", "desc": "数据库优化、缓存策略与高并发配置", "meta": "45 篇", "href": "/docs" }
+      {
+        "title": "快速入门指南：首台网关一键接入",
+        "meta": "24 篇指南 · 适合初学者",
+        "desc": "讲解硬件选型、镜像烧录、网络互通探测以及首条时序数据流成功投递的全过程。",
+        "tag": "入门基础",
+        "href": "/docs"
+      },
+      {
+        "title": "常见设备连线故障诊断手册",
+        "meta": "156 篇故障库 · 适合实施工程师",
+        "desc": "汇集现场 Modbus 校验错误、OPC 乱码、HSMS 通信超时等高频硬件故障排查步骤。",
+        "tag": "故障排查",
+        "href": "/docs"
+      },
+      {
+        "title": "WASM 运行期堆内存限制解决策略",
+        "meta": "18 篇高级 · 适合研发人员",
+        "desc": "剖析在极端大数据量处理下，如何优化 WASM 内存申请及垃圾回收行为，避免网关死机。",
+        "tag": "性能调优",
+        "href": "/docs"
+      },
+      {
+        "title": "多数据中心异地灾备与同步方案",
+        "meta": "32 篇架构 · 适合系统架构师",
+        "desc": "说明如何在跨省份的分厂之间实现秒级配置元数据强一致性与生产数据异步容灾备份。",
+        "tag": "系统架构",
+        "href": "/docs"
+      }
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "为什么有些高级调优的文章我无法访问？",
+        "a": "部分文章涉及底层内核参数的安全优化及定制插件源码，仅对签订了企业级金牌/白金技术支持合同的客户及认证高级架构师开放。您可以登录企业认证账号解锁权限。"
+      },
+      {
+        "q": "如何向知识库贡献或者反馈文章错误？",
+        "a": "我们支持开源共建。每篇文章下方都有“编辑建议”按钮。点击后可提交 Markdown 修改建议，我们的技术文档委员会将在 24 小时内完成审核并更新。"
+      },
+      {
+        "q": "有离线版本的知识库可供现场无网环境下查阅吗？",
+        "a": "有。购买企业授权的客户可下载官方提供的 HTML 离线文档包或通过 MSRU 桌面端管理工具直接打包一键同步离线库。"
+      }
     ]
   },
   {
     "type": "cta",
-    "variant": "small",
-    "title": "没找到答案？",
-    "cta": { "label": "联系技术支持", "href": "/support" },
+    "variant": "large",
+    "title": "搜索您的技术疑问，或者立即与我们的架构师对话",
+    "description": "如果在知识库中没有检索到特定工况的配置问题，请提交详尽的日志截图，我们的值班工程师将快速跟进。",
+    "cta": { "label": "进入支持中心", "href": "/support" },
     "accentColor": "blue"
   }
 ]

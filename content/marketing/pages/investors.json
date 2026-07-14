@@ -2,22 +2,75 @@
   {
     "type": "hero",
     "variant": "dark",
-    "badge": { "icon": "TrendingUp", "text": "Investor Relations" },
-    "title": "透明、稳健与共赢",
-    "subtitle": "我们致力于通过技术透明度与财务稳健性为全球投资者创造长效价值。在这里获取 MSRU 最新的市场表现与商业决策信息。",
+    "badge": {
+      "icon": "TrendingUp",
+      "text": "Investor Relations"
+    },
+    "title": "稳健经营与长效复利价值创造",
+    "subtitle": "我们致力于通过硬核技术壁垒、高黏性订阅模式与卓越的财务自律，为全球长期投资者提供透明、稳健且充满增长张力的商业模型报告。",
     "accentColor": "blue",
     "bgImage": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=80&w=2000",
-    "ctas": [{ "label": "下载最新财报", "href": "#" }, { "label": "IR 联系人", "href": "#" }]
+    "ctas": [{ "label": "下载最新财务快报", "href": "/contact" }, { "label": "联系投资者关系团队", "href": "/contact" }]
   },
   {
     "type": "statBand",
-    "heading": "Financial Highlights",
-    "accentColor": "emerald",
+    "heading": "商业化与财务指标概览",
+    "accentColor": "blue",
     "stats": [
-      { "value": "$1.42B", "unit": "+28.5%", "label": "年度总营收 (FY23) · 持续高速增长中" },
-      { "value": "72", "unit": "% (+5.2%)", "label": "订阅收入占比 · SaaS 核心业务稳固" },
-      { "value": "38", "unit": "% (+12.1%)", "label": "国际业务占比 · 全球化扩张加速" },
-      { "value": "High", "unit": "Grade A", "label": "现金流充足度 · 具备极强抗风险能力" }
+      { "value": "128", "unit": "%", "label": "净收入留存率 (Net Retention Rate) - 客户高忠诚度" },
+      { "value": "45", "unit": "%+", "label": "年度订阅 ARR 复合年均增长率" },
+      { "value": "28", "unit": "%", "label": "年营收中投入底层内核研发与算法优化的占比占比" },
+      { "value": "A", "unit": "Grade", "label": "评级机构出具的资产负债表与现金流健康度" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "工业软件是典型的‘长斜坡、厚积雪’赛道，依靠低水平的重复销售终将被淘汰。",
+    "body": "传统制造软件通过堆叠项目制人力实现营收，毛利率低且难以规模化。MSRU 提倡声明式底座，通过‘平台订阅+生态插件’的双轮驱动，实现高毛利、高重复性收入（ARR）的健康扩张路径。",
+    "accentColor": "blue"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "TrendingUp",
+        "title": "高黏性订阅与 ARR 占比提升",
+        "description": "随着 3C、新能源电池等标杆客户的集团化推开，年订阅收入占比已突破 75%，提供稳定现金流。",
+        "span": "wide",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "Globe",
+        "title": "全球化国际市场多维扩张",
+        "description": "在欧美及东南亚市场设立分支，国际化业务贡献率已达 38%，有效分散单一区域市场波动风险。",
+        "span": "wide",
+        "accentColor": "cyan"
+      },
+      {
+        "icon": "Cpu",
+        "title": "AI 与 3D 元宇宙新增长曲线",
+        "description": "高毛利的 WebGPU 孪生引擎与 AI 工艺预测大模型套件的加购比例由去年的 8% 提升至 24%。",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "Handshake",
+        "title": "合作伙伴联合销 (Co-selling)",
+        "description": "与主流硬件设备商和大型云集成商达成战略绑定，渠道销售分成模式将进一步降低销售费用率。",
+        "accentColor": "cyan"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "研发投入",
+    "title": "硬核研发：筑起竞争对手难以逾越的微内核壁垒",
+    "body": "我们深知制造底座对可靠性的极端要求。MSRU 持续在 WASM 沙箱、亚毫秒时序引擎等关键底层技术上进行长线战略投资，保障产品的绝对独特性。",
+    "bullets": [
+      "专利微内核编译技术获多国权威机构认定",
+      "拥有一支由工业通信、编译器及密码学专家组成的研发天团",
+      "开源驱动生态获得全球数万名开发者的共同维护"
     ]
   },
   {
@@ -25,21 +78,21 @@
     "variant": "rows",
     "items": [
       {
-        "title": "MSRU 2023 全球业务与可持续发展年度汇总",
-        "meta": "年度报告 · 2024-03-25",
-        "desc": "12.4 MB",
-        "tag": "年度报告"
+        "title": "MSRU 2025 全球业务与可持续发展年度汇总报告 (PDF)",
+        "meta": "年度报告 · 12.8 MB",
+        "desc": "详尽披露全年度的资产负债表、利润表、SaaS 指标核算及核心大客户流失率情况说明。",
+        "tag": "年度财报"
       },
       {
-        "title": "MSRU 2024 第一季度经营情况说明",
-        "meta": "季度快报 · 2024-05-12",
-        "desc": "4.8 MB",
-        "tag": "季度快报"
+        "title": "MSRU 2025 第三季度经营情况简报 (Briefing)",
+        "meta": "季度快报 · 4.2 MB",
+        "desc": "简要总结第三季度单季度 ARR 增长曲线、研发费用分摊及新拓展客户站点明细。",
+        "tag": "季度业绩"
       },
       {
-        "title": "2024 夏季投资者交流日产品演进蓝图",
-        "meta": "路演简报 · 2024-06-02",
-        "desc": "8.2 MB",
+        "title": "2025 全球路演与大客户战略分析简报 (PPT)",
+        "meta": "路演路演 · 9.6 MB",
+        "desc": "面向投资机构介绍微内核平台化演进路线、AI 智能体制造场景变现潜力及渠道佣金政策。",
         "tag": "路演简报"
       }
     ]
@@ -48,16 +101,34 @@
     "type": "list",
     "variant": "timeline",
     "items": [
-      { "meta": "8月15日", "title": "2024 中期财报分析说明会" },
-      { "meta": "9月02日", "title": "高盛全球工业互联网峰会路演" }
+      { "meta": "10月25日", "title": "2025 第三季度分析师与投资者公开电话会议" },
+      { "meta": "11月12日", "title": "摩根士丹利科技与制造数字化全球峰会" },
+      { "meta": "12月05日", "title": "MSRU 2025 年度全球合作伙伴大会与新增长路演" }
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "MSRU 是否已经实现自我盈利？还是依然依赖外部融资？",
+        "a": "得益于我们轻量化的研发与交付机制以及高黏性的站点订阅续费，MSRU 已经在过去 6 个季度中实现了经营性现金流为正（Cash Flow Positive）并实现稳步盈利，具备极强的自我抗风险能力。"
+      },
+      {
+        "q": "如何看待与传统巨头（如西门子、SAP等）的竞争与合作？",
+        "a": "传统巨头在重型设备和基础 ERP 层面根基深厚，但其老旧的“烟囱式”软件架构难以适应当前柔性小批量制造和高频数据采集的需求。MSRU 平台通过提供声明式微内核与轻量化微服务，更多是作为其元数据引擎和高速时序通道的补充，支持与老旧系统的无缝衔接。"
+      },
+      {
+        "q": "大客户 concentration (集中度) 是否过高？",
+        "a": "截至最新财季，我们前五大新能源及半导体集团客户的总营收占比已从 40% 降至 22%，随着中型制造工厂和海外站点订阅的快速推开，客户群体呈现良性的分布式多元化结构。"
+      }
     ]
   },
   {
     "type": "cta",
-    "variant": "small",
-    "title": "分析师专区",
-    "description": "申请接入 MSRU 实时商业动态仪表盘，获取关于工业底层基座市场的深度研究数据。",
-    "cta": { "label": "Request Access", "href": "#" },
-    "accentColor": "emerald"
+    "variant": "large",
+    "title": "订阅最新的投资者通讯及路演日程",
+    "description": "输入您的机构邮箱，我们将定期向您发送最新的经营月报、高管观点分享及技术白皮书。",
+    "cta": { "label": "订阅 IR 简报", "href": "/contact" },
+    "accentColor": "blue"
   }
 ]

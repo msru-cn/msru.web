@@ -1,40 +1,76 @@
 [
   {
     "type": "hero",
-    "variant": "narrative",
+    "variant": "dark",
     "badge": {
       "icon": "Sparkles",
-      "text": "Our Vision & Mission"
+      "text": "MSRU Vision, Mission & Core Values"
     },
-    "title": "将工厂视作一个可进化的产品",
-    "subtitle": "在 MSRU，我们相信工厂不仅仅是生产线的堆砌，而是一个具有感知、响应与自我进化能力的“生命体”。我们的使命是为全球制造业提供不可或缺的数字神经系统。",
+    "title": "将工厂视作一个可自动进化的软件产品",
+    "subtitle": "重写工业软件的底层逻辑。我们深信，未来的现代车间不仅是机台和流水线的物理堆砌，而是一个拥有感知、推理与自我重构能力的生命体。MSRU 致力于为全球制造业搭建坚不可摧的数字神经系统。",
     "accentColor": "blue",
-    "bgImage": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=2000"
+    "bgImage": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [{ "label": "浏览发展历程", "href": "#timeline" }, { "label": "联系我们的合伙人团队", "href": "/contact" }]
+  },
+  {
+    "type": "statBand",
+    "heading": "数载深耕，用数据兑现卓越",
+    "accentColor": "blue",
+    "stats": [
+      { "value": "14", "unit": "年", "label": "专注工业底层协议、时序数据库及微内核研发的年份" },
+      { "value": "800", "unit": "名+", "label": "毕业于全球名校的计算机科学家与自动化专家研发研发团队" },
+      { "value": "60", "unit": "万次+", "label": "每日在客户端微内核上稳定执行的工业 WASM 自定义函数" },
+      { "value": "200", "unit": "家+", "label": "全球灯塔工厂及中大型上市企业客户合作伙伴" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "制造系统的本源是元数据，而非割裂的表结构。统一描述，才能实现真正的无孤岛制造。",
+    "body": "传统软件为每个功能（库位、质检、排程）建立一套数据库，导致后续业务变更时接口层层塌方。MSRU 坚持声明式底座，通过‘一次描述，多端联动’，将物理车间的一切原子运动映射入统一的信息模型中，让工业升级实现零开发成本。",
+    "accentColor": "blue"
+  },
+  {
+    "type": "bento",
+    "items": [
+      {
+        "icon": "Cpu",
+        "title": "微内核化与可组合性 (Composability)",
+        "description": "拒绝冗余的巨石架构。我们将 MES、WMS、EAM 等模块打散为轻量的微服务，支持企业根据自身节拍按需组合组装。",
+        "span": "wide",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "ShieldAlert",
+        "title": "零信任安全与数据主权 (Sovereignty)",
+        "description": "我们坚信数据是工厂最核心资产。提供物理级的数据库隔离与全链路端到端加密，确保客户数据主权坚不可摧。",
+        "span": "wide",
+        "accentColor": "cyan"
+      },
+      {
+        "icon": "Users",
+        "title": "拥抱开源与生态共建 (Ecosystem)",
+        "description": "我们在 GitHub 开源了 80 余种工业协议驱动及脚手架命令行工具，联合全球 ISV 伙伴共同消灭昂贵的接口服务费。",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "TrendingUp",
+        "title": "高频平滑迭代 (Infinite Evolution)",
+        "description": "系统支持在线热升级、热拔插，免去传统工业软件动辄停机数天联调的灾难性阵痛。",
+        "accentColor": "cyan"
+      }
+    ]
   },
   {
     "type": "splitMedia",
+    "side": "right",
     "image": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000",
-    "side": "left",
-    "eyebrow": "核心理念",
-    "title": "核心理念：底层模型驱动",
-    "body": "传统的烟囱式系统开发已成为工业瓶颈。MSRU 提倡自底向上的核心架构，通过统一的模型语法 (Unified Model Schema) 描述工厂中的每一个原子动作。\"我们不是在简单的数字化，而是在重写工业制造的底层逻辑。\" — MSRU 创始团队"
-  },
-  {
-    "type": "featureGrid",
-    "columns": 2,
-    "cards": [
-      {
-        "icon": "Target",
-        "accentColor": "blue",
-        "title": "高频进化",
-        "desc": "支持周级别的功能迭代，工厂无需停机即可升级数字化能力。"
-      },
-      {
-        "icon": "Sparkles",
-        "accentColor": "emerald",
-        "title": "数据主权",
-        "desc": "通过零信任架构，确保每一个字节的所有权永远归属于工厂主。"
-      }
+    "eyebrow": "研究院使命",
+    "title": "MSRU 基础平台研究院的工作准则",
+    "body": "我们的研究院不局限于商业交付，更致力于探索图形图像学（WebGPU 厂房轻量化）、运筹学排产算法及大模型异常分类的学术前沿。",
+    "bullets": [
+      "与多所知名高校建立联合工业实验室",
+      "定期向社区发布工业网络零信任与低碳计算白皮书",
+      "承担多项国家级重点智能制造科研攻关课题项目"
     ]
   },
   {
@@ -42,41 +78,55 @@
     "variant": "timeline",
     "items": [
       {
-        "meta": "2012",
-        "title": "项目启动",
-        "desc": "MSRU 项目在硅谷车库启动，致力于解决工业数据孤岛问题。"
+        "title": "车库项目启动，确立声明式元数据构想",
+        "meta": "2012-05",
+        "desc": "创始团队在硅谷车库启动微内核工业软件构想，立志消灭异构系统数据割裂割裂的宿命。"
       },
       {
-        "meta": "2015",
-        "title": "首个自研 WMS 引擎上线",
-        "desc": "首个自研 WMS 引擎在半导体头部厂商上线，实现像素级物料追踪。"
+        "title": "首个高并发 WMS 调度系统在半导体大厂上线",
+        "meta": "2015-10",
+        "desc": "在 CP 测试车间成功经受数十万测点高并发数据写入冲击，首次验证了高性能时序存储模型可行性。"
       },
       {
-        "meta": "2018",
-        "title": "Factory as a Product",
-        "desc": "“Factory as a Product” 理念正式提出，定义统一工业底层模型。"
+        "title": "“Factory as a Product” (工厂即产品) 理念提出",
+        "meta": "2018-08",
+        "desc": "正式推出统一工业模型描述规约，实现了 MES 与 IoT 网关在元数据层面的即插即用互通。"
       },
       {
-        "meta": "2021",
-        "title": "MSRU Platform 2.0",
-        "desc": "全球研发节点补全，正式发布全栈数字化基座 MSRU Platform 2.0。"
+        "title": "全新 v5.0 微内核平台与 WebGPU 数字孪生发布",
+        "meta": "2023-12",
+        "desc": "标志着系统全面进入跨平台纯浏览器时代，支持三维孪生漫游及秒级设备传感器反向透传调试。"
       },
       {
-        "meta": "2024",
-        "title": "灯塔工厂建设",
-        "desc": "入选全球数字化转型影响力企业，主导 100+ 灯塔工厂建设。"
+        "title": "制造大模型 AI 智能体工艺调优套件量产落地",
+        "meta": "2026-02",
+        "desc": "联合头部电池厂，实现基于早期充电时序曲线的电芯循环寿命预测，AI 质检模块精度行业领先。"
+      }
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "MSRU 的核心技术研发团队主要分布在哪里？",
+        "a": "我们实行高度分布式的全球协作。基础内核与数据库编译器团队主要驻扎在珠海总部；网络零信任与私有化安全中心设在新加坡；而工业通信互连实验室和 AI 工艺调优组分别位于慕尼黑和硅谷。"
+      },
+      {
+        "q": "为什么说“一次描述，全栈自举”能让工厂自主维护软件？",
+        "a": "在传统 MES 中，哪怕要在界面增加一个“工艺温度”输入框，也需要更改底层表、API、网络转发和前端页面，极度繁琐。而在 MSRU 中，您只需在描述文件中添加此字段，内核会自动动态生成该字段的存储实例、对外 API 以及大屏展示模块，整个过程仅需 1 分钟，工厂 IT 人员拖拽即可独立操作。"
+      },
+      {
+        "q": "MSRU 对老旧老旧制造工厂的智能化改造有什么建议？",
+        "a": "我们主张“轻量化并网、热拔插平移”。无需推倒重建，可通过 MSRU 开源边缘网关先期抓取关键机台的能耗和状态数据，在不影响旧 MES 运行的情况下，快速叠加 3D 孪生和 Andon 看板，逐步实现平滑过渡。"
       }
     ]
   },
   {
     "type": "cta",
     "variant": "large",
-    "title": "下一站，通用工业 AI",
-    "description": "我们正在研发支撑自主规划与执行的工业大模型。如果你也相信代码可以重构物理世界，请加入我们的行列。",
-    "cta": {
-      "label": "加入我们",
-      "href": "/careers"
-    },
+    "title": "与我们共同重塑工业数字化的未来面貌",
+    "description": "立即向我们的专家团队预约一次面对面技术讨论，了解 MSRU 微内核能为您的产线带来哪些效率飞跃。",
+    "cta": { "label": "沟通创始合伙人", "href": "/contact" },
     "accentColor": "blue"
   }
 ]

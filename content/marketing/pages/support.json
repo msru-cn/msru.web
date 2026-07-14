@@ -1,39 +1,131 @@
 [
   {
     "type": "hero",
-    "badge": { "icon": "Headphones", "text": "Support Center" },
-    "title": "7x24",
-    "titleAccent": "全天候支持",
-    "subtitle": "全球 NOC 响应中心，由资深工程师值守，确保您的生产线永不停歇。",
-    "bgImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000"
+    "variant": "dark",
+    "badge": {
+      "icon": "Headphones",
+      "text": "Enterprise Support & SLA"
+    },
+    "title": "7x24 小时全球企业级服务与支持保障",
+    "subtitle": "护航工业生产，绝不妥协。MSRU 拥有专业的值班架构师团队与覆盖全球的交付支持中心，为您的 24 小时连续运行产线提供从热补丁下发到现场紧急排雷的纵深服务。",
+    "accentColor": "blue",
+    "bgImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000",
+    "ctas": [{ "label": "提交紧急工单", "href": "/contact" }, { "label": "了解支持计划详情", "href": "/contact" }]
   },
   {
-    "type": "featureGrid",
-    "columns": 3,
-    "cards": [
+    "type": "statBand",
+    "heading": "高标准指标契约，兑现可靠承诺",
+    "accentColor": "blue",
+    "stats": [
+      { "value": "15", "unit": "分钟", "label": "P1 级严重生产故障首应响应时长目标" },
+      { "value": "99", "unit": ".8%", "label": "年度 SLA 服务等级承诺达成率" },
+      { "value": "98", "unit": ".6", "label": "全球五百强工业企业客户服务满意度评分" },
+      { "value": "12", "unit": "个", "label": "设有本地资深实施与应急工程师的工业枢纽城市" }
+    ]
+  },
+  {
+    "type": "statement",
+    "title": "在工业领域，软件宕机不是商业损失问题，而是安全生产与交付红线问题。",
+    "body": "当一条生产线因为网络延迟或数据溢出而停滞，每分钟产生的损失可能高达数万元。MSRU 服务体系以‘主动监测、多级备份、原厂直连’为原则，确保每一次现场呼叫都能直接对接懂代码、懂硬件的资深工程师，而非只会念话术的客服员。",
+    "accentColor": "blue"
+  },
+  {
+    "type": "bento",
+    "items": [
       {
-        "icon": "Phone",
-        "accentColor": "blue",
-        "title": "电话热线",
-        "desc": "400-800-1904 · 7x24 全天候服务"
+        "icon": "PhoneCall",
+        "title": "白金级 (Platinum) 驻厂与全天候支持",
+        "description": "专为半导体、新能源头部大厂设计。提供专属客户技术经理（TAM）、24小时紧急电话专线，以及大促及重保时段的驻厂护航。",
+        "span": "wide",
+        "accentColor": "blue"
       },
       {
-        "icon": "Mail",
-        "accentColor": "emerald",
-        "title": "邮件工单",
-        "desc": "support@msru.ai · SLA 4 小时内首次响应"
+        "icon": "ShieldAlert",
+        "title": "黄金级 (Gold) 快速应急响应",
+        "description": "面向全天候连续生产的企业。提供 7x24 电话支持、重大缺陷 2 小时内远程介入，保障非正常工作时间的生产稳定性。",
+        "span": "wide",
+        "accentColor": "cyan"
       },
       {
         "icon": "MessageSquare",
-        "accentColor": "amber",
-        "title": "在线即时聊天",
-        "desc": "平台右下角 · 工作时间实时接入"
+        "title": "标准级 (Standard) 在线工单",
+        "description": "面向非高节拍装配的实验厂区。工作时间内提供专业的邮件及网页工单答疑，解答系统配置与使用疑问。",
+        "accentColor": "blue"
+      },
+      {
+        "icon": "Globe",
+        "title": "全球 NOC 状态实时看板",
+        "description": "全时段监控 MSRU 全球云服务可用性、API 平均延迟与已知漏洞热补丁分发进度，完全公开透明。",
+        "accentColor": "cyan"
+      }
+    ]
+  },
+  {
+    "type": "splitMedia",
+    "side": "right",
+    "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1000",
+    "eyebrow": "响应中心",
+    "title": "多级联动主动式运维体系",
+    "body": "我们的 NOC 中心不仅被动接收工单，更能通过已授权的安全遥测通道，先于现场警报识别潜在的时序库负载过高、网关断线等征兆并主动介入。",
+    "bullets": [
+      "基于 AI 的边端网关内存与磁盘预警",
+      "故障现场一键拉起安全临时代理进行调试",
+      "联合网络运营商共同排查物理链路阻塞"
+    ]
+  },
+  {
+    "type": "list",
+    "variant": "rows",
+    "items": [
+      {
+        "title": "P1 级严重事件：核心产线停顿 / 平台不可用 (Critical Downtime)",
+        "meta": "白金级: 15分钟首次响应 / 2小时远程联调",
+        "desc": "黄金级: 30分钟响应 / 4小时远程联调 · 标准级: 4小时响应",
+        "tag": "最高优先级"
+      },
+      {
+        "title": "P2 级中度事件：非核心模块故障 / 良率看板数据迟滞 (Minor Interruption)",
+        "meta": "白金级: 1小时首次响应",
+        "desc": "黄金级: 2小时响应 · 标准级: 工作日 8小时内处理",
+        "tag": "中优先级"
+      },
+      {
+        "title": "P3 级轻微事件：配置参数疑问 / 界面展示瑕疵 (Technical Inquiries)",
+        "meta": "白金级: 4小时首次响应",
+        "desc": "黄金级: 1个工作日内响应 · 标准级: 2个工作日内响应",
+        "tag": "低优先级"
+      },
+      {
+        "title": "版本安全微漏洞热补丁修复 (Hotfix Delivery)",
+        "meta": "白金级: 专享特批补丁包与灰度发布测试指导",
+        "desc": "黄金级/标准级: 下一次定期升级版本统一打包推送",
+        "tag": "安全漏洞"
+      }
+    ]
+  },
+  {
+    "type": "faq",
+    "items": [
+      {
+        "q": "如果故障是因为现场第三方 PLC 或网络链路导致，是否在支持范围之内？",
+        "a": "根据服务边界划分，MSRU 负责平台本身及设备适配驱动的数据正确性。但在黄金和白金级别服务中，我们的架构师会协助您的网络管理员和设备商，通过调试工具共同捕捉和定位协议包的解析冲突，提供联合诊断支持。"
+      },
+      {
+        "q": "什么是客户技术经理（TAM）？他如何帮助我们？",
+        "a": "TAM 是专门分配给企业集团大客户的资深工业架构师。他会深入熟悉您的产线配置、自定义 WASM 代码和网络拓扑。定期为您的企业进行系统健康巡检、版本升级风险评估并协调研发团队对复杂问题进行重点突击。"
+      },
+      {
+        "q": "如何变更为更高级别的服务计划？",
+        "a": "您可随时联系您的企业客户经理申请扩容或变更服务合同，升级指令一经下达，您的专属 24 小时电话热线通道和专席工程师配置将在 1 工作日内激活生效。"
       }
     ]
   },
   {
     "type": "cta",
-    "title": "查看系统实时运行状态",
-    "cta": { "label": "系统状态面板", "href": "/status" }
+    "variant": "large",
+    "title": "为您的工厂部署专业的全时段安全堡垒",
+    "description": "立即向我们的专家索取不同支持计划的价格测算与具体的服务等级协议 (SLA) 范本。",
+    "cta": { "label": "索取 SLA 协议文档", "href": "/contact" },
+    "accentColor": "blue"
   }
 ]
