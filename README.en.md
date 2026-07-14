@@ -18,7 +18,7 @@
 
 ---
 
-![MSRU DT-Core Preview](./public/uploads/preview.png)
+![MSRU DT-Core Preview](public/uploads/preview.png)
 
 ## Overview
 
